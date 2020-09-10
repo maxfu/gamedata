@@ -1,0 +1,9 @@
+function self_healing()
+
+local have_bandage=db.actor: object ("bandage" )
+
+	if db.actor.health<0.1 and have_bandage then 
+		db.actor:eat(db.actor: object("bandage" ))
+	end
+	
+end

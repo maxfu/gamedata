@@ -1,0 +1,114 @@
+[ammo_heavy_base]
+k_dist    = 2.5
+k_disp    = 0.5
+k_hit     = 2.5
+k_impulse = 2.5
+k_pierce  = 2.5
+impair    = 1
+buck_shot = 3
+tracer    = on
+explosive = on
+
+[ammo_9x19_heavy]:ammo_9x19_pbp,ammo_heavy_base
+$spawn          = "weapons\ammo\ammo_9x19_heavy"
+description     = enc_weapons1_ammo_ammo-9x19-heavy;
+inv_name        = ammo-9x19-heavy;
+inv_name_short  = ammo-9x19-heavy_s;
+inv_grid_x      = 11
+inv_grid_y      = 27
+cost            = 3800
+box_size        = 50
+visual          = weapons\ammo\ammo_9x19_pbp.ogf
+
+[ammo_9x18_heavy]:ammo_9x18_pbp,ammo_heavy_base
+$spawn          = "weapons\ammo\ammo_9x18_heavy"
+description     = enc_weapons1_ammo_ammo-9x18-heavy;
+inv_name        = ammo-9x18-heavy;
+inv_name_short  = ammo-9x18-heavy_s;
+inv_grid_x      = 11
+inv_grid_y      = 28
+cost            = 3800
+box_size        = 50
+
+[ammo_9x39_heavy]:ammo_9x39_ap,ammo_heavy_base
+$spawn          = "weapons\ammo\ammo_9x39_heavy"
+description     = enc_weapons1_ammo_ammo-9x39-heavy;
+inv_name        = ammo-9x39-heavy;
+inv_name_short  = ammo-9x39-heavy_s;
+inv_grid_x			= 12
+inv_grid_y			= 23
+cost            = 2500
+box_size        = 30
+
+[ammo_5.56x45_heavy]:ammo_5.56x45_ap,ammo_heavy_base
+$spawn          = "weapons\ammo\ammo_5.56x45_heavy" ; option for Level Editor
+description     = enc_weapons1_ammo_ammo-5.56x45-heavy;
+inv_name        = ammo-5.56x45-heavy;
+inv_name_short  = ammo-5.56x45-heavy_s;
+inv_grid_x      = 14
+inv_grid_y      = 23
+cost            = 3800
+box_size        = 40
+
+
+
+[wpn_mp5_m3]:wpn_mp5
+$spawn          = "weapons\uniq\wpn_mp5_m3"
+description     = "Modified MP5 with extended Magazine support for all 9mm pistol ammos. I can be used as sidearm so you can replace your ordinary pistol with it."
+inv_name        = "MP5 MK3"
+inv_name_short  = "MP5M3"
+inv_grid_x      = 5
+inv_grid_y      = 33
+ammo_current    = 40
+ammo_elapsed    = 40
+ammo_mag_size   = 40
+ammo_class      = ammo_9x19_fmj, ammo_9x19_pbp, ammo_9x18_fmj, ammo_9x18_pmm, ammo_9x19_heavy, ammo_9x18_heavy
+
+[wpn_bm16_m1]:wpn_bm16
+$spawn          = "weapons\uniq\wpn_bm16_m1"
+description     = "Modified BM16 that can be used as sidearm so you can replace your ordinary pistol with it. It also has better range and accuracy."
+inv_name        = "BM16 MK1"
+inv_name_short  = "BM16M1"
+inv_grid_x      = 9
+inv_grid_y      = 31
+slot            = 1
+animation_slot  = 1
+
+fire_dispersion_base	= 0.25
+control_inertion_factor	= 1.10f
+cam_relax_speed			= 5.5
+cam_dispersion			= 0.2
+cam_dispersion_inc		= 0.05
+cam_dispertion_frac		= 0.4
+cam_max_angle			= 6.0
+cam_max_angle_horz		= 9.0
+cam_step_angle_horz		= 0.5
+fire_dispersion_condition_factor = 5
+misfire_probability 		= 0.003
+misfire_condition_k			= 0.05
+condition_shot_dec 			= 0.0002
+fire_distance          	= 70
+bullet_speed			= 400
+
+[wpn_groza_m2]:wpn_groza_m1
+$spawn          = "weapons\uniq\wpn_groza_m2"
+description     = "Modified Groza support legendary 9x39mm heavy ammo and bigger magazine."
+inv_name        = "Groza MK2"
+inv_name_short  = "GrozaM2"
+ammo_current    = 30
+ammo_elapsed    = 30
+ammo_mag_size   = 30
+ammo_class      = ammo_9x39_pab9, ammo_9x39_sp5, ammo_9x39_ap, ammo_9x39_heavy
+
+[wpn_lr300_m2]:wpn_lr300
+$spawn          = "weapons\uniq\wpn_lr300_m2"
+description     = "Modified LR300 with bigger magazine and support for heavy ammo"
+inv_name        = "LR300 MK2"
+inv_name_short  = "LR300M2"
+inv_grid_x      = 5
+inv_grid_y      = 34
+ammo_current    = 40
+ammo_elapsed    = 40
+ammo_mag_size   = 40
+ammo_class      = ammo_5.56x45_ss190, ammo_5.56x45_ap, ammo_5.56x45_heavy
+grenade_class   = ammo_m209

@@ -1,0 +1,23 @@
+<string_table>
+	<string id="enc_equipment_abc_bag">
+		<text>Sleeping Bag. Double click on icon and a pop-up window will appear allowing you to select 1, 3, or 9 hours of sleep. Be sure to eat before you sleep and make sure that you find a safe place to sleep in!</text>
+	</string>
+	<string id="abc_bag">
+		<text>Sleeping Bag</text>
+	</string>
+	<string id="unlimited_time_id">
+		<text>Unlimited</text>
+	</string>
+	<string id="one_hour_id">
+		<text>1 hour</text>
+	</string>
+	<string id="tree_hours_id">
+		<text>3 hours</text>
+	</string>
+	<string id="nine_hours_id">
+		<text>9 hours</text>
+	</string>
+	<string id="sleep_cap_id">
+		<text>Sleep for:</text>
+	</string>
+</string_table>

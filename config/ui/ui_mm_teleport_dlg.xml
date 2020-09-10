@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<window>
+	<back_video x="0" y="0" width="1024" height="430">
+		<texture x="0" y="0" width="1024" height="430">ui\ui_mm_window_back_crop</texture>
+	</back_video>
+
+	<background x="0" y="0" width="1024" height="768">
+		<texture x="0" y="0" width="1024" height="768">ui\ui_static_mm_back_04</texture>
+	</background>
+
+	<newspaper_video x="137" y="512" width="256" height="256">
+		<texture>ui\ui_mm_newspaper</texture>
+	</newspaper_video>
+
+	<form x="355" y="148" width="632" height="460" stretch="1">
+		<_texture>ui\ui_options_menu_static</_texture>
+		<_texture_offset x="-29" y="-19"/>
+		<texture>ui_menu_options_dlg</texture>
+		
+		<caption x="65" y="10" width="500" height="25" complex_mode="0">
+			<text font="graffiti22" r="184" g="168" b="131">ui_zs_zrp_teleport</text>
+		</caption>
+		
+		<picture x="352" y="92" width="224" height="126" stretch="1">
+			<_texture>ui\ui_noise</_texture>
+			<texture>intro\intro_no_start_picture</texture>
+		</picture>
+
+		<bg_equipment x="312" y="35" width="296" height="404" stretch="1">
+			<texture x="566" y="176" width="309" height="483">ui\ui_mp_main</texture>
+		</bg_equipment>
+
+		<file_caption x="362" y="62" width="512" height="20" complex_mode="1">
+			<text font="graffiti19" r="215" g="195" b="170"/>
+		</file_caption>
+
+		<cap_equipment x="362" y="252" width="512" height="20" complex_mode="1">
+			<text font="letterica18" r="215" g="195" b="170">ui_zs_equip_teleport</text>
+		</cap_equipment>
+
+		<check_equip_only x="362" y="282" width="512" height="21">
+			<text font="letterica16" r="215" g="195" b="170">ui_zs_equip_only</text>
+		</check_equip_only>
+
+		<check_teleport_only x="362" y="312" width="512" height="21">
+			<text font="letterica16" r="215" g="195" b="170">ui_zs_teleport_only</text>
+		</check_teleport_only>
+
+		<list_frame x="64" y="53" width="252" height="362">
+			<texture>ui_tablist_textbox</texture>
+		</list_frame>
+
+		<list x="74" y="63" width="230" height="342" item_height="18">
+			<font font="letterica16" r="216" g="186" b="140" />
+		</list>
+				
+		<btn_play x="101" y="427" width="157" height="48">
+			<texture>ui_button_main01</texture>
+			<text font="graffiti22">ui_zs_lets_do_this</text>
+			<text_color>
+				<e r="227" g="199" b="178"/> <t r="180" g="153" b="155"/> <d r="106" g="95" b="91"/> <h r="0" g="0" b="0"/>
+			</text_color>
+		</btn_play>
+
+		<btn_cancel x="413" y="427" width="157" height="48">
+			<texture>ui_button_main01</texture>
+			<text font="graffiti22">ui_mm_cancel</text>
+			<text_color>
+				<e r="227" g="199" b="178"/> <t r="180" g="153" b="155"/> <d r="106" g="95" b="91"/> <h r="0" g="0" b="0"/>
+			</text_color>
+		</btn_cancel>
+	</form>
+</window>

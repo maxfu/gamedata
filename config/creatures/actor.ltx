@@ -1,0 +1,311 @@
+[actor_terrain]
+	255,255,000,255
+
+[actor]:common_ph_friction_params_on_npc_death
+GroupControlSection		= spawn_group
+$spawn 					= "actor"
+$ed_icon				= ed\ed_actor
+$player 				= on
+$prefetch 				= 16
+cform                   = skeleton
+class                   = O_ACTOR
+money					= 40;
+rank					= 3;
+script_binding			= bind_stalker.actor_init
+visual					= actors\hero\stalker_novice.ogf 
+destroyed_vis_name		= physics\Dead_Body\skelet_crash
+
+terrain					= actor_terrain
+
+max_item_mass			= 100
+jump_speed              = 6.5
+crouch_coef 			= 0.45
+climb_coef				= 0.7
+run_coef                = 2.1
+sprint_koef				= 2.6
+run_back_coef			= 1.8
+walk_back_coef			= 0.8
+air_control_param		= 0.1
+walk_accel              = 17
+
+;радиус ?котром на?предметами выво?тся их назван?
+pickup_info_radius		= 10	;3
+
+ef_creature_type		= 17						; option for evaluation functions
+
+; attach params
+attachable_items		= device_torch,attachable_item,hand_radio
+
+ph_box0_center 						= 0.0,  0.9,  0.0
+ph_box0_size 						= 0.35, 0.9,  0.35
+ph_box1_center 						= 0.0,  0.75,  0.0
+ph_box1_size 						= 0.35, 0.75,  0.35
+ph_box2_center 						= 0.0,  0.6,  0.0
+ph_box2_size 						= 0.35, 0.6,  0.35
+stalker_restrictor_radius			= .55;0.55;0.75;0.9
+stalker_small_restrictor_radius		= .55;
+medium_monster_restrictor_radius	= 0.1
+ph_crash_speed_min      			= 14
+ph_crash_speed_max      			= 30
+ph_collision_damage_factor			= 1.0
+ph_mass 							= 80
+
+ph_skeleton_airr_lin_factor = -0.45
+ph_skeleton_airr_ang_factor = -0.21
+ph_skeleton_hinger_factor1 = 1.0
+ph_skeleton_hinge_vel = 0.7
+ph_skeleton_ddelay = 0
+ph_skel_fatal_impulse_factor  = 1
+ph_after_death_velocity_factor= 0.75
+ph_skel_shot_up_factor        = 0.25
+
+weapon_bone0				= bip01_r_finger1
+weapon_bone1				= bip01_l_finger1
+weapon_bone2				= bip01_r_finger11
+
+damage						= actor_damage
+
+hit_probability_gd_novice		= 0.20
+hit_probability_gd_stalker		= 0.40
+hit_probability_gd_veteran		= 0.60
+hit_probability_gd_master		= 0.80
+hit_sounds					= actor_hit_snds
+;actor condition
+
+immunities_sect				= actor_immunities_gd_master
+condition_sect				= actor_condition
+
+heavy_breath_snd	= actor\breath_1		;звук ?желого дыхания пр?усталост?
+heavy_blood_snd		= affects\heartbeat; heart\8
+
+material						= creatures\actor
+camera_height_factor			= 0.91
+
+
+;дисперсия стрельбы ?учетом ходьбы ?бега
+disp_base					= 0.8		;угол (?градусах) разлет?пуль, когд?акте?стои?на мест?
+disp_aim					= 0.04
+disp_vel_factor				= 2.0		;на скольк?увеличит? дисперсия пр?скрост??10 ??(не обязательно пр?беге)
+disp_accel_factor			= 2.0  	;ещ?на скольк?увеличит?, если акте?бежи?(+ скорость)
+disp_crouch_factor			= -0.3 	;уменьшение если акте?сиди?
+disp_crouch_no_acc_factor	= -0.4 	;уменьшение если акте?сиди?+ no acceleration
+;disp_jump_factor			= 2.0
+
+missile_throw_offset = 0.3, 0.5, 0.5
+
+body_remove_time = 45000	;время уничтожения труп?(?учетом TimeFactor)
+
+sleep_time_factor			= 1000	;400		;во скольк?ра?время идет быстре? когд?акте?спит
+max_sleep_hours				= 12
+;species of monster
+species				= actor
+
+
+;---STEP MANAGER------------------------------------------------------
+LegsCount						= 2
+step_params						= stalker_step_manager
+foot_bones						= stalker_foot_bones
+
+memory_update_time			= 100
+
+; visibility parameters
+DynamicObjectsCount			= 32
+min_view_distance   		= 1.0				; коэффициен? которы?множит? на eye_range, ?зависимост?от угла
+max_view_distance	 		= 1.0				; коэффициен? которы?множит? на eye_range, ?зависимост?от угла
+visibility_threshold	 	= 1.0				; значение, пр?достижении суммой которого объект считается видимы?
+always_visible_distance 	= 1.0
+time_quant					= 0.005
+decrease_value				= 0.1				; значение, на которо?уменьшается ве? если объект попа??фрусту? но отсёкся по каки?то причинам
+velocity_factor		     	= 0.5
+luminocity_factor			= 0.5;0 			; фактор освещения (только для Актёра)
+transparency_threshold	 	= 0.4				; 0.25
+still_visible_time			= 5000				; время, которо?объект вс?ещ?считается видимы? даже если он уж?не во фрустуме
+
+[actor_immunities_gd_novice]
+burn_immunity 				= 0.5				;коэффициенты иммунитета 
+strike_immunity 			= 0.5
+shock_immunity 				= 0.5
+wound_immunity				= 0.5
+radiation_immunity 			= 0.5
+telepatic_immunity 			= 0.5
+chemical_burn_immunity 		= 0.5
+explosion_immunity 			= 0.5
+fire_wound_immunity  		= 0.5
+
+
+[actor_immunities_gd_stalker]
+burn_immunity 				= 0.65				;коэффициенты иммунитета 
+strike_immunity 			= 0.65
+shock_immunity 				= 0.65
+wound_immunity				= 0.65
+radiation_immunity 			= 0.65
+telepatic_immunity 			= 0.65
+chemical_burn_immunity 		= 0.65
+explosion_immunity 			= 0.65
+fire_wound_immunity  		= 0.65
+
+[actor_immunities_gd_veteran]
+burn_immunity 				= 0.8				;коэффициенты иммунитета 
+strike_immunity 			= 0.8
+shock_immunity 				= 0.8
+wound_immunity				= 0.8
+radiation_immunity 			= 0.8
+telepatic_immunity 			= 0.8
+chemical_burn_immunity 		= 0.8
+explosion_immunity 			= 0.8
+fire_wound_immunity  		= 0.8
+
+[actor_immunities_gd_master]
+burn_immunity 				= 1.0				;коэффициенты иммунитета 
+strike_immunity 			= 1.0
+shock_immunity 				= 1.0
+wound_immunity				= 1.0
+radiation_immunity 			= 1.0
+telepatic_immunity 			= 1.0
+chemical_burn_immunity 		= 1.0
+explosion_immunity 			= 1.0
+fire_wound_immunity  		= 1.0
+
+[actor_condition]
+satiety_v					= 0.000015				;скорость уменьшен? сытост?со временем
+radiation_v					= 0.0001				;скорость уменьшен? радиации
+satiety_power_v				= 0.000055				;увеличение силы пр?уменьшении сытост?
+satiety_health_v			= 0.0001				;увеличение здоров? пр?уменьшении сытост?
+satiety_critical			= 0.0					;критическо?значен? сытост?(?процента?от 0..1) когд?здоровье начианае?уменьшаться
+radiation_health_v			= 0.004					;уменьшение здоров? пр?воздействи?радиации
+morale_v					= 0.0001				;скорость восстановлен? морали 						
+psy_health_v				= 0.001					;скорость восстановлен? psy-здоров?
+alcohol_v					= -0.0003
+health_hit_part				= 1.0					;процен?хита, уходящи?на отнимани?здоров?
+power_hit_part				= 0.1					;процен?хита, уходящи?на отнимани?силы
+max_power_leak_speed		= 0.0					;накопление усталост?(макс границ? до которо?восстанавливается сила) ?секунд?игрового времен?
+max_walk_weight				= 120
+
+bleeding_v					= 0.0005				;поте? кров?пр?номинально?ране ?секунд?
+wound_incarnation_v			= 0.003		 			;скорость заживлен? раны
+min_wound_size				= 0.0256				;минимальны?размер раны, посл?которого он?считается зажившей
+
+;--when actor in sleep
+satiety_v_sleep				= 0.00001
+radiation_v_sleep			= 0.0003
+satiety_power_v_sleep		= 0.0001
+satiety_health_v_sleep		= 0.00001
+radiation_health_v_sleep	= 0.001
+morale_v_sleep				= 0.0
+psy_health_v_sleep			= 0.0
+
+alcohol_v_sleep				= -0.0005
+
+bleeding_v_sleep			= 0.0
+wound_incarnation_v_sleep	= 0.0
+max_power_leak_speed_sleep	= -0.00001;
+;health_restore_v			= 0.0001
+
+;;;;;;;;
+;actor_condition only
+
+jump_power				=	0.01			;0.005					;умешьшение силы ?прыжко?бе?учет?веса ноши
+jump_weight_power			=	0.05		;0.045					;умешьшение силы ?прыжко??учетом веса ноши, для максимальног?допустимог?веса
+overweight_jump_k			=	5;10		;10					;коэффициен?вл?ни?перегрузки прыжок ?весо?(умножает? на jump_weight_power)
+
+stand_power				=  -0.005								
+walk_power				=	0.00001				;умешьшение силы за секнду во время ходьбы бе?учет?веса ноши
+walk_weight_power		=	0.00005;			;умешьшение силы за секнду во время ходьбы ?учетом веса ноши, для максимальног?допустимог?веса
+overweight_walk_k		=	5;9	;10				;коэффициен?вл?ни?перегрузки ноши (умножает? на walk_weight_power)
+accel_k					=	3;5					;коэффициен?на бе?(умножает? walk_power, walk_weight_power)
+sprint_k				=	75;150;185;180;200;	;коэффициен?на "sprint" бе?(умножает? walk_power, walk_weight_power)
+
+; хромот?
+limping_health_begin =	0.1		;поро?здоров? меньше которого акте?начинает хромат?
+limping_health_end   =	0.2		;поро?здоров? больше которого акте?перестае?хромат?
+limping_power_begin  =	0.1		;поро?силы меньше которого акте?начинает хромат?
+limping_power_end	 =	0.2		;поро?силы больше которого акте?перестае?хромат?
+use_limping_state	 = on
+
+cant_walk_power_begin =	0.01	;поро?силы меньше которого акте?не може?двигаться
+cant_walk_power_end   =	0.10	;поро?силы больше которого акте?сможет двигаться
+
+cant_sprint_power_begin =	0.20	;поро?силы меньше которого акте?не може?бежать ?спринт?
+cant_sprint_power_end   =	0.30	;поро?силы больше которого акте?сможет бежать ?спринт?
+
+can_sleep_callback			= dream.can_sleep_callback
+sleep_video_name_callback	= dream.sleep_video_name_callback
+
+[actor_damage]
+;bone_name		 = <hit_scale>,<fwd_damage_anim_index>,<wound_scale>
+;<hit_scale> - коэф? изменения хита (уменьшен? здоров?) 
+;<wound_scale> - коэф? изменения величины открытой раны
+;-1 - не?анимаций, четный номе?- сперед? нечетный номе?- сзад? УКАЗЫВАЕТС?ТОЛЬКО ПЕРЕДНИЙ!!! ЗАДНИЙ НА АВТОМАТЕ
+default						= 1.0, -1, 1.0
+
+bip01_pelvis 				= 1.0, 10, 1.5
+bip01_spine 		 		= 1.0, 10, 1.5
+bip01_spine1 		 		= 1.0, 0, 1.5
+bip01_spine2 		 		= 1.0, 0, 1.5
+bip01_neck 			 		= 1.0, 0, 1.5
+bip01_head 			 		= 2, 0, 1.5
+eyelid_1 			 		= 2, 0, 0.0
+eye_left 			 		= 2, 0, 0.0
+eye_right 			 		= 2, 0, 0.0
+jaw_1 		 		 		= 2, 0, 0.0
+
+bip01_l_clavicle	 		= 0.5, 4, 1.5
+bip01_l_upperarm	 		= 0.5, 4, 1.5
+bip01_l_forearm	 	 		= 0.5, 4, 1.5
+bip01_l_hand	 	 		= 0.5, 4, 0.5
+bip01_l_finger0	 	 		= 0.0, 4, 0.0
+bip01_l_finger01	 		= 0.0, 4, 0.0
+bip01_l_finger02	 		= 0.0, 4, 0.0
+bip01_l_finger1	 	 		= 0.0, 4, 0.0
+bip01_l_finger11	 		= 0.0, 4, 0.0
+bip01_l_finger12	 		= 0.0, 4, 0.0
+bip01_l_finger2	 	 		= 0.0, 4, 0.0
+bip01_l_finger21	 		= 0.0, 4, 0.0
+bip01_l_finger22	 		= 0.0, 4, 0.0
+
+bip01_r_clavicle	 		= 0.5, 2, 1.5
+bip01_r_upperarm	 		= 0.5, 2, 1.5
+bip01_r_forearm	 	 		= 0.5, 2, 1.5
+bip01_r_hand	 	 		= 0.5, 2, 0.0
+bip01_r_finger0	 	 		= 0.0, 2, 0.0
+bip01_r_finger01	 		= 0.0, 2, 0.0
+bip01_r_finger02	 		= 0.0, 2, 0.0
+bip01_r_finger1	 	 		= 0.0, 2, 0.0
+bip01_r_finger11	 		= 0.0, 2, 0.0
+bip01_r_finger12	 		= 0.0, 2, 0.0
+bip01_r_finger2	 	 		= 0.0, 2, 0.0
+bip01_r_finger21	 		= 0.0, 2, 0.0
+bip01_r_finger22	 		= 0.0, 2, 0.0
+
+bip01_l_thigh	 	 		= 0.5, 8, 1.5
+bip01_l_calf	 	 		= 0.5, 8, 1.5
+bip01_l_foot	 	 		= 0.5, 8, 1.5
+bip01_l_toe0	 	 		= 0.5, 8, 1.5
+bip01_r_thigh	 	 		= 0.5, 6, 1.5
+bip01_r_calf	 	 		= 0.5, 6, 1.5
+bip01_r_foot	 	 		= 0.5, 6, 1.5
+bip01_r_toe0	 	 		= 0.5, 6, 1.5
+
+[actor_animation]
+;углы  дворот?но?актера во время стрейфов (?градусах)
+fwd_l_strafe_yaw    = 45
+back_l_strafe_yaw   = 45
+fwd_r_strafe_yaw    = 45
+back_r_strafe_yaw   = 45
+l_strafe_yaw		= 0
+r_strafe_yaw		= 0
+
+
+[actor_hit_snds]
+burn			=actor\pain1,actor\pain2,actor\pain3;  ,actor\hurt4
+shock			=actor\pain1,actor\pain2,actor\pain3; ,actor\hurt4
+strike			=actor\pain1,actor\pain2,actor\pain3; ,actor\hurt4
+wound			=actor\pain1,actor\pain2,actor\pain3; ,actor\hurt4
+radiation		=monsters\biting\def_0; actor\hurt1,actor\hurt2,actor\hurt3,actor\hurt4
+telepatic		=actor\pain1,actor\pain2,actor\pain3;  ,actor\hurt4
+fire_wound		=actor\bullet_hit_1,actor\bullet_hit_2,actor\bullet_hit_3,actor\bullet_hit_4
+; actor\pain_1,actor\pain_3,actor\pain_4,actor\pain_5,actor\pain_6,actor\pain_7,actor\pain_8
+chemical_burn	=actor\pain1,actor\pain2,actor\pain3;  ,actor\hurt4
+explosion		=affects\tinnitus3a
+wound_2			=actor\hurt1,actor\hurt2,actor\hurt3,actor\hurt4
+physic_strike	=actor\pain1,actor\pain2,actor\pain3; ,actor\hurt4

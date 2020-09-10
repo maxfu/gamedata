@@ -1,0 +1,1587 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<!--------------------------------------------------------------------------->
+<!-- Faction Change Mod by Atrocious; Idea by Speed aka Cabrobro (ABC Mod) -->
+<!--------------------------------------------------------------------------->
+<game_dialogs>
+    <dialog id="escape_trader_faction_change_dialog">    
+        <phrase_list>
+        	<!-- first phrase to start with -->
+            <phrase id="0">
+                <text>faction_change_text_0</text>
+                <next>1</next>
+            </phrase>
+            <!-- faction change or bounty pay -->
+            <phrase id="1">
+                <text>faction_change_text_1</text>
+                <next>2</next>
+                <next>3</next>
+            </phrase>
+            <!-- faction change -->
+            <phrase id="2">
+                <text>faction_change_text_2</text>
+                <next>4</next>
+              </phrase>
+            <!-- bounty pay -->
+            <phrase id="3">
+                <text>faction_change_text_3</text>
+                <next>5</next>
+            </phrase>
+
+            <!-- faction change selection -->
+            <phrase id="4">
+            	<action>faction_change.fc_check_time</action>
+               	<next>10</next>
+            	<next>11</next>
+            	<next>12</next>
+            	<next>13</next>
+            	<next>14</next>
+            	<next>15</next>
+            	<next>16</next>
+            	<next>17</next>
+            	<next>18</next>
+            	<next>92</next>
+            </phrase>
+ 
+            <!-- bounty pay selection -->            
+            <phrase id="5">
+                <next>110</next>
+                <next>111</next>
+                <next>112</next>
+                <next>113</next>
+                <next>114</next>
+                <next>115</next>
+                <next>116</next>
+                <next>117</next>
+                <next>118</next>
+                <next>96</next>
+            </phrase>
+            
+            <!-- preconditions to check which factions can be joined -->
+            <phrase id="10">
+            	<precondition>faction_change.fc_precon_not_stalker</precondition>
+                <text>faction_change_text_10</text>
+                <next>20</next>
+                <next>30</next>
+                <next>70</next>
+                <next>80</next>
+                <next>220</next>
+                <next>230</next>
+                <next>150</next>
+            </phrase>
+            <phrase id="11">
+            	<precondition>faction_change.fc_precon_not_freedom</precondition>
+            	<precondition>faction_change.fc_all_factions_enabled</precondition>
+                <text>faction_change_text_11</text>
+                <next>21</next>
+                <next>31</next>
+                <next>71</next>
+                <next>81</next>
+                <next>221</next>
+                <next>231</next>
+                <next>151</next>
+            </phrase>
+            <phrase id="12">
+            	<precondition>faction_change.fc_precon_not_duty</precondition>
+                <text>faction_change_text_12</text>
+                <next>22</next>
+                <next>32</next>
+                <next>72</next>
+                <next>82</next>
+                <next>222</next>
+                <next>232</next>
+                <next>152</next>
+            </phrase>  
+            <phrase id="13">
+            	<precondition>faction_change.fc_precon_not_bandit</precondition>
+            	<precondition>faction_change.fc_all_factions_enabled</precondition>
+                <text>faction_change_text_13</text>
+				<next>23</next>
+                <next>33</next>
+                <next>73</next>
+                <next>83</next>
+                <next>223</next>
+                <next>233</next>
+                <next>153</next>
+            </phrase>  
+            <phrase id="14">
+            	<precondition>faction_change.fc_precon_not_merc</precondition>
+            	<precondition>faction_change.fc_all_factions_enabled</precondition>
+                <text>faction_change_text_14</text>
+				<next>24</next>
+                <next>34</next>
+                <next>74</next>
+                <next>84</next>
+                <next>224</next>
+                <next>234</next>
+                <next>154</next>
+            </phrase>  
+            <phrase id="15">
+            	<precondition>faction_change.fc_precon_not_ecolog</precondition>
+                <text>faction_change_text_15</text>
+				<next>25</next>
+                <next>35</next>
+                <next>75</next>
+                <next>85</next>
+                <next>225</next>
+                <next>235</next>
+                <next>155</next>
+            </phrase>  
+            <phrase id="16">
+            	<precondition>faction_change.fc_precon_not_military</precondition>
+            	<precondition>faction_change.fc_all_factions_enabled</precondition>
+                <text>faction_change_text_16</text>
+				<next>26</next>
+                <next>36</next>
+                <next>76</next>
+                <next>86</next>
+                <next>226</next>
+                <next>236</next>
+                <next>156</next>
+            </phrase>  
+            <phrase id="17">
+            	<precondition>faction_change.fc_precon_not_monolith</precondition>
+            	<precondition>faction_change.fc_all_factions_enabled</precondition>
+                <text>faction_change_text_17</text>
+				<next>27</next>
+                <next>37</next>
+                <next>77</next>
+                <next>87</next>
+                <next>227</next>
+                <next>237</next>
+                <next>157</next>
+            </phrase>  
+            <phrase id="18">
+            	<precondition>faction_change.fc_precon_not_zombied</precondition>
+            	<precondition>faction_change.fc_zombied_enabled</precondition>
+                <text>faction_change_text_18</text>
+				<next>28</next>
+                <next>38</next>
+                <next>78</next>
+                <next>88</next>
+                <next>228</next>
+                <next>238</next>
+                <next>158</next>
+            </phrase>  
+            
+            <!-- choices when user is friend of faction and has the debt -->
+           	<phrase id="20">  
+           		<precondition>faction_change.fc_precon_friend_of_stalkers</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_194</text>
+           		<next>40</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="21">  
+            	<precondition>faction_change.fc_precon_friend_of_freedom</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_194</text>
+           		<next>41</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="22">  
+            	<precondition>faction_change.fc_precon_friend_of_duty</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_194</text>
+           		<next>42</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="23">  
+            	<precondition>faction_change.fc_precon_friend_of_bandits</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_194</text>
+           		<next>43</next>
+                <next>91</next>
+            </phrase>
+             <phrase id="24">  
+            	<precondition>faction_change.fc_precon_friend_of_mercs</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_194</text>
+           		<next>44</next>
+                <next>91</next>
+            </phrase>
+             <phrase id="25">  
+            	<precondition>faction_change.fc_precon_friend_of_ecolog</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_194</text>
+           		<next>45</next>
+                <next>91</next>
+            </phrase>
+             <phrase id="26">  
+            	<precondition>faction_change.fc_precon_friend_of_military</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_194</text>
+           		<next>46</next>
+                <next>91</next>
+            </phrase>
+             <phrase id="27">  
+            	<precondition>faction_change.fc_precon_friend_of_monolith</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_200</text>
+           		<next>47</next>
+                <next>204</next>
+            </phrase>
+             <phrase id="28">  
+            	<precondition>faction_change.fc_precon_friend_of_zombied</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_200</text>
+           		<next>48</next>
+                <next>206</next>
+            </phrase>
+            
+            <!-- choices when user is friend of faction and doesnt have the debt -->
+           	<phrase id="30">  
+           		<precondition>faction_change.fc_precon_friend_of_stalkers</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_195</text>
+                <next>95</next>
+            </phrase>
+            <phrase id="31">  
+            	<precondition>faction_change.fc_precon_friend_of_freedom</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_195</text>
+                <next>95</next>
+            </phrase>
+            <phrase id="32">  
+            	<precondition>faction_change.fc_precon_friend_of_duty</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_195</text>
+				<next>95</next>
+            </phrase>
+            <phrase id="33">  
+            	<precondition>faction_change.fc_precon_friend_of_bandits</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_195</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="34">  
+            	<precondition>faction_change.fc_precon_friend_of_mercs</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_195</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="35">  
+            	<precondition>faction_change.fc_precon_friend_of_ecolog</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_195</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="36">  
+            	<precondition>faction_change.fc_precon_friend_of_military</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_195</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="37">  
+            	<precondition>faction_change.fc_precon_friend_of_monolith</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_200</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="38">  
+            	<precondition>faction_change.fc_precon_friend_of_zombied</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_200</text>
+           		<next>206</next>
+            </phrase>
+
+            <!-- yes phrases followed by action if user is friendly -->
+            <phrase id="40">
+            	<text>faction_change_text_90</text>
+                <next>50</next>
+            </phrase>
+            <phrase id="41">
+            	<text>faction_change_text_90</text>
+                <next>51</next>
+            </phrase>
+            <phrase id="42">
+            	<text>faction_change_text_90</text>
+                <next>52</next>
+            </phrase>
+            <phrase id="43">
+            	<text>faction_change_text_90</text>
+                <next>53</next>
+            </phrase>
+            <phrase id="44">
+            	<text>faction_change_text_90</text>
+                <next>54</next>
+            </phrase>
+            <phrase id="45">
+            	<text>faction_change_text_90</text>
+                <next>55</next>
+            </phrase>
+            <phrase id="46">
+            	<text>faction_change_text_90</text>
+                <next>56</next>
+            </phrase>
+            <phrase id="47">
+            	<text>faction_change_text_203</text>
+                <next>57</next>
+            </phrase>
+            <phrase id="48">
+            	<text>faction_change_text_205</text>
+                <next>58</next>
+            </phrase>
+            
+            <phrase id="50">
+            	<action>faction_change.fc_pay_debt</action>
+            	<action>faction_change.fc_join_stalkers</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="51">
+            	<action>faction_change.fc_pay_debt</action>
+            	<action>faction_change.fc_join_freedom</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+             <phrase id="52">
+            	<action>faction_change.fc_pay_debt</action>
+            	<action>faction_change.fc_join_duty</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="53">
+            	<action>faction_change.fc_pay_debt</action>
+            	<action>faction_change.fc_join_bandits</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+			<phrase id="54">
+            	<action>faction_change.fc_pay_debt</action>
+            	<action>faction_change.fc_join_mercs</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="55">
+            	<action>faction_change.fc_pay_debt</action>
+            	<action>faction_change.fc_join_ecolog</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="56">
+            	<action>faction_change.fc_pay_debt</action>
+            	<action>faction_change.fc_join_military</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="57">
+            	<action>faction_change.fc_pay_debt</action>
+            	<action>faction_change.fc_join_monolith</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="58">
+            	<action>faction_change.fc_pay_debt</action>
+            	<action>faction_change.fc_join_zombied</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+ 
+            <!-- choices when user is neutral to faction and has the full debt -->
+           	<phrase id="70">  
+           		<precondition>faction_change.fc_precon_neutral_to_stalkers</precondition>
+           		<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_196</text>
+                <next>240</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="71">  
+            	<precondition>faction_change.fc_precon_neutral_to_freedom</precondition>
+           		<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_196</text>
+                <next>241</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="72">  
+            	<precondition>faction_change.fc_precon_neutral_to_duty</precondition>
+           		<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_196</text>
+				<next>242</next>
+				<next>91</next>
+            </phrase>
+            <phrase id="73">  
+            	<precondition>faction_change.fc_precon_neutral_to_bandits</precondition>
+           		<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_196</text>
+           		<next>243</next>
+           		<next>91</next>
+            </phrase>
+			<phrase id="74">  
+            	<precondition>faction_change.fc_precon_neutral_to_mercs</precondition>
+           		<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_196</text>
+           		<next>244</next>
+           		<next>91</next>
+            </phrase>
+            <phrase id="75">  
+            	<precondition>faction_change.fc_precon_neutral_to_ecolog</precondition>
+           		<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_196</text>
+           		<next>245</next>
+           		<next>91</next>
+            </phrase>
+            <phrase id="76">  
+            	<precondition>faction_change.fc_precon_neutral_to_military</precondition>
+           		<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_196</text>
+           		<next>246</next>
+           		<next>91</next>
+            </phrase>
+            <phrase id="77">  
+            	<precondition>faction_change.fc_precon_neutral_to_monolith</precondition>
+           		<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_201</text>
+           		<next>247</next>
+           		<next>204</next>
+            </phrase>
+            <phrase id="78">  
+            	<precondition>faction_change.fc_precon_neutral_to_zombied</precondition>
+           		<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_201</text>
+           		<next>248</next>
+           		<next>206</next>
+            </phrase>
+            
+            <!-- choices when user is neutral to faction and doesnt have the full debt -->
+           	<phrase id="80">  
+           		<precondition>faction_change.fc_precon_neutral_to_stalkers</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_197</text>
+                <next>95</next>
+            </phrase>
+            <phrase id="81">  
+            	<precondition>faction_change.fc_precon_neutral_to_freedom</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_197</text>
+                <next>95</next>
+            </phrase>
+            <phrase id="82">  
+            	<precondition>faction_change.fc_precon_neutral_to_duty</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_197</text>
+				<next>95</next>
+            </phrase>
+            <phrase id="83">  
+            	<precondition>faction_change.fc_precon_neutral_to_bandits</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_197</text>
+           		<next>95</next>
+            </phrase>
+			<phrase id="84">  
+            	<precondition>faction_change.fc_precon_neutral_to_mercs</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_197</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="85">  
+            	<precondition>faction_change.fc_precon_neutral_to_ecolog</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_197</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="86">  
+            	<precondition>faction_change.fc_precon_neutral_to_military</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_197</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="87">  
+            	<precondition>faction_change.fc_precon_neutral_to_monolith</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_201</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="88">  
+            	<precondition>faction_change.fc_precon_neutral_to_zombied</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_201</text>
+           		<next>206</next>
+            </phrase>
+            
+             <!-- common phrases / yes, no, etc -->
+            <phrase id="90">
+                <text>faction_change_text_90</text>
+            </phrase>
+            <phrase id="91">
+                <text>faction_change_text_91</text>
+            </phrase>
+            <phrase id="92">
+                <text>faction_change_text_92</text>
+            </phrase>
+
+            <phrase id="95">
+                <text>faction_change_text_95</text>
+            </phrase>
+            <phrase id="96">
+                <text>faction_change_text_96</text>
+            </phrase>
+            <phrase id="97">
+                <text>faction_change_text_97</text>
+            </phrase>
+
+            <phrase id="191">
+                <text>faction_change_text_191</text>
+            </phrase>
+            <phrase id="198">
+                <text>faction_change_text_198</text>
+            </phrase>
+            <phrase id="204">
+                <text>faction_change_text_204</text>
+            </phrase>
+            <phrase id="206">
+                <text>faction_change_text_206</text>
+            </phrase>
+                         
+           	<!-- choices when user is hated by some faction (for faction reset) -->
+            <phrase id="110">
+            	<precondition>faction_change.fc_precon_stalkers_goodwill_low</precondition>
+            	<precondition>faction_change.fc_precon_not_bandit</precondition>
+            	<precondition>faction_change.fc_precon_not_merc</precondition>
+            	<precondition>faction_change.fc_precon_not_military</precondition>
+            	<precondition>faction_change.fc_precon_not_monolith</precondition>
+            	<precondition>faction_change.fc_precon_not_zombied</precondition>
+                <text>faction_change_text_110</text>
+                <next>120</next>
+                <next>199</next>
+            </phrase>
+            <phrase id="111">
+            	<precondition>faction_change.fc_precon_freedom_goodwill_low</precondition>
+            	<precondition>faction_change.fc_precon_not_duty</precondition>
+            	<precondition>faction_change.fc_precon_not_merc</precondition>
+            	<precondition>faction_change.fc_precon_not_ecolog</precondition>
+            	<precondition>faction_change.fc_precon_not_military</precondition>
+            	<precondition>faction_change.fc_precon_not_monolith</precondition>
+            	<precondition>faction_change.fc_precon_not_zombied</precondition>
+                <text>faction_change_text_111</text>
+                <next>121</next>
+                <next>199</next>
+            </phrase>
+            <phrase id="112">
+            	<precondition>faction_change.fc_precon_duty_goodwill_low</precondition>
+            	<precondition>faction_change.fc_precon_not_freedom</precondition>
+            	<precondition>faction_change.fc_precon_not_bandit</precondition>
+            	<precondition>faction_change.fc_precon_not_merc</precondition>
+            	<precondition>faction_change.fc_precon_not_military</precondition>
+            	<precondition>faction_change.fc_precon_not_monolith</precondition>
+            	<precondition>faction_change.fc_precon_not_zombied</precondition>
+                <text>faction_change_text_112</text>
+                <next>122</next>
+                <next>199</next>
+            </phrase>
+            <phrase id="113">
+            	<precondition>faction_change.fc_precon_bandits_goodwill_low</precondition>
+            	<precondition>faction_change.fc_precon_not_duty</precondition>
+            	<precondition>faction_change.fc_precon_not_stalker</precondition>
+            	<precondition>faction_change.fc_precon_not_ecolog</precondition>
+            	<precondition>faction_change.fc_precon_not_military</precondition>
+            	<precondition>faction_change.fc_precon_not_monolith</precondition>
+            	<precondition>faction_change.fc_precon_not_zombied</precondition>
+                <text>faction_change_text_113</text>
+                <next>123</next>
+                <next>199</next>
+            </phrase>
+            <phrase id="114">
+            	<precondition>faction_change.fc_precon_mercs_goodwill_low</precondition>
+	           	<precondition>faction_change.fc_precon_not_freedom</precondition>
+            	<precondition>faction_change.fc_precon_not_duty</precondition>
+            	<precondition>faction_change.fc_precon_not_stalker</precondition>
+            	<precondition>faction_change.fc_precon_not_ecolog</precondition>
+            	<precondition>faction_change.fc_precon_not_military</precondition>
+            	<precondition>faction_change.fc_precon_not_monolith</precondition>
+            	<precondition>faction_change.fc_precon_not_zombied</precondition>
+                <text>faction_change_text_114</text>
+                <next>124</next>
+                <next>199</next>
+            </phrase>
+            <phrase id="115">
+            	<precondition>faction_change.fc_precon_ecolog_goodwill_low</precondition>
+            	<precondition>faction_change.fc_precon_not_freedom</precondition>
+               	<precondition>faction_change.fc_precon_not_bandit</precondition>
+            	<precondition>faction_change.fc_precon_not_merc</precondition>
+            	<precondition>faction_change.fc_precon_not_monolith</precondition>
+            	<precondition>faction_change.fc_precon_not_zombied</precondition>
+                <text>faction_change_text_115</text>
+                <next>125</next>
+                <next>199</next>
+            </phrase>
+            <phrase id="116">
+            	<precondition>faction_change.fc_precon_military_goodwill_low</precondition>
+	           	<precondition>faction_change.fc_precon_not_freedom</precondition>
+            	<precondition>faction_change.fc_precon_not_duty</precondition>
+            	<precondition>faction_change.fc_precon_not_stalker</precondition>
+            	<precondition>faction_change.fc_precon_not_bandit</precondition>
+            	<precondition>faction_change.fc_precon_not_merc</precondition>
+            	<precondition>faction_change.fc_precon_not_monolith</precondition>
+            	<precondition>faction_change.fc_precon_not_zombied</precondition>
+                <text>faction_change_text_116</text>
+                <next>126</next>
+                <next>199</next>
+            </phrase>
+            <phrase id="117">
+            	<precondition>faction_change.fc_precon_monolith_goodwill_low</precondition>
+            	<precondition>faction_change.fc_precon_not_freedom</precondition>
+            	<precondition>faction_change.fc_precon_not_duty</precondition>
+            	<precondition>faction_change.fc_precon_not_stalker</precondition>
+            	<precondition>faction_change.fc_precon_not_bandit</precondition>
+            	<precondition>faction_change.fc_precon_not_merc</precondition>
+            	<precondition>faction_change.fc_precon_not_ecolog</precondition>
+            	<precondition>faction_change.fc_precon_not_military</precondition>
+                <text>faction_change_text_117</text>
+                <next>127</next>
+                <next>199</next>
+            </phrase>
+            <phrase id="118">
+            	<precondition>faction_change.fc_precon_zombied_goodwill_low</precondition>
+            	<precondition>faction_change.fc_precon_not_freedom</precondition>
+            	<precondition>faction_change.fc_precon_not_duty</precondition>
+            	<precondition>faction_change.fc_precon_not_stalker</precondition>
+            	<precondition>faction_change.fc_precon_not_bandit</precondition>
+            	<precondition>faction_change.fc_precon_not_merc</precondition>
+            	<precondition>faction_change.fc_precon_not_ecolog</precondition>
+            	<precondition>faction_change.fc_precon_not_military</precondition>
+                <text>faction_change_text_118</text>
+                <next>128</next>
+                <next>199</next>
+            </phrase>
+            
+            <!-- choices if player has the bounty -->
+            <phrase id="120">
+            	<precondition>faction_change.fc_precon_have_the_bounty</precondition>
+            	<text>faction_change_text_193</text>
+                <next>130</next>
+                <next>191</next>
+            </phrase>
+            <phrase id="121">
+            	<precondition>faction_change.fc_precon_have_the_bounty</precondition>
+            	<text>faction_change_text_193</text>
+                <next>131</next>
+                <next>191</next>
+            </phrase>
+            <phrase id="122">
+            	<precondition>faction_change.fc_precon_have_the_bounty</precondition>
+            	<text>faction_change_text_193</text>
+                <next>132</next>
+                <next>191</next>
+            </phrase>
+            <phrase id="123">
+            	<precondition>faction_change.fc_precon_have_the_bounty</precondition>
+            	<text>faction_change_text_193</text>
+                <next>133</next>
+                <next>191</next>
+            </phrase>
+			<phrase id="124">
+				<precondition>faction_change.fc_precon_have_the_bounty</precondition>
+            	<text>faction_change_text_193</text>
+                <next>134</next>
+                <next>191</next>
+            </phrase>
+            <phrase id="125">
+            	<precondition>faction_change.fc_precon_have_the_bounty</precondition>
+            	<text>faction_change_text_193</text>
+                <next>135</next>
+                <next>191</next>
+            </phrase>
+            <phrase id="126">
+            	<precondition>faction_change.fc_precon_have_the_bounty</precondition>
+            	<text>faction_change_text_193</text>
+                <next>136</next>
+                <next>191</next>
+            </phrase>
+            <phrase id="127">
+            	<precondition>faction_change.fc_precon_have_the_bounty</precondition>
+            	<text>faction_change_text_193</text>
+                <next>137</next>
+                <next>191</next>
+            </phrase>
+            <phrase id="128">
+            	<precondition>faction_change.fc_precon_have_the_bounty</precondition>
+            	<text>faction_change_text_193</text>
+                <next>138</next>
+                <next>191</next>
+            </phrase>
+            
+            <!-- yes phrases followed by action (pay bounty) -->
+            <phrase id="130">
+            	<text>faction_change_text_190</text>
+                <next>140</next>
+            </phrase>
+            <phrase id="131">
+            	<text>faction_change_text_190</text>
+                <next>141</next>
+            </phrase>
+            <phrase id="132">
+            	<text>faction_change_text_190</text>
+                <next>142</next>
+            </phrase>
+            <phrase id="133">
+            	<text>faction_change_text_190</text>
+                <next>143</next>
+            </phrase>
+            <phrase id="134">
+            	<text>faction_change_text_190</text>
+                <next>144</next>
+            </phrase>
+            <phrase id="135">
+            	<text>faction_change_text_190</text>
+                <next>145</next>
+            </phrase>
+            <phrase id="136">
+            	<text>faction_change_text_190</text>
+                <next>146</next>
+            </phrase>
+            <phrase id="137">
+            	<text>faction_change_text_190</text>
+                <next>147</next>
+            </phrase>
+            <phrase id="138">
+            	<text>faction_change_text_190</text>
+                <next>148</next>
+            </phrase>
+            
+             <phrase id="140">
+            	<action>faction_change.fc_pay_bounty</action>
+             	<action>faction_change.fc_reset_stalkers_goodwill</action>
+            	<text>faction_change_text_98</text>
+            </phrase>
+            <phrase id="141">
+            	<action>faction_change.fc_pay_bounty</action>
+             	<action>faction_change.fc_reset_freedom_goodwill</action>
+            	<text>faction_change_text_98</text>
+            </phrase>
+            <phrase id="142">
+            	<action>faction_change.fc_pay_bounty</action>
+             	<action>faction_change.fc_reset_duty_goodwill</action>
+            	<text>faction_change_text_98</text>
+            </phrase>
+            <phrase id="143">
+            	<action>faction_change.fc_pay_bounty</action>
+             	<action>faction_change.fc_reset_bandits_goodwill</action>
+            	<text>faction_change_text_98</text>
+            </phrase>
+			<phrase id="144">
+            	<action>faction_change.fc_pay_bounty</action>
+             	<action>faction_change.fc_reset_mercs_goodwill</action>
+            	<text>faction_change_text_98</text>
+            </phrase>
+            <phrase id="145">
+            	<action>faction_change.fc_pay_bounty</action>
+             	<action>faction_change.fc_reset_ecolog_goodwill</action>
+            	<text>faction_change_text_98</text>
+            </phrase>
+            <phrase id="146">
+            	<action>faction_change.fc_pay_bounty</action>
+             	<action>faction_change.fc_reset_military_goodwill</action>
+            	<text>faction_change_text_98</text>
+            </phrase>
+            <phrase id="147">
+            	<action>faction_change.fc_pay_bounty</action>
+             	<action>faction_change.fc_reset_monolith_goodwill</action>
+            	<text>faction_change_text_98</text>
+            </phrase>   
+            <phrase id="148">
+            	<action>faction_change.fc_pay_bounty</action>
+             	<action>faction_change.fc_reset_zombied_goodwill</action>
+            	<text>faction_change_text_98</text>
+            </phrase>
+            
+            <!-- choices when first_join_for_free is used -->
+            <phrase id="150">  
+            	<precondition>faction_change.fc_precon_fjff_enabled</precondition>
+           		<text>faction_change_text_210</text>
+           		<next>160</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="151">  
+            	<precondition>faction_change.fc_precon_fjff_enabled</precondition>
+           		<text>faction_change_text_210</text>
+           		<next>161</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="152">  
+            	<precondition>faction_change.fc_precon_fjff_enabled</precondition>
+           		<text>faction_change_text_210</text>
+           		<next>162</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="153">  
+            	<precondition>faction_change.fc_precon_fjff_enabled</precondition>
+           		<text>faction_change_text_210</text>
+           		<next>163</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="154">  
+            	<precondition>faction_change.fc_precon_fjff_enabled</precondition>
+           		<text>faction_change_text_210</text>
+           		<next>164</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="155">  
+            	<precondition>faction_change.fc_precon_fjff_enabled</precondition>
+           		<text>faction_change_text_210</text>
+           		<next>165</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="156">  
+            	<precondition>faction_change.fc_precon_fjff_enabled</precondition>
+           		<text>faction_change_text_210</text>
+           		<next>166</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="157">  
+            	<precondition>faction_change.fc_precon_fjff_enabled</precondition>
+           		<text>faction_change_text_210</text>
+           		<next>167</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="158">  
+            	<precondition>faction_change.fc_precon_fjff_enabled</precondition>
+           		<text>faction_change_text_210</text>
+           		<next>168</next>
+                <next>91</next>
+            </phrase>
+            
+            <!-- yes phrases when first_join_for_free is used -->
+            <phrase id="160">
+            	<text>faction_change_text_90</text>
+                <next>170</next>
+            </phrase>
+            <phrase id="161">
+            	<text>faction_change_text_90</text>
+                <next>171</next>
+            </phrase>
+            <phrase id="162">
+            	<text>faction_change_text_90</text>
+                <next>172</next>
+            </phrase>
+            <phrase id="163">
+            	<text>faction_change_text_90</text>
+                <next>173</next>
+            </phrase>
+            <phrase id="164">
+            	<text>faction_change_text_90</text>
+                <next>174</next>
+            </phrase>
+            <phrase id="165">
+            	<text>faction_change_text_90</text>
+                <next>175</next>
+            </phrase>
+            <phrase id="166">
+            	<text>faction_change_text_90</text>
+                <next>176</next>
+            </phrase>
+            <phrase id="167">
+            	<text>faction_change_text_90</text>
+                <next>177</next>
+            </phrase>
+            <phrase id="168">
+            	<text>faction_change_text_90</text>
+                <next>178</next>
+            </phrase>
+            
+            <!-- actions when first_join_for_free is used -->
+            <phrase id="170">
+            	<action>faction_change.fc_disable_fjff</action>
+            	<action>faction_change.fc_join_stalkers</action>
+            	<text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="171">
+            	<action>faction_change.fc_disable_fjff</action>
+            	<action>faction_change.fc_join_freedom</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="172">
+            	<action>faction_change.fc_disable_fjff</action>
+            	<action>faction_change.fc_join_duty</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="173">
+            	<action>faction_change.fc_disable_fjff</action>
+            	<action>faction_change.fc_join_bandits</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="174">
+            	<action>faction_change.fc_disable_fjff</action>
+            	<action>faction_change.fc_join_mercs</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="175">
+            	<action>faction_change.fc_disable_fjff</action>
+            	<action>faction_change.fc_join_ecolog</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="176">
+            	<action>faction_change.fc_disable_fjff</action>
+            	<action>faction_change.fc_join_military</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="177">
+            	<action>faction_change.fc_disable_fjff</action>
+            	<action>faction_change.fc_join_monolith</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="178">
+            	<action>faction_change.fc_disable_fjff</action>
+            	<action>faction_change.fc_join_zombied</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            
+           <!-- result if player doesn't have the bounty --> 
+           <phrase id="199">
+           		<precondition>faction_change.fc_precon_doesnt_have_the_bounty</precondition>
+            	<text>faction_change_text_199</text>
+            	<next>198</next>
+            </phrase>
+            
+             <!-- choices when user is foe of faction and has debt & bounty -->
+           	<phrase id="220">  
+           		<precondition>faction_change.fc_precon_foe_of_stalkers</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_93</text>
+                <next>260</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="221">  
+            	<precondition>faction_change.fc_precon_foe_of_freedom</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_93</text>
+                <next>261</next>
+                <next>91</next>
+            </phrase>
+            <phrase id="222">  
+            	<precondition>faction_change.fc_precon_foe_of_duty</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_93</text>
+				<next>262</next>
+				<next>91</next>
+            </phrase>
+			<phrase id="223">  
+            	<precondition>faction_change.fc_precon_foe_of_bandits</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_93</text>
+           		<next>263</next>
+           		<next>91</next>
+            </phrase>
+            <phrase id="224">  
+            	<precondition>faction_change.fc_precon_foe_of_mercs</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_93</text>
+           		<next>264</next>
+           		<next>91</next>
+            </phrase>
+            <phrase id="225">  
+            	<precondition>faction_change.fc_precon_foe_of_ecolog</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_93</text>
+           		<next>265</next>
+           		<next>91</next>
+            </phrase>
+            <phrase id="226">  
+            	<precondition>faction_change.fc_precon_foe_of_military</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_93</text>
+           		<next>266</next>
+           		<next>91</next>
+            </phrase>
+            <phrase id="227">  
+            	<precondition>faction_change.fc_precon_foe_of_monolith</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_202</text>
+           		<next>267</next>
+           		<next>204</next>
+            </phrase>
+            <phrase id="228">  
+            	<precondition>faction_change.fc_precon_foe_of_zombied</precondition>
+           		<precondition>faction_change.fc_precon_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_202</text>
+           		<next>268</next>
+           		<next>206</next>
+            </phrase>
+                 
+            <!-- choices when user is foe of faction and doesnt have the debt and bounty -->
+           	<phrase id="230">  
+           		<precondition>faction_change.fc_precon_foe_of_stalkers</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_94</text>
+                <next>95</next>
+            </phrase>
+            <phrase id="231">  
+            	<precondition>faction_change.fc_precon_foe_of_freedom</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_94</text>
+                <next>95</next>
+            </phrase>
+            <phrase id="232">  
+            	<precondition>faction_change.fc_precon_foe_of_duty</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_94</text>
+				<next>95</next>
+            </phrase>
+            <phrase id="233">  
+            	<precondition>faction_change.fc_precon_foe_of_bandits</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_94</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="234">  
+            	<precondition>faction_change.fc_precon_foe_of_mercs</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_94</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="235">  
+            	<precondition>faction_change.fc_precon_foe_of_ecolog</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_94</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="236">  
+            	<precondition>faction_change.fc_precon_foe_of_military</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_94</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="237">  
+            	<precondition>faction_change.fc_precon_foe_of_monolith</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_202</text>
+           		<next>95</next>
+            </phrase>
+            <phrase id="238">  
+            	<precondition>faction_change.fc_precon_foe_of_zombied</precondition>
+           		<precondition>faction_change.fc_precon_doesnt_have_the_debt_and_bounty</precondition>
+           		<precondition>faction_change.fc_precon_fjff_disabled</precondition>
+           		<text>faction_change_text_202</text>
+           		<next>206</next>
+            </phrase>
+            
+            <!-- yes phrases followed by action if user is neutral -->
+            <phrase id="240">
+            	<text>faction_change_text_90</text>
+                <next>250</next>
+            </phrase>
+            <phrase id="241">
+            	<text>faction_change_text_90</text>
+                <next>251</next>
+            </phrase>
+            <phrase id="242">
+            	<text>faction_change_text_90</text>
+                <next>252</next>
+            </phrase>
+            <phrase id="243">
+            	<text>faction_change_text_90</text>
+                <next>253</next>
+            </phrase>
+            <phrase id="244">
+            	<text>faction_change_text_90</text>
+                <next>254</next>
+            </phrase>
+            <phrase id="245">
+            	<text>faction_change_text_90</text>
+                <next>255</next>
+            </phrase>
+            <phrase id="246">
+            	<text>faction_change_text_90</text>
+                <next>256</next>
+            </phrase>
+            <phrase id="247">
+            	<text>faction_change_text_203</text>
+                <next>257</next>
+            </phrase>
+            <phrase id="248">
+            	<text>faction_change_text_205</text>
+                <next>258</next>
+            </phrase>
+            
+            <phrase id="250">
+            	<action>faction_change.fc_pay_full_debt</action>
+            	<action>faction_change.fc_join_stalkers</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="251">
+            	<action>faction_change.fc_pay_full_debt</action>
+            	<action>faction_change.fc_join_freedom</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="252">
+            	<action>faction_change.fc_pay_full_debt</action>
+            	<action>faction_change.fc_join_duty</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="253">
+            	<action>faction_change.fc_pay_full_debt</action>
+            	<action>faction_change.fc_join_bandits</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+			<phrase id="254">
+            	<action>faction_change.fc_pay_full_debt</action>
+            	<action>faction_change.fc_join_mercs</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="255">
+            	<action>faction_change.fc_pay_full_debt</action>
+            	<action>faction_change.fc_join_ecolog</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="256">
+            	<action>faction_change.fc_pay_full_debt</action>
+            	<action>faction_change.fc_join_military</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="257">
+            	<action>faction_change.fc_pay_full_debt</action>
+            	<action>faction_change.fc_join_monolith</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="258">
+            	<action>faction_change.fc_pay_full_debt</action>
+            	<action>faction_change.fc_join_zombied</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            
+            <!-- yes phrases followed by action if user is foe -->
+            <phrase id="260">
+            	<text>faction_change_text_90</text>
+                <next>270</next>
+            </phrase>
+            <phrase id="261">
+            	<text>faction_change_text_90</text>
+                <next>271</next>
+            </phrase>
+            <phrase id="262">
+            	<text>faction_change_text_90</text>
+                <next>272</next>
+            </phrase>
+            <phrase id="263">
+            	<text>faction_change_text_90</text>
+                <next>273</next>
+            </phrase>
+			<phrase id="264">
+            	<text>faction_change_text_90</text>
+                <next>274</next>
+            </phrase>
+			<phrase id="265">
+            	<text>faction_change_text_90</text>
+                <next>275</next>
+            </phrase>
+            <phrase id="266">
+            	<text>faction_change_text_90</text>
+                <next>276</next>
+            </phrase>
+            <phrase id="267">
+            	<text>faction_change_text_203</text>
+                <next>277</next>
+            </phrase>
+            <phrase id="268">
+            	<text>faction_change_text_205</text>
+                <next>278</next>
+            </phrase>
+            
+            <phrase id="270">
+            	<action>faction_change.fc_pay_debt_and_bounty</action>
+            	<action>faction_change.fc_join_stalkers</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="271">
+            	<action>faction_change.fc_pay_debt_and_bounty</action>
+            	<action>faction_change.fc_join_freedom</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="272">
+            	<action>faction_change.fc_pay_debt_and_bounty</action>
+            	<action>faction_change.fc_join_duty</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="273">
+            	<action>faction_change.fc_pay_debt_and_bounty</action>
+            	<action>faction_change.fc_join_bandits</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="274">
+            	<action>faction_change.fc_pay_debt_and_bounty</action>
+            	<action>faction_change.fc_join_mercs</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="275">
+            	<action>faction_change.fc_pay_debt_and_bounty</action>
+            	<action>faction_change.fc_join_ecolog</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="276">
+            	<action>faction_change.fc_pay_debt_and_bounty</action>
+            	<action>faction_change.fc_join_military</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="277">
+            	<action>faction_change.fc_pay_debt_and_bounty</action>
+            	<action>faction_change.fc_join_monolith</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            <phrase id="278">
+            	<action>faction_change.fc_pay_debt_and_bounty</action>
+            	<action>faction_change.fc_join_zombied</action>
+                <text>faction_change_text_99</text>
+            </phrase>
+            
+        </phrase_list>
+    </dialog>
+
+    <dialog id="bar_duty_faction_change_dialog">    
+        <phrase_list>
+        	<phrase id="0">
+                <text>faction_change_text_229</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text/>
+                <next>2</next>
+                <next>100</next>
+            </phrase>
+            <phrase id="2">
+            	<precondition>faction_change.fc_precon_not_duty</precondition>
+                <text>faction_change_text_230</text>
+                <next>10</next>
+                <next>20</next>
+                <next>30</next>
+                <next>40</next>
+            </phrase>
+            <phrase id="10">
+            	<precondition>faction_change.fc_precon_neutral_to_duty</precondition>
+            	<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+                <text>faction_change_text_231</text>
+                <next>50</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="20">
+            	<precondition>faction_change.fc_precon_neutral_to_duty</precondition>
+            	<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+                <text>faction_change_text_231</text>
+                <next>99</next>
+            </phrase>
+			<phrase id="30">
+            	<precondition>faction_change.fc_precon_friend_of_duty</precondition>
+            	<precondition>faction_change.fc_precon_have_the_debt</precondition>
+                <text>faction_change_text_232</text>
+                <next>50</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="40">
+            	<precondition>faction_change.fc_precon_friend_of_duty</precondition>
+            	<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+                <text>faction_change_text_232</text>
+                <next>99</next>
+            </phrase>
+            
+            <!-- joining duty with oath ceremony -->
+            <phrase id="50">
+                <text>faction_change_text_233</text>
+				<next>51</next>
+            </phrase>
+            <phrase id="51">
+                <text>bar_dolg_leader_prisyaga_1</text>
+                <next>52</next>
+            </phrase>
+            <phrase id="52">
+                <text>bar_dolg_leader_prisyaga_2</text>
+                <next>53</next>
+            </phrase>
+            <phrase id="53">
+                <text>bar_dolg_leader_prisyaga_3</text>
+                <next>54</next>
+            </phrase>
+            <phrase id="54">
+                <text>bar_dolg_leader_prisyaga_4</text>
+                <next>55</next>
+            </phrase>
+            <phrase id="55">
+                <text>bar_dolg_leader_prisyaga_5</text>
+                <next>56</next>
+            </phrase>
+            <phrase id="56">
+                <text>bar_dolg_leader_prisyaga_6</text>
+                <next>57</next>
+            </phrase>
+            <phrase id="57">
+                <text>bar_dolg_leader_prisyaga_7</text>
+                <next>58</next>
+            </phrase>
+            <phrase id="58">
+                <text>bar_dolg_leader_prisyaga_8</text>
+                <next>60</next>
+                <next>61</next>
+            </phrase>
+            <phrase id="60">
+            	<precondition>faction_change.fc_precon_friend_of_duty</precondition>
+            	<action>faction_change.fc_pay_debt</action>
+                <action>faction_change.fc_join_duty</action>
+                <text>bar_dolg_leader_prisyaga_9</text>
+            </phrase>
+            <phrase id="61">
+            	<precondition>faction_change.fc_precon_neutral_to_duty</precondition>
+            	<action>faction_change.fc_pay_full_debt</action>
+                <action>faction_change.fc_join_duty</action>
+                <text>bar_dolg_leader_prisyaga_9</text>
+            </phrase>
+
+			<phrase id="99">
+            	<text>faction_change_text_234</text>
+            </phrase>
+
+			<!-- leaving duty -->
+			<phrase id="100">
+            	<precondition>faction_change.fc_precon_in_duty</precondition>
+                <text>faction_change_text_235</text>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+            	<text>faction_change_text_237</text>
+                <next>102</next>
+                <next>104</next>
+            </phrase>
+            <phrase id="102">
+            	<text>faction_change_text_238</text>
+            	<next>103</next>
+            </phrase>
+            <phrase id="103">
+            	<action>faction_change.fc_take_duty_suits_from_player</action>
+            	<action>faction_change.fc_join_stalkers_without_gift</action>
+            	<text>faction_change_text_228</text>
+            </phrase>
+            <!-- "no" sentence -->
+            <phrase id="104">
+            	<text>faction_change_text_234</text>
+            </phrase>
+         </phrase_list>  
+     </dialog>
+     
+      <dialog id="mil_freedom_faction_change_dialog">    
+        <phrase_list>
+        	<phrase id="0">
+                <text>faction_change_text_229</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text/>
+                <next>2</next>
+                <next>100</next>
+            </phrase>
+            <phrase id="2">
+            	<precondition>faction_change.fc_precon_not_freedom</precondition>
+                <text>faction_change_text_239</text>
+                <next>10</next>
+                <next>20</next>
+                <next>30</next>
+                <next>40</next>
+                <next>80</next>
+                <next>90</next>
+            </phrase>
+            <phrase id="10">
+            	<precondition>faction_change.fc_precon_neutral_to_freedom</precondition>
+            	<precondition>faction_change.fc_precon_have_the_full_debt</precondition>
+                <text>faction_change_text_231</text>
+                <next>50</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="20">
+            	<precondition>faction_change.fc_precon_neutral_to_freedom</precondition>
+            	<precondition>faction_change.fc_precon_doesnt_have_the_full_debt</precondition>
+                <text>faction_change_text_231</text>
+                <next>99</next>
+            </phrase>
+			<phrase id="30">
+            	<precondition>faction_change.fc_precon_friend_of_freedom</precondition>
+            	<precondition>faction_change.fc_precon_have_the_debt</precondition>
+                <text>faction_change_text_232</text>
+                <next>50</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="40">
+            	<precondition>faction_change.fc_precon_friend_of_freedom</precondition>
+            	<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+                <text>faction_change_text_232</text>
+                <next>99</next>
+            </phrase>
+            <phrase id="80">
+            	<precondition>faction_change.fc_precon_foe_of_freedom</precondition>
+            	<precondition>faction_change.fc_precon_have_the_debt_and_bounty</precondition>
+                <text>faction_change_text_246</text>
+                <next>50</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="90">
+            	<precondition>faction_change.fc_precon_foe_of_freedom</precondition>
+            	<precondition>faction_change.fc_precon_doesnt_have_the_debt_and_bounty</precondition>
+                <text>faction_change_text_246</text>
+                <next>99</next>
+            </phrase>
+            <phrase id="50">
+                <text>faction_change_text_233</text>
+                <next>60</next>
+                <next>61</next>
+                <next>62</next>                
+            </phrase>
+            <phrase id="60">
+            	<precondition>faction_change.fc_precon_friend_of_freedom</precondition>
+            	<action>faction_change.fc_pay_debt</action>
+                <action>faction_change.fc_join_freedom</action>
+                <text>faction_change_text_227</text>
+            </phrase>
+            <phrase id="61">
+            	<precondition>faction_change.fc_precon_neutral_to_freedom</precondition>
+            	<action>faction_change.fc_pay_full_debt</action>
+                <action>faction_change.fc_join_freedom</action>
+                <text>faction_change_text_227</text>
+            </phrase>
+			<phrase id="62">
+            	<precondition>faction_change.fc_precon_foe_of_freedom</precondition>
+            	<action>faction_change.fc_pay_debt_and_bounty</action>
+                <action>faction_change.fc_join_freedom</action>
+                <text>faction_change_text_227</text>
+            </phrase>
+
+			<phrase id="99">
+            	<text>faction_change_text_234</text>
+            </phrase>
+
+			<!-- leaving freedom -->
+			<phrase id="100">
+            	<precondition>faction_change.fc_precon_in_freedom</precondition>
+                <text>faction_change_text_236</text>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+            	<text>faction_change_text_237</text>
+                <next>102</next>
+                <next>104</next>
+            </phrase>
+            <phrase id="102">
+            	<text>faction_change_text_238</text>
+            	<next>103</next>
+            </phrase>
+            <phrase id="103">
+            	<action>faction_change.fc_take_freedom_suits_from_player</action>
+            	<action>faction_change.fc_join_stalkers_without_gift</action>
+            	<text>faction_change_text_228</text>
+            </phrase>
+            <!-- "no" sentence -->
+            <phrase id="104">
+            	<text>faction_change_text_234</text>
+            </phrase>
+         </phrase_list>  
+     </dialog>
+     
+     <dialog id="yantar_ecolog_faction_change_dialog">    
+     	<has_info>yan_kill_brain_done</has_info>
+        <phrase_list>
+        	<phrase id="0">
+                <text>faction_change_text_240</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text/>
+                <next>2</next>
+                <next>100</next>
+            </phrase>
+            <phrase id="2">
+            	<precondition>faction_change.fc_precon_not_ecolog</precondition>
+                <text>faction_change_text_241</text>
+                <next>30</next>
+                <next>40</next>
+            </phrase>
+			<phrase id="30">
+            	<precondition>faction_change.fc_precon_have_the_debt</precondition>
+                <text>faction_change_text_242</text>
+                <next>50</next>
+                <next>99</next>
+            </phrase>
+            <phrase id="40">
+            	<precondition>faction_change.fc_precon_doesnt_have_the_debt</precondition>
+                <text>faction_change_text_242</text>
+                <next>99</next>
+            </phrase>
+            <phrase id="50">
+                <text>faction_change_text_233</text>
+                <next>60</next>
+            </phrase>
+            <phrase id="60">
+            	<action>faction_change.fc_pay_debt</action>
+                <action>faction_change.fc_join_ecolog</action>
+                <text>faction_change_text_244</text>
+            </phrase>
+
+			<phrase id="99">
+            	<text>faction_change_text_234</text>
+            </phrase>
+
+			<!-- leaving ecologists -->
+			<phrase id="100">
+            	<precondition>faction_change.fc_precon_is_ecolog</precondition>
+                <text>faction_change_text_245</text>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+            	<text>faction_change_text_237</text>
+                <next>102</next>
+                <next>104</next>
+            </phrase>
+            <phrase id="102">
+            	<text>faction_change_text_238</text>
+            	<next>103</next>
+            </phrase>
+            <phrase id="103">
+               	<action>faction_change.fc_join_stalkers_without_gift</action>
+               	<text>faction_change_text_99</text>
+            </phrase>
+            <!-- "no" sentence -->
+            <phrase id="104">
+            	<text>faction_change_text_234</text>
+            </phrase>
+         </phrase_list>  
+     </dialog>
+     
+
+     
+</game_dialogs>

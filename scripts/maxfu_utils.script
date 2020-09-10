@@ -1,0 +1,274 @@
+mod_version_str = "Maxfu 2009 ReBuild 8 (Sydney Harbour Bridge)"
+maxfu_auto_save_interval = 600 -- Counted in Seconds, set to nil or false to disable the auto-save function
+maxfu_sleep_interval = 600 -- Counted in Seconds, set to nil or false to disable the auto-save function
+-- delay_d * 60 * 24 + delay_h * 60 + delay_m
+
+function maxfu_auto_save()
+	local y,m,d,h,min,sec,ms = 0,0,0,0,0,0,0
+	local date_time = "_"
+
+	y,m,d,h,min,sec,ms = game.get_game_time():get(y,m,d,h,min,sec,ms)
+
+	date_time = date_time .. y
+	date_time = date_time .. "-"
+	date_time = AddTimeDigits(date_time, m)
+	date_time = date_time .. "-"
+	date_time = AddTimeDigits(date_time, d)
+	date_time = date_time .. "_"
+	date_time = AddTimeDigits(date_time, h)
+	date_time = AddTimeDigits(date_time, min)		
+
+	if maxfu_auto_save_interval then
+		local time_factor = level.get_time_factor()
+		local current_time = game.time()
+		if load_variable("maxfu_autosave", nil) == nil then
+			save_variable("maxfu_autosave", current_time + maxfu_auto_save_interval * 1000 * time_factor)
+		elseif load_variable("maxfu_autosave", nil) <= current_time then
+			get_console():execute("save maxfu_backup" .. level.name() .. date_time)
+			save_variable("maxfu_autosave", current_time + maxfu_auto_save_interval * 1000 * time_factor)
+		end
+	end
+end
+
+local sleep_sign = false
+
+function maxfu_sleep()
+	local current_time = level.get_time_days() * 60 * 24 + level.get_time_hours() * 60 + level.get_time_minutes()
+	local tired_time = load_variable("maxfu_need_sleep",nil)
+	if tired_time then
+		if ( tired_time - current_time ) > 360 then
+			priboy_utils.display_hud_icon("priboy_house_hud", "remove")
+			level.remove_pp_effector(2009)
+			sleep_sign = false
+--			get_console():execute(tostring( tired_time - current_time ))
+		elseif ( tired_time - current_time ) > 180 then
+			if sleep_sign == false then
+				priboy_utils.send_hud_message("hmm ...", game.translate_string("have_a_nap" .. tostring(math.random(1, 3))), nil, 10, nil)
+				sleep_sign = true
+			end
+			priboy_utils.display_hud_icon("priboy_house_hud", "show")
+			level.add_pp_effector("yantar_underground_psi.ppe", 2009, true)
+			level.set_pp_effector_factor(2009, 5.0)
+--			get_console():execute(tostring( tired_time - current_time ))
+		else
+			sleep_manager.sleep_nine_hours()
+			save_variable("maxfu_need_sleep", current_time + 1440)
+--			get_console():execute(tostring( tired_time - current_time ))
+		end
+	else
+		save_variable("maxfu_need_sleep", current_time + 1080)
+	end
+end
+
+function maxfu_message(message, display_time)
+	local sound_obj = news_manager.pda_tips
+	local task_texture, task_rect = "ui\\ui_icon_equipment", Frect():set(300, 650, 100, 50)
+	local time_to_display = 3000
+	if display_time then
+		time_to_display = display_time * 1000
+	end
+	if db.actor:is_talking() then
+		db.actor:give_talk_message(message, task_texture, task_rect, "iconed_answer_item")
+	else
+		db.actor:give_game_news(message, task_texture, task_rect, 0, time_to_display)
+	end
+	if sound_obj then
+		sound_obj:play(db.actor, 0, sound_object.s2d)
+	end
+end
+
+function isGameOn()
+	if level.present() and db.actor ~= nil and db.actor:alive() then
+		return true
+	end
+	return false
+end
+
+function maxfu_string_count(input)
+	local result = {}
+	for key, section in pairs(input) do
+		if not result[section] then
+			result[section] = 1
+		else
+			result[section] = result[section] + 1
+		end
+	end
+	return result
+end
+
+function maxfu_string_to_table(input)
+	local comma_prev, comma_next = 0, 1
+	local result = {}
+	while comma_next do
+		comma_next = string.find(input, ",", comma_prev + 1)
+		if comma_next then
+			table.insert(result, string.sub(input, comma_prev + 1, comma_next - 1))
+		else
+			table.insert(result, string.sub(input, comma_prev + 1, -1))
+		end
+		comma_prev = comma_next
+	end
+	return result
+end
+
+function maxfu_table_to_string(input)
+	local result = ""
+	for key, section in pairs(input) do
+		result = result .. section .. ","
+	end
+	result = string.sub(result, 1, string.len(result) - 1 )
+	return result
+end
+
+function maxfu_table_remove(input, key)
+    local result = {}
+    for k,v in pairs(input) do
+		if k ~= key then result[k] = v end
+	end
+    return result
+end
+
+function switch_online(id)
+    if id == -1 then return end
+    local sim = alife()
+    if sim ~= nil then
+       sim:set_switch_online(id, true)
+       sim:set_switch_offline(id, false)
+    end
+end
+
+function switch_offline(id)
+    if id == -1 then return end
+    local sim = alife()
+    if sim ~= nil then
+       sim:set_switch_online(id, false)
+       sim:set_switch_offline(id, true)
+    end
+end
+
+function maxfu_get_number(input)
+	if not input then
+		return 0
+	else
+		return input
+	end
+end
+
+function maxfu_hit_around(hitter,distance,hit_type,hit_amount)
+	for id, obj in pairs(db.storage) do
+		local object = level.object_by_id(id)
+		if object then
+			local dist = math.max(object:position():distance_to(hitter:position()),0.05)
+			if dist <= distance then
+				local h = hit()
+				h.draftsman = object
+				h.direction = object:position():sub(hitter:position())
+				h.type = hit.hit_type
+				h.impulse = 100 * ( hit_amount - hit_amount * dist / distance )
+				h.power = hit_amount - hit_amount * dist / distance
+				object:hit(h)
+			end
+		end
+	end
+end
+
+function spawn_item(spawn_item, pos)
+	return alife():create(spawn_item, pos, 1, db.actor:game_vertex_id())
+end
+
+function spawn_item_in_inv(spawn_item,npc)
+	if npc == nil then npc = db.actor end
+	return alife():create(spawn_item, npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id())
+end
+
+function spawn_ammo_in_inv(spawn_item,number,npc)
+	if npc == nil then npc = db.actor end
+	if number > 0 then
+		return se_respawn.create_ammo(spawn_item, npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id(), number)
+	end
+end
+
+function save_variable(variable_name, value)
+	if value == nil then
+		del_variable(variable_name)
+	else
+		xr_logic.pstor_store(db.actor, variable_name, value)
+	end
+end
+
+function load_variable(variable_name, value_if_not_found)
+	return xr_logic.pstor_retrieve(db.actor, variable_name, value_if_not_found)
+end
+
+function del_variable(variable_name)
+	if db.storage[db.actor:id()].pstor[variable_name] then
+		db.storage[db.actor:id()].pstor[variable_name] = nil
+	end
+end
+
+function unload_mag(wpn) -- From Salvage MOD
+	wpn = alife():object(wpn:id())
+	local packet = net_packet()
+	wpn:STATE_Write(packet)
+
+	packet:r_seek(packet:w_tell() - 5)
+	local ammo_elapsed = packet:r_u16()
+
+	if ammo_elapsed == 0 then
+		return
+	end
+
+	packet:r_seek(packet:w_tell() - 1)
+	local ammo_type = packet:r_u8()
+
+	local list = system_ini():r_string(wpn:section_name(), "ammo_class")
+	local tbl = {}
+	for str in string.gfind(list, "%s*([^%,]+)%s*") do
+		table.insert(tbl, str)
+	end
+
+	if #tbl > 0 and tbl[ammo_type + 1] then
+		ammo_type = tbl[ammo_type + 1]
+	end
+
+	se_respawn.create_ammo(ammo_type, db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id(), ammo_elapsed)
+end
+
+function get_npc_relation(obj, target)
+	local rel = obj:relation(target)
+	local relation
+	if rel == game_object.neutral then
+		relation = "neutral"
+	elseif rel==game_object.friend then
+		relation="friend"
+	elseif rel==game_object.enemy then
+		relation="enemy"
+	else
+		return false
+	end
+	return relation
+end
+
+function set_npc_relation(obj,target,relation)
+	local rel
+	if relation=="neutral" then
+		rel=game_object.neutral
+	elseif relation=="friend" then
+		rel=game_object.friend
+	elseif relation=="enemy" then
+		rel=game_object.enemy
+	else
+		return false
+	end
+	obj:set_relation(rel,target)
+	return true
+end
+
+function get_npc_community(npc)
+	return npc:character_community()
+end
+
+function set_npc_community(npc,community_string)
+  --������? ��� community_string ����?������ ?config\creatures\game_relations.ltx
+	return npc:set_character_community(community_string, 0, 0)
+end

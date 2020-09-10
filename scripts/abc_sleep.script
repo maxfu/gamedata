@@ -1,0 +1,151 @@
+--[[
+****************************************************
+****************************************************
+			ABC - Basic Sleep Bag Mod
+****************************************************
+****************************************************
+--]]
+
+local updatetimer = 0
+local updateitem = 0
+local chkabc = "true"
+local isitem = "false"
+local abcbag
+local devicebt = "no"
+local abcload = "no"
+local abcuiison = "false"
+
+function uptabc(what)
+local c_gtime = time_global()
+if (level.present()) and (db.actor ~= nil) then
+   if (what ~= nil) and (what ~= "abc") and (what ~= "load") and (abcload == "true") then
+	   if (updateitem == 0) then 
+			updateitem = time_global() + 1500
+		end   
+ 	 local obj_name = what:name()
+	 if (string.find(obj_name, "sleep_bag")) then
+	 isitem = "true" 
+     abcbag = "sleep_bag"
+	 abcload = "true"
+	 devicebt = "no"
+	 abcuiison = "true"
+	end
+	if (string.find(obj_name, "device_torch")) or (string.find(obj_name, "wpn_binoc")) then 
+	  devicebt = "false"	 
+	  chkabc = "false"
+	  abcload = "false"
+	end
+   end
+   if (what == "load") then
+	 abcload = "true"
+	 chkabc = "true"
+   end
+    local abcbino = db.actor:object("wpn_binoc")
+    if abcbino ~= nil then
+  	 abcload = "true"
+	 chkabc = "true"
+	 devicebt = "false"
+	else 
+	 abcload = "false"
+	 isitem = "false"
+	end
+	if (c_gtime > updateitem) and (updateitem > 0) then 
+	 updateitem = 0
+	 if (abcload == "true") and (chkabc == "true") and (isitem == "true") and (devicebt == "false") then
+    	 updateitem = 0
+    	 isitem = "false"
+    	 chkabc = "true"
+		 abcload = "no"
+		 -- alterei
+		 abcuiison = "true"
+	 	 check_abc_bag(abcbag)
+    	 abcbag = "false"		 
+     end
+    end
+  if updatetimer == 0 then updatetimer = time_global() + 1000 end
+  if (c_gtime > updatetimer) then
+    updatetimer = 0
+    local abcleepbag = db.actor:object("sleep_bag")
+    if abcleepbag == nil and abcuiison == "false" then
+		 alife():create("sleep_bag", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id()) 
+	end
+  end
+end
+end
+
+function check_abc_bag(obj)
+     local abcleepbag = db.actor:object("sleep_bag")  
+	    local gui_win = sleep_ui(get_hud())
+	    level.start_stop_menu(gui_win, true)
+		abcuiison = "true"
+end
+
+class "sleep_ui" (CUIScriptWnd)
+
+function sleep_ui:__init(owner) super()
+	self.owner = owner
+	self:InitControls()
+	self:InitCallBacks()
+end
+
+function sleep_ui:__finalize() end
+
+function sleep_ui:InitControls()
+	self:Init(5,5,300,300)
+	local xml = CScriptXmlInit()
+	xml:ParseFile("ui_abc_sleep.xml")
+	xml:InitStatic("back_video", self)
+	xml:InitStatic("background", self)
+	self:Register(xml:Init3tButton("caption", self),"caption")
+	self:Register(xml:Init3tButton("btn_1", self),"btn_1")
+	self:Register(xml:Init3tButton("btn_2", self),"btn_2")
+	self:Register(xml:Init3tButton("btn_3", self),"btn_3")
+	if db.actor.health < 0.9 then
+	 self:Register(xml:Init3tButton("btn_4", self),"btn_4")
+	end
+	self:Register(xml:Init3tButton("btn_quit", self),"btn_quit")
+end
+
+function sleep_ui:InitCallBacks()
+	self:AddCallback("btn_1", ui_events.BUTTON_CLICKED, self.sleep_ui1, self)
+	self:AddCallback("btn_2", ui_events.BUTTON_CLICKED, self.sleep_ui2, self)
+	self:AddCallback("btn_3", ui_events.BUTTON_CLICKED, self.sleep_ui3, self)
+	if db.actor.health < 0.9 then
+	 self:AddCallback("btn_4", ui_events.BUTTON_CLICKED, self.sleep_ui4, self)
+	end
+	self:AddCallback("btn_quit", ui_events.BUTTON_CLICKED, self.on_quit, self)
+end
+
+function sleep_ui:on_quit()
+ self:GetHolder():start_stop_menu (self,true)
+end
+function sleep_ui:sleep_ui1()
+ sleep_manager.sleep_one_hour()
+ self:on_quit()
+end
+function sleep_ui:sleep_ui2()
+ sleep_manager.sleep_three_hours()
+ self:on_quit()
+end
+function sleep_ui:sleep_ui3()
+ sleep_manager.sleep_nine_hours()
+ self:on_quit()
+end
+function sleep_ui:sleep_ui4()
+ sleep_manager.sleep_unlim(0)
+ self:on_quit()
+end
+function sleep_ui:check_game()
+ local check = false
+ if level.present() and (db.actor ~= nil) and db.actor:alive() then
+  check = true
+ end
+ return check
+end
+function sleep_ui:on_quit()
+ abcuiison = "false"
+ if abcleepbag == nil and chkabc == "true" then 
+	alife():create("sleep_bag", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id()) 
+ end
+ self:GetHolder():start_stop_menu (self,true)
+end

@@ -1,0 +1,61 @@
+; _custom_items.ltx
+; Mod-specific weapons, armor, and other custom items
+
+;@Repair Kit NGC_MOD ADDITIONAL Start
+[repair_kit]:identity_immunities
+GroupControlSection	= spawn_group
+discovery_dependency	=
+$spawn			= "devices\quest_items\repair_kit"
+$prefetch		= 32
+class			= II_ANTIR
+cform			= skeleton
+visual			= equipments\item_merger.ogf
+radius			= 1
+description		= enc_equipment_repairkit
+inv_name		= repairkit
+inv_name_short		= repairkit
+inv_weight		= 0.02
+quest_item		= true
+inv_grid_width		= 2
+inv_grid_height		= 2
+inv_grid_x		= 10
+inv_grid_y		= 32
+cost			= 0
+eat_health		= 0
+eat_satiety		= 0
+eat_power		= 0
+eat_radiation		= 0
+eat_alcohol		= 0
+wounds_heal_perc	= 0
+eat_portions_num	= 1
+animation_slot		= 4
+
+;Sleep Bag
+[sleep_bag]:identity_immunities
+GroupControlSection = spawn_group
+discovery_dependency =
+$spawn    		= "devices\quest_items\sleep_bag"
+$prefetch   	= 32
+class		 	= II_ANTIR
+cform           = skeleton
+visual          = equipments\item_merger.ogf
+radius			= 1
+description  	= enc_equipment_abc_bag
+inv_name   		= abc_bag
+inv_name_short  = abc_bag
+inv_weight   	= 1.2
+quest_item		= true
+inv_grid_width		= 2
+inv_grid_height		= 2
+inv_grid_x			= 10; 19
+inv_grid_y			= 25; 34
+cost    = 0
+eat_health = 0
+eat_satiety = 0
+eat_power = 0
+eat_radiation = 0
+eat_alcohol = 0
+wounds_heal_perc = 0
+eat_portions_num = 1
+animation_slot  = 4
+

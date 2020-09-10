@@ -1,0 +1,340 @@
+
+----------------------------------------------------------------------------
+-------    Automatic Anti-Radiation Injection System - Options       -------
+----------------------------------------------------------------------------
+
+local enable_system = true
+--[[disables the whole mod, if set to 'false'		]]--
+
+local max_rad_percentage = 80
+--[[radiation level, at which the system kicks in		]]--
+
+local monitor_long_exposure = true
+--[[the system will also activate, if the user was exposed to radiation over a longer time		]]--
+
+local min_rad_percentage = 10
+--[[minmum radiation dose, before the system counts the time (unused if monitor_long_exposure is 'false')		]]--
+
+local max_radiated_seconds = 40
+--[[maximum time of low radiation, before anti-rads are administered (unused if monitor_long_exposure is 'false')		]]--
+
+local reminder = true
+--[[get reminding messages, if you are out of anti-rad supplies		]]--
+
+local mins_till_next_remind = 120
+--[[time in minutes until you get the next reminder message (unused if reminder is 'false')		]]--
+
+local use_text = true
+--[[show text if the system has something to tell?		]]--
+
+local use_sounds = true
+--[[play sounds if the system has something to tell?		]]--
+
+local use_custom_sounds = true
+--[[use Half Life 1 HEV sounds? (unused if use_sounds is 'false')		]]--
+
+local use_scientific_kit = true
+--[[disassemble scientific medkits for anti-rad usage?		]]--
+
+local suit_radiation = 90
+local suit_bullet_proof = 90
+--[[selection parameters: suits with radiation protection or bullet protection equal to 
+	or higher than those two percentage values, will provide the injection system. 		]]--
+	
+	
+----------------------------------------------------------------------------
+-------------------------     End of options     ---------------------------
+----------------------------------------------------------------------------
+
+function system_enabled()
+	return enable_system
+end
+
+function get_max_percentage()
+	if max_rad_percentage > 100 then
+		max_rad_percentage = 100
+	elseif max_rad_percentage < 10 then
+		max_rad_percentage = 10
+	end
+	return max_rad_percentage/100
+end
+
+function get_min_percentage()
+	if min_rad_percentage > 90 then
+		min_rad_percentage = 90
+	elseif min_rad_percentage < 1 then
+		min_rad_percentage = 1
+	end
+	return min_rad_percentage/100
+end
+
+function get_suit_rad()
+	if suit_radiation > 100 then
+		suit_radiation = 100
+	elseif suit_radiation < 0 then
+		suit_radiation = 0
+	end
+	return suit_radiation/100
+end
+
+function get_suit_bproof()
+	if suit_bullet_proof > 100 then
+		suit_bullet_proof = 100
+	elseif suit_bullet_proof < 0 then
+		suit_bullet_proof = 0
+	end
+	return suit_bullet_proof/100
+end
+
+function get_rad_time()
+	if max_radiated_seconds > 300 then
+		max_radiated_seconds = 300
+	elseif max_radiated_seconds < 0 then
+		max_radiated_seconds = 0
+	end
+	return math.floor(max_radiated_seconds/3)
+end
+
+local last_section = " "
+local last_result = false
+
+function is_auto_injection_suit()
+	local rini = system_ini()
+	local suit = db.actor:item_in_slot(6)
+	local section = nil
+	local injection_suit_found = false
+	if suit then 
+		section = suit:section()
+	end
+	if section and last_section == section then
+		return last_result
+	elseif section and rini:section_exist(section) then
+		local radiation_protection = rini:r_float(section, "radiation_protection" )
+		local fire_wound_protection = rini:r_float(section, "fire_wound_protection" )
+		if radiation_protection >= get_suit_rad() or fire_wound_protection >= get_suit_bproof() then
+       		injection_suit_found = true
+		end
+		last_section = section
+		last_result = injection_suit_found
+    end
+	return injection_suit_found
+end
+
+local auto_injection_active = is_auto_injection_suit()
+local radiation_warning = true
+local reminder_count
+local exposure_count = 0
+
+function check_radiation()
+	if auto_injection_active and radiation_warning and (db.actor.radiation >= get_max_percentage() or long_time_exposure) then
+		if medication_delay == nil or medication_delay < time_global() then
+			if db.actor:object("antirad") and not antirad_spawned then
+				db.actor:eat(db.actor:object("antirad"))
+				if use_text then
+					local news_text
+					if long_time_exposure then
+						news_text = "%c[255,160,160,160]Automatic Injection System\\n".."%c[default]Long time radiation exposure! %c[255,0,230,0]Administering Anti-Radiation injections."
+					else
+						news_text = "%c[255,160,160,160]Automatic Injection System\\n".."%c[default]High radiation dose detected! %c[255,0,230,0]Administering Anti-Radiation injections."
+					end
+  					db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,188,83,47), 0, 3000)
+  				end
+				if use_sounds then
+			 		local snd_obj
+					if use_custom_sounds then 
+						snd_obj = xr_sound.get_safe_sound_object( [[HEV\administering-anti-rad]] )
+					else
+  				  		snd_obj = xr_sound.get_safe_sound_object( [[device\pda\pda_tip]] )
+					end
+					if snd_obj then
+						snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+					end
+				end
+			elseif use_scientific_kit and db.actor:object("medkit_scientic") and not antirad_spawned then
+				alife():release(alife():object(db.actor:object("medkit_scientic"):id()), true)
+				alife():create("antirad", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+				alife():create("medkit", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(), db.actor:id())
+				antirad_spawned = true
+				return
+			elseif antirad_spawned then
+				db.actor:eat(db.actor:object("antirad"))
+				antirad_spawned = false
+				if use_text then
+					local news_text
+					if long_time_exposure then
+						news_text = "%c[255,160,160,160]Automatic Injection System\\n".."%c[default]Long time radiation exposure! \\nAnti-Radiation injections depleted! %c[255,230,230,0]Administering Scientific First-Aid!"
+					else
+						news_text = "%c[255,160,160,160]Automatic Injection System\\n".."%c[default]High radiation dose detected! \\nAnti-Radiation injections depleted! %c[255,230,230,0]Administering Scientific First-Aid!"
+					end
+  					db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,188,83,47), 0, 5000)
+				end
+				if use_sounds then
+			 		local snd_obj
+					if use_custom_sounds then 
+						snd_obj = xr_sound.get_safe_sound_object( [[HEV\administering-anti-rad]] )
+					else
+  				  		snd_obj = xr_sound.get_safe_sound_object( [[device\pda\pda_tip]] )
+					end
+					if snd_obj then
+						snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+					end
+				end
+			else
+				if use_text then
+					local news_text
+					if long_time_exposure then
+						news_text = "%c[255,160,160,160]Automatic Injection System\\n".."%c[255,230,0,0]DANGER! Long time radiation exposure! No Anti-Rad injections available!"
+					else
+						news_text = "%c[255,160,160,160]Automatic Injection System\\n".."%c[255,230,0,0]DANGER! High radiation dose detected! No Anti-Rad injections available!"
+					end
+  					db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,188,83,47), 0, 5000)
+				end
+				if use_sounds then
+			 		local snd_obj
+					if use_custom_sounds then 
+						snd_obj = xr_sound.get_safe_sound_object( [[HEV\hi-rad-no-anti-rad]] )
+					else
+  				  		snd_obj = xr_sound.get_safe_sound_object( [[device\pda\pda_tip]] )
+					end
+					if snd_obj then
+						snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+					end
+				end
+				radiation_warning = false
+			end
+			exposure_count = 0
+			long_time_exposure = false
+			medication_delay = time_global() + 3000
+		end
+	elseif auto_injection_active and radiation_warning and monitor_long_exposure and (medication_delay == nil or medication_delay < time_global()) then
+		if db.actor.radiation >= get_min_percentage() then
+			exposure_count = exposure_count + 1
+			if exposure_count > get_rad_time() then
+				long_time_exposure = true
+			else
+				medication_delay = time_global() + 3000
+			end
+		else
+			exposure_count = 0
+			long_time_exposure = false
+			medication_delay = time_global() + 3000
+		end
+	end
+end
+
+
+function check_antirad_supplies()
+       if auto_injection_active then
+               if antirad_check_delay == nil or game.get_game_time():diffSec(antirad_check_delay) > 60 then
+                       if not db.actor:object("antirad") and not (use_scientific_kit and db.actor:object("medkit_scientic")) then
+                               if reminder and (reminder_count == nil or reminder_count == 0 or reminder_count >= mins_till_next_remind) then     
+                                       if use_text then
+                                               local news_text = "%c[255,160,160,160]Automatic Injection System\\n".."%c[default]Reminder: %c[255,230,0,0]No Anti-Rad supplies! %c[default]Automatic injections unavailable."
+                                               db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,188,83,47), 0, 3000)
+                                       end 
+                                       if use_sounds then
+                                               local snd_obj
+                                               if use_custom_sounds then 
+                                                       snd_obj = xr_sound.get_safe_sound_object( [[HEV\no-anti-rad]] )
+                                               else
+                                                       snd_obj = xr_sound.get_safe_sound_object( [[device\pda\pda_tip]] )
+                                               end
+                                               if snd_obj then
+                                                       snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+                                               end
+                                       end
+                                       reminder_count = 1
+                               elseif reminder then
+                                       if not reminder_count then
+                                               reminder_count = 0
+                                       end
+                                       reminder_count = reminder_count + 1
+                               end
+                       else
+                               radiation_warning = true
+                               reminder_count = 0
+                       end
+                       antirad_check_delay =  game.get_game_time() 
+               end
+       end
+end
+
+
+
+function check_auto_injection_suit()
+
+	if antirad_suit_delay == nil or antirad_suit_delay < time_global() then
+		
+		auto_injection_active = is_auto_injection_suit()
+		
+		if db.actor and auto_injection_active and db.actor:dont_has_info("auto_injection_system_startup") then
+			if db.actor:object("antirad") then
+				if use_text then
+					local news_text = "%c[255,160,160,160]Automatic Injection System\\n".."%c[default]Automatic Injection System start-up. %c[255,0,230,0]Anti-Rad supplies present."
+  					db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,188,83,47), 0, 5000)
+  				end
+			 	if use_sounds then
+			 		local snd_obj
+					if use_custom_sounds then 
+						snd_obj = xr_sound.get_safe_sound_object( [[HEV\automedic-on]] )
+					else
+  					  	snd_obj = xr_sound.get_safe_sound_object( [[device\pda\pda_tip]] )
+					end
+					if snd_obj then
+						snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+					end
+				end
+				reminder_count = 0
+			elseif not db.actor:object("antirad") and use_scientific_kit and db.actor:object("medkit_scientic") then
+				if use_text then
+					local news_text = "%c[255,160,160,160]Automatic Injection System\\n".."%c[default]Automatic Injection System start-up. \\n".."%c[255,230,230,0]No Anti-Rad supplies available! Using only scientific first-aid kits."
+  					db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,188,83,47), 0, 5000)
+  				end
+			 	if use_sounds then
+			 		local snd_obj
+					if use_custom_sounds then 
+						snd_obj = xr_sound.get_safe_sound_object( [[HEV\automedic-on]] )
+					else
+  					  	snd_obj = xr_sound.get_safe_sound_object( [[device\pda\pda_tip]] )
+					end
+					if snd_obj then
+						snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+					end
+				end
+				reminder_count = 0
+			else
+				if use_text then
+					local news_text = "%c[255,160,160,160]Automatic Injection System\\n".."%c[default]Automatic Injection System start-up. %c[255,230,0,0]No Anti-Rad supplies available!"
+  					db.actor:give_game_news(news_text, "ui\\ui_iconsTotal", Frect():set(0,188,83,47), 0, 5000)
+  				end
+				if use_sounds then
+			 		local snd_obj
+					if use_custom_sounds then 
+						snd_obj = xr_sound.get_safe_sound_object( [[HEV\automedic-on-no-anti-rad]] )
+					else
+  					  	snd_obj = xr_sound.get_safe_sound_object( [[device\pda\pda_tip]] )
+					end
+					if snd_obj then
+						snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1.0)
+					end
+				end
+				reminder_count = 1
+			end
+			antirad_check_delay =  game.get_game_time() 
+			db.actor:give_info_portion("auto_injection_system_startup")
+		elseif not auto_injection_active then
+			db.actor:disable_info_portion("auto_injection_system_startup")
+		end
+		antirad_suit_delay = time_global() + 3000
+	end
+end
+
+--------------------------------------------------------------------------------------------------
+------------------------------------     Credits & Thanx     -------------------------------------
+--------------------------------------------------------------------------------------------------
+-- Credits to AMK for proper news message usage and other nifty function designs
+-- Thanx to maxfu for coming up with the idea
+-- Thanx to Cpt. Borovich and Russo for the help
+--------------------------------------------------------------------------------------------------
+------------------------------------     Atrocious 2008      -------------------------------------
+--------------------------------------------------------------------------------------------------

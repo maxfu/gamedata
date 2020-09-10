@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="ecolog_outfit_psi_coll_description">
+		<text>This bodysuit is an experimental prototype used to protect its owner from PSI emissions. Unfortunately, protection from projectile damage has been completely omitted from this model, because its light protective plates had to be removed for the successful implementation of the PSI mechanism.</text>
+	</string>
+	<string id="ecolog_outfit_psi_coll_name">
+		<text>PSI Suit</text>
+	</string>
+</string_table>

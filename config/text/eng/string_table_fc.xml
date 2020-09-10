@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--------------------------------------------------------------------------->
+<!-- Faction Change Mod by Atrocious; Idea by Speed aka Cabrobro (ABC Mod) -->
+<!--------------------------------------------------------------------------->
+<!-- ENGLISH language file                                                  -->
+<!--------------------------------------------------------------------------->
+<string_table>
+	<string id="faction_change_text_0">
+		<text>Do you have connections to all the factions here?</text>
+	</string>
+	<string id="faction_change_text_1">
+		<text>Sure, what's the matter?</text>
+	</string>
+	<string id="faction_change_text_2">
+		<text>I want to become a member of a different faction.</text>
+	</string>
+	<string id="faction_change_text_3">
+		<text>I have trouble with a certain faction.</text>
+	</string>
+	<string id="faction_change_text_10">
+		<text>I'm not made for groups. I want to be a loner again!</text>
+	</string>
+	<string id="faction_change_text_11">
+		<text>Freedom guys are right, we need anarchy!</text>
+	</string>
+	<string id="faction_change_text_12">
+		<text>I feel Duty are doing the right thing, keeping newbies away!</text>
+	</string>
+	<string id="faction_change_text_13">
+		<text>Damn all these wannabe-hero loners! Bandits for the win!</text>
+	</string>
+	<string id="faction_change_text_14">
+		<text>They told me as a Merc I will get rich! I want that!</text>
+	</string>
+	<string id="faction_change_text_15">
+		<text>I shouldn't shoot, I should research! Make me an Ecologist!</text>
+	</string>
+	<string id="faction_change_text_16">
+		<text>Are you in contact with the recruitment center? I want to join the military!</text>
+	</string>
+	<string id="faction_change_text_17">
+		<text>The Monolith calls me. Need to go north. Go north ...</text>
+	</string>
+	<string id="faction_change_text_18">
+		<text>Flesh! Moar flesh! Must eat brain!</text>
+	</string>
+	<string id="faction_change_text_90">
+		<text>Yes, I'm sure!</text>
+	</string>
+	<string id="faction_change_text_91">
+		<text>No, I changed my mind.</text>
+	</string>
+	<string id="faction_change_text_92">
+		<text>Nevermind.</text>
+	</string>
+	<string id="faction_change_text_93">
+		<text>Looks like you had some trouble with them... \nIn addition to the regular price, they demand a bounty to be paid.\nThat's 60.000 RU! Sure you want to do it?</text>
+	</string>
+	<string id="faction_change_text_94">
+		<text>Looks like you had some trouble with them... \nIn addition to the regular price, they demand a bounty to be paid.\nThat's 60.000 RU! Do you have the money?</text>
+	</string>
+	<string id="faction_change_text_95">
+		<text>No.</text>
+	</string>
+	<string id="faction_change_text_96">
+		<text>Everything alright. My fault.</text>
+	</string>
+	<string id="faction_change_text_97">
+		<text>Okay</text>
+	</string>
+	<string id="faction_change_text_98">
+		<text>It's all done!</text>
+	</string>
+	<string id="faction_change_text_99">
+		<text>Good luck on your new path!</text>
+	</string>
+	<string id="faction_change_text_110">
+		<text>I must have killed some popular stalker. They've put a bounty on my head!</text>
+	</string>
+	<string id="faction_change_text_111">
+		<text>Freedom pals are angry! They will listen to you, right?</text>
+	</string>
+	<string id="faction_change_text_112">
+		<text>Duty soldiers have order to kill me, please help!</text>
+	</string>
+	<string id="faction_change_text_113">
+		<text>I got spoofed by the bandits. Pay them to save my life!</text>
+	</string>
+	<string id="faction_change_text_114">
+		<text>The Mercenaries are hunting me down. Stop them!</text>
+	</string>
+	<string id="faction_change_text_115">
+		<text>The Ecologists are throwing cotton balls at me! It hurts!</text>
+	</string>
+	<string id="faction_change_text_116">
+		<text>The Soldiers have order to kill me, please make contact to the military.</text>
+	</string>
+	<string id="faction_change_text_117">
+		<text>Monolith fanatics got brainwashed against me. Please help!</text>
+	</string>
+	<string id="faction_change_text_118">
+		<text>Zoombiies are maad! Do something!</text>
+	</string>
+	<string id="faction_change_text_190">
+		<text>Yes, help me getting this fixed.</text>
+	</string>
+	<string id="faction_change_text_191">
+		<text>No, I'm uncertain.</text>
+	</string>
+	<string id="faction_change_text_193">
+		<text>You will have to pay 40.000 RU to calm them down. Okay? </text>
+	</string>
+	<string id="faction_change_text_194">
+		<text>You have some friends in common? The price is only 10.000 RU!\nDo you want me to sign you up?</text>
+	</string>
+	<string id="faction_change_text_195">
+		<text>You have some friends in common? The price is only 10.000 RU!\nDo you have the money?</text>
+	</string>
+	<string id="faction_change_text_196">
+		<text>You don't seem to have any relations to them yet.\nThey demand 20.000 RU. Do you want me to sign you up?</text>
+	</string>
+	<string id="faction_change_text_197">
+		<text>You don't seem to have any relations to them yet.\nThey demand 20.000 RU. Do you have the money?</text>
+	</string>	
+	<string id="faction_change_text_198">
+		<text>Damn!</text>
+	</string>
+	<string id="faction_change_text_199">
+		<text>Looks like you're hunted and broke, poor boy.</text>
+	</string>
+	<string id="faction_change_text_200">
+		<text>Uhm ... yeah ... well. 10.000 RU?</text>
+	</string>
+	<string id="faction_change_text_201">
+		<text>Uhm ... yeah ... well. 20.000 RU?</text>
+	</string>	
+	<string id="faction_change_text_202">
+		<text>Uhm ... yeah ... well. 60.000 RU?</text>
+	</string>	
+	<string id="faction_change_text_203">
+		<text>Go north ...</text>
+	</string>	
+	<string id="faction_change_text_204">
+		<text>What? North! No! It's me! Marked One!</text>
+	</string>	
+	<string id="faction_change_text_205">
+		<text>Mmmnnnnaaaahhhaa!</text>
+	</string>	
+	<string id="faction_change_text_206">
+		<text>Mrrr!</text>
+	</string>
+	<string id="faction_change_text_210">
+		<text>So, you wan't to be someone else right from the start?\nOnce you change the sides, you cannot simply switch back!\nYou'll have to pay me for any further deals!\nAre you sure you want this?</text>
+	</string>
+	<string id="faction_change_text_220">
+		<text>These documents grant unrestricted access to the zone.</text>
+	</string>
+	<string id="faction_change_text_221">
+		<text>The documents are valid. You may pass.</text>
+	</string>
+	<string id="faction_change_text_222">
+		<text>Thank you!</text>
+	</string>
+	<string id="faction_change_text_223">
+		<text>The area is off limits!</text>
+	</string>
+	<string id="faction_change_text_224">
+		<text>Alright, keep moving!</text>
+	</string>
+	
+	<string id="faction_change_text_227">
+		<text>You're now a full member of freedom!</text>
+	</string>
+	<string id="faction_change_text_228">
+		<text>Okay, leave now.</text>
+	</string>
+	<string id="faction_change_text_229">
+		<text>I want to discuss something with you...</text>
+	</string>
+	<string id="faction_change_text_230">
+		<text>I want to join Duty!</text>
+	</string>
+	<string id="faction_change_text_231">
+		<text>Okay, we didn't have trouble with you, but you aren't our friend either. \nThe price is 20.000 RU.</text>
+	</string>
+	<string id="faction_change_text_232">
+		<text>We would be glad to have you with us! \nWe need only 10.000 RU for the equipment.</text>
+	</string>
+	<string id="faction_change_text_233">
+		<text>Okay, I agree!</text>
+	</string>
+	<string id="faction_change_text_234">
+		<text>No, I changed my mind.</text>
+	</string>
+	<string id="faction_change_text_235">
+		<text>I want to get out of Duty and be a loner again.</text>
+	</string>
+	<string id="faction_change_text_236">
+		<text>I want to get out of Freedom and be a loner again.</text>
+	</string>
+	<string id="faction_change_text_237">
+		<text>We are sorry to hear that. Are you sure?</text>
+	</string>
+	<string id="faction_change_text_238">
+		<text>Yes, I'm sure!</text>
+	</string>
+	<string id="faction_change_text_239">
+		<text>I want to join Freedom!</text>
+	</string>
+	<string id="faction_change_text_240">
+		<text>You know what?</text>
+	</string>
+	<string id="faction_change_text_241">
+		<text>I want to protect the Scientists!</text>
+	</string>
+	<string id="faction_change_text_242">
+		<text>Surely we could use some help. \nYou've already proven yourself by retrieving the documents. \nBut I still need 10.000 RU as deposit for the equipment.</text>
+	</string>
+	<string id="faction_change_text_243">
+		<text>Surely we could use some help. \nYou've already proven yourself by retrieving the documents. \nBut I still need 20.000 RU as deposit for the equipment.</text>
+	</string>
+	<string id="faction_change_text_244">
+		<text>Good to have you with us!</text>
+	</string>
+	<string id="faction_change_text_245">
+		<text>All these formulas, equations and petri-dishes! I can't stand it anymore! \nI have to stay away from science for a while!</text>
+	</string>
+	<string id="faction_change_text_246">
+		<text>There are rumors that you've killed one of us. \nLet's hope for you that those are just rumors! \nYou can join us for a small fee of 60.000 RU, but keep in the back of your head, if we confirm you are that killer, we'll feed you to the boars alive. Sounds good?</text>
+	</string>
+</string_table>

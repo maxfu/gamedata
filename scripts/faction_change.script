@@ -1,0 +1,877 @@
+---------------------------------------------------------------------------
+-- Faction Change Mod by Atrocious; Idea by Speed aka Cabrobro (ABC Mod) --
+---------------------------------------------------------------------------
+
+-- Options
+--------------------------------------
+-- (First options can be switched with true/false.)
+
+-- Make all factions available at start (does not include zombies).
+-- The game will start with the option for Duty and Ecologists only, if this is set to false.
+local all_factions_open = false
+
+-- Activate the zombie faction?
+local zombies_open = false
+
+-- Let the player join Bandits and Zombies without the bounty?
+-- With this option enabled the player can join Bandits and Zombies without paying the 40k bounty.
+-- Note that if the player killed lots of Bandits or is hated by some special bandit camp, the option might not work.
+local easy_path_to_other_side = true
+
+-- First join for free? After starting a new game, the player has 1 hour (in-game) to join a faction for free.
+-- This is a one time offer! After joining a faction you can't switch back without having the money!
+local first_join_for_free = true
+
+-- Point of activating all factions (has_alife_info). - For modders who want to set a different point.
+-- if the variable "all_factions_open" is false, the game will wait until this alife event happens 
+-- before the factions are available. Change if you have a better alife event. E.g. if you are using a freeplay mod.
+local alife_info_open_factions = "pri_followers_start"
+
+-- end of options
+--------------------------------------
+
+
+
+-- Giving gifts when player joins a faction
+-------------------------------------------
+function fc_gift_stalker(trader, actor)
+	dialogs.relocate_item_section(actor, "stalker_outfit", "in")
+end
+
+function fc_gift_freedom(trader, actor)
+	if xr_conditions_impl.actor_has_object(db.actor, "novice_outfit") then
+		dialogs.relocate_item_section(trader, "novice_outfit", "out") end
+	dialogs.relocate_item_section(actor, "svoboda_heavy_outfit", "in")
+	dialogs.relocate_item_section(actor, "wpn_desert_eagle", "in")
+	dialogs.relocate_item_section(actor, "ammo_11.43x23_hydro", "in")
+	dialogs.relocate_item_section(actor, "ammo_11.43x23_hydro", "in")
+	dialogs.relocate_item_section(actor, "ammo_11.43x23_hydro", "in")
+	dialogs.relocate_item_section(actor, "ammo_11.43x23_hydro", "in")
+end
+
+function fc_gift_duty(trader, actor)
+	if xr_conditions_impl.actor_has_object(db.actor, "novice_outfit") then
+		dialogs.relocate_item_section(trader, "novice_outfit", "out") end
+	dialogs.relocate_item_section(actor, "dolg_outfit", "in")
+end
+
+function fc_gift_bandit(trader, actor)
+	if xr_conditions_impl.actor_has_object(db.actor, "novice_outfit") then
+		dialogs.relocate_item_section(trader, "novice_outfit", "out") end
+	dialogs.relocate_item_section(actor, "outfit_bandit_master", "in")
+	dialogs.relocate_item_section(actor, "wpn_mp5", "in")
+	dialogs.relocate_item_section(actor, "ammo_9x19_fmj", "in")
+	dialogs.relocate_item_section(actor, "ammo_9x19_fmj", "in")
+	dialogs.relocate_item_section(actor, "ammo_9x19_fmj", "in")
+	dialogs.relocate_item_section(actor, "grenade_rgd5", "in")
+	dialogs.relocate_item_section(actor, "grenade_rgd5", "in")
+	dialogs.relocate_item_section(actor, "vodka", "in")
+	dialogs.relocate_item_section(actor, "vodka", "in")
+	dialogs.relocate_item_section(actor, "vodka", "in")
+	dialogs.relocate_item_section(actor, "vodka", "in")
+	dialogs.relocate_item_section(actor, "vodka", "in")
+	dialogs.relocate_item_section(actor, "vodka", "in")
+end
+
+function fc_gift_merc(trader, actor)
+	if xr_conditions_impl.actor_has_object(db.actor, "novice_outfit") then
+		dialogs.relocate_item_section(trader, "novice_outfit", "out") end
+	dialogs.relocate_item_section(actor, "killer_outfit", "in")
+	dialogs.relocate_item_section(actor, "wpn_lr300", "in")
+	dialogs.relocate_item_section(actor, "wpn_addon_scope_susat", "in")
+	dialogs.relocate_item_section(actor, "ammo_5.56x45_ss190", "in")
+	dialogs.relocate_item_section(actor, "ammo_5.56x45_ss190", "in")
+	dialogs.relocate_item_section(actor, "ammo_5.56x45_ss190", "in")
+	dialogs.relocate_item_section(actor, "wpn_desert_eagle", "in")
+	dialogs.relocate_item_section(actor, "ammo_11.43x23_hydro", "in")
+	dialogs.relocate_item_section(actor, "ammo_11.43x23_hydro", "in")
+	dialogs.relocate_item_section(actor, "ammo_11.43x23_hydro", "in")
+	dialogs.relocate_item_section(actor, "ammo_11.43x23_hydro", "in")
+	dialogs.relocate_item_section(actor, "grenade_f1", "in")
+	dialogs.relocate_item_section(actor, "grenade_f1", "in")
+end
+
+function fc_gift_ecolog(trader, actor)
+	if xr_conditions_impl.actor_has_object(db.actor, "novice_outfit") then
+		dialogs.relocate_item_section(trader, "novice_outfit", "out") end
+	dialogs.relocate_item_section(actor, "ecolog_outfit", "in")
+end
+
+function fc_gift_military(trader, actor)
+	if xr_conditions_impl.actor_has_object(db.actor, "novice_outfit") then
+		dialogs.relocate_item_section(trader, "novice_outfit", "out") end
+	dialogs.relocate_item_section(actor, "specops_outfit", "in")
+end
+
+function fc_gift_monolith(trader, actor)
+	if xr_conditions_impl.actor_has_object(db.actor, "novice_outfit") then
+		dialogs.relocate_item_section(trader, "novice_outfit", "out") end
+	dialogs.relocate_item_section(actor, "monolit_outfit", "in")
+end
+
+function fc_gift_zombied(trader, actor)
+	if xr_conditions_impl.actor_has_object(db.actor, "novice_outfit") then
+		dialogs.relocate_item_section(trader, "novice_outfit", "out") end
+	dialogs.relocate_item_section(actor, "outfit_stalker_m1", "in")
+	dialogs.relocate_item_section(actor, "wpn_toz34", "in")
+	dialogs.relocate_item_section(actor, "ammo_12x70_buck", "in")
+	dialogs.relocate_item_section(actor, "ammo_12x70_buck", "in")
+	dialogs.relocate_item_section(actor, "ammo_12x70_buck", "in")
+	dialogs.relocate_item_section(actor, "ammo_12x70_buck", "in")
+	dialogs.relocate_item_section(actor, "ammo_12x70_buck", "in")
+	dialogs.relocate_item_section(actor, "kolbasa", "in")
+end
+
+
+-- Payment functions
+--------------------------------------
+
+function fc_get_debt()
+	return 10000
+end
+
+function fc_get_bounty()
+	return 40000  
+end
+
+-- checking money - result has enough
+function fc_precon_have_the_debt(trader, actor)
+	if db.actor then return db.actor:money() >= fc_get_debt() end return false
+end
+
+function fc_precon_have_the_full_debt(trader, actor)
+	if db.actor then return db.actor:money() >= (fc_get_debt()*2) end return false
+end
+
+function fc_precon_have_the_bounty(trader, actor)
+	if db.actor then return db.actor:money() >= fc_get_bounty() end return false
+end
+
+function fc_precon_have_the_debt_and_bounty(trader, actor)
+	local sum = (fc_get_debt()*2) + fc_get_bounty()
+	if db.actor then return db.actor:money() >= sum end return false
+end
+
+-- checking money - result doesnt have enough
+function fc_precon_doesnt_have_the_debt(trader, actor)
+	if db.actor then return db.actor:money() < fc_get_debt() end return false
+end
+
+function fc_precon_doesnt_have_the_full_debt(trader, actor)
+	if db.actor then return db.actor:money() < (fc_get_debt()*2) end return false
+end
+
+function fc_precon_doesnt_have_the_bounty(trader, actor)
+	if db.actor then return db.actor:money() < fc_get_bounty() end return false
+end
+
+function fc_precon_doesnt_have_the_debt_and_bounty(trader, actor)
+	local sum = (fc_get_debt()*2) + fc_get_bounty()
+	if db.actor then return db.actor:money() < sum end return false
+end
+
+-- paying
+function fc_pay_debt(npc, actor )
+	dialogs.relocate_money(npc, fc_get_debt(), "out")
+end
+
+function fc_pay_full_debt(npc, actor)
+	dialogs.relocate_money(npc, (fc_get_debt() * 2), "out")
+end
+
+function fc_pay_bounty(npc, actor)
+	dialogs.relocate_money(npc, fc_get_bounty(), "out")
+end
+
+function fc_pay_debt_and_bounty(npc, actor)
+	fc_pay_bounty(npc, actor)
+	fc_pay_full_debt(npc, actor)
+end
+
+
+-- Taking away the suits from the player when leaving duty or freedom at their bases
+------------------------------------------------------------------------------------
+
+local function remove_these_items_from_inv(item_name, npc)
+	db.actor:inventory_for_each(function(item)
+									local section = item:section()
+									if section == item_name then
+										db.actor:transfer_item(item, npc)
+										news_manager.relocate_item(db.actor, "out", item_name)
+									end
+								end )
+end
+
+function fc_take_duty_suits_from_player(first_speaker, second_speaker)
+	local item_name = "dolg_outfit"
+	if db.actor:object(item_name) then remove_these_items_from_inv(item_name, first_speaker) end
+	item_name = "dolg_scientific_outfit"
+	if db.actor:object(item_name) then remove_these_items_from_inv(item_name, first_speaker) end
+	item_name = "outfit_dolg_m1"
+	if db.actor:object(item_name) then remove_these_items_from_inv(item_name, first_speaker) end
+end
+
+function fc_take_freedom_suits_from_player(first_speaker, second_speaker)
+	local item_name = "svoboda_light_outfit"
+	if db.actor:object(item_name) then remove_these_items_from_inv(item_name, first_speaker) end
+	item_name = "svoboda_heavy_outfit"
+	if db.actor:object(item_name) then remove_these_items_from_inv(item_name, first_speaker) end
+	item_name = "outfit_svoboda_m1"
+	if db.actor:object(item_name) then remove_these_items_from_inv(item_name, first_speaker) end
+end
+
+
+-- Dishonorable discharge from military when player killed a comrade
+--------------------------------------------------------------------
+
+function fc_dishonorable_discharge()
+	if db.actor:character_community() == "military" then
+		db.actor:set_character_community("actor", 0, 0)
+		relation_registry.set_community_goodwill ("military", db.actor:id(), -5000) 
+	end
+end
+
+
+-- functions to check which factions are enabled
+------------------------------------------------
+
+function fc_all_factions_enabled()
+	if all_factions_open or has_alife_info(alife_info_open_factions) then return true 
+	end
+	return false
+end
+
+function fc_zombied_enabled()
+	return zombies_open
+end
+
+
+-- functions to make terrain accessable
+---------------------------------------
+
+function fc_precon_can_pass_bridge(actor, npc)
+	return ((db.actor:character_community() == "ecolog") or (db.actor:character_community() == "military"))
+end
+
+function fc_precon_cannot_pass_bridge(actor, npc)
+	return ((db.actor:character_community() ~= "ecolog") and (db.actor:character_community() ~= "military"))
+end
+
+
+-- Preconditons to check what he's not
+--------------------------------------
+function fc_precon_not_stalker(trader, actor)
+	if db.actor then return db.actor:character_community() ~= "actor" end return false
+end
+
+function fc_precon_not_duty(trader, actor)
+	if db.actor then return db.actor:character_community() ~= "actor_dolg" end return false
+end
+	
+function fc_precon_not_freedom(trader, actor)
+	if db.actor then return db.actor:character_community() ~= "actor_freedom" end return false 
+end
+
+function fc_precon_not_bandit(trader, actor)
+	if db.actor then return db.actor:character_community() ~= "bandit" end return false 
+end
+
+function fc_precon_not_merc(trader, actor)
+	if db.actor then return db.actor:character_community() ~= "killer" end return false
+end
+
+function fc_precon_not_ecolog(trader, actor)
+	if db.actor then return db.actor:character_community() ~= "ecolog" end return false
+end
+	
+function fc_precon_not_military(trader, actor)
+	if db.actor then return db.actor:character_community() ~= "military" end return false 
+end
+
+function fc_precon_not_monolith(trader, actor)
+	if db.actor then return db.actor:character_community() ~= "monolith" end return false 
+end
+
+function fc_precon_not_zombied(trader, actor)
+	if db.actor then return db.actor:character_community() ~= "zombied" end return false 
+end
+
+-- Preconditons to check if he's in the faction - used by fc at faction HQ
+--------------------------------------------------------------------------
+function fc_precon_in_duty(npc, actor)
+	return db.actor:character_community() == "actor_dolg"
+end
+
+function fc_precon_in_freedom(npc, actor)
+	return db.actor:character_community() == "actor_freedom"
+end
+
+function fc_precon_is_ecolog(npc, actor)
+	return db.actor:character_community() == "ecolog"
+end
+
+
+-- Preconditons to check enemy status
+--------------------------------------
+
+function fc_precon_foe_of_stalkers(actor, npc)
+    if fc_precon_stalkers_goodwill_low(actor, npc)
+    	or db.actor:character_community() == "bandit" 
+    	or db.actor:character_community() == "killer"
+    	or db.actor:character_community() == "military"
+    	or db.actor:character_community() == "monolith"
+    	or db.actor:character_community() == "zombied" then
+       return true
+    end   
+    return false
+end
+
+function fc_precon_foe_of_freedom(actor, npc)
+    if fc_precon_freedom_goodwill_low(actor, npc)
+    	or db.actor:character_community() == "actor_dolg"
+    	or db.actor:character_community() == "killer"
+    	or db.actor:character_community() == "ecolog"
+    	or db.actor:character_community() == "military"
+    	or db.actor:character_community() == "monolith"
+    	or db.actor:character_community() == "zombied" then
+       return true
+    end   
+    return false
+end
+
+function fc_precon_foe_of_duty(actor, npc)
+    if fc_precon_duty_goodwill_low(actor, npc)
+    	or db.actor:character_community() == "actor_freedom"
+    	or db.actor:character_community() == "bandit" 
+    	or db.actor:character_community() == "killer"
+    	or db.actor:character_community() == "military"
+    	or db.actor:character_community() == "monolith"
+    	or db.actor:character_community() == "zombied" then
+       return true
+    end   
+    return false
+end
+
+function fc_precon_foe_of_bandits(actor, npc)
+	if not easy_path_to_other_side then 
+		if db.actor:character_community() == "actor" then return true end
+    end
+    if fc_precon_bandits_goodwill_low(actor, npc)
+    	or db.actor:character_community() == "actor_dolg"
+    	or db.actor:character_community() == "ecolog"
+    	or db.actor:character_community() == "military"
+    	or db.actor:character_community() == "monolith"
+    	or db.actor:character_community() == "zombied" then
+       return true
+    end   
+    return false
+end
+
+function fc_precon_foe_of_mercs(actor, npc)
+    if fc_precon_mercs_goodwill_low(actor, npc)
+    	or db.actor:character_community() == "actor"
+    	or db.actor:character_community() == "actor_freedom"
+    	or db.actor:character_community() == "actor_dolg"
+    	or db.actor:character_community() == "ecolog"
+    	or db.actor:character_community() == "military"
+    	or db.actor:character_community() == "monolith"
+    	or db.actor:character_community() == "zombied" then
+       return true
+    end   
+    return false
+end
+
+function fc_precon_foe_of_ecolog(actor, npc)
+    if fc_precon_ecolog_goodwill_low(actor, npc)
+    	or db.actor:character_community() == "actor_freedom"
+       	or db.actor:character_community() == "bandit"
+    	or db.actor:character_community() == "killer"
+       	or db.actor:character_community() == "monolith"
+    	or db.actor:character_community() == "zombied" then
+       return true
+    end   
+    return false
+end
+
+function fc_precon_foe_of_military(actor, npc)
+	if fc_precon_military_goodwill_low(actor, npc)
+		or db.actor:character_community() == "actor"
+    	or db.actor:character_community() == "actor_freedom"
+    	or db.actor:character_community() == "actor_dolg"
+    	or db.actor:character_community() == "bandit"
+    	or db.actor:character_community() == "killer"
+    	or db.actor:character_community() == "monolith"
+    	or db.actor:character_community() == "zombied" then
+       return true
+    end   
+    return false
+end
+
+function fc_precon_foe_of_monolith(actor, npc)
+    if fc_precon_monolith_goodwill_low(actor, npc)
+    	or db.actor:character_community() == "actor"
+    	or db.actor:character_community() == "actor_freedom"
+    	or db.actor:character_community() == "actor_dolg"
+    	or db.actor:character_community() == "bandit"
+    	or db.actor:character_community() == "killer"
+    	or db.actor:character_community() == "ecolog"
+    	or db.actor:character_community() == "military" then
+       return true
+    end   
+    return false
+end
+
+function fc_precon_foe_of_zombied(actor, npc)
+    if not easy_path_to_other_side then 
+		if db.actor:character_community() == "actor" then return true end
+    end
+    if fc_precon_zombied_goodwill_low(actor, npc)
+    	or db.actor:character_community() == "actor_freedom"
+    	or db.actor:character_community() == "actor_dolg"
+    	or db.actor:character_community() == "bandit"
+    	or db.actor:character_community() == "killer"
+    	or db.actor:character_community() == "ecolog"
+    	or db.actor:character_community() == "military" then
+       return true
+    end   
+    return false
+end
+
+
+-- Preconditons to check relations
+--------------------------------------
+-- positive
+
+function fc_precon_friend_of_stalkers(actor, npc)
+    return (not fc_precon_foe_of_stalkers(actor, npc)) and (relation_registry.community_goodwill ("stalker", db.actor:id ()) >= 500) 
+end
+
+function fc_precon_friend_of_freedom(actor, npc)
+    return (not fc_precon_foe_of_freedom(actor, npc)) and (relation_registry.community_goodwill ("freedom", db.actor:id ()) >= 500) 
+end
+
+function fc_precon_friend_of_duty(actor, npc)
+    return (not fc_precon_foe_of_duty(actor, npc)) and (relation_registry.community_goodwill ("dolg", db.actor:id ()) >= 500) 
+end
+
+function fc_precon_friend_of_bandits(actor, npc)
+    return (not fc_precon_foe_of_bandits(actor, npc)) and (relation_registry.community_goodwill ("bandit", db.actor:id ()) >= 500) 
+end
+
+function fc_precon_friend_of_mercs(actor, npc)
+    return (not fc_precon_foe_of_mercs(actor, npc)) and (relation_registry.community_goodwill ("killer", db.actor:id ()) >= 500) 
+end
+
+function fc_precon_friend_of_ecolog(actor, npc)
+    return (not fc_precon_foe_of_ecolog(actor, npc)) and (relation_registry.community_goodwill ("ecolog", db.actor:id ()) >= 500) 
+end
+
+function fc_precon_friend_of_military(actor, npc)
+    return (not fc_precon_foe_of_military(actor, npc)) and (relation_registry.community_goodwill ("military", db.actor:id ()) >= 500) 
+end
+
+function fc_precon_friend_of_monolith(actor, npc)
+    return (not fc_precon_foe_of_monolith(actor, npc)) and (relation_registry.community_goodwill ("monolith", db.actor:id ()) >= 500) 
+end
+
+function fc_precon_friend_of_zombied(actor, npc)
+    return (not fc_precon_foe_of_zombied(actor, npc)) and (relation_registry.community_goodwill ("zombied", db.actor:id ()) >= 500) 
+end
+
+
+-- neutral
+function fc_precon_neutral_to_stalkers(actor, npc)
+    return (not fc_precon_foe_of_stalkers(actor, npc)) and (not fc_precon_friend_of_stalkers(actor, npc)) 
+end
+
+function fc_precon_neutral_to_freedom(actor, npc)
+    return (not fc_precon_foe_of_freedom(actor, npc)) and (not fc_precon_friend_of_freedom(actor, npc)) 
+end
+
+function fc_precon_neutral_to_duty(actor, npc)
+    return (not fc_precon_foe_of_duty(actor, npc)) and (not fc_precon_friend_of_duty(actor, npc)) 
+end
+
+function fc_precon_neutral_to_bandits(actor, npc)
+    return (not fc_precon_foe_of_bandits(actor, npc)) and (not fc_precon_friend_of_bandits(actor, npc)) 
+end
+
+function fc_precon_neutral_to_mercs(actor, npc)
+    return (not fc_precon_foe_of_mercs(actor, npc)) and (not fc_precon_friend_of_mercs(actor, npc)) 
+end
+
+function fc_precon_neutral_to_ecolog(actor, npc)
+    return (not fc_precon_foe_of_ecolog(actor, npc)) and (not fc_precon_friend_of_ecolog(actor, npc)) 
+end
+
+function fc_precon_neutral_to_military(actor, npc)
+    return (not fc_precon_foe_of_military(actor, npc)) and (not fc_precon_friend_of_military(actor, npc)) 
+end
+
+function fc_precon_neutral_to_monolith(actor, npc)
+    return (not fc_precon_foe_of_monolith(actor, npc)) and (not fc_precon_friend_of_monolith(actor, npc)) 
+end
+
+function fc_precon_neutral_to_zombied(actor, npc)
+    return (not fc_precon_foe_of_zombied(actor, npc)) and (not fc_precon_friend_of_zombied(actor, npc)) 
+end
+
+
+-- Functions for first join for free
+----------------------------------------
+
+function fc_set_start_time(actor, npc)
+	fc_game_time_start = game.get_game_time()
+end
+
+function fc_precon_fjff_enabled()
+	if first_join_for_free and db.actor:character_community() == "actor" then return true end
+	return false
+end
+
+function fc_precon_fjff_disabled()
+	if not first_join_for_free or db.actor:character_community() ~= "actor" then return true end
+	return false
+end
+
+function fc_disable_fjff()
+	first_join_for_free = false
+end
+
+function fc_check_time()
+	if fc_game_time_start ~= nil then
+		if game.get_game_time():diffSec(fc_game_time_start) > 3600 then fc_disable_fjff() end
+	end
+end
+
+
+-- Functions to join a faction
+--------------------------------------
+
+local function fc_set_pos_goodwill(community_name)
+	if (community_name ~= nil) then
+		if (relation_registry.community_goodwill (community_name, db.actor:id ()) < 500) then
+			relation_registry.set_community_goodwill (community_name, db.actor:id(), 500) 
+		end
+	end
+end
+
+function fc_join_stalkers(trader, actor)
+	db.actor:set_character_community("actor", 0, 0) 
+	fc_reset_stalkers_goodwill(trader, actor)
+	fc_gift_stalker(trader, actor)
+	fc_disable_fjff()
+	db.actor:disable_info_portion("yan_scientist_door_2_open")
+end
+
+function fc_join_stalkers_without_gift(trader, actor)
+	db.actor:set_character_community("actor", 0, 0) 
+	fc_reset_stalkers_goodwill(trader, actor)
+	fc_disable_fjff()
+	db.actor:disable_info_portion("yan_scientist_door_2_open")
+end
+
+function fc_join_freedom(trader, actor)
+	db.actor:set_character_community("actor_freedom", 0, 0)
+	fc_set_pos_goodwill("freedom")
+	fc_gift_freedom(trader, actor)
+	db.actor:give_info_portion("gar_free_pass")
+	db.actor:give_info_portion("mil_lukash_question_already")
+	db.actor:give_info_portion("mil_zoneguard_talk")
+	db.actor:give_info_portion("mil_patrol1_talk")
+	db.actor:give_info_portion("mil_patrol2_talk")
+	db.actor:give_info_portion("mil_max_lukash_call")
+	db.actor:give_info_portion("mil_lukash_guard_talked")
+	--
+	db.actor:give_info_portion("yan_scientist_door_2_open")
+	fc_disable_fjff()
+end
+
+function fc_join_duty(trader, actor)
+	db.actor:set_character_community("actor_dolg", 0, 0)
+	fc_set_pos_goodwill("dolg")
+	fc_gift_duty(trader, actor)
+	db.actor:give_info_portion("gar_free_pass")
+	db.actor:give_info_portion("bar_dolg_base_pass")
+	db.actor:give_info_portion("bar_dolg_community_leader")
+	fc_disable_fjff()
+	db.actor:disable_info_portion("yan_scientist_door_2_open")
+end
+
+function fc_join_bandits(trader, actor)
+	db.actor:set_character_community("bandit", 0, 0)
+	fc_set_pos_goodwill("bandit")
+	fc_gift_bandit(trader, actor)
+	db.actor:give_info_portion("gar_free_pass")
+	fc_disable_fjff()
+	db.actor:give_info_portion("yan_scientist_door_2_open")
+end
+
+function fc_join_mercs(trader, actor)
+	db.actor:set_character_community("killer", 0, 0)
+	fc_set_pos_goodwill("killer")
+	fc_gift_merc(trader, actor)
+	db.actor:give_info_portion("gar_free_pass")
+	fc_disable_fjff()
+	db.actor:give_info_portion("yan_scientist_door_2_open")
+end
+
+function fc_join_ecolog(trader, actor)
+	db.actor:set_character_community("ecolog", 0, 0)
+	fc_set_pos_goodwill("ecolog")
+	fc_gift_ecolog(trader, actor)
+	db.actor:give_info_portion("gar_free_pass")
+	fc_disable_fjff()
+	db.actor:disable_info_portion("yan_scientist_door_2_open")
+end
+
+function fc_join_military(trader, actor)
+	db.actor:set_character_community("military", 0, 0)
+	fc_set_pos_goodwill("military")
+	fc_gift_military(trader, actor)
+	db.actor:give_info_portion("gar_free_pass")
+	fc_disable_fjff()
+	db.actor:disable_info_portion("yan_scientist_door_2_open")
+end
+
+function fc_join_monolith(trader, actor)
+	db.actor:set_character_community("monolith", 0, 0)
+	fc_set_pos_goodwill("monolith")
+	fc_gift_monolith(trader, actor)
+	db.actor:give_info_portion("gar_free_pass")
+	fc_disable_fjff()
+	db.actor:give_info_portion("yan_scientist_door_2_open")
+end
+
+function fc_join_zombied(trader, actor)
+	db.actor:set_character_community("zombied", 0, 0)
+	fc_set_pos_goodwill("zombied")
+	fc_gift_zombied(trader, actor)
+	db.actor:give_info_portion("gar_free_pass")
+	fc_disable_fjff()
+	db.actor:give_info_portion("yan_scientist_door_2_open")
+end
+
+
+-- Preconditons to check low goodwill and some encampments
+----------------------------------------------------------
+local function fc_check_goodwill_low(community_name)
+	if (relation_registry.community_goodwill (community_name, db.actor:id ()) <= -500) then return true end
+end
+
+function fc_precon_stalkers_goodwill_low(actor, npc)
+	if has_alife_info("fc_actor_killed_some_stalker") then
+		return true
+	end
+	return false
+end
+
+function fc_precon_freedom_goodwill_low(actor, npc)
+	if has_alife_info("fc_actor_killed_some_freedom") then
+		return true
+	end
+	return false
+end
+
+function fc_precon_duty_goodwill_low(actor, npc)
+	if has_alife_info("fc_actor_killed_some_duty") then
+		return true
+	end
+	return false
+end
+
+function fc_precon_bandits_goodwill_low(actor, npc)
+	if has_alife_info("fc_actor_killed_some_bandit") then
+		return true
+	end
+	return false
+end
+
+function fc_precon_mercs_goodwill_low(actor, npc)
+	if has_alife_info("fc_actor_killed_some_merc") then
+		return true
+	end
+	return false
+end
+
+function fc_precon_ecolog_goodwill_low(actor, npc)
+	if has_alife_info("fc_actor_killed_some_ecolog") then
+		return true
+	end
+	return false
+end
+
+function fc_precon_military_goodwill_low(actor, npc)
+	if has_alife_info("fc_actor_killed_some_military") then
+		return true
+	end
+	return false
+end
+
+function fc_precon_monolith_goodwill_low(actor, npc)
+	if has_alife_info("fc_actor_killed_some_monolith") then
+		return true
+	end
+	return false
+end
+
+function fc_precon_zombied_goodwill_low(actor, npc)
+	if has_alife_info("fc_actor_killed_some_zombied") then
+		return true
+	end
+	return false
+end
+
+
+-- Functions to reset faction goodwill and some encampments
+-----------------------------------------------------------
+local function fc_reset_gulag(local_gulag_name)
+	if local_gulag_name ~= nil then
+		local gulag = xr_gulag.get_gulag_by_name (local_gulag_name)
+		if gulag ~= nil then
+			xr_gulag.setGulagRelation (local_gulag_name, game_object.neutral, db.actor)
+		end
+	end
+end
+
+local function fc_reset_goodwill(community_name)
+	if (community_name ~= nil) then
+		if (relation_registry.community_goodwill (community_name, db.actor:id ()) < 0) then
+			relation_registry.set_community_goodwill (community_name, db.actor:id(), 0) 
+		end
+	end
+end
+
+function fc_reset_stalkers_goodwill(trader, actor)
+	fc_reset_gulag("esc_lager")
+	fc_reset_gulag("esc_corps")
+	fc_reset_gulag("esc_assault")
+	fc_reset_gulag("esc_stalker_camp")
+	fc_reset_gulag("gar_hellcar_group")
+	fc_reset_gulag("gar_angar")
+	fc_reset_gulag("agr_factory_defence")
+	fc_reset_gulag("val_sos")
+	fc_reset_gulag("val_rob")
+	--
+	fc_reset_goodwill("stalker")
+	--
+	db.actor:disable_info_portion("fc_actor_killed_some_stalker")
+end
+
+function fc_reset_freedom_goodwill(trader, actor)
+	fc_reset_gulag("mil_fneutral")
+	fc_reset_gulag("mil_freedom")
+	fc_reset_gulag("mil_fblockpost")
+	fc_reset_gulag("mil_village")
+	--
+	fc_reset_goodwill("freedom")
+	--
+	db.actor:disable_info_portion("fc_actor_killed_some_freedom")
+end
+
+function fc_reset_duty_goodwill(trader, actor)
+	fc_reset_gulag("gar_dolg_blokpost")
+	fc_reset_gulag("val_prisoner")
+	fc_reset_gulag("bar_dolg_general")
+	fc_reset_gulag("bar_dolg_veterans")
+	fc_reset_gulag("bar_dolg_bunker")
+	fc_reset_gulag("bar_zastava")
+	fc_reset_gulag("bar_zastava_2")
+	fc_reset_gulag("mil_dolg")
+	--
+	fc_reset_goodwill("dolg")
+	--
+	db.actor:disable_info_portion("fc_actor_killed_some_duty")
+end
+
+function fc_reset_bandits_goodwill(trader, actor)
+	fc_reset_gulag("esc_fabrika_bandit")
+	fc_reset_gulag("esc_ambush")
+	fc_reset_gulag("gar_bandit_agr")
+	fc_reset_gulag("gar_bandit_post")
+	fc_reset_gulag("gar_seryi_bandits")
+	fc_reset_gulag("gar_bandit_stroyka")
+	fc_reset_gulag("gar_bandit_ambush")
+	fc_reset_gulag("agr_u_bandits")
+	fc_reset_gulag("val_lager_bandits")
+	fc_reset_gulag("bar_evil_veterans")
+	--
+	fc_reset_goodwill("bandit")
+	--
+	db.actor:disable_info_portion("fc_actor_killed_some_bandit")
+end
+
+function fc_reset_mercs_goodwill(trader, actor)
+	fc_reset_gulag("esc_killers")
+	fc_reset_gulag("bar_freedom_attack")
+	fc_reset_gulag("bar_freedom_chasers_attack")
+	fc_reset_gulag("bar_killers_ambush")
+	--
+	fc_reset_goodwill("killer")
+	--
+	db.actor:disable_info_portion("fc_actor_killed_some_merc")
+end
+
+function fc_reset_ecolog_goodwill(trader, actor)
+	fc_reset_gulag("yan_scientist")
+ 	fc_reset_gulag("bar_ecolog_crush")
+ 	--
+	fc_reset_goodwill("ecolog")
+	--
+	db.actor:disable_info_portion("fc_actor_killed_some_ecolog")
+end
+
+function fc_reset_military_goodwill(trader, actor)
+	fc_reset_gulag("esc_bridge")
+	fc_reset_gulag("esc_blokpost")
+	fc_reset_gulag("agr_nii")
+	fc_reset_gulag("agr_factory_assault")
+	fc_reset_gulag("agr_road_patrol1")
+	fc_reset_gulag("agr_road_patrol2")
+	fc_reset_gulag("agr_factory_hold")
+	fc_reset_gulag("agr_u_soldiers")
+	fc_reset_gulag("val_soldiers_raid")
+	fc_reset_gulag("rad_antenna_specnaz")
+	fc_reset_gulag("rad_mil_entrance")
+	--
+	fc_reset_goodwill("military")
+	--
+	db.actor:disable_info_portion("fc_actor_killed_some_military")
+end
+
+function fc_reset_monolith_goodwill(trader, actor)
+	fc_reset_gulag("mil_monolit")
+	fc_reset_gulag("rad_antena")
+	fc_reset_gulag("rad_entrance")
+	fc_reset_gulag("rad_antenna_monolith")
+	fc_reset_gulag("rad_valley")
+	fc_reset_gulag("rad_after_valley")
+	fc_reset_gulag("rad_after_tramplin_ambush")
+	fc_reset_gulag("rad_far_road_ambush")
+	fc_reset_gulag("rad_far_road_btr_ambush")
+	fc_reset_gulag("rad_prip_road")
+	fc_reset_gulag("rad_prip_teleport")
+	fc_reset_gulag("rad_antenna_camper")
+	fc_reset_gulag("sar_monolith_general")
+	fc_reset_gulag("sar_monolith_sklad")
+	--
+	fc_reset_goodwill("monolith")
+	--
+	db.actor:disable_info_portion("fc_actor_killed_some_monolith")
+end
+
+function fc_reset_zombied_goodwill(trader, actor)
+	fc_reset_gulag("yantar_zombies")
+	fc_reset_gulag("rad_zombied1")
+	fc_reset_gulag("rad_zombied2")
+	fc_reset_gulag("rad_before_tramplin_ambush")
+	--
+	fc_reset_goodwill("zombied")
+	--
+	db.actor:disable_info_portion("fc_actor_killed_some_zombied")
+end
+
+			
+---------------------------------------------------------------------------
+-- Faction Change Mod  - END
+---------------------------------------------------------------------------

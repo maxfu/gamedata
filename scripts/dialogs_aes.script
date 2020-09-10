@@ -1,0 +1,28 @@
+
+--' Мы отказываем? вступить ?осознани? на?переноси?на вторую станци?
+function osoznanie_decline(npc, actor)
+    db.actor:disable_info_portion("oso_init_dialog")
+	npc:stop_talk()
+    actor:stop_talk()
+	xr_effects.enable_ui(db.actor, nil)	  
+	-- local point = patrol("mon_jump_aes2_walk")
+	-- local look = patrol("mon_jump_aes2_look")
+	local point = patrol("con_way_if_reject_to_st2")
+	db.actor:set_actor_position(point:point(0))
+	local dir = point:point(1):sub(point:point(0))
+	db.actor:set_actor_direction(-dir:getH())
+	if _dev then
+		_dev.delayed_enable_ui = true
+		bind_stalker.nv_need_update = true
+	end
+end
+
+--' Мы соглашаемся вступить ?осознани? коне?игры.
+function osoznanie_agree(npc, actor)
+	db.actor:disable_info_portion("oso_init_dialog")
+	npc:stop_talk()
+    actor:stop_talk()
+	xr_effects.enable_ui(db.actor, nil)	  
+	game.start_tutorial("mov_join_osoznanie")
+	
+end

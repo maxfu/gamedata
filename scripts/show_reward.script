@@ -1,0 +1,68 @@
+--[[
+SHOW REWARD MOD v1.03zrp -- updated for version 1.0005
+For integration with the Zone Reclamation Project (ZRP)
+by onionradish [AT] bitlet.com
+---------------------------------------------------------------------------
+--]]
+function add_reward_display(phr)
+	local phrase_script = phr:GetPhraseScript()
+	phrase_script:AddAction("show_reward.preview_reward")
+end
+
+function preview_reward(actor,npc,p1,p2)
+	if random_task == nil then
+		random_task = task_manager.CRandomTask()
+	end
+	
+	local task_details = random_task.task_info[random_task.task_id_by_init_phrase_id[p2-1]]
+	if task_details == nil then return end
+	
+	local reward_text = format_reward_text(task_details.reward_item)
+	local reward_money = task_details.reward_money
+		
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_thing")
+	if reward_text ~= nil and reward_text ~= "" then 
+		db.actor:give_talk_message(reward_text, task_texture, task_rect,"iconed_trade_info")
+	end
+	
+	if reward_money ~= nil then 
+		task_texture, task_rect = get_texture_info("ui_iconsTotal_found_money")
+		if task_details.need_return then
+			if reward_text == "" then
+				reward_money = reward_money .. " RU (" .. game.translate_string("return_for_reward") .. ")"
+			else
+				reward_money = reward_money .. " RU"
+			end
+		else
+			reward_money = reward_money .. " RU, " .. game.translate_string("no_return_for_reward")
+		end
+		db.actor:give_talk_message(reward_money, task_texture, task_rect,"iconed_trade_info")
+	end
+	
+end
+
+function format_reward_text(reward_list)
+	local i,v, ii, vv
+	local rwd = {}
+	local reward_text = ""
+	if reward_list == nil then return "" end
+	for i,v in pairs(reward_list) do
+		if rwd[v] == nil then
+			rwd[v] = 1
+		else
+			rwd[v] = rwd[v] + 1
+		end
+	end
+	for i,v in pairs(rwd) do
+		if v == 1 then
+			reward_text = reward_text .. game.translate_string(news_manager.get_inv_name(i)) .. ", "
+		else
+			reward_text = reward_text .. string.format("%s",v) .. "x " .. game.translate_string(news_manager.get_inv_name(i)) .. ", "
+		end
+	end
+	if string.len(reward_text) >=2 then
+		reward_text = string.sub (reward_text, 1, string.len(reward_text)-2)
+	end
+	return reward_text
+end
+

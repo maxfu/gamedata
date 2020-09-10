@@ -1,0 +1,294 @@
+-- File:        UI_TELEPORT_DIALOG.SCRIPT
+-- Description: Teleport Dialog for STALKER ZRP
+-- Created:     03.05.2007, TSL16b, from ui_load_dialog.script
+-- Copyright:   2007 GSC Game World
+-- Author:      Serhiy Vynnychenko (narrator@gsc-game.kiev.ua)
+-- Version:     0.5
+
+class "level_item" (CUIListItemEx)
+
+function level_item:__init() super()
+	self.file_path_name		= "filepathname"
+	self.level_title		= "leveltitle"
+	self:SetWndRect		(0,0,326,22)
+	
+	local ca = 255
+	local cr = 216
+	local cg = 186
+	local cb = 140
+	
+	self.lev_id					= CUIStatic	()
+	self.lev_id:SetAutoDelete	(true)
+	self:AttachChild		(self.lev_id)
+	self.lev_id:SetWndRect		(0,0,24,22)
+	self.lev_id:SetText		("levelid")
+	self.lev_id:SetFont		(GetFontLetterica16Russian())
+	self.lev_id:SetTextColor	(ca,cr,cg,cb)
+
+	self.title				= CUIStatic	()
+	self.title:SetAutoDelete	(true)
+	self:AttachChild		(self.title)
+	self.title:SetWndRect	(24,0,300,22)
+	self.title:SetText		("title")
+	self.title:SetFont		(GetFontLetterica16Russian())
+	self.title:SetTextColor	(ca,cr,cg,cb)
+end
+
+
+class "teleport_dialog" (CUIScriptWnd)
+
+function teleport_dialog:__init() super()
+   self:InitControls()
+   self:InitCallBacks()
+   self:FillList()
+end
+
+function teleport_dialog:__finalize()
+
+end
+
+function teleport_dialog:FillList()
+	self:AddItemToList("G","l02_garbage","intro\\intro_l02_garbage")
+	self:AddItemToList("A","l03_agroprom","intro\\intro_l03_agroprom")
+	self:AddItemToList("U","l03u_agr_underground","intro\\intro_l03u_agr_underground")
+	self:AddItemToList("B","l05_bar","intro\\intro_l05_bar")
+	self:AddItemToList("D","l04_darkvalley","intro\\intro_l04_darkvalley")
+	self:AddItemToList("8","l04u_labx18","intro\\intro_l04u_labx18")
+	self:AddItemToList("C","l01_escape_dv","intro\\intro_l01_escape_dv")
+	self:AddItemToList("W","l06_rostok","intro\\intro_l06_rostok")
+	self:AddItemToList("Y","l08_yantar","intro\\intro_l08_yantar")
+	self:AddItemToList("6","l08u_brainlab","intro\\intro_l08u_brainlab")
+	self:AddItemToList("L","l08_yantar_tunnels","intro\\intro_l08_yantar_tunnels")
+	self:AddItemToList("M","l07_military","intro\\intro_l07_military")
+	self:AddItemToList("R","l10_radar","intro\\intro_l10_radar")
+	self:AddItemToList("9","l10u_bunker","intro\\intro_l10u_bunker")
+	self:AddItemToList("P","l11_pripyat","intro\\intro_l11_pripyat")
+	self:AddItemToList("N","l12_stancia","intro\\intro_l12_stancia")
+	self:AddItemToList("S","l12u_sarcofag","intro\\intro_l12u_sarcofag")
+	self:AddItemToList("H","l12u_control_monolith","intro\\intro_l12u_control_monolith")
+	self:AddItemToList("F","Final_Level_or_Free_Play","intro\\intro_l12_stancia_2")
+end
+
+function teleport_dialog:InitControls()
+	self:Init(0,0,1024,768)
+	
+	local xml			 = CScriptXmlInit()
+	local ctrl
+	xml:ParseFile("ui_mm_teleport_dlg.xml")
+	
+	if _z.mainmenu_anims then
+		xml:InitStatic("back_video", self)
+	end
+	
+	xml:InitStatic("background",				self)
+	if _z.mainmenu_anims then
+		xml:InitStatic("newspaper_video",			self)
+	end
+
+	self.form = xml:InitStatic("form",			self)
+	
+	xml:InitStatic("form:caption",				self.form)
+	
+	ctrl = xml:InitStatic("form:picture",			self.form)
+	ctrl:SetWindowName("static_pict")	
+
+	xml:InitStatic("form:bg_equipment",			self.form)
+
+	self.file_caption 	= xml:InitStatic("form:file_caption",	self.form)
+	xml:InitStatic("form:cap_equipment",			self.form)
+
+	self.check_teleportonly = xml:InitCheck("form:check_teleport_only",			self.form)
+	self.check_teleportonly:SetCheck(false)
+	self:Register(self.check_teleportonly, "chk_teleportonly")
+
+	self.check_equiponly = xml:InitCheck("form:check_equip_only",			self.form)
+	self.check_equiponly:SetCheck(false)
+	self:Register(self.check_equiponly, "chk_equiponly")
+
+	xml:InitFrame("form:list_frame",			self.form)
+
+	ctrl = xml:InitList("form:list", 			self.form)
+	ctrl:ShowSelectedItem(false)
+	self:Register(ctrl, "list_window")
+		
+	ctrl = xml:Init3tButton("form:btn_play",	self.form)	
+	self:Register(ctrl, "button_play")
+	
+	ctrl = xml:Init3tButton("form:btn_cancel",	self.form)
+	self:Register(ctrl, "button_back")	
+end
+
+function teleport_dialog:InitCallBacks()
+	self:AddCallback("button_play",		ui_events.BUTTON_CLICKED,             self.OnButton_play_clicked,	self)
+	self:AddCallback("button_back",		ui_events.BUTTON_CLICKED,             self.OnButton_back_clicked,	self)
+
+	self:AddCallback("chk_teleportonly",	ui_events.BUTTON_CLICKED,		self.OnButton_cteleport_clicked,	self)
+	self:AddCallback("chk_equiponly",	ui_events.BUTTON_CLICKED,		self.OnButton_cequip_clicked,	self)
+
+	self:AddCallback("list_window", ui_events.LIST_ITEM_CLICKED, 			  self.OnListItemClicked,		self)
+	self:AddCallback("list_window", ui_events.WINDOW_LBUTTON_DB_CLICK,		  self.OnListItemDbClicked,		self)
+end
+
+function teleport_dialog:OnListItemClicked()
+	local list_box		= self:GetListWnd("list_window")
+	
+	if list_box:GetSize()==0 then return end
+	
+	local itm_index		= list_box:GetSelectedItem()
+	list_box:SetFocusedItem(itm_index)
+
+	local item			= list_box:GetItem(itm_index)
+	self:display_selected(item)
+end
+
+function teleport_dialog:display_selected(item)
+	local picture		= self:GetStatic("static_pict")	
+
+	if item == nil then
+		self.file_caption:SetText	("")
+		picture:InitTexture			("intro\\intro_no_start_picture")
+		return
+	end
+
+	local item_text				= item.title:GetText()
+
+	self.file_caption:SetText	(item_text)
+	
+	picture:InitTexture(item.file_path_name)
+end
+
+function teleport_dialog:OnListItemDbClicked()
+	self:OnButton_play_clicked()
+end
+
+function teleport_dialog:OnButton_play_clicked()
+	local list = self:GetListWnd("list_window")
+
+	if list:GetSize()==0 then return end
+
+	--local index = list:GetSelectedItem()
+	local index = list:GetFocusedItem()
+
+	if index == -1 then return end
+
+	local keys = {	DIK_keys.DIK_G,	DIK_keys.DIK_A,	DIK_keys.DIK_U,	DIK_keys.DIK_B,
+			DIK_keys.DIK_D,	DIK_keys.DIK_8,	DIK_keys.DIK_C,	DIK_keys.DIK_W,
+			DIK_keys.DIK_Y,	DIK_keys.DIK_6,	DIK_keys.DIK_L,	DIK_keys.DIK_M,
+			DIK_keys.DIK_R,	DIK_keys.DIK_9,	DIK_keys.DIK_P,	DIK_keys.DIK_N,
+			DIK_keys.DIK_S,	DIK_keys.DIK_H,	DIK_keys.DIK_F}
+
+	if _dev and level.present() and (db.actor ~= nil) and db.actor:alive() then
+		if not self.check_teleportonly:GetCheck() then
+			_dev.equip(self, keys[index + 1], ui_events.WINDOW_KEY_PRESSED)
+		end
+		if not self.check_equiponly:GetCheck() then
+			_dev.jump_somewhere(self, keys[index + 1], ui_events.WINDOW_KEY_PRESSED)
+		end
+	end
+end
+
+function teleport_dialog:OnButton_back_clicked()
+	self:GetHolder():start_stop_menu	(self.owner, true) --new(show main window)
+	self:GetHolder():start_stop_menu	(self,true)
+	self.owner:Show						(true)
+end
+
+function teleport_dialog:OnButton_cteleport_clicked()
+	self.check_equiponly:SetCheck(false)
+end
+
+	-- these checkboxes are mutually exclusive
+
+function teleport_dialog:OnButton_cequip_clicked()
+	self.check_teleportonly:SetCheck(false)
+end
+
+function teleport_dialog:OnKeyboard(dik, keyboard_action)  --virtual function
+   ui_base_dialog.base_dialog.OnKeyboard(self,dik,keyboard_action)
+	
+	local list = self:GetListWnd("list_window")
+	local f_item = list:GetFocusedItem()
+	local listcount = list:GetSize()
+	local go = false
+	local s_item = -1
+
+	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		if dik == DIK_keys.DIK_G then
+			s_item, go = 0, true
+		elseif dik == DIK_keys.DIK_A then
+			s_item, go = 1, true
+		elseif dik == DIK_keys.DIK_U then
+			s_item, go = 2, true
+		elseif dik == DIK_keys.DIK_B then
+			s_item, go = 3, true
+		elseif dik == DIK_keys.DIK_D then
+			s_item, go = 4, true
+		elseif dik == DIK_keys.DIK_8 then
+			s_item, go = 5, true
+		elseif dik == DIK_keys.DIK_C then
+			s_item, go = 6, true
+		elseif dik == DIK_keys.DIK_W then
+			s_item, go = 7, true
+		elseif dik == DIK_keys.DIK_Y then
+			s_item, go = 8, true
+		elseif dik == DIK_keys.DIK_6 then
+			s_item, go = 9, true
+		elseif dik == DIK_keys.DIK_L then
+			s_item, go = 10, true
+		elseif dik == DIK_keys.DIK_M then
+			s_item, go = 11, true
+		elseif dik == DIK_keys.DIK_R then
+			s_item, go = 12, true
+		elseif (dik == DIK_keys.DIK_9) or (dik == DIK_keys.DIK_0) then
+			s_item, go = 13, true
+		elseif dik == DIK_keys.DIK_P then
+			s_item, go = 14, true
+		elseif dik == DIK_keys.DIK_N then
+			s_item, go = 15, true
+		elseif dik == DIK_keys.DIK_S then
+			s_item, go = 16, true
+		elseif dik == DIK_keys.DIK_H then
+			s_item, go = 17, true
+		elseif (dik == DIK_keys.DIK_F) or (dik == DIK_keys.DIK_2) then
+			s_item, go = 18, true
+		elseif dik == DIK_keys.DIK_RETURN then
+			go = true
+		elseif dik == DIK_keys.DIK_E then	-- "Equip only"
+			self.check_equiponly:SetCheck(not self.check_equiponly:GetCheck())
+			self:OnButton_cequip_clicked()
+		elseif dik == DIK_keys.DIK_T then	-- "Teleport only"
+			self.check_teleportonly:SetCheck(not self.check_teleportonly:GetCheck())
+			self:OnButton_cteleport_clicked()
+		elseif (dik == DIK_keys.DIK_DOWN) or (dik == DIK_keys.DIK_RIGHT) then
+			s_item = f_item + ((f_item < (listcount - 1)) and 1 or 0)
+		elseif (dik == DIK_keys.DIK_UP) or (dik == DIK_keys.DIK_LEFT) then
+			s_item = f_item - ((f_item > 0) and 1 or 0)
+		elseif dik == DIK_keys.DIK_HOME then
+			s_item = 0
+		elseif dik == DIK_keys.DIK_END then
+			s_item = listcount - 1
+		end
+		if s_item > -1 then
+			list:ScrollToPos(s_item - 4)
+			list:SetFocusedItem(s_item)
+			local item			= list:GetItem(s_item)
+			self:display_selected(item)
+		end
+		if go == true then
+			self:OnButton_play_clicked()
+		end
+	end
+
+	return true
+end
+
+function teleport_dialog:AddItemToList(level_id, level_title, file_path_name)
+	local _itm				= level_item()
+	_itm.file_path_name			= file_path_name
+	_itm.level_title			= level_title
+	_itm.lev_id:SetText			(level_id)
+	_itm.title:SetText			(game.translate_string(level_title))
+
+	local list_box			= self:GetListWnd("list_window")
+	list_box:AddItem		(_itm)
+end

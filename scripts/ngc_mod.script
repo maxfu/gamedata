@@ -1,0 +1,87 @@
+--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+--@@ NGC_MOD
+--@@ 
+--@@ Function Now:
+--@@ 1.Repair Kit
+--@@ 
+--@@ Last Update:2008/01/26
+--@@ Maked by NGC
+--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+------------------------------------------------------------------------
+--- Name : itemuse
+--- IN : what (item information)
+--- OUT : none
+--- Trigger : bind_stalker.script/actor_binder:on_item_drop/last line.
+--- Description : Trigger is item drop (not only drop but also use).
+---               If it is no disignated item, this function doesn't everything.
+------------------------------------------------------------------------
+function itemuse(what)
+     local obj_name = what:name()
+    if (string.find(obj_name, "repair_kit")) then
+        use_repair_kit(what)
+    -- If you want to add new trigger item, add script this line.
+    end
+end
+
+------------------------------------------------------------------------
+--- Name : use_repair_kit
+--- IN : what (item information)
+--- OUT : none
+--- Description : Proccess for repair kit
+------------------------------------------------------------------------
+function use_repair_kit(what)
+    local repair_slot_num = 0
+
+    local item_in_slot_1 = db.actor:item_in_slot(1)
+    local item_in_slot_2 = db.actor:item_in_slot(2)
+    local item_in_slot_6 = db.actor:item_in_slot(6)
+
+    if (item_in_slot_1 ~= nil) then
+        repair_slot_num = 1
+    end
+
+    if (item_in_slot_2 ~= nil) then
+        if (repair_slot_num == 0) then
+            repair_slot_num = 2
+        elseif (repair_slot_num == 1) then
+            if (item_in_slot_1:condition() > item_in_slot_2:condition()) then
+                repair_slot_num = 2
+            end
+        end
+    end
+
+    if (item_in_slot_6 ~= nil) then
+        if (repair_slot_num == 0) then
+            repair_slot_num = 6
+        elseif  (repair_slot_num == 1) then
+            if (item_in_slot_1:condition() > item_in_slot_6:condition()) then
+                repair_slot_num = 6
+            end
+        elseif  (repair_slot_num == 2) then
+            if (item_in_slot_2:condition() > item_in_slot_6:condition()) then
+                repair_slot_num = 6
+            end
+        end
+    end
+
+    if (repair_slot_num == 1) then
+        local rep_point = item_in_slot_1:condition() + 0.5
+        if (rep_point > 1) then
+            rep_point = 1
+        end
+        item_in_slot_1:set_condition(rep_point)
+    elseif (repair_slot_num == 2) then
+        local rep_point = item_in_slot_2:condition() + 0.5
+        if (rep_point > 1) then
+            rep_point = 1
+        end
+        item_in_slot_2:set_condition(rep_point)
+    elseif (repair_slot_num == 6) then
+        local rep_point = item_in_slot_6:condition() + 0.5
+        if (rep_point > 1) then
+            rep_point = 1
+        end
+        item_in_slot_6:set_condition(rep_point)
+    end
+end

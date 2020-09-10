@@ -1,0 +1,196 @@
+[stalker] ;Указывается вероятность заспаунить ил?не?
+;Артефакт?
+af_medusa				= 0.015
+af_cristall_flower		= 0.01
+af_night_star			= 0.005
+af_vyvert				= 0.015
+af_gravi				= 0.01
+af_gold_fish			= 0.005
+af_blood				= 0.015
+af_mincer_meat			= 0.01
+af_soul					= 0.005
+af_electra_sparkler		= 0.015
+af_electra_flash		= 0.01
+af_electra_moonlight	= 0.005
+af_rusty_thorn			= 0.015
+af_rusty_kristall		= 0.01
+af_rusty_sea-urchin		= 0.005
+af_ameba_slime			= 0.015
+af_ameba_slug			= 0.01
+af_ameba_mica			= 0.005
+af_drops				= 0.015
+af_fireball				= 0.01
+af_cristall				= 0.005
+af_dummy_glassbeads		= 0.005
+af_dummy_pellicle		= 0.005
+af_dummy_battery		= 0.005
+af_dummy_dummy			= 0.005
+af_dummy_spring			= 0.005
+af_fuzz_kolobok			= 0.005
+
+af_medusa_m1				= 0.003
+af_cristall_flower_m1		= 0.002
+af_night_star_m1			= 0.001
+af_vyvert_m1				= 0.003
+af_gravi_m1				= 0.002
+af_gold_fish_m1			= 0.001
+af_blood_m1				= 0.003
+af_mincer_meat_m1			= 0.002
+af_soul_m1					= 0.001
+af_electra_sparkler_m1		= 0.003
+af_electra_flash_m1		= 0.002
+af_electra_moonlight_m1	= 0.001
+af_rusty_thorn_m1			= 0.003
+af_rusty_kristall_m1		= 0.002
+af_rusty_sea-urchin_m1		= 0.001
+af_ameba_slime_m1			= 0.003
+af_ameba_slug_m1			= 0.002
+af_ameba_mica_m1			= 0.001
+af_drops_m1				= 0.003
+af_fireball_m1				= 0.002
+af_cristall_m1				= 0.001
+af_dummy_glassbeads_m1		= 0.001
+af_dummy_pellicle_m1		= 0.001
+af_dummy_battery_m1		= 0.001
+af_dummy_dummy_m1			= 0.001
+af_dummy_spring_m1			= 0.001
+af_fuzz_kolobok_m1			= 0.001
+
+af_medusa_m2				= 0.0015
+af_cristall_flower_m2		= 0.001
+af_night_star_m2			= 0.0005
+af_vyvert_m2				= 0.0015
+af_gravi_m2				= 0.001
+af_gold_fish_m2			= 0.0005
+af_blood_m2				= 0.0015
+af_mincer_meat_m2			= 0.001
+af_soul_m2					= 0.0005
+af_electra_sparkler_m2		= 0.0015
+af_electra_flash_m2		= 0.001
+af_electra_moonlight_m2	= 0.0005
+af_rusty_thorn_m2			= 0.0015
+af_rusty_kristall_m2		= 0.001
+af_rusty_sea-urchin_m2		= 0.0005
+af_ameba_slime_m2			= 0.0015
+af_ameba_slug_m2			= 0.001
+af_ameba_mica_m2			= 0.0005
+af_drops_m2				= 0.0015
+af_fireball_m2				= 0.001
+af_cristall_m2				= 0.0005
+af_dummy_glassbeads_m2		= 0.0005
+af_dummy_pellicle_m2		= 0.0005
+af_dummy_battery_m2		= 0.0005
+af_dummy_dummy_m2			= 0.0005
+af_dummy_spring_m2			= 0.0005
+af_fuzz_kolobok_m2			= 0.0005
+
+;Аммуниция
+ammo_9x18_fmj			= 1
+ammo_9x18_pmm			= 1
+ammo_9x19_pbp			= 1
+ammo_9x19_fmj			= 1
+ammo_11.43x23_hydro		= 1
+ammo_11.43x23_fmj		= 1
+ammo_12x70_buck			= 1
+ammo_12x76_dart			= 1
+ammo_12x76_zhekan		= 1
+ammo_5.45x39_ap			= 1
+ammo_5.45x39_fmj		= 1
+ammo_9x39_sp5			= 1
+ammo_9x39_ap			= 1
+ammo_9x39_pab9			= 1
+ammo_5.56x45_ss190		= 1
+ammo_5.56x45_ap			= 1
+ammo_7.62x54_7h14		= 1
+ammo_7.62x54_7h1		= 1
+ammo_7.62x54_ap			= 1
+ammo_gauss				= 1
+ammo_og-7b				= 1
+ammo_vog-25p			= 0.1
+ammo_vog-25				= 0.1
+grenade_f1				= 0.1
+grenade_rgd5			= 0.1
+ammo_m209				= 0.1
+
+;Медикамент?
+bandage					= 0.4
+medkit					= 0.2
+medkit_army				= 0.05
+medkit_scientic			= 0.05
+antirad					= 0.2
+adrenaline				= 0.2
+
+;Ед?
+bread					= 0.2
+kolbasa					= 0.2
+conserva				= 0.1
+vodka					= 0.1
+energy_drink			= 0.1
+
+repair_kit			= 0.08 ;NGC_MOD ADDITIONAL
+
+[bandit]:stalker
+
+[killer]:stalker
+;Ед?
+bread					= 0
+kolbasa					= 0
+vodka					= 0
+energy_drink			= 0.3
+
+[ecolog]:stalker
+;Ед?
+bread					= 0
+kolbasa					= 0
+conserva				= 0
+vodka					= 0
+energy_drink			= 0
+
+medkit					= 0
+medkit_scientic			= 0.2
+antirad					= 0.3
+adrenaline				= 0.3
+
+[military]:stalker
+;Медикамент?
+bandage					= 0.4
+antirad					= 0.3
+adrenaline				= 0.3
+medkit					= 0
+medkit_scientic			= 0
+medkit_army				= 0.2
+
+;Ед?
+bread					= 0.2
+kolbasa					= 0
+conserva				= 0.3
+vodka					= 0
+energy_drink			= 0
+
+
+[dolg]:stalker
+;Медикамент?
+medkit_army				= 0.2
+medkit_scientic			= 0.2
+
+[freedom]:stalker
+;Ед?
+vodka					= 0.5
+
+[zombied]:stalker
+;Ед?
+bread					= 0
+kolbasa					= 0
+conserva				= 0
+vodka					= 0
+energy_drink			= 0
+
+[monolith]:stalker
+;Ед?
+vodka					= 0
+
+
+[arena_enemy]
+
+
+[actor_dolg]

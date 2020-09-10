@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<sleep_ui>	
+	<back_video x="11" y="11" width="278" height="280" stretch="1">
+		<texture>ui\ui_mm_newspaper</texture>
+	</back_video>
+	<background x="0" y="0" width="300" height="300" stretch="1">
+		<texture x="0" y="0" width="350" height="460">ui\ui_dg_inventory</texture>
+	</background>
+	<caption x="045" y="000" width="50" height="35">
+		<text x="0" y="-6" font="graffiti19" r="238" g="155" b="23">sleep_cap_id</text>
+	</caption>
+	<btn_1 x="81" y="60" width="100" height="35" stretch="1">
+	<texture_e>ui\ui_btn_01_e</texture_e>
+	<texture_t>ui\ui_btn_01_t</texture_t>
+	<texture_h>ui\ui_btn_01_h</texture_h>
+		<text x="3" y="-4" font="graffiti19" r="238" g="155" b="23">one_hour_id</text>
+	</btn_1>
+	<btn_2 x="81" y="110" width="100" height="35" stretch="1">
+	<texture_e>ui\ui_btn_01_e</texture_e>
+	<texture_t>ui\ui_btn_01_t</texture_t>
+	<texture_h>ui\ui_btn_01_h</texture_h>
+		<text x="3" y="-4" font="graffiti19" r="238" g="155" b="23">tree_hours_id</text>
+	</btn_2>
+	<btn_3 x="81" y="160" width="100" height="35" stretch="1">
+	<texture_e>ui\ui_btn_01_e</texture_e>
+	<texture_t>ui\ui_btn_01_t</texture_t>
+	<texture_h>ui\ui_btn_01_h</texture_h>
+		<text x="3" y="-4" font="graffiti19" r="238" g="155" b="23">nine_hours_id</text>
+	</btn_3>
+	<btn_4 x="81" y="210" width="100" height="35" stretch="1">
+	<texture_e>ui\ui_btn_01_e</texture_e>
+	<texture_t>ui\ui_btn_01_t</texture_t>
+	<texture_h>ui\ui_btn_01_h</texture_h>
+		<text x="2" y="-4" font="graffiti19" r="238" g="155" b="23">unlimited_time_id</text>
+	</btn_4>
+<btn_quit x="155" y="255" width="117" height="29" stretch="1">
+	<texture_e>ui_button_ordinary_e</texture_e>
+	<texture_t>ui_button_ordinary_t</texture_t>
+	<texture_h>ui_button_ordinary_h</texture_h>
+	<text font="graffiti19" r="238" g="155" b="23">ui_inv_exit</text>
+</btn_quit>
+</sleep_ui>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding="windows-1251"?>
+
+<game_information_portions>
+	
+	<!-- faction change mod - info portions to register kills for gulag reset -->
+	<info_portion id="fc_actor_killed_some_stalker"></info_portion>
+	<info_portion id="fc_actor_killed_some_freedom"></info_portion>
+	<info_portion id="fc_actor_killed_some_duty"></info_portion>
+	<info_portion id="fc_actor_killed_some_bandit"></info_portion>
+	<info_portion id="fc_actor_killed_some_merc"></info_portion>
+	<info_portion id="fc_actor_killed_some_ecolog"></info_portion>
+	<info_portion id="fc_actor_killed_some_military"></info_portion>
+	<info_portion id="fc_actor_killed_some_monolith"></info_portion>
+	<info_portion id="fc_actor_killed_some_zombied"></info_portion>
+	
+	
+</game_information_portions>

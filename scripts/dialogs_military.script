@@ -1,0 +1,386 @@
+allow_screw_repair = true
+
+pistol_markup = 1.4
+rifle_markup = 1.5
+armor_markup = 1.3
+
+local pistol_repair_cost
+local rifle_repair_cost
+local armor_repair_cost
+
+function no_screw_repair(npc, actor)
+	return not allow_screw_repair
+end	
+
+function screw_can_repair(npc, actor)
+	return allow_screw_repair
+end	
+
+function screw_repair_needed(npc, actor)
+	local pistol = db.actor:item_in_slot(1)
+	local rifle = db.actor:item_in_slot(2)
+	local armor = db.actor:item_in_slot(6)
+	if pistol ~= nil and pistol_markup ~= nil and pistol_markup > 0 then
+		pistol_repair_cost = math.floor((1-pistol:condition()) * pistol:cost() * pistol_markup)
+	else
+		pistol_repair_cost = 0
+	end
+	if rifle ~= nil and rifle_markup ~= nil and rifle_markup > 0 then
+		rifle_repair_cost = math.floor((1-rifle:condition()) * rifle:cost() * rifle_markup)
+	else
+		rifle_repair_cost = 0
+	end
+	if armor ~= nil and armor_markup ~= nil and armor_markup > 0 then
+		armor_repair_cost = math.floor((1-armor:condition()) * armor:cost() * armor_markup)
+	else
+		armor_repair_cost = 0
+	end
+	return (pistol_repair_cost + rifle_repair_cost + armor_repair_cost) > 0
+end
+
+function screw_repair_not_needed(npc, actor)
+	return not screw_repair_needed(npc, actor)
+end
+
+function show_repair_charges(npc, actor)
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_lost_money")
+	local task_name_and_price = ""
+	if rifle_repair_cost > 0 then
+		task_name_and_price = game.translate_string("mil_screw_dialog_repair_rifle")..": %c[255,238,155,23]"..rifle_repair_cost.." Ru%c[default]"
+		db.actor:give_talk_message(task_name_and_price, task_texture, task_rect,"iconed_trade_info")
+	end
+	if pistol_repair_cost > 0 then
+		task_name_and_price = game.translate_string("mil_screw_dialog_repair_pistol")..": %c[255,238,155,23]"..pistol_repair_cost.." Ru%c[default]"
+		db.actor:give_talk_message(task_name_and_price, task_texture, task_rect,"iconed_trade_info")
+	end
+	if armor_repair_cost > 0 then
+		task_name_and_price = game.translate_string("mil_screw_dialog_repair_armor")..": %c[255,238,155,23]"..armor_repair_cost.." Ru%c[default]"
+		db.actor:give_talk_message(task_name_and_price, task_texture, task_rect,"iconed_trade_info")
+	end
+end
+
+function can_get_item_repair(item_cost)
+	if item_cost > 0 then
+		return (db.actor:money() - item_cost) >= 0
+	end
+	return false
+end
+
+function can_get_rifle_repair(npc, actor)
+	return can_get_item_repair(rifle_repair_cost)
+end
+
+function can_get_pistol_repair(npc, actor)
+	return can_get_item_repair(pistol_repair_cost)
+end
+
+function can_get_armor_repair(npc, actor)
+	return can_get_item_repair(armor_repair_cost)
+end
+
+function repair_rifle(actor, npc)
+	db.actor:item_in_slot(2):set_condition(1.0)
+	dialogs.relocate_money(npc, rifle_repair_cost, "out")
+	rifle_repair_cost = 0
+end
+
+function repair_pistol(actor, npc)
+	db.actor:item_in_slot(1):set_condition(1.0)
+	dialogs.relocate_money(npc, pistol_repair_cost, "out")
+	pistol_repair_cost = 0
+end
+
+function repair_armor(actor, npc)
+	db.actor:item_in_slot(6):set_condition(1.0)
+	dialogs.relocate_money(npc, armor_repair_cost, "out")
+	armor_repair_cost = 0
+end
+--------------------------------------------------------------------------------------------------------
+-- Trader Repair
+--------------------------------------------------------------------------------------------------------
+
+local weapon_profit_margin = 2.0
+local armor_profit_margin = 1.9
+
+function trader_repair_precond(trader, actor)
+	local item_in_slot_1 = db.actor:item_in_slot(1)
+	local item_in_slot_2 = db.actor:item_in_slot(2)
+	local item_in_slot_6 = db.actor:item_in_slot(6)
+	if item_in_slot_1 ~= nil and 1 > item_in_slot_1:condition() + 0.01 then return true
+	elseif item_in_slot_2 ~= nil and 1 > item_in_slot_2:condition() + 0.01 then return true
+	elseif item_in_slot_6 ~= nil and 1 > item_in_slot_6:condition() + 0.01 then return true
+	else return false
+	end	 
+end
+
+function trader_check_money_s1(trader, actor)
+	local item_in_slot = db.actor:item_in_slot(1)
+	if item_in_slot ~= nil then 
+		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * weapon_profit_margin )
+		if item_repair_cost > 0 and db.actor:money() >= item_repair_cost and 1 > item_in_slot:condition() then
+			return true
+		end 
+	end
+	return false
+end
+
+function trader_check_money_s2(trader, actor)
+	local item_in_slot = db.actor:item_in_slot(2)
+	if item_in_slot ~= nil then 
+		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * weapon_profit_margin )
+		if item_repair_cost > 0 and db.actor:money() >= item_repair_cost and 1 > item_in_slot:condition() then
+			return true
+		end 
+	end
+	return false
+end
+
+function trader_check_money_s6(trader, actor)
+	local item_in_slot = db.actor:item_in_slot(6)
+	if item_in_slot ~= nil then 
+		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * armor_profit_margin )
+		if item_repair_cost > 0 and db.actor:money() >= item_repair_cost and 1 > item_in_slot:condition() then
+			return true
+		end 
+	end
+	return false
+end
+
+function trader_repiar_weapon_s1(trader, actor)
+	local item_in_slot = db.actor:item_in_slot(1)
+	if item_in_slot ~= nil then
+		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * weapon_profit_margin )
+		item_in_slot:set_condition(1)
+		dialogs.relocate_money(actor, item_repair_cost, "out")
+	end
+end
+
+function trader_repiar_weapon_s2(trader, actor)
+	local item_in_slot = db.actor:item_in_slot(2)
+	if item_in_slot ~= nil then
+		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * weapon_profit_margin )
+		item_in_slot:set_condition(1)
+		dialogs.relocate_money(actor, item_repair_cost, "out")
+	end
+end
+
+function trader_repiar_armor_s6(trader, actor)
+	local item_in_slot = db.actor:item_in_slot(6)
+	if item_in_slot ~= nil then
+		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * armor_profit_margin )
+		item_in_slot:set_condition(1)
+		dialogs.relocate_money(actor, item_repair_cost, "out")
+	end	
+end
+
+function repair_costs(first_speaker, second_speaker)
+	local task_texture, task_rect = get_texture_info("ui_iconsTotal_lost_money")
+	
+	local item_name_and_price = ""
+	local item_repair_cost = 0
+	if db.actor ~= nil then 
+		local item_in_slot_1 = db.actor:item_in_slot(1)
+		local item_in_slot_2 = db.actor:item_in_slot(2)
+		local item_in_slot_6 = db.actor:item_in_slot(6)
+	
+		if item_in_slot_1 ~= nil then 
+			item_repair_cost = math.floor( (1-item_in_slot_1:condition()) * item_in_slot_1:cost() * weapon_profit_margin )
+			if item_repair_cost > 0 then
+				item_name_and_price = game.translate_string("list_trader_repair_0").." %c[255,238,155,23]"..item_repair_cost.."Ru%c[default]"
+				db.actor:give_talk_message(item_name_and_price, task_texture, task_rect, "iconed_trade_info")
+			end
+		end
+		if item_in_slot_2 ~= nil then
+			item_repair_cost = math.floor( (1-item_in_slot_2:condition()) * item_in_slot_2:cost() * weapon_profit_margin )
+			if item_repair_cost > 0 then
+				item_name_and_price = game.translate_string("list_trader_repair_1").." %c[255,238,155,23]"..item_repair_cost.."Ru%c[default]"
+				db.actor:give_talk_message(item_name_and_price, task_texture, task_rect, "iconed_trade_info")
+			end
+		end
+		if item_in_slot_6 ~= nil then
+			item_repair_cost = math.floor( (1-item_in_slot_6:condition()) * item_in_slot_6:cost() * armor_profit_margin )
+			if item_repair_cost > 0 then
+				item_name_and_price = game.translate_string("list_trader_repair_2").." %c[255,238,155,23]"..item_repair_cost.."Ru%c[default]"
+				db.actor:give_talk_message(item_name_and_price, task_texture, task_rect, "iconed_trade_info")
+			end
+		end
+	end
+end
+
+
+-------------------------------------------------------------------------
+--	created:	2005/02/12
+--	created:	12:2:2005   12:59
+--	filename: 	x:\gamedata\scripts\dialogs_military.script
+--	file path:	x:\gamedata\scripts
+--	file base:	dialogs_military
+--	file ext:	script
+--	author:		Tunduk Vladimir aka Sidorovich
+--	
+--	purpose:	dialog support for military
+-------------------------------------------------------------------------
+
+-- Оплата долговце?наши?услу?по устранению снайпера
+function mil_dolg_payment (stalker, player)
+    if not has_alife_info("military_scull_give_reward_1") then
+	    dialogs.relocate_money(stalker, 4000, "in")
+        db.actor:give_info_portion("military_scull_give_reward_1")
+    end
+end
+
+function mil_dolg_payment2 (stalker, player)
+    if not has_alife_info("military_scull_give_reward_2") then
+	    dialogs.relocate_money(stalker, 8000, "in")
+        db.actor:give_info_portion("military_scull_give_reward_2")
+    end
+end
+
+function lukash_payment (stalker, player)
+    dialogs.relocate_money (stalker, 7000, "in")
+end
+
+-- Отмечаем провал задачи
+function mil_dolg_sniper_failed (stalker, player)
+    level_tasks.set_task_state (task.fail, "mil_kill_sniper", 0)
+    level_tasks.set_task_state (task.fail, "mil_kill_sniper", 1)
+end
+
+-- отмечаем выполнение задачи
+function mil_dolg_sniper_complete (stalker, player)
+    level_tasks.set_task_state (task.completed, "mil_kill_sniper", 0)
+end
+
+function transfer_flash (player, stalker)
+	dialogs.relocate_item_section(stalker, "crazy_flash", "out")
+end
+
+function is_player_help (player, stalker)
+    if db.storage[db.actor:id ()] == nil then return false end
+    return db.storage[db.actor:id ()].mil_dolg["killed_by_actor"]
+end
+
+function no_player_help (stalker, player)
+    return not this.is_player_help (player, stalker)
+end
+
+function transfer_rg6 (stalker, player)
+    return
+end
+
+function set_freedom_enemy (player, stalker)
+    --db.actor:set_character_community ("dolg")
+    relation_registry.set_community_goodwill ("freedom", db.actor:id (), -5000)
+end
+
+function set_task1_complete (player, stalker)
+    if has_alife_info("mil_leader_quest1_start") then
+       level_tasks.set_task_state (task.completed, "mil_lukash_job", 1)
+    end   
+end
+
+function set_task3_complete (player, stalker)
+    if has_alife_info("mil_leader_quest1_start") then
+       level_tasks.set_task_state (task.completed, "mil_lukash_job", 0)
+       level_tasks.set_task_state (task.completed, "mil_lukash_job", 3)
+    end   
+end
+
+function set_courier_task_complete (stalker, player)
+end    
+
+function actor_has_weapon (stalker, player)
+    return xr_conditions.actor_has_weapon (player, stalker)
+end
+
+function actor_dont_has_weapon (stalker, player)
+    return not xr_conditions.actor_has_weapon (player, stalker)
+end
+
+function transfer_vodka (player, stalker)
+    if player:object ("vodka") == nil then return end
+    dialogs.relocate_item (stalker, player:object ("vodka"), "out")
+end    
+
+function have_a_vodka (stalker, player)
+    return stalker:object ("vodka") ~= nil
+end
+
+function actor_punch (first_speaker, second_speaker)
+	dialogs.break_dialog (first_speaker, second_speaker, 0)
+    set_sleep_relocate(patrol ("mil_actor_path"):point(0), patrol ("mil_actor_path"):point(1), 60)
+end
+
+function send_ammo_for_AK (actor, npc)
+    dialogs.relocate_item_section(npc, "ammo_5.56x45_ap", "in")
+end
+
+function send_ammo_for_LR (actor, npc)
+    dialogs.relocate_item_section(npc, "ammo_11.43x23_hydro", "in")
+end
+
+function commander_transfer (actor, npc)
+    dialogs.relocate_money(npc, npc:money() / 2, "in")
+end
+
+function set_ugrumy_mapspot (actor, npc)
+    level_tasks.add_location (727, "mil_ugrumy_location") 
+end
+
+function remove_ugrumy_mapspot (actor, npc)
+    level_tasks.remove_location (727, "mil_ugrumy_location") 
+end
+
+function mil_remove_base_spot (actor, npc)
+    level_tasks.remove_location (733, "mil_freedom_location")
+end
+
+function mil_cook_subtask_completed (actor, npc)
+    level_tasks.set_task_state (task.completed, "mil_freedom_rg6_task", 1)
+end
+
+function set_cook_subtask2_complete (actor, npc)
+    level_tasks.set_task_state (task.completed, "mil_freedom_rg6_task", 2)
+end
+
+function send_artefact (npc, actor)
+    dialogs.relocate_item_section(npc, "af_cristall", "in")
+end
+
+function send_desert_eagle (actor, npc)
+    -- dialogs.relocate_item_section(npc, "wpn_walther", "in") 
+	dialogs.relocate_item_section(npc, "wpn_desert_eagle", "in")
+end
+
+function set_snipers_spots (npc, actor)
+end
+
+function killactor (actor, npc)
+    xr_gulag.setGulagEnemy ("mil_dolg", actor)
+end
+
+function set_actor_enemy_for (sid)
+    local npc = level_object_by_sid (sid)
+    if npc == nil or npc:alive () == false then
+       return 
+    end    
+    npc:set_relation (game_object.enemy, db.actor)
+end
+
+function transfer_scope (npc, actor)
+    dialogs.relocate_item_section(npc, "wpn_addon_scope", "in") 
+    dialogs.relocate_item_section(npc, "vodka", "out")
+end
+
+
+function actor_set_freedom (actor, npc)
+    printf ("ACTOR NOW IN FREEDOM COMMUNITY")
+    if db.actor then
+       db.actor:set_character_community ("actor_freedom", 0, 0)
+    end
+end
+
+function mil_leader_dialog_check (actor, npc)
+	return has_alife_info("mil_lukash_delay") or has_alife_info("mil_lukash_dolg_task_complete")
+end
+
+--db.actor:set_character_community("actor_dolg", 0, 0)

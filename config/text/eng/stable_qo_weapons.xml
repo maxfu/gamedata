@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="enc_weapons1_wpn-vintorez_coll">
+		<text>A VSS Vintorez sniper rifle modified with a larger magazine.</text>
+	</string>
+	<string id="wpn-vintorez_coll">
+		<text>Modified Vintorez</text>
+	</string>
+</string_table>

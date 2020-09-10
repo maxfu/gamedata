@@ -1,0 +1,333 @@
+-- File:        ui_level_zip_dialog.script
+-- Description: Quick Intra-Level Teleport Dialog for STALKER ZRP
+-- Created:     04.03.2007, NatVac, from TSL16b's ui_teleport_dialog.script
+--              03.05.2007, TSL16b, from ui_load_dialog.script
+-- Copyright:   2007 GSC Game World
+-- Author:      Serhiy Vynnychenko (narrator@gsc-game.kiev.ua)
+-- Version:     0.5
+
+local level_zip_points = {
+	l01_escape = {
+		["l02_garbage"] = {dik_key=DIK_keys.DIK_G,hotkey="G",dtype="path",path="esc_way_if_reject",name="l02_garbage",pimage="intro\\intro_l02_garbage"},
+		["sids_office"] = {dik_key=DIK_keys.DIK_S,hotkey="S",dtype="position",pos=vector():set(-246.73, -24.79, -134.43),dir=vector():set(1,0,0),name="escape_trader_name",pimage="intro\\intro_l01_escape"}
+	},
+	l02_garbage = {
+		["l03_agroprom"] = {dik_key=DIK_keys.DIK_A,hotkey="A",dtype="path",path="gar_way_if_reject_to_agr",name="l03_agroprom",pimage="intro\\intro_l03_agroprom"},
+		["l05_bar"] = {dik_key=DIK_keys.DIK_B,hotkey="B",dtype="path",path="gar_way_if_reject_to_bar",name="l05_bar",pimage="intro\\intro_l05_bar"},
+		["l04_darkvalley"] = {dik_key=DIK_keys.DIK_D,hotkey="D",dtype="path",path="gar_way_if_reject_to_val",name="l04_darkvalley",pimage="intro\\intro_l04_darkvalley"},
+		["l01_escape"] = {dik_key=DIK_keys.DIK_C,hotkey="C",dtype="path",path="gar_way_if_reject_to_esc",name="l01_escape",pimage="intro\\intro_l01_escape"}
+	},
+	l03_agroprom = {
+		["l02_garbage"] = {dik_key=DIK_keys.DIK_G,hotkey="G",dtype="path",path="arg_way_if_reject_to_gar",name="l02_garbage",pimage="intro\\intro_l02_garbage"},
+		["l03u_agr_u_mole"] = {dik_key=DIK_keys.DIK_M,hotkey="M",dtype="path",path="arg_way_if_reject_to_und2",name="Mole_Entrance",pimage="intro\\intro_l03u_agr_underground"},
+		["l03u_agr_u_milbase"] = {dik_key=DIK_keys.DIK_B,hotkey="B",dtype="path",path="arg_way_if_reject_to_und5",name="Mil_Base_Entrance",pimage="intro\\intro_l03u_agr_underground"}
+	},
+	l03u_agr_underground = {
+		["l03_agroprom_milbase"] = {dik_key=DIK_keys.DIK_B,hotkey="B",dtype="path",path="und_way_if_reject_to_agr1",name="Mil_Base_Entrance",pimage="intro\\intro_l03_agroprom"},
+		["l03_agroprom_mole"] = {dik_key=DIK_keys.DIK_M,hotkey="M",dtype="path",path="und_way_if_reject_to_agr4",name="Mole_Entrance",pimage="intro\\intro_l03_agroprom"}
+	},
+	l04_darkvalley = {
+		["l02_garbage"] = {dik_key=DIK_keys.DIK_G,hotkey="G",dtype="path",path="val_way_if_reject_to_gar",name="l02_garbage",pimage="intro\\intro_l02_garbage"},
+		["l04u_labx18"] = {dik_key=DIK_keys.DIK_8,hotkey="8",dtype="path",path="val_way_if_reject_to_und",name="l04u_labx18",pimage="intro\\intro_l04u_labx18"},
+		["l01_escape"] = {dik_key=DIK_keys.DIK_C,hotkey="C",dtype="path",path="val_way_if_reject_to_esc",name="l01_escape",pimage="intro\\intro_l01_escape_dv"}
+	},
+	l04u_labx18 = {
+		["l04_darkvalley"] = {dik_key=DIK_keys.DIK_D,hotkey="D",dtype="path",path="und_way_if_reject_to_val",name="l04_darkvalley",pimage="intro\\intro_l04_darkvalley"}
+	},
+	l05_bar = {
+		["l02_garbage"] = {dik_key=DIK_keys.DIK_G,hotkey="G",dtype="path",path="bar_way_if_reject_to_gar",name="l02_garbage",pimage="intro\\intro_l02_garbage"},
+		["l06_rostok"] = {dik_key=DIK_keys.DIK_W,hotkey="W",dtype="path",path="bar_way_if_reject_to_ros",name="l06_rostok",pimage="intro\\intro_l06_rostok"},
+		["l07_military"] = {dik_key=DIK_keys.DIK_M,hotkey="M",dtype="path",path="bar_way_if_reject_to_mil",name="l07_military",pimage="intro\\intro_l07_military"}
+	},
+	l06_rostok = {
+		["l05_bar"] = {dik_key=DIK_keys.DIK_B,hotkey="B",dtype="path",path="ros_way_if_reject_to_bar",name="l05_bar",pimage="intro\\intro_l05_bar"},
+		["l08_yantar"] = {dik_key=DIK_keys.DIK_Y,hotkey="Y",dtype="path",path="ros_way_if_reject_to_yan",name="l08_yantar",pimage="intro\\intro_l08_yantar"}
+	},
+	l07_military = {
+		["l05_bar"] = {dik_key=DIK_keys.DIK_B,hotkey="B",dtype="path",path="mil_way_if_reject_to_ros",name="l05_bar",pimage="intro\\intro_l05_bar"},
+		["l10_radar"] = {dik_key=DIK_keys.DIK_R,hotkey="R",dtype="path",path="mil_way_if_reject_to_rad",name="l10_radar",pimage="intro\\intro_l10_radar"}
+	},
+	l08_yantar = {
+		["l06_rostok"] = {dik_key=DIK_keys.DIK_W,hotkey="W",dtype="path",path="yan_way_if_reject_to_ros",name="l06_rostok",pimage="intro\\intro_l06_rostok"},
+		["l08u_brainlab"] = {dik_key=DIK_keys.DIK_6,hotkey="6",dtype="path",path="yan_way_if_reject_to_und1",name="l08u_brainlab",pimage="intro\\intro_l08u_brainlab"}
+	},
+	l08u_brainlab = {
+		["l08_yantar1"] = {dik_key=DIK_keys.DIK_Y,hotkey="Y",dtype="path",path="und_way_if_reject_to_yan1",name="l08_yantar",pimage="intro\\intro_l08_yantar"},
+		["l08_yantar2"] = {dik_key=DIK_keys.DIK_L,hotkey="L",dtype="path",path="und_way_if_reject_to_yan2",name="l08_yantar_tunnels",pimage="intro\\intro_l08_yantar_tunnels"}
+	},
+	l10_radar = {
+		["l07_military"] = {dik_key=DIK_keys.DIK_M,hotkey="M",dtype="path",path="rad_way_if_reject_to_mil",name="l07_military",pimage="intro\\intro_l07_military"},
+		["l10u_bunker"] = {dik_key=DIK_keys.DIK_9,hotkey="9",dtype="path",path="rad_way_if_reject_to_und",name="l10u_bunker",pimage="intro\\intro_l10u_bunker"},
+		["l11_pripyat"] = {dik_key=DIK_keys.DIK_P,hotkey="P",dtype="path",path="rad_way_if_reject_to_pri",name="l11_pripyat",pimage="intro\\intro_l11_pripyat"}
+	},
+	l10u_bunker = {
+		["l10_radar"] = {dik_key=DIK_keys.DIK_R,hotkey="R",dtype="path",path="und_way_if_reject_to_rad",name="l10_radar",pimage="intro\\intro_l10_radar"}
+	},
+	l11_pripyat = {
+		["l10_radar"] = {dik_key=DIK_keys.DIK_R,hotkey="R",dtype="path",path="pri_way_if_reject_to_rad",name="l10_radar",pimage="intro\\intro_l10_radar"},
+		["l12_stancia"] = {dik_key=DIK_keys.DIK_N,hotkey="N",dtype="path",path="pri_path_if_reject",name="l12_stancia",pimage="intro\\intro_l12_stancia"}
+	},
+	l12_stancia = {
+		["l12u_sarcofag"] = {dik_key=DIK_keys.DIK_S,hotkey="S",dtype="path",path="st1_way_if_reject_to_sar",name="l12u_sarcofag",pimage="intro\\intro_l12u_sarcofag"}
+	},
+	l12u_sarcofag = {
+		["l12u_control_monolith"] = {dik_key=DIK_keys.DIK_H,hotkey="H",dtype="path",path="sar_way_if_reject_to_con",name="l12u_control_monolith",pimage="intro\\intro_l12u_control_monolith"}
+	},
+	l12u_control_monolith = {
+		["Sarcophagus"] = {dik_key=DIK_keys.DIK_S,hotkey="S",dtype="path",path="con_way_if_reject_to_sar",name="l12u_sarcofag",pimage="intro\\intro_l12u_sarcofag"},
+		["NPP_NorthSide"] = {dik_key=DIK_keys.DIK_N,hotkey="N",dtype="path",path="con_way_if_reject_to_st2",name="l12_stancia_2",pimage="intro\\intro_l12_stancia_2"}
+	},
+	l12_stancia_2 = {
+		["MonolithHQ"] = {dik_key=DIK_keys.DIK_H,hotkey="H",dtype="path",path="st2_way_if_reject_to_con",name="l12u_control_monolith",pimage="intro\\intro_l12u_control_monolith"},
+		["CordonFP"] = {dik_key=DIK_keys.DIK_C,hotkey="C",dtype="position",pos=vector():set(554.58,150.606,203.6),dir=vector():set(0,0,-1),name="l01_escape",pimage="intro\\intro_l01_escape_dv"}
+	}
+}
+
+class "level_zip_item" (CUIListItemEx)
+
+function level_zip_item:__init() super()
+	self.file_path_name		= "filepathname"
+	self.level_title		= "leveltitle"
+	self.dtype = "dtype"
+	self.path_name = "pathname"
+	self.dik_key = DIK_keys.DIK_ESCAPE
+	self:SetWndRect		(0,0,326,22)
+	
+	local ca = 255
+	local cr = 216
+	local cg = 186
+	local cb = 140
+	
+	self.lev_id					= CUIStatic	()
+	self.lev_id:SetAutoDelete	(true)
+	self:AttachChild		(self.lev_id)
+	self.lev_id:SetWndRect		(0,0,24,22)
+	self.lev_id:SetText		("levelid")
+	self.lev_id:SetFont		(GetFontLetterica16Russian())
+	self.lev_id:SetTextColor	(ca,cr,cg,cb)
+
+	self.title				= CUIStatic	()
+	self.title:SetAutoDelete	(true)
+	self:AttachChild		(self.title)
+	self.title:SetWndRect	(24,0,300,22)
+	self.title:SetText		("title")
+	self.title:SetFont		(GetFontLetterica16Russian())
+	self.title:SetTextColor	(ca,cr,cg,cb)
+end
+
+
+class "level_zip_dialog" (CUIScriptWnd)
+
+function level_zip_dialog:__init() super()
+   self:InitControls()
+   self:InitCallBacks()
+   -- self:FillList()
+end
+
+function level_zip_dialog:__finalize()
+
+end
+
+function level_zip_dialog:FillList()
+	local list_box = self:GetListWnd("list_window")
+	list_box:RemoveAll() -- init for each invocation
+	if level.present() and level_zip_points[level.name()] ~= nil then
+		local k,v = 0,0
+		for k,v in pairs(level_zip_points[level.name()]) do
+			self:AddItemToList(k,v)
+		end
+
+		if _custom_zrp then
+			if _custom_zrp.custom_zip_points[level.name()] ~= nil then
+				for k,v in pairs(_custom_zrp.custom_zip_points[level.name()]) do
+					self:AddItemToList(k,v)
+				end
+			end
+			if _custom_zrp.last_zip_point ~= nil then
+				self:AddItemToList("0",_custom_zrp.last_zip_point[1])
+			end
+		elseif _z.script_file_exists("_custom_zrp.script") then
+			dbglog("'_custom_zrp.script' is not valid")
+		end
+	end
+end
+
+function level_zip_dialog:InitControls()
+	self:Init(0,0,1024,768)
+	
+	local xml			 = CScriptXmlInit()
+	local ctrl
+	xml:ParseFile("ui_mm_level_zip_dlg.xml")
+	
+	if _z.mainmenu_anims then
+		xml:InitStatic("back_video", self)
+	end
+	
+	xml:InitStatic("background",				self)
+	if _z.mainmenu_anims then
+		xml:InitStatic("newspaper_video",			self)
+	end
+
+	self.form = xml:InitStatic("form",			self)
+	
+	xml:InitStatic("form:caption",				self.form)
+	
+	ctrl = xml:InitStatic("form:picture",			self.form)
+	ctrl:SetWindowName("static_pict")	
+
+	xml:InitStatic("form:bg_equipment",			self.form)
+
+	self.file_caption 	= xml:InitStatic("form:file_caption",	self.form)
+
+	xml:InitFrame("form:list_frame",			self.form)
+
+	ctrl = xml:InitList("form:list", 			self.form)
+	ctrl:ShowSelectedItem(false)
+	self:Register(ctrl, "list_window")
+		
+	ctrl = xml:Init3tButton("form:btn_play",	self.form)	
+	self:Register(ctrl, "button_play")
+	
+	ctrl = xml:Init3tButton("form:btn_cancel",	self.form)
+	self:Register(ctrl, "button_back")	
+end
+
+function level_zip_dialog:InitCallBacks()
+	self:AddCallback("button_play",		ui_events.BUTTON_CLICKED,             self.OnButton_play_clicked,	self)
+	self:AddCallback("button_back",		ui_events.BUTTON_CLICKED,             self.OnButton_back_clicked,	self)
+
+	self:AddCallback("list_window", ui_events.LIST_ITEM_CLICKED, 			  self.OnListItemClicked,		self)
+	self:AddCallback("list_window", ui_events.WINDOW_LBUTTON_DB_CLICK,		  self.OnListItemDbClicked,		self)
+end
+
+function level_zip_dialog:OnListItemClicked()
+	local list_box = self:GetListWnd("list_window")
+	
+	if list_box:GetSize()==0 then return end
+	
+	local itm_index		= list_box:GetSelectedItem()
+	list_box:SetFocusedItem(itm_index)
+
+	local item			= list_box:GetItem(itm_index)
+	self:display_selected(item)
+end
+
+function level_zip_dialog:display_selected(item)
+	local picture		= self:GetStatic("static_pict")	
+
+	if item == nil then
+		self.file_caption:SetText	("")
+		picture:InitTexture			("intro\\intro_no_start_picture")
+		return
+	end
+
+	local item_text				= item.title:GetText()
+
+	self.file_caption:SetText	(item_text)
+	
+	picture:InitTexture(item.file_path_name)
+end
+
+function level_zip_dialog:OnListItemDbClicked()
+	self:OnButton_play_clicked()
+end
+
+function level_zip_dialog:OnButton_play_clicked()
+	local list = self:GetListWnd("list_window")
+
+	if list:GetSize()==0 then return end
+
+	-- local index = list:GetSelectedItem()
+	local index = list:GetFocusedItem()
+
+	if index == -1 then return end
+
+	local item = list:GetItem(index)
+
+	if _dev and level.present() and (db.actor ~= nil) and db.actor:alive() then
+		if item.dtype == "path" then
+			local destpath = patrol(item.path_name)
+			db.actor:set_actor_position(destpath:point(0))
+			local dir = destpath:point(0):sub(destpath:point(1))
+			db.actor:set_actor_direction(-dir:getH())
+		elseif item.dtype == "position" then
+			db.actor:set_actor_position(item.position)
+			db.actor:set_actor_direction(-item.direction:getH())
+		end
+		self:OnButton_back_clicked()
+		get_console():execute("main_menu off")
+	end
+end
+
+function level_zip_dialog:OnButton_back_clicked()
+	self:GetHolder():start_stop_menu	(self.owner, true) --new(show main window)
+	self:GetHolder():start_stop_menu	(self,true)
+	self.owner:Show						(true)
+end
+
+function level_zip_dialog:OnKeyboard(dik, keyboard_action)  --virtual function
+   ui_base_dialog.base_dialog.OnKeyboard(self,dik,keyboard_action)
+	
+	local list = self:GetListWnd("list_window")
+	local f_item = list:GetFocusedItem()
+	local listcount = list:GetSize()
+	local go = false
+	local s_item = -1
+
+	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		if dik == DIK_keys.DIK_RETURN then
+			go = true
+		elseif (dik == DIK_keys.DIK_DOWN) or (dik == DIK_keys.DIK_RIGHT) then
+			s_item = f_item + ((f_item < (listcount - 1)) and 1 or 0)
+		elseif (dik == DIK_keys.DIK_UP) or (dik == DIK_keys.DIK_LEFT) then
+			s_item = f_item - ((f_item > 0) and 1 or 0)
+		elseif dik == DIK_keys.DIK_HOME then
+			s_item = 0
+		elseif dik == DIK_keys.DIK_END then
+			s_item = listcount - 1
+		elseif _dev and level.present() and (db.actor ~= nil) and db.actor:alive() then
+			--check for hotkey match
+			local k,v = 0,0
+			local item
+			for i = 1, listcount do
+				item = list:GetItem(i-1)
+				if dik == item.dik_key then
+					list:SetFocusedItem(list:GetItemPos(item))
+					self:OnButton_play_clicked()
+					return true
+				end
+			end
+		end
+		if s_item > -1 then
+			list:ScrollToPos(s_item - 4)
+			list:SetFocusedItem(s_item)
+			local item			= list:GetItem(s_item)
+			self:display_selected(item)
+		end
+		if go == true then
+			self:OnButton_play_clicked()
+		end
+	end
+
+	return true
+end
+
+function level_zip_dialog:AddItemToList(item_identifier, level_data)
+	local _itm          = level_zip_item()
+	_itm.file_path_name = level_data.pimage
+	_itm.dtype          = level_data.dtype
+	if _itm.dtype == "path" then
+		_itm.path_name  = level_data.path
+	elseif _itm.dtype == "position" then
+		_itm.position   = level_data.pos
+		_itm.direction  = level_data.dir
+	end
+	_itm.dik_key        = level_data.dik_key
+	_itm.level_title    = level_data.name
+	_itm.lev_id:SetText   (level_data.hotkey)
+	_itm.title:SetText    (game.translate_string(level_data.name))
+
+	local list_box      = self:GetListWnd("list_window")
+	list_box:AddItem      (_itm)
+	-- dbglog("item added for %s, target is %s", item_identifier, _itm.path_name)
+end

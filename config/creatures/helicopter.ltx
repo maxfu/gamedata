@@ -1,0 +1,224 @@
+[helicopter]
+
+GroupControlSection		= spawn_group
+$spawn					= "vehicles\helicopter"
+$prefetch				= 1
+cform                   = skeleton
+class					= C_HLCP_S
+script_binding          = bind_heli.bind
+visual                  = physics\vehicles\mi24\veh_mi24_u_01.ogf
+
+;wallmarks
+wallmark_section		= explosion_marks
+
+//параметр?построен? пути
+path_linear_acc_fw				=  6;8; 3;5; 3.0 ;m/s  ; линейное ускорени?пр?разгон?
+path_linear_acc_bk				=  4;2;4; 0.5; 3;  3.5;3 ;8.0 ;m/s	; линейное ускорени?торможен?
+
+
+path_angular_sp_pitch			= 0.35 ;0.35; 0.65; 0.85; 0.45	; скорость изменения высоты пути пр?скорости "velocity"
+path_angular_sp_pitch_0			= 0.2		; скорость изменения высоты пути пр?скорости "0"
+path_angular_sp_heading			= 0.75 ;0.5 ;0.75 ; угловая скорость пути пр?скорости "velocity"
+path_angular_sp_heading_0		= 1;0.9		    ; угловая скорость пути пр?скорости "0"m/s
+
+magic_angle						= 0.3
+
+//пфраметр?наклон?модели 
+model_angular_sp_bank			= 0.5 ;0.4 ; скорость поворота модели по ос?Z (ка?быстро модель повернет? по курс?движен? ?учетом углово?скорости)
+model_angular_sp_pitch			= 0.1 ;     ; скорость поворота модели по ос?X ?зависимост?от текуще?линейной скорости
+model_pitch_koef				= 0.016;0.012;0.018 ;   ; коэф наклон?модели по ос?X ?зависимост?от текуще?линейной скорости
+model_bank_koef					= 0.018 ;0.02    ; коэф наклон?модели по ос?Z ?зависимост?от текущи?линейной ?углово?скоросте?
+on_point_range_dist				= 10.0    ; служебная информац?
+
+
+;default, can be redefined by script
+velocity					= 30;25					;m/sec   скорость, ?которо?патрулироват?
+min_altitude				= 15;30 ;15 20	;20.0		;m		 min altitude in free state
+;attack_velocity			= 15.0; 15; 10					;m/sec    скорость, ?которо?атаковат?враг?
+;altitude					= 50	;20.0			;m		 высота, на которо?патрулироват?
+safe_altitude				= 3.0					; level_bound+5.0
+
+use_rocket					= true			;              использовать ракеты пр?атак?
+use_mgun					= true			;              использовать пулеме?пр?атак?
+use_aim_bullet				= false			; Использовать ли первую "Сильну? пулю
+min_mgun_attack_dist		= 15 ;30 ;15.0	;m   ми?расстояни?пр?которо?можн?ис?пулеме?
+max_mgun_attack_dist		= 150 ;300.0 ;m   макс расстояни?пр?которо?можн?ис?пулеме?
+min_rocket_attack_dist		= 100.0	;m   ми?расстояни?пр?которо?можн?ис?ракеты
+max_rocket_attack_dist		= 250 ;150.0 ;m   макс расстояни?пр?которо?можн?ис?ракеты
+time_between_rocket_attack	= 1250 ; 1500 ; msec  задержка межд?ракетами
+syncronize_rocket			= false ; true        пускат?ракеты парами ил?по очеред?(ле?прав-ле?прав)
+fire_trail_length			= 50 ;m
+use_fire_trail				= true
+barrel_dir_tolerance		= 2 ; degrees. допустимый угол, когд?считае? чт?дуло направлено ?цель
+
+death_angular_vel			= 0.1,6.0,0.2  ; пр?гибели ?воздух?дать углову?скорость модели      
+death_lin_vel_koeff			= 1          ; пр?гибели ?воздух?умножить собственну?ли?скорость на коэф?
+
+flame_start_health			= 0.3  ; уровен?здоров?, ниже которого вертолёт начинает дымить
+
+; ------------------------- параметр?для универсально?боевой схем?
+flyby_attack_dist           = 100 ;70
+search_attack_dist          = 70 ;55 ;80
+
+search_velocity				= 5  ; скорость (?? облёта враг?по круг??режиме поиска
+round_velocity				= 10 ; скорость (?? облёта враг??режиме атак?
+
+vis_time_quant				= 200 ;интервал (?мс) межд?проверками видимост?
+vis_threshold				= 60  ; како?процен?видимост?нуже? чтоб наблюдаемы?объект считал? видимы?
+vis_inc						= 30  ; на скольк?проценто?увеличит? видимост?объект?за 1?
+vis_dec						= 30  ; на скольк?проценто?уменьшитя  видимост?объект?за 1?
+
+forget_timeout				= 60  ; ?течени?этог?времен?(?се? вертолёт помнит враг? если не види?ег?
+; ------------------------------------------------------------------
+
+; light, particles etc
+light_range							= 10.0
+light_brightness					= 5.0
+light_color							= 0.9,0.9,0.5
+light_color_animmator				= koster_00
+
+smoke_particle						= damage_fx\heli_burn			;партиклы пр?ранени?
+explode_particle					= explosions\expl_mushroom_01	;партиклы пр?взрыве
+explode_sound						= weapons\heli_explosion		;звук собственного взрыва
+
+;------------------------------вс?для пулемета
+snd_shoot_rocket					= weapons\heli_rocket_shoot		;звук выстрела ракето?  
+
+fire_dispersion_base	= 5.0
+fire_dispersion_null	= 0.5
+fire_trace_width		= 1.0
+rpm                     = 600;800
+hit_power               = 0.75
+hit_impulse		 		= 220
+fire_distance           = 500
+bullet_speed			= 550;350			;начальная скорость пули
+light_color				= 0.9,0.8,0.4
+light_range				= 5
+light_var_color			= 0.05
+light_var_range			= 0.5
+light_time 				= 0.2
+ammo_class				= ammo_12x76_zhekan_heli ;ammo_12x70_buck
+flame_particles		    = weapons\heli_weapon
+;smoke_particles		= weapons\generic_shoot_00
+shell_point				= 0.05, 0.22, 0.06
+shell_particles			= weapons\generic_shells
+snd_shoot				= weapons\weapon_heli
+
+broken_snd				= alexmx\helicopter_down
+
+;------------------------------вс?для ракетниц?
+rocket_class			= helicopter_missile ;wpn_rpg7_missile 
+launch_speed			= 60 ;45 ;50 ;60 ;76 ;500
+wallmark_section		= explosion_marks
+;------------------------------коэффициенты иммунитета 
+immunities_sect			= sect_heli_immunities
+
+
+[sect_heli_immunities]
+burn_immunity			= 0.1	
+strike_immunity			= 1
+shock_immunity			= 0.0
+wound_immunity			= 0.0
+radiation_immunity		= 0.0
+telepatic_immunity		= 0.0
+chemical_burn_immunity	= 0.0
+fire_wound_immunity		= 0.01
+explosion_immunity		= 0.2
+
+
+[helicopter_missile]
+GroupControlSection		= spawn_group
+discovery_dependency	= 
+visual                  = weapons\rpg_7\wpn_rpg_7_grenade.ogf
+cform                   = skeleton
+class                   = G_RPG7
+
+
+immunities_sect			= sect_hm_immunities
+
+cost					= 200
+;---------------------------------------------------------------
+blast				= 5
+blast_r				= 10
+blast_impulse		= 350
+;delete
+blast_impulse_factor = 1
+
+frags				= 0
+frags_r				= 15
+frag_hit			= 100
+frag_hit_impulse	= 400
+
+hit_type_blast		= explosion
+hit_type_frag		= fire_wound
+
+up_throw_factor		= 1.5 ;1.3
+;---------------------------------------------------------------
+
+wm_size             = 0.3
+
+
+light_color		    = 1.9,1.6,0.5
+light_range		    = 30.0
+light_time 		    = 0.5
+
+
+ph_mass				= 7
+engine_f			= 530
+engine_u			= 90
+
+jump_height			= 0
+
+explode_particles	= explosions\explosion_heli_rocket_01; 
+
+
+;трассы от осколков
+fragment_speed				= 100
+fragment_tracer_max_length	= 4
+explode_duration	 = 2		;подолжительность взрыва (?
+;wallmarks
+wallmark_section		= explosion_marks
+;звук?
+snd_explode			= weapons\rpg7_explode
+snd_fly_sound		= weapons\rocket_fly
+
+;свойства которы?читают?, но не используют? (надо убрать)
+inv_name		= "VOG-25"
+inv_name_short	= "VOG-25"
+inv_weight		= .2
+
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x			= 19
+inv_grid_y			= 9
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Свойства CustomRocket
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+engine_present		= true		;присутствует ли ?ракете двигател?
+engine_work_time	= 5000		;время работы двигателя (?милисекундах)
+engine_impulse		= 1000		;
+engine_impulse_up	= 137.34 ;215.58;137.34 = 2*9.81*7 - значение этог?параметр?(которы?являет? неко?подъемно?сило? вопрек?названию),
+									;пр?которо?ракета массой 7кг не опускает? по?дейсвием 
+									;гравитации. 2*9.8=19.62 - ускорени?свободного падения ?мире сталкеро?
+									;пр?меньши?значен??ракета буде?опускать?, пр?больши?подниматься
+
+lights_enabled = TRUE			;свет вокруг ракеты, во время полета
+trail_light_color = 0.7,0.6,0.3
+trail_light_range = 20.0
+
+engine_particles = weapons\rpg_trail_01
+;fly_particles	 = weapons\rpg_trail_01
+
+force_explode_time			= 10000; msec
+
+[sect_hm_immunities]
+burn_immunity			= 1.0
+strike_immunity			= 1.0
+shock_immunity			= 1.0
+wound_immunity			= 1.0		
+radiation_immunity		= 1.0
+telepatic_immunity		= 1.0
+chemical_burn_immunity	= 1.0
+explosion_immunity		= 1.0
+fire_wound_immunity		= 0.05

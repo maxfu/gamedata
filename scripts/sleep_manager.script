@@ -1,0 +1,78 @@
+-- -----------------------------
+--  DreamMod v0.1 by Ab@dDon ---
+-- -----------------------------
+
+function sleep_one_hour()
+	sleep_manager.main (1)
+end
+function sleep_three_hours()
+	sleep_manager.main (3)
+end
+function sleep_nine_hours()
+	sleep_manager.main (9)
+end
+function sleep_unlim(scale)
+	local sleep_time = (1 - db.actor.health)*2.75
+	sleep_manager.main (sleep_time)
+end
+
+function main(scale)
+	basic_time_factor = level.get_time_factor ()
+	db.actor:stop_talk()
+	db.actor:hide_weapon()
+	level.disable_input()
+	-- wt = coroutine.create(function (time_to_wait)
+		-- verify_if_thread_is_running()
+		-- if (time_to_wait == nil) then
+		--	coroutine.yield()
+		-- else
+		--	local time_to_stop = game.time() + time_to_wait
+		--	while game.time() <= time_to_stop do
+		--		coroutine.yield(time_to_stop - game.time())
+		--	end
+		-- end
+		-- return time_to_stop - game.time()
+	-- end)
+	-- while (b ~= 0) do local a, b = coroutine.resume(wt, 1) end
+	-- local a, b = coroutine.resume(wt, 10000)
+--	get_console():execute(basic_time_factor)
+--	sleep_manager.hp_corrector(scale)	
+	sleep_manager.starter (scale)
+end
+
+function starter(scale)
+	local factor = scale * 2650
+	game.start_tutorial("time_scaling")
+	level.set_time_factor(factor)
+end
+
+function dreamer()
+	level.set_time_factor(basic_time_factor)
+--	sleep_manager.hp_corrector(0)
+	local dream = dream.sleep_video_name_callback ()
+--	get_console():execute(dream)
+	if dream ~= "" then game.start_tutorial(dream)
+	else game.start_tutorial("without_dream") end
+end
+
+function stopper()
+   if db.actor:alive() then
+    level.add_cam_effector("camera_effects\\hit_back_left.anm", 10, false, "")
+	db.actor:restore_weapon()
+--	xr_effects.play_snd (db.actor, nil, [["characters_voice\\human_01\\stalker\\state\\breath_2", 1]])
+   end
+   level.enable_input()
+end
+
+function hp_corrector(fr)
+	if fr ~= 0 then
+		hp = fr/6 + db.actor.health
+		if hp > 1 then hp = 1 end
+		return
+	elseif db.actor.health > hp then 
+		db.actor.health = hp - db.actor.health
+	end
+end
+
+function verifyier()	
+end

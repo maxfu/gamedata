@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+
+	<string id="list_trader_repair_0">
+		<text>Repair cost of the weapon in the first slot: </text>
+	</string>
+	<string id="list_trader_repair_1">
+		<text>Repair cost of the weapon in the second slot: </text>
+	</string>
+	<string id="list_trader_repair_2">
+		<text>Repair cost of the armor: </text>
+	</string>
+
+<!--********************************-->
+<!-- Sidorovich Repair dialog start -->
+<!--********************************-->
+	<string id="escape_trader_repair_0">
+		<text>Sidorovich, do you adjust weapons and armour?</text>
+	</string>
+	<string id="escape_trader_repair_1">
+		<text>Ahh! Do you mean the rifle in the clamp? Yes, it's a really cool one. So, what do you want me to repair? I warn you - it's not cheap work. The more damage, the more the repair will cost.\n \nRepair list:</text>
+	</string>
+	<string id="escape_trader_repair_2">
+		<text>Repair the weapon in the first slot.</text>
+	</string>
+	<string id="escape_trader_repair_3">
+		<text>Repair the weapon in the second slot.</text>
+	</string>
+	<string id="escape_trader_repair_4">
+		<text>Repair the armour.</text>
+	</string>
+	<string id="escape_trader_repair_5">
+		<text>Hold on, I have a few changes. I will be back later.</text>
+	</string>
+	<string id="escape_trader_repair_6">
+		<text>Wait, just a moment...\n \nReady!!!</text>
+	</string>
+	<string id="escape_trader_repair_7">
+		<text>Ahh! Marked One, I see that you have had some lively situations... I know I have plates for armour... Ahh! Here they are...\n \nOk! Here it is, like new!</text>
+	</string>
+	<string id="escape_trader_repair_8">
+		<text>Excellent work. Where'd you get your skills? Did you pick it up on your own? Well all right, see you later.</text>
+	</string>
+	<string id="escape_trader_repair_9">
+		<text>A work of a master, I have spent my money well. Thanks.</text>
+	</string>
+	<string id="escape_trader_repair_10">
+		<text>Can you repair something else?</text>
+	</string>
+	<string id="escape_trader_repair_11">
+		<text>Ok, let me see.\n \nRepair list:</text>
+	</string>
+	
+<!--****************************-->
+<!-- Barist Repair dialog start -->
+<!--****************************-->
+	<string id="bar_trader_repair_0">
+		<text>Barman, can you repair some of my gear?</text>
+	</string>
+	<string id="bar_trader_repair_1">
+		<text>Honestly, I can't. But in the kitchen I have one Stalker that works for me to pay his debts, he is a great weapon smith. He can repair all your weapons and armor, I will give him the task. So, what do you want to repair?\n \nRepair list:</text>
+	</string>
+	<string id="bar_trader_repair_2">
+		<text>Repair the weapon in the first slot.</text>
+	</string>
+	<string id="bar_trader_repair_3">
+		<text>Repair the weapon in the second slot.</text>
+	</string>
+	<string id="bar_trader_repair_4">
+		<text>Repair the armor.</text>
+	</string>
+	<string id="bar_trader_repair_5">
+		<text>I seem to be broke. Maybe next time.</text>
+	</string>
+	<string id="bar_trader_repair_6">
+		<text>Here, it's repaired!</text>
+	</string>
+	<string id="bar_trader_repair_7">
+		<text>It's done, he fixed everything!</text>
+	</string>
+	<string id="bar_trader_repair_8">
+		<text>Ahh! Just like new! Your weapon smith is indeed a master! Send him my regards.</text>
+	</string>
+	<string id="bar_trader_repair_9">
+		<text>Indeed, excellent work!</text>
+	</string>
+	<string id="bar_trader_repair_10">
+		<text>Can he repair something else?</text>
+	</string>
+	<string id="bar_trader_repair_11">
+		<text>Of course, he doesn't have a lot to do for the moment.\n \nRepair list:</text>
+	</string>
+	
+<!--****************************-->
+<!-- Doctor Repair dialog start -->
+<!--****************************-->
+	<string id="yantar_trader_repair_0">
+		<text>Could you repair my gear?</text>
+	</string>
+	<string id="yantar_trader_repair_1">
+		<text>Yes, when needed I can distract myself from the researches. But I don't have all the tools, repairing is only a hobby, so it will not be cheap for you.\n \nRepair list:</text>
+	</string>
+	<string id="yantar_trader_repair_2">
+		<text>Repair the weapon in the first slot.</text>
+	</string>
+	<string id="yantar_trader_repair_3">
+		<text>Repair the weapon in the second slot.</text>
+	</string>
+	<string id="yantar_trader_repair_4">
+		<text>Repair the armour.</text>
+	</string>
+	<string id="yantar_trader_repair_5">
+		<text>Oh no, I'm out of cash. Maybe next time.</text>
+	</string>
+	<string id="yantar_trader_repair_6">
+		<text>Wait a moment...\n \nLooks like everything is done, it's all yours!</text>
+	</string>
+	<string id="yantar_trader_repair_7">
+		<text>Armour plating is difficult to find in the Zone, but I have a stock. Wait here...\n \nI've made it with conscience.</text>
+	</string>
+	<string id="yantar_trader_repair_8">
+		<text>Well done! You are an exellent weapon smith.</text>
+	</string>
+	<string id="yantar_trader_repair_9">
+		<text>You will have a clean conscience, the work is quite good!</text>
+	</string>
+	<string id="yantar_trader_repair_10">
+		<text>Could you repair something else?</text>
+	</string>
+	<string id="yantar_trader_repair_11">
+		<text>If I hurry, I might finish before the data is finished being analyzed.\n \nRepair list:</text>
+	</string>
+
+<!--***************************-->
+<!-- Screw Repair dialog start -->
+<!--***************************-->
+	<string id="mil_trader_repair_0">
+		<text>Sorry man, but I'm here to repair something of my gear... what are your prices? </text>
+	</string>
+	<string id="mil_trader_repair_1">
+		<text>Ahahah... don't worry, I won't screw you, I'm not 'the forgetful one' as everyone thinks. So, what do you wish to repair? This is not cheap work, the more damage, the more it costs. Deal?\n \nRepair list:</text>
+	</string>
+	<string id="mil_trader_repair_2">
+		<text>Repair the weapon in the first slot.</text>
+	</string>
+	<string id="mil_trader_repair_3">
+		<text>Repair the weapon in the second slot.</text>
+	</string>
+	<string id="mil_trader_repair_4">
+		<text>Repair the armor.</text>
+	</string>
+	<string id="mil_trader_repair_5">
+		<text>I don't have enough money... Let's do it another time. </text>
+	</string>
+	<string id="mil_trader_repair_6">
+		<text>I have replaced some parts, and greased and cleaned...\n \nHave fun with that!</text>
+	</string>
+	<string id="mil_trader_repair_7">
+		<text>Marked One, do you have a target sign on your back? Ok, give it to me... I will repair it...\n \nFor you, only fresh armor-plates! And I also have covered that target sign... Oh come on! Don't make that face... I'm just joking!...</text>
+	</string>
+	<string id="mil_trader_repair_8">
+		<text>Just like new! Excellent work!</text>
+	</string>
+	<string id="mil_trader_repair_9">
+		<text>Yeah, real funny... Though... you have repaired the armor perfectly... Nevertheless you could have added those two plates that are still on the table... Still, you honour your name!</text>
+	</string>
+	<string id="mil_trader_repair_10">
+		<text>Can you repair something else?</text>
+	</string>
+	<string id="mil_trader_repair_11">
+		<text>Certainly, just don't forget to pay, I don't repair for free.\n \nRepair list:</text>
+	</string>
+
+<!--********************-->
+<!-- Repair dialogs end -->
+<!--********************-->
+
+</string_table>
