@@ -1,11 +1,4 @@
 <string_table>
-	<string id="enc_equipment_repairkit">
-		<text>This portable repair kit contains tools that can fix your weapons and armors anywhere in The Zone.  This kit is one use only, and fixes the most damaged item.  If you would like to select the item to fix, remove all other equipped items.</text>
-	</string>
-	<string id="repairkit">
-		<text>Repair Kit</text>
-	</string>
-
 	<string id="enc_weapons1_ammo_ammo-9x18-heavy">
 		<text>9x18mm Heavy Ammo for Pistol and SMG. Certain artifact added to gunpowder and bullet greating better power and. However, the accuracy is decreased because of the artifacts.</text>
 	</string>
