@@ -40,6 +40,19 @@ function maxfu_auto_save()
 	end
 end
 
+function maxfu_count_items(section_name)
+	local inv_item = nil
+	local counter = 0
+
+	for index = 0, db.actor:object_count() - 1 do
+		inv_item = db.actor:object(index)
+		if inv_item:section() == section_name then
+			counter = counter + 1
+		end
+	end
+	return counter
+end
+
 local sleep_sign = false
 
 function maxfu_sleep()
