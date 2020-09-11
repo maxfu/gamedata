@@ -1,19 +1,37 @@
-local m1_qty = 5
-local m1_cost = 1000
-local m2_qty = 5
-local m2_cost = 5000
+af_qty = 5
+af_cost = 1000
+af_luck_percent = 5
+ammo_qty = 5
+ammo_cost = 1000
 
-function count_items(section_name)
-	local inv_item = nil
+function count_items_table(first_speaker, second_speaker)
+	local item_list = {}
+	local item_object = nil
 	local counter = 0
+	local item_section = nil
 
 	for index = 0, db.actor:object_count() - 1 do
-		inv_item = db.actor:object(index)
-		if inv_item:section() == section_name then
-			counter = counter + 1
+		item_object = db.actor:object(index)
+		item_section = item_object:section()
+		if item_list[item_section] == nil then
+			item_list[item_section] = 1
+		else
+			item_list[item_section] = item_list[item_section] + 1
 		end
+--		news_manager.relocate_item(db.actor, "out", item_section)
+--		news_manager.relocate_money(db.actor, "out", item_list[item_section])
+--		news_manager.relocate_money(db.actor, "out", db.actor:money())
 	end
-	return counter
+	if item_list == nil then
+		if db.storage[db.actor:id()].pstor["maxfu_item_list"] then
+			db.storage[db.actor:id()].pstor["maxfu_item_list"] = nil
+		end
+	else
+		if db.storage[db.actor:id()].pstor == nil then
+			db.storage[db.actor:id()].pstor = {}
+		end
+		db.storage[db.actor:id()].pstor["maxfu_item_list"] = item_list
+	end
 end
 
 function remove_items(section_name, qty)
@@ -34,160 +52,118 @@ function remove_items(section_name, qty)
 	end
 end
 
-function check_artifact_qty(section_name)
-	local artifact_qty = count_items(section_name)
-	if artifact_qty > m1_qty and db.actor:money() >= m1_cost then
+function check_item_qty(item_section, qty, cost)
+	local item_qty = 0
+	if db.storage[db.actor:id()].pstor ~= nil then
+		local item_list = db.storage[db.actor:id()].pstor["maxfu_item_list"]
+		if item_list[item_section] ~= nil then
+			item_qty = item_list[item_section]
+		end
+	end
+	if item_qty >= qty and db.actor:money() >= cost then
 		return true
 	end
-	news_manager.relocate_item(db.actor, "out", section_name)
-	news_manager.relocate_money(db.actor, "out", artifact_qty)
-	news_manager.relocate_money(db.actor, "out", db.actor:money())
+--	news_manager.relocate_item(db.actor, "out", item_section)
+--	news_manager.relocate_money(db.actor, "out", item_qty)
+--	news_manager.relocate_money(db.actor, "out", db.actor:money())
 	return false
 end
 
-function enhance_af_m1(trader, actor, section_name)
-	remove_items(section_name, m1_qty)
+function enhance_af(trader, actor, section_name)
+	remove_items(section_name, af_qty)
     dialogs.relocate_item_section(trader, section_name.."_m1", "in")
---	alife():create(section_name.."_m1", actor:position(), actor:level_vertex_id(), actor:game_vertex_id(), actor:id())
-	dialogs.relocate_money(actor, m1_cost, "out")
+	dialogs.relocate_money(actor, af_cost, "out")
 end
 
 
-function check_af_medusa(trader, actor)
+function check_af_medusa()
 	local section_name = "af_medusa"
-	return check_artifact_qty(section_name)
+	return check_item_qty(section_name, af_qty, af_cost)
 end
+
+function check_af_blood()
+	local section_name = "af_blood"
+	return check_item_qty(section_name, af_qty, af_cost)
+end
+
+function check_af_cristall_flower()
+	local section_name = "af_cristall_flower"
+	return check_item_qty(section_name, af_qty, af_cost)
+end
+
+function check_af_mincer_meat()
+	local section_name = "af_mincer_meat"
+	return check_item_qty(section_name, af_qty, af_cost)
+end
+
+function check_af_rusty_kristall()
+	local section_name = "af_rusty_kristall"
+	return check_item_qty(section_name, af_qty, af_cost)
+end
+
+function check_ammo_9_18_fmj()
+	local section_name = "ammo_9x18_fmj"
+	return check_item_qty(section_name, ammo_qty, ammo_cost)
+end
+
 
 function enhance_af_medusa(trader, actor)
-	local section_name = "af_medusa"
-	enhance_af_m1(trader, actor, section_name)
-end
-
-function check_af_blood(trader, actor)
-	local section_name = "af_blood"
-	return check_artifact_qty(section_name)
+	local luck = math.random(0,99)
+	remove_items("af_medusa", af_qty)
+	if luck >= af_luck_percent then
+		dialogs.relocate_item_section(trader, "af_medusa_m1", "in")
+	else
+		dialogs.relocate_item_section(trader, "af_medusa_m2", "in")
+	end
+	dialogs.relocate_money(actor, af_cost, "out")
 end
 
 function enhance_af_blood(trader, actor)
-	local section_name = "af_blood"
-	enhance_af_m1(trader, actor, section_name)
-end
-
-function check_af_cristall_flower(trader, actor)
-	local section_name = "af_cristall_flower"
-	return check_artifact_qty(section_name)
+	local luck = math.random(0,99)
+	remove_items("af_blood", af_qty)
+	if luck >= af_luck_percent then
+		dialogs.relocate_item_section(trader, "af_blood_m1", "in")
+	else
+		dialogs.relocate_item_section(trader, "af_blood_m2", "in")
+	end
+	dialogs.relocate_money(actor, af_cost, "out")
 end
 
 function enhance_af_cristall_flower(trader, actor)
-	local section_name = "af_cristall_flower"
-	enhance_af_m1(trader, actor, section_name)
-end
-
-function check_af_mincer_meat(trader, actor)
-	local section_name = "af_mincer_meat"
-	return check_artifact_qty(section_name)
+	local luck = math.random(0,99)
+	remove_items("af_cristall_flower", af_qty)
+	if luck >= af_luck_percent then
+		dialogs.relocate_item_section(trader, "af_cristall_flower_m1", "in")
+	else
+		dialogs.relocate_item_section(trader, "af_cristall_flower_m2", "in")
+	end
+	dialogs.relocate_money(actor, af_cost, "out")
 end
 
 function enhance_af_mincer_meat(trader, actor)
-	local section_name = "af_mincer_meat"
-	enhance_af_m1(trader, actor, section_name)
-end
-
-
-
-function check_af_rusty_kristall(trader, actor)
-	local section_name = "af_rusty_kristall"
-	return check_artifact_qty(section_name)
+	local luck = math.random(0,99)
+	remove_items("af_mincer_meat", af_qty)
+	if luck >= af_luck_percent then
+		dialogs.relocate_item_section(trader, "af_mincer_meat_m1", "in")
+	else
+		dialogs.relocate_item_section(trader, "af_mincer_meat_m2", "in")
+	end
+	dialogs.relocate_money(actor, af_cost, "out")
 end
 
 function enhance_af_rusty_kristall(trader, actor)
-	local section_name = "af_rusty_kristall"
-	enhance_af_m1(trader, actor, section_name)
-end
-
-
---------------
-
-function trader_check_money_s2(trader, actor)
-	local item_in_slot = db.actor:item_in_slot(2)
-	if item_in_slot ~= nil then 
-		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * weapon_profit_margin )
-		if item_repair_cost > 0 and db.actor:money() >= item_repair_cost and 1 > item_in_slot:condition() then
-			return true
-		end 
+	local luck = math.random(0,99)
+	remove_items("af_rusty_kristall", af_qty)
+	if luck >= af_luck_percent then
+		dialogs.relocate_item_section(trader, "af_rusty_kristall_m1", "in")
+	else
+		dialogs.relocate_item_section(trader, "af_rusty_kristall_m2", "in")
 	end
-	return false
+	dialogs.relocate_money(actor, af_cost, "out")
 end
 
-function trader_check_money_s6(trader, actor)
-	local item_in_slot = db.actor:item_in_slot(6)
-	if item_in_slot ~= nil then 
-		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * armor_profit_margin )
-		if item_repair_cost > 0 and db.actor:money() >= item_repair_cost and 1 > item_in_slot:condition() then
-			return true
-		end 
-	end
-	return false
+function enhance_ammo_9_18_fmj(trader, actor)
+	remove_items("ammo_9x18_fmj", ammo_qty)
+    dialogs.relocate_item_section(trader, "ammo_9x18_heavy", "in")
+	dialogs.relocate_money(actor, ammo_cost, "out")
 end
-
-function trader_repiar_weapon_s1(trader, actor)
-	local item_in_slot = db.actor:item_in_slot(1)
-	if item_in_slot ~= nil then
-		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * weapon_profit_margin )
-		item_in_slot:set_condition(1)
-		dialogs.relocate_money(actor, item_repair_cost, "out")
-	end
-end
-
-function trader_repiar_weapon_s2(trader, actor)
-	local item_in_slot = db.actor:item_in_slot(2)
-	if item_in_slot ~= nil then
-		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * weapon_profit_margin )
-		item_in_slot:set_condition(1)
-		dialogs.relocate_money(actor, item_repair_cost, "out")
-	end
-end
-
-function trader_repiar_armor_s6(trader, actor)
-	local item_in_slot = db.actor:item_in_slot(6)
-	if item_in_slot ~= nil then
-		local item_repair_cost = math.floor( (1-item_in_slot:condition()) * item_in_slot:cost() * armor_profit_margin )
-		item_in_slot:set_condition(1)
-		dialogs.relocate_money(actor, item_repair_cost, "out")
-	end	
-end
-
-function repair_costs(first_speaker, second_speaker)
-	local task_texture, task_rect = get_texture_info("ui_iconsTotal_lost_money")
-	
-	local item_name_and_price = ""
-	local item_repair_cost = 0
-	if db.actor ~= nil then 
-		local item_in_slot_1 = db.actor:item_in_slot(1)
-		local item_in_slot_2 = db.actor:item_in_slot(2)
-		local item_in_slot_6 = db.actor:item_in_slot(6)
-	
-		if item_in_slot_1 ~= nil then 
-			item_repair_cost = math.floor( (1-item_in_slot_1:condition()) * item_in_slot_1:cost() * weapon_profit_margin )
-			if item_repair_cost > 0 then
-				item_name_and_price = game.translate_string("list_trader_repair_0").." %c[255,238,155,23]"..item_repair_cost.."Ru%c[default]"
-				db.actor:give_talk_message(item_name_and_price, task_texture, task_rect, "iconed_trade_info")
-			end
-		end
-		if item_in_slot_2 ~= nil then
-			item_repair_cost = math.floor( (1-item_in_slot_2:condition()) * item_in_slot_2:cost() * weapon_profit_margin )
-			if item_repair_cost > 0 then
-				item_name_and_price = game.translate_string("list_trader_repair_1").." %c[255,238,155,23]"..item_repair_cost.."Ru%c[default]"
-				db.actor:give_talk_message(item_name_and_price, task_texture, task_rect, "iconed_trade_info")
-			end
-		end
-		if item_in_slot_6 ~= nil then
-			item_repair_cost = math.floor( (1-item_in_slot_6:condition()) * item_in_slot_6:cost() * armor_profit_margin )
-			if item_repair_cost > 0 then
-				item_name_and_price = game.translate_string("list_trader_repair_2").." %c[255,238,155,23]"..item_repair_cost.."Ru%c[default]"
-				db.actor:give_talk_message(item_name_and_price, task_texture, task_rect, "iconed_trade_info")
-			end
-		end
-	end
-end
-

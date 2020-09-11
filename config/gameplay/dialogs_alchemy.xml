@@ -4,6 +4,7 @@
         <phrase_list>
             <phrase id="0">
                 <text>trader_alchemy_0</text>
+                <action>maxfu_trader_alchemy.count_items_table</action>
                 <next>1</next>
             </phrase>
             <phrase id="1">
@@ -12,7 +13,8 @@
                 <next>102</next>
                 <next>107</next>
                 <next>111</next>
-                <next>111</next>
+                <next>120</next>
+                <next>128</next>
                 <next>4</next>
             </phrase>
             <phrase id="101">
@@ -43,6 +45,12 @@
                 <precondition>maxfu_trader_alchemy.check_af_rusty_kristall</precondition>
                 <text>trader_alchemy_120</text>
                 <action>maxfu_trader_alchemy.enhance_af_rusty_kristall</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="128">
+                <precondition>maxfu_trader_alchemy.check_ammo_9_18_fmj</precondition>
+                <text>trader_alchemy_128</text>
+                <action>maxfu_trader_alchemy.enhance_ammo_9_18_fmj</action>
                 <next>2</next>
             </phrase>
             <phrase id="2">

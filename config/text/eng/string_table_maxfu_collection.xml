@@ -1,4 +1,38 @@
 <string_table>
+	<string id="trader_alchemy_0">
+		<text>Hey buddy, I heard there are alchemy guys in the zone. You have, don't you?</text>
+	</string>
+	<string id="trader_alchemy_1">
+		<text>Well you can say yes. I do have someone at the back who know this shit. But you need to have the recipe and ingredients. And of course money. These people need to eat and drink you know. The cost is 1000 each time. You can get what you want. If you are lucky you can even get better result.</text>
+	</string>
+	<string id="trader_alchemy_101">
+		<text>Enhance Jellyfish Artifact.</text>
+	</string>
+	<string id="trader_alchemy_102">
+		<text>Enhance Stone Flower Artifact.</text>
+	</string>
+	<string id="trader_alchemy_107">
+		<text>Enhance Stone Blood Artifact.</text>
+	</string>
+	<string id="trader_alchemy_111">
+		<text>Enhance Meat Chunk Artifact.</text>
+	</string>
+	<string id="trader_alchemy_120">
+		<text>Enhance Crystal Thorn Artifact.</text>
+	</string>
+	<string id="trader_alchemy_128">
+		<text>Enhance 9x18 Ammo.</text>
+	</string>
+	<string id="trader_alchemy_2">
+		<text>Here it is!</text>
+	</string>
+	<string id="trader_alchemy_3">
+		<text>Ahh! What a masterpiece! Send him my regards.</text>
+	</string>
+	<string id="trader_alchemy_4">
+		<text>I seem to be broke. Maybe next time.</text>
+	</string>
+
 	<string id="enc_weapons1_ammo_ammo-9x18-heavy">
 		<text>9x18mm Heavy Ammo for Pistol and SMG. Certain artifact added to gunpowder and bullet greating better power and. However, the accuracy is decreased because of the artifacts.</text>
 	</string>
