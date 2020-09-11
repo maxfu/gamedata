@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+    <dialog id="trader_alchemy">
+        <phrase_list>
+            <phrase id="0">
+                <text>trader_alchemy_0</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>trader_alchemy_1</text>
+                <next>101</next>
+                <next>102</next>
+                <next>107</next>
+                <next>111</next>
+                <next>111</next>
+                <next>4</next>
+            </phrase>
+            <phrase id="101">
+                <precondition>maxfu_trader_alchemy.check_af_medusa</precondition>
+                <text>trader_alchemy_101</text>
+                <action>maxfu_trader_alchemy.enhance_af_medusa</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="102">
+                <precondition>maxfu_trader_alchemy.check_af_cristall_flower</precondition>
+                <text>trader_alchemy_102</text>
+                <action>maxfu_trader_alchemy.enhance_af_cristall_flower</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="107">
+                <precondition>maxfu_trader_alchemy.check_af_blood</precondition>
+                <text>trader_alchemy_107</text>
+                <action>maxfu_trader_alchemy.enhance_af_blood</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="111">
+                <precondition>maxfu_trader_alchemy.check_af_mincer_meat</precondition>
+                <text>trader_alchemy_111</text>
+                <action>maxfu_trader_alchemy.enhance_af_mincer_meat</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="120">
+                <precondition>maxfu_trader_alchemy.check_af_rusty_kristall</precondition>
+                <text>trader_alchemy_120</text>
+                <action>maxfu_trader_alchemy.enhance_af_rusty_kristall</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>trader_alchemy_2</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>trader_alchemy_3</text>
+            </phrase>
+            <phrase id="4">
+                <text>trader_alchemy_4</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+</game_dialogs>

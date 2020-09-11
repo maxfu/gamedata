@@ -35,6 +35,7 @@
 		<actor_dialog>tm_barman_dialog</actor_dialog>
 		<actor_dialog>tm_barman_reward</actor_dialog>
 		<actor_dialog>bar_trader_repair</actor_dialog>
+		<actor_dialog>trader_alchemy</actor_dialog>
 		<actor_dialog>escape_trader_faction_change_dialog</actor_dialog>
 	</specific_character>
 
