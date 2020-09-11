@@ -3,38 +3,14 @@ maxfu_auto_save_interval = 600 -- Counted in Seconds, set to nil or false to dis
 maxfu_sleep_interval = 600 -- Counted in Seconds, set to nil or false to disable the auto-save function
 -- delay_d * 60 * 24 + delay_h * 60 + delay_m
 
--- ZRP functions
-function AddTimeDigits(str, dig)
-	if (dig > 9) then
-		str = str .. dig
-	else
-		str = str .. "0" .. dig
-	end
-	return str
-end
-
 function maxfu_auto_save()
-	local y,m,d,h,min,sec,ms = 0,0,0,0,0,0,0
-	local date_time = "_"
-
-	y,m,d,h,min,sec,ms = game.get_game_time():get(y,m,d,h,min,sec,ms)
-
-	date_time = date_time .. y
-	date_time = date_time .. "-"
-	date_time = AddTimeDigits(date_time, m)
-	date_time = date_time .. "-"
-	date_time = AddTimeDigits(date_time, d)
-	date_time = date_time .. "_"
-	date_time = AddTimeDigits(date_time, h)
-	date_time = AddTimeDigits(date_time, min)		
-
 	if maxfu_auto_save_interval then
 		local time_factor = level.get_time_factor()
 		local current_time = game.time()
 		if load_variable("maxfu_autosave", nil) == nil then
 			save_variable("maxfu_autosave", current_time + maxfu_auto_save_interval * 1000 * time_factor)
 		elseif load_variable("maxfu_autosave", nil) <= current_time then
-			get_console():execute("save maxfu_backup" .. level.name() .. date_time)
+			get_console():execute("save maxfu_backup_" .. level.name())
 			save_variable("maxfu_autosave", current_time + maxfu_auto_save_interval * 1000 * time_factor)
 		end
 	end
