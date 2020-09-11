@@ -39,4 +39,185 @@
 		<text>9x39H</text>
 	</string>
 
+
+	<string id="enc_zone_artifact_m1">
+		<text>Enhanced Artifact with is side effects removed while maintained good effects.</text>
+	</string>
+
+	<string id="enc_zone_artifact_m2">
+		<text>Enhanced Artifact with is side effects removed while good effects enhanced.</text>
+	</string>
+
+	<string id="enc_zone_artifact_rare_m1">
+		<text>Enhanced Rare Artifact with is one more good effects added.</text>
+	</string>
+
+	<string id="enc_zone_artifact_rare_m2">
+		<text>Enhanced Rare Artifact with is two more good effects added.</text>
+	</string>
+
+	<string id="af-ameba-mica-m1">
+		<text>Mica MK1</text>
+	</string>
+	<string id="af-ameba-slime-m1">
+		<text>Slime MK1</text>
+	</string>
+	<string id="af-ameba-slug-m1">
+		<text>Slug MK1</text>
+	</string>
+	<string id="af-blood-m1">
+		<text>Stone Blood MK1</text>
+	</string>
+	<string id="af-cristall-m1">
+		<text>Crystal MK1</text>
+	</string>
+	<string id="af-cristall-flower-m1">
+		<text>Stone Flower MK1</text>
+	</string>
+	<string id="af-drops-m1">
+		<text>Droplets MK1</text>
+	</string>
+	<string id="af-dummy-battery-m1">
+		<text>Battery MK1</text>
+	</string>
+	<string id="af-dummy-dummy-m1">
+		<text>Shell MK1</text>
+	</string>
+	<string id="af-dummy-glassbeads-m1">
+		<text>Mama's Beads MK1</text>
+	</string>
+	<string id="af-dummy-pellicle-m1">
+		<text>Pellicle MK1</text>
+	</string>
+	<string id="af-dummy-spring-m1">
+		<text>Spring MK1</text>
+	</string>
+	<string id="af-electra-flash-m1">
+		<text>Flash MK1</text>
+	</string>
+	<string id="af-electra-moonlight-m1">
+		<text>Moonlight MK1</text>
+	</string>
+	<string id="af-electra-sparkler-m1">
+		<text>Sparkler MK1</text>
+	</string>
+	<string id="af-fireball-m1">
+		<text>Fireball MK1</text>
+	</string>
+	<string id="af-fuzz-kolobok-m1">
+		<text>Kolobok MK1</text>
+	</string>
+	<string id="af-gold-fish-m1">
+		<text>Goldfish MK1</text>
+	</string>
+	<string id="af-gravi-m1">
+		<text>Gravi MK1</text>
+	</string>
+	<string id="af-medusa-m1">
+		<text>Jellyfish MK1</text>
+	</string>
+	<string id="af-mincer-meat-m1">
+		<text>Meat Chunk MK1</text>
+	</string>
+	<string id="af-night-star-m1">
+		<text>Night Star MK1</text>
+	</string>
+	<string id="af-rusty-kristall-m1">
+		<text>Crystal Thorn MK1</text>
+	</string>
+	<string id="af-rusty-sea-urchin-m1">
+		<text>Urchin MK1</text>
+	</string>
+	<string id="af-rusty-thorn-m1">
+		<text>Thorn MK1</text>
+	</string>
+	<string id="af-soul-m1">
+		<text>Soul MK1</text>
+	</string>
+	<string id="af-vyvert-m1">
+		<text>Wrenched MK1</text>
+	</string>
+
+	<string id="af-ameba-mica_m2">
+		<text>Mica MK2</text>
+	</string>
+	<string id="af-ameba-slime_m2">
+		<text>Slime MK2</text>
+	</string>
+	<string id="af-ameba-slug_m2">
+		<text>Slug MK2</text>
+	</string>
+	<string id="af-blood_m2">
+		<text>Stone Blood MK2</text>
+	</string>
+	<string id="af-cristall_m2">
+		<text>Crystal MK2</text>
+	</string>
+	<string id="af-cristall-flower_m2">
+		<text>Stone Flower MK2</text>
+	</string>
+	<string id="af-drops_m2">
+		<text>Droplets MK2</text>
+	</string>
+	<string id="af-dummy-battery_m2">
+		<text>Battery MK2</text>
+	</string>
+	<string id="af-dummy-dummy_m2">
+		<text>Shell MK2</text>
+	</string>
+	<string id="af-dummy-glassbeads_m2">
+		<text>Mama's Beads MK2</text>
+	</string>
+	<string id="af-dummy-pellicle_m2">
+		<text>Pellicle MK2</text>
+	</string>
+	<string id="af-dummy-spring_m2">
+		<text>Spring MK2</text>
+	</string>
+	<string id="af-electra-flash_m2">
+		<text>Flash MK2</text>
+	</string>
+	<string id="af-electra-moonlight_m2">
+		<text>Moonlight MK2</text>
+	</string>
+	<string id="af-electra-sparkler_m2">
+		<text>Sparkler MK2</text>
+	</string>
+	<string id="af-fireball_m2">
+		<text>Fireball MK2</text>
+	</string>
+	<string id="af-fuzz-kolobok_m2">
+		<text>Kolobok MK2</text>
+	</string>
+	<string id="af-gold-fish_m2">
+		<text>Goldfish MK2</text>
+	</string>
+	<string id="af-gravi_m2">
+		<text>Gravi MK2</text>
+	</string>
+	<string id="af-medusa_m2">
+		<text>Jellyfish MK2</text>
+	</string>
+	<string id="af-mincer-meat_m2">
+		<text>Meat Chunk MK2</text>
+	</string>
+	<string id="af-night-star_m2">
+		<text>Night Star MK2</text>
+	</string>
+	<string id="af-rusty-kristall_m2">
+		<text>Crystal Thorn MK2</text>
+	</string>
+	<string id="af-rusty-sea-urchin_m2">
+		<text>Urchin MK2</text>
+	</string>
+	<string id="af-rusty-thorn_m2">
+		<text>Thorn MK2</text>
+	</string>
+	<string id="af-soul_m2">
+		<text>Soul MK2</text>
+	</string>
+	<string id="af-vyvert_m2">
+		<text>Wrenched MK2</text>
+	</string>
+
 </string_table>
