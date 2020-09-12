@@ -1,10 +1,3 @@
-af_qty = 5
-af_cost = 1000
-af_luck_percent = 5
-ammo_qty = 5
-ammo_cost = 1000
-recipe_ammo_9x18_heavy = {["ammo_9x18_fmj"]=5, ["af_medusa"]=1, ["cost"]=1000, ["result"]="ammo_9x18_heavy"}
-
 function count_items_table(first_speaker, second_speaker)
 	local item_list = {}
 	local item_object = nil
@@ -55,23 +48,6 @@ function remove_items(section_name, qty)
 	end
 end
 
-function check_item_qty(item_section, qty, cost)
-	local item_qty = 0
-	if db.storage[db.actor:id()].pstor ~= nil then
-		local item_list = db.storage[db.actor:id()].pstor["maxfu_item_list"]
-		if item_list[item_section] ~= nil then
-			item_qty = item_list[item_section]
-		end
-	end
-	if item_qty >= qty and db.actor:money() >= cost then
-		return true
-	end
---	news_manager.relocate_item(db.actor, "out", item_section)
---	news_manager.relocate_money(db.actor, "out", item_qty)
---	news_manager.relocate_money(db.actor, "out", db.actor:money())
-	return false
-end
-
 function check_recipe(recipe)
 	if recipe["result"] == nil then
 		return false
@@ -96,7 +72,7 @@ function check_recipe(recipe)
 
 	if item_list ~= nil and item_list ~= {} then
 		for item_section, item_qty in pairs(recipe) do
-			if item_section ~= "cost" and item_section ~= "result" then
+			if item_section ~= "cost" and item_section ~= "result" and item_section ~= "lucky" and item_section ~= "luck" then
 				if item_list[item_section] ~= nil then
 					if item_list[item_section] < item_qty then
 						return false
@@ -116,19 +92,13 @@ function check_recipe(recipe)
 	return true
 end
 
-function enhance_af(trader, actor, section_name)
-	remove_items(section_name, af_qty)
-    dialogs.relocate_item_section(trader, section_name.."_m1", "in")
-	dialogs.relocate_money(actor, af_cost, "out")
-end
-
 function enhance_recipe(trader, actor, recipe)
 	if recipe["result"] == nil then
 		return false
 	end
 
 	for item_section, item_qty in pairs(recipe) do
-		if item_section ~= "cost" and item_section ~= "result" then
+		if item_section ~= "cost" and item_section ~= "result" and item_section ~= "lucky" and item_section ~= "luck" then
 			remove_items(item_section, item_qty)
 		end
 	end
@@ -137,105 +107,76 @@ function enhance_recipe(trader, actor, recipe)
 		dialogs.relocate_money(actor, recipe["cost"], "out")
 	end
 
-    dialogs.relocate_item_section(trader, recipe["result"], "in")
+	if recipe["lucky"] ~= nil and recipe["luck"] ~= nil then
+		local luck = math.random(0,99)
+		if luck >= recipe["luck"] then
+			dialogs.relocate_item_section(trader, recipe["result"], "in")
+		else
+			_z.nvDebug("Lucky you")
+			dialogs.relocate_item_section(trader, recipe["lucky"], "in")
+		end
+	else
+		dialogs.relocate_item_section(trader, recipe["result"], "in")
+	end
 end
 
+recipe_af_medusa = {["af_medusa"]=5, ["cost"]=1000, ["result"]="af_medusa_m1", ["lucky"]="af_medusa_m2", ["luck"]=5}
 
 function check_af_medusa()
-	local section_name = "af_medusa"
-	return check_item_qty(section_name, af_qty, af_cost)
-end
-
-function check_af_blood()
-	local section_name = "af_blood"
-	return check_item_qty(section_name, af_qty, af_cost)
-end
-
-function check_af_cristall_flower()
-	local section_name = "af_cristall_flower"
-	return check_item_qty(section_name, af_qty, af_cost)
-end
-
-function check_af_mincer_meat()
-	local section_name = "af_mincer_meat"
-	return check_item_qty(section_name, af_qty, af_cost)
-end
-
-function check_af_rusty_kristall()
-	local section_name = "af_rusty_kristall"
-	return check_item_qty(section_name, af_qty, af_cost)
-end
-
-function check_ammo_9_18_fmj()
-	local section_name = "ammo_9x18_fmj"
-	return check_item_qty(section_name, ammo_qty, ammo_cost)
-end
-
-function check_ammo_9_18_fmj_r()
-	return check_recipe(recipe_ammo_9x18_heavy)
+	return check_recipe(recipe_af_medusa)
 end
 
 function enhance_af_medusa(trader, actor)
-	local luck = math.random(0,99)
-	remove_items("af_medusa", af_qty)
-	if luck >= af_luck_percent then
-		dialogs.relocate_item_section(trader, "af_medusa_m1", "in")
-	else
-		dialogs.relocate_item_section(trader, "af_medusa_m2", "in")
-	end
-	dialogs.relocate_money(actor, af_cost, "out")
+	enhance_recipe(trader, actor, recipe_af_medusa)
+end
+
+recipe_af_blood = {["af_blood"]=5, ["cost"]=1000, ["result"]="af_blood_m1", ["lucky"]="af_blood_m2", ["luck"]=5}
+
+function check_af_blood()
+	return check_recipe(recipe_af_blood)
 end
 
 function enhance_af_blood(trader, actor)
-	local luck = math.random(0,99)
-	remove_items("af_blood", af_qty)
-	if luck >= af_luck_percent then
-		dialogs.relocate_item_section(trader, "af_blood_m1", "in")
-	else
-		dialogs.relocate_item_section(trader, "af_blood_m2", "in")
-	end
-	dialogs.relocate_money(actor, af_cost, "out")
+	enhance_recipe(trader, actor, recipe_af_blood)
+end
+
+
+recipe_af_cristall_flower = {["af_cristall_flower"]=5, ["cost"]=1000, ["result"]="af_cristall_flower_m1", ["lucky"]="af_cristall_flower_m2", ["luck"]=5}
+
+function check_af_cristall_flower()
+	return check_recipe(recipe_af_cristall_flower)
 end
 
 function enhance_af_cristall_flower(trader, actor)
-	local luck = math.random(0,99)
-	remove_items("af_cristall_flower", af_qty)
-	if luck >= af_luck_percent then
-		dialogs.relocate_item_section(trader, "af_cristall_flower_m1", "in")
-	else
-		dialogs.relocate_item_section(trader, "af_cristall_flower_m2", "in")
-	end
-	dialogs.relocate_money(actor, af_cost, "out")
+	enhance_recipe(trader, actor, recipe_af_cristall_flower)
+end
+
+recipe_af_mincer_meat = {["af_mincer_meat"]=5, ["cost"]=1000, ["result"]="af_mincer_meat_m1", ["lucky"]="af_mincer_meat_m2", ["luck"]=5}
+
+function check_af_mincer_meat()
+	return check_recipe(recipe_af_mincer_meat)
 end
 
 function enhance_af_mincer_meat(trader, actor)
-	local luck = math.random(0,99)
-	remove_items("af_mincer_meat", af_qty)
-	if luck >= af_luck_percent then
-		dialogs.relocate_item_section(trader, "af_mincer_meat_m1", "in")
-	else
-		dialogs.relocate_item_section(trader, "af_mincer_meat_m2", "in")
-	end
-	dialogs.relocate_money(actor, af_cost, "out")
+	enhance_recipe(trader, actor, recipe_af_mincer_meat)
+end
+
+recipe_af_rusty_kristall = {["af_rusty_kristall"]=5, ["cost"]=1000, ["result"]="af_rusty_kristall_m1", ["lucky"]="af_rusty_kristall_m2", ["luck"]=5}
+
+function check_af_rusty_kristall()
+	return check_recipe(recipe_af_rusty_kristall)
 end
 
 function enhance_af_rusty_kristall(trader, actor)
-	local luck = math.random(0,99)
-	remove_items("af_rusty_kristall", af_qty)
-	if luck >= af_luck_percent then
-		dialogs.relocate_item_section(trader, "af_rusty_kristall_m1", "in")
-	else
-		dialogs.relocate_item_section(trader, "af_rusty_kristall_m2", "in")
-	end
-	dialogs.relocate_money(actor, af_cost, "out")
+	enhance_recipe(trader, actor, recipe_af_rusty_kristall)
+end
+
+recipe_ammo_9x18_heavy = {["ammo_9x18_fmj"]=5, ["af_medusa"]=1, ["cost"]=1000, ["result"]="ammo_9x18_heavy"}
+
+function check_ammo_9_18_fmj()
+	return check_recipe(recipe_ammo_9x18_heavy)
 end
 
 function enhance_ammo_9_18_fmj(trader, actor)
-	remove_items("ammo_9x18_fmj", ammo_qty)
-    dialogs.relocate_item_section(trader, "ammo_9x18_heavy", "in")
-	dialogs.relocate_money(actor, ammo_cost, "out")
-end
-
-function enhance_ammo_9_18_fmj_r(trader, actor)
 	enhance_recipe(trader, actor, recipe_ammo_9x18_heavy)
 end

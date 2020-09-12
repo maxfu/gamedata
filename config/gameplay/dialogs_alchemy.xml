@@ -15,7 +15,6 @@
                 <next>111</next>
                 <next>120</next>
                 <next>128</next>
-                <next>129</next>
                 <next>4</next>
             </phrase>
             <phrase id="101">
@@ -52,12 +51,6 @@
                 <precondition>maxfu_trader_alchemy.check_ammo_9_18_fmj</precondition>
                 <text>trader_alchemy_128</text>
                 <action>maxfu_trader_alchemy.enhance_ammo_9_18_fmj</action>
-                <next>2</next>
-            </phrase>
-            <phrase id="129">
-                <precondition>maxfu_trader_alchemy.check_ammo_9_18_fmj_r</precondition>
-                <text>trader_alchemy_129</text>
-                <action>maxfu_trader_alchemy.enhance_ammo_9_18_fmj_r</action>
                 <next>2</next>
             </phrase>
             <phrase id="2">
