@@ -1,30 +1,28 @@
-function count_items_table(first_speaker, second_speaker)
-	local item_list = {}
+maxfu_item_list = {}
+
+function create_items_table(trader, actor)
 	local item_object = nil
-	local counter = 0
 	local item_section = nil
 
 	for index = 0, db.actor:object_count() - 1 do
 		item_object = db.actor:object(index)
 		item_section = item_object:section()
-		if item_list[item_section] == nil then
-			item_list[item_section] = 1
+
+		if maxfu_item_list[item_section] == nil then
+			maxfu_item_list[item_section] = 1
 		else
-			item_list[item_section] = item_list[item_section] + 1
+			maxfu_item_list[item_section] = maxfu_item_list[item_section] + 1
 		end
---		news_manager.relocate_item(db.actor, "out", item_section)
---		news_manager.relocate_money(db.actor, "out", item_list[item_section])
---		news_manager.relocate_money(db.actor, "out", db.actor:money())
+
+--		_z.nvDebug(item_section)
+--		_z.nvDebug(maxfu_item_list[item_section])
+--		_z.nvDebug(db.actor:money())
 	end
-	if item_list == nil then
-		if db.storage[db.actor:id()].pstor["maxfu_item_list"] then
-			db.storage[db.actor:id()].pstor["maxfu_item_list"] = nil
-		end
-	else
-		if db.storage[db.actor:id()].pstor == nil then
-			db.storage[db.actor:id()].pstor = {}
-		end
-		db.storage[db.actor:id()].pstor["maxfu_item_list"] = item_list
+end
+
+function destory_items_table(trader, actor)
+	if db.storage[db.actor:id()].pstor["maxfu_item_list"] then
+		db.storage[db.actor:id()].pstor["maxfu_item_list"] = nil
 	end
 end
 
@@ -53,33 +51,21 @@ function check_recipe(recipe)
 		return false
 	end
 
-	local item_list = {}
-	if db.storage[db.actor:id()].pstor ~= nil then
-		item_list = db.storage[db.actor:id()].pstor["maxfu_item_list"]
-	else
-		return false
-	end
-
-	local cost = 0
-	if recipe["cost"] ~= nil then
-		cost = recipe["cost"]
-	end
-
-	if db.actor:money() < cost then
+	if recipe["cost"] ~= nil and db.actor:money() < recipe["cost"] then
 		return false
 	end
 --	_z.nvDebug(db.actor:money())
 
-	if item_list ~= nil and item_list ~= {} then
+	if maxfu_item_list ~= nil and maxfu_item_list ~= {} then
 		for item_section, item_qty in pairs(recipe) do
 			if item_section ~= "cost" and item_section ~= "result" and item_section ~= "lucky" and item_section ~= "luck" then
-				if item_list[item_section] ~= nil then
-					if item_list[item_section] < item_qty then
+				if maxfu_item_list[item_section] ~= nil then
+					if maxfu_item_list[item_section] < item_qty then
 						return false
 					end
-					_z.nvDebug(item_section)
-					_z.nvDebug(item_qty)
-					_z.nvDebug(item_list[item_section])
+--					_z.nvDebug(item_section)
+--					_z.nvDebug(item_qty)
+--					_z.nvDebug(maxfu_item_list[item_section])
 				else
 					return false
 				end
@@ -92,6 +78,7 @@ function check_recipe(recipe)
 	return true
 end
 
+
 function enhance_recipe(trader, actor, recipe)
 	if recipe["result"] == nil then
 		return false
@@ -99,6 +86,7 @@ function enhance_recipe(trader, actor, recipe)
 
 	for item_section, item_qty in pairs(recipe) do
 		if item_section ~= "cost" and item_section ~= "result" and item_section ~= "lucky" and item_section ~= "luck" then
+			maxfu_item_list[item_section] = maxfu_item_list[item_section] - item_qty
 			remove_items(item_section, item_qty)
 		end
 	end
@@ -120,6 +108,8 @@ function enhance_recipe(trader, actor, recipe)
 	end
 end
 
+
+
 recipe_af_medusa = {["af_medusa"]=5, ["cost"]=1000, ["result"]="af_medusa_m1", ["lucky"]="af_medusa_m2", ["luck"]=5}
 
 function check_af_medusa()
@@ -130,15 +120,6 @@ function enhance_af_medusa(trader, actor)
 	enhance_recipe(trader, actor, recipe_af_medusa)
 end
 
-recipe_af_blood = {["af_blood"]=5, ["cost"]=1000, ["result"]="af_blood_m1", ["lucky"]="af_blood_m2", ["luck"]=5}
-
-function check_af_blood()
-	return check_recipe(recipe_af_blood)
-end
-
-function enhance_af_blood(trader, actor)
-	enhance_recipe(trader, actor, recipe_af_blood)
-end
 
 
 recipe_af_cristall_flower = {["af_cristall_flower"]=5, ["cost"]=1000, ["result"]="af_cristall_flower_m1", ["lucky"]="af_cristall_flower_m2", ["luck"]=5}
@@ -151,6 +132,68 @@ function enhance_af_cristall_flower(trader, actor)
 	enhance_recipe(trader, actor, recipe_af_cristall_flower)
 end
 
+
+
+recipe_af_night_star = {["af_night_star"]=5, ["cost"]=1000, ["result"]="af_night_star_m1", ["lucky"]="af_night_star_m2", ["luck"]=5}
+
+function check_af_night_star()
+	return check_recipe(recipe_af_night_star)
+end
+
+function enhance_af_night_star(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_night_star)
+end
+
+
+
+recipe_af_vyvert = {["af_vyvert"]=5, ["cost"]=1000, ["result"]="af_vyvert_m1", ["lucky"]="af_vyvert_m2", ["luck"]=5}
+
+function check_af_vyvert()
+	return check_recipe(recipe_af_vyvert)
+end
+
+function enhance_af_vyvert(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_vyvert)
+end
+
+
+
+recipe_af_gravi = {["af_gravi"]=5, ["cost"]=1000, ["result"]="af_gravi_m1", ["lucky"]="af_gravi_m2", ["luck"]=5}
+
+function check_af_gravi()
+	return check_recipe(recipe_af_gravi)
+end
+
+function enhance_af_gravi(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_gravi)
+end
+
+
+
+recipe_af_gold_fish = {["af_gold_fish"]=5, ["cost"]=1000, ["result"]="af_gold_fish_m1", ["lucky"]="af_gold_fish_m2", ["luck"]=5}
+
+function check_af_gold_fish()
+	return check_recipe(recipe_af_gold_fish)
+end
+
+function enhance_af_gold_fish(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_gold_fish)
+end
+
+
+
+recipe_af_blood = {["af_blood"]=5, ["cost"]=1000, ["result"]="af_blood_m1", ["lucky"]="af_blood_m2", ["luck"]=5}
+
+function check_af_blood()
+	return check_recipe(recipe_af_blood)
+end
+
+function enhance_af_blood(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_blood)
+end
+
+
+
 recipe_af_mincer_meat = {["af_mincer_meat"]=5, ["cost"]=1000, ["result"]="af_mincer_meat_m1", ["lucky"]="af_mincer_meat_m2", ["luck"]=5}
 
 function check_af_mincer_meat()
@@ -160,6 +203,68 @@ end
 function enhance_af_mincer_meat(trader, actor)
 	enhance_recipe(trader, actor, recipe_af_mincer_meat)
 end
+
+
+
+recipe_af_soul = {["af_soul"]=5, ["cost"]=1000, ["result"]="af_soul_m1", ["lucky"]="af_soul_m2", ["luck"]=5}
+
+function check_af_soul()
+	return check_recipe(recipe_af_soul)
+end
+
+function enhance_af_soul(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_soul)
+end
+
+
+
+recipe_af_electra_sparkler = {["af_electra_sparkler"]=5, ["cost"]=1000, ["result"]="af_electra_sparkler_m1", ["lucky"]="af_electra_sparkler_m2", ["luck"]=5}
+
+function check_af_electra_sparkler()
+	return check_recipe(recipe_af_electra_sparkler)
+end
+
+function enhance_af_electra_sparkler(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_electra_sparkler)
+end
+
+
+
+recipe_af_electra_flash = {["af_electra_flash"]=5, ["cost"]=1000, ["result"]="af_electra_flash_m1", ["lucky"]="af_electra_flash_m2", ["luck"]=5}
+
+function check_af_electra_flash()
+	return check_recipe(recipe_af_electra_flash)
+end
+
+function enhance_af_af_electra_flash(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_electra_flash)
+end
+
+
+
+recipe_af_electra_moonlight = {["af_electra_moonlight"]=5, ["cost"]=1000, ["result"]="af_electra_moonlight_m1", ["lucky"]="af_electra_moonlight_m2", ["luck"]=5}
+
+function check_af_electra_moonlight()
+	return check_recipe(recipe_af_electra_moonlight)
+end
+
+function enhance_af_electra_moonlight(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_electra_moonlight)
+end
+
+
+
+recipe_af_rusty_thorn = {["af_rusty_thorn"]=5, ["cost"]=1000, ["result"]="af_rusty_thorn_m1", ["lucky"]="af_rusty_thorn_m2", ["luck"]=5}
+
+function check_af_rusty_thorn()
+	return check_recipe(recipe_af_rusty_thorn)
+end
+
+function enhance_af_rusty_thorn(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_rusty_thorn)
+end
+
+
 
 recipe_af_rusty_kristall = {["af_rusty_kristall"]=5, ["cost"]=1000, ["result"]="af_rusty_kristall_m1", ["lucky"]="af_rusty_kristall_m2", ["luck"]=5}
 
@@ -171,12 +276,194 @@ function enhance_af_rusty_kristall(trader, actor)
 	enhance_recipe(trader, actor, recipe_af_rusty_kristall)
 end
 
+
+
+recipe_af_rusty_sea_urchin = {["af_rusty_sea-urchin"]=5, ["cost"]=1000, ["result"]="af_rusty_sea-urchin_m1", ["lucky"]="af_rusty_sea-urchin_m2", ["luck"]=5}
+
+function check_af_rusty_sea_urchin()
+	return check_recipe(recipe_af_rusty_sea_urchin)
+end
+
+function enhance_af_rusty_sea_urchin(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_rusty_sea_urchin)
+end
+
+
+
+recipe_af_ameba_slime = {["af_ameba_slime"]=5, ["cost"]=1000, ["result"]="af_ameba_slime_m1", ["lucky"]="af_ameba_slime_m2", ["luck"]=5}
+
+function check_af_ameba_slime()
+	return check_recipe(recipe_af_ameba_slime)
+end
+
+function enhance_af_ameba_slime(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_ameba_slime)
+end
+
+
+
+recipe_af_ameba_slug = {["af_ameba_slug"]=5, ["cost"]=1000, ["result"]="af_ameba_slug_m1", ["lucky"]="af_ameba_slug_m2", ["luck"]=5}
+
+function check_af_ameba_slug()
+	return check_recipe(recipe_af_ameba_slug)
+end
+
+function enhance_af_ameba_slug(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_ameba_slug)
+end
+
+
+
+recipe_af_ameba_mica = {["af_ameba_mica"]=5, ["cost"]=1000, ["result"]="af_ameba_mica_m1", ["lucky"]="af_ameba_mica_m2", ["luck"]=5}
+
+function check_af_ameba_mica()
+	return check_recipe(recipe_af_ameba_mica)
+end
+
+function enhance_af_ameba_mica(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_ameba_mica)
+end
+
+
+
+recipe_af_drops = {["af_drops"]=5, ["cost"]=1000, ["result"]="af_drops_m1", ["lucky"]="af_drops_m2", ["luck"]=5}
+
+function check_af_drops()
+	return check_recipe(recipe_af_drops)
+end
+
+function enhance_af_drops(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_drops)
+end
+
+
+
+recipe_af_fireball = {["af_fireball"]=5, ["cost"]=1000, ["result"]="af_fireball_m1", ["lucky"]="af_fireball_m2", ["luck"]=5}
+
+function check_af_fireball()
+	return check_recipe(recipe_af_fireball)
+end
+
+function enhance_af_fireball(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_fireball)
+end
+
+
+
+recipe_af_cristall = {["af_cristall"]=5, ["cost"]=1000, ["result"]="af_cristall_m1", ["lucky"]="af_cristall_m2", ["luck"]=5}
+
+function check_af_cristall()
+	return check_recipe(recipe_af_cristall)
+end
+
+function enhance_af_cristall(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_cristall)
+end
+
+
+
+recipe_af_dummy_glassbeads = {["af_dummy_glassbeads"]=5, ["cost"]=1500, ["result"]="af_dummy_glassbeads_m1", ["lucky"]="af_dummy_glassbeads_m2", ["luck"]=5}
+
+function check_af_dummy_glassbeads()
+	return check_recipe(recipe_af_dummy_glassbeads)
+end
+
+function enhance_af_dummy_glassbeads(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_dummy_glassbeads)
+end
+
+
+
+recipe_af_dummy_pellicle = {["af_dummy_pellicle"]=5, ["cost"]=1500, ["result"]="af_dummy_pellicle_m1", ["lucky"]="af_dummy_pellicle_m2", ["luck"]=5}
+
+function check_af_dummy_pellicle()
+	return check_recipe(recipe_af_dummy_pellicle)
+end
+
+function enhance_af_dummy_pellicle(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_dummy_pellicle)
+end
+
+
+
+recipe_af_dummy_battery = {["af_dummy_battery"]=5, ["cost"]=1500, ["result"]="af_dummy_battery_m1", ["lucky"]="af_dummy_battery_m2", ["luck"]=5}
+
+function check_af_dummy_battery()
+	return check_recipe(recipe_af_dummy_battery)
+end
+
+function enhance_af_dummy_battery(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_dummy_battery)
+end
+
+
+
+recipe_af_dummy_dummy = {["af_dummy_dummy"]=5, ["cost"]=1500, ["result"]="af_dummy_dummy_m1", ["lucky"]="af_dummy_dummy_m2", ["luck"]=5}
+
+function check_af_dummy_dummy()
+	return check_recipe(recipe_af_dummy_dummy)
+end
+
+function enhance_af_dummy_dummy(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_dummy_dummy)
+end
+
+
+
+recipe_af_dummy_spring = {["af_dummy_spring"]=5, ["cost"]=1500, ["result"]="af_dummy_spring_m1", ["lucky"]="af_dummy_spring_m2", ["luck"]=5}
+
+function check_af_dummy_spring()
+	return check_recipe(recipe_af_dummy_spring)
+end
+
+function enhance_af_dummy_spring(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_dummy_spring)
+end
+
+
+
+recipe_af_fuzz_kolobok = {["af_fuzz_kolobok"]=5, ["cost"]=1500, ["result"]="af_fuzz_kolobok_m1", ["lucky"]="af_fuzz_kolobok_m2", ["luck"]=5}
+
+function check_af_fuzz_kolobok()
+	return check_recipe(recipe_af_fuzz_kolobok)
+end
+
+function enhance_af_fuzz_kolobok(trader, actor)
+	enhance_recipe(trader, actor, recipe_af_fuzz_kolobok)
+end
+
+
+
 recipe_ammo_9x18_heavy = {["ammo_9x18_fmj"]=5, ["af_medusa"]=1, ["cost"]=1000, ["result"]="ammo_9x18_heavy"}
 
-function check_ammo_9_18_fmj()
+function check_ammo_9x18_fmj()
 	return check_recipe(recipe_ammo_9x18_heavy)
 end
 
-function enhance_ammo_9_18_fmj(trader, actor)
+function enhance_ammo_9x18_fmj(trader, actor)
 	enhance_recipe(trader, actor, recipe_ammo_9x18_heavy)
+end
+
+
+
+recipe_ammo_9x19_heavy = {["ammo_9x19_fmj"]=5, ["af_medusa"]=1, ["cost"]=1000, ["result"]="ammo_9x19_heavy"}
+
+function check_ammo_9x19_fmj()
+	return check_recipe(recipe_ammo_9x19_heavy)
+end
+
+function enhance_ammo_9x19_fmj(trader, actor)
+	enhance_recipe(trader, actor, recipe_ammo_9x19_heavy)
+end
+
+
+
+recipe_ammo_9x39_heavy = {["ammo_9x39_pab9"]=5, ["af_vyvert"]=1, ["cost"]=1000, ["result"]="ammo_9x19_heavy"}
+
+function check_ammo_9x39_pab9()
+	return check_recipe(recipe_ammo_9x39_heavy)
+end
+
+function enhance_ammo_9x39_pab9(trader, actor)
+	enhance_recipe(trader, actor, recipe_ammo_9x39_heavy)
 end

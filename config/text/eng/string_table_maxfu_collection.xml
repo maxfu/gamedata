@@ -2,8 +2,17 @@
 	<string id="trader_alchemy_0">
 		<text>Hey buddy, I heard there are alchemy guys in the zone. You have, don't you?</text>
 	</string>
-	<string id="trader_alchemy_1">
+	<string id="trader_alchemy_01">
 		<text>Well you can say yes. I do have someone at the back who know this shit. But you need to have the recipe and ingredients. And of course money. These people need to eat and drink you know. The cost is 1000 each time. You can get what you want. If you are lucky you can even get better result.</text>
+	</string>
+	<string id="trader_alchemy_011">
+		<text>Sounds great! Let's do it!</text>
+	</string>
+	<string id="trader_alchemy_012">
+		<text>Just changed my mind. Maybe later.</text>
+	</string>
+	<string id="trader_alchemy_1">
+		<text>OK. What do you want to do?</text>
 	</string>
 	<string id="trader_alchemy_101">
 		<text>Enhance Jellyfish Artifact.</text>
@@ -11,25 +20,100 @@
 	<string id="trader_alchemy_102">
 		<text>Enhance Stone Flower Artifact.</text>
 	</string>
+	<string id="trader_alchemy_103">
+		<text>Enhance Night Star Artifact.</text>
+	</string>
+	<string id="trader_alchemy_104">
+		<text>Enhance Wrenched Artifact.</text>
+	</string>
+	<string id="trader_alchemy_105">
+		<text>Enhance Gravi Artifact.</text>
+	</string>
+	<string id="trader_alchemy_106">
+		<text>Enhance Goldfish Artifact.</text>
+	</string>
 	<string id="trader_alchemy_107">
 		<text>Enhance Stone Blood Artifact.</text>
 	</string>
-	<string id="trader_alchemy_111">
+	<string id="trader_alchemy_108">
 		<text>Enhance Meat Chunk Artifact.</text>
 	</string>
-	<string id="trader_alchemy_120">
+	<string id="trader_alchemy_109">
+		<text>Enhance Soul Artifact.</text>
+	</string>
+	<string id="trader_alchemy_110">
+		<text>Enhance Sparkler Artifact.</text>
+	</string>
+	<string id="trader_alchemy_111">
+		<text>Enhance Flash Artifact.</text>
+	</string>
+	<string id="trader_alchemy_112">
+		<text>Enhance Moonlight Artifact.</text>
+	</string>
+	<string id="trader_alchemy_113">
+		<text>Enhance Thorn Artifact.</text>
+	</string>
+	<string id="trader_alchemy_114">
 		<text>Enhance Crystal Thorn Artifact.</text>
+	</string>
+	<string id="trader_alchemy_115">
+		<text>Enhance Urchin Artifact.</text>
+	</string>
+	<string id="trader_alchemy_116">
+		<text>Enhance Slime Artifact.</text>
+	</string>
+	<string id="trader_alchemy_117">
+		<text>Enhance Slug Artifact.</text>
+	</string>
+	<string id="trader_alchemy_118">
+		<text>Enhance Mica Artifact.</text>
+	</string>
+	<string id="trader_alchemy_119">
+		<text>Enhance Droplets Artifact.</text>
+	</string>
+	<string id="trader_alchemy_120">
+		<text>Enhance Fireball Artifact.</text>
+	</string>
+	<string id="trader_alchemy_121">
+		<text>Enhance Crystal Artifact.</text>
+	</string>
+	<string id="trader_alchemy_122">
+		<text>Enhance Mama's Beads Artifact.</text>
+	</string>
+	<string id="trader_alchemy_123">
+		<text>Enhance Pellicle Artifact.</text>
+	</string>
+	<string id="trader_alchemy_124">
+		<text>Enhance Battery Artifact.</text>
+	</string>
+	<string id="trader_alchemy_125">
+		<text>Enhance Shell Artifact.</text>
+	</string>
+	<string id="trader_alchemy_126">
+		<text>Enhance Spring Artifact.</text>
+	</string>
+	<string id="trader_alchemy_127">
+		<text>Enhance Kolobok Artifact.</text>
 	</string>
 	<string id="trader_alchemy_128">
 		<text>Enhance 9x18 Ammo.</text>
 	</string>
+	<string id="trader_alchemy_129">
+		<text>Enhance 9x19 Ammo.</text>
+	</string>
+	<string id="trader_alchemy_130">
+		<text>Enhance 9x39 Ammo.</text>
+	</string>
 	<string id="trader_alchemy_2">
 		<text>Here it is!</text>
 	</string>
-	<string id="trader_alchemy_3">
+	<string id="trader_alchemy_21">
 		<text>Ahh! What a masterpiece! Send him my regards.</text>
 	</string>
-	<string id="trader_alchemy_4">
+	<string id="trader_alchemy_22">
+		<text>Indeed a masterpiece! May be we can do more.</text>
+	</string>
+	<string id="trader_alchemy_3">
 		<text>I seem to be broke. Maybe next time.</text>
 	</string>
 
@@ -66,10 +150,10 @@
 	<string id="enc_weapons1_ammo_ammo-9x39-heavy">
 		<text>9x39mm Heavy Ammo for Rifles. Certain artifact added to gunpowder and bullet greating better power and. However, the accuracy is decreased because of the artifacts.</text>
 	</string>
-	<string id="ammo-9x19-heavy">
+	<string id="ammo-9x39-heavy">
 		<text>9x39mm Heavy</text>
 	</string>
-	<string id="ammo-9x19-heavy_s">
+	<string id="ammo-9x39-heavy_s">
 		<text>9x39H</text>
 	</string>
 

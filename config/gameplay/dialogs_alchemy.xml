@@ -4,18 +4,54 @@
         <phrase_list>
             <phrase id="0">
                 <text>trader_alchemy_0</text>
-                <action>maxfu_trader_alchemy.count_items_table</action>
+                <next>01</next>
+            </phrase>
+            <phrase id="01">
+                <text>trader_alchemy_01</text>
+                <next>011</next>
+                <next>012</next>
+            </phrase>
+            <phrase id="011">
+                <text>trader_alchemy_011</text>
+                <action>maxfu_trader_alchemy.create_items_table</action>
                 <next>1</next>
+            </phrase>
+            <phrase id="012">
+                <text>trader_alchemy_012</text>
             </phrase>
             <phrase id="1">
                 <text>trader_alchemy_1</text>
                 <next>101</next>
                 <next>102</next>
+                <next>103</next>
+                <next>104</next>
+                <next>105</next>
+                <next>106</next>
                 <next>107</next>
+                <next>108</next>
+                <next>109</next>
+                <next>110</next>
                 <next>111</next>
+                <next>112</next>
+                <next>113</next>
+                <next>114</next>
+                <next>115</next>
+                <next>116</next>
+                <next>117</next>
+                <next>118</next>
+                <next>119</next>
                 <next>120</next>
+                <next>121</next>
+                <next>122</next>
+                <next>123</next>
+                <next>124</next>
+                <next>125</next>
+                <next>126</next>
+                <next>127</next>
                 <next>128</next>
-                <next>4</next>
+                <next>129</next>
+                <next>130</next>
+                <next>3</next>
             </phrase>
             <phrase id="101">
                 <precondition>maxfu_trader_alchemy.check_af_medusa</precondition>
@@ -29,39 +65,188 @@
                 <action>maxfu_trader_alchemy.enhance_af_cristall_flower</action>
                 <next>2</next>
             </phrase>
+            <phrase id="103">
+                <precondition>maxfu_trader_alchemy.check_af_night_star</precondition>
+                <text>trader_alchemy_103</text>
+                <action>maxfu_trader_alchemy.enhance_af_night_star</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="104">
+                <precondition>maxfu_trader_alchemy.check_af_vyvert</precondition>
+                <text>trader_alchemy_104</text>
+                <action>maxfu_trader_alchemy.enhance_af_vyvert</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="105">
+                <precondition>maxfu_trader_alchemy.check_af_gravi</precondition>
+                <text>trader_alchemy_105</text>
+                <action>maxfu_trader_alchemy.enhance_af_gravi</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="106">
+                <precondition>maxfu_trader_alchemy.check_af_gold_fish</precondition>
+                <text>trader_alchemy_106</text>
+                <action>maxfu_trader_alchemy.enhance_af_af_gold_fish</action>
+                <next>2</next>
+            </phrase>
             <phrase id="107">
                 <precondition>maxfu_trader_alchemy.check_af_blood</precondition>
                 <text>trader_alchemy_107</text>
                 <action>maxfu_trader_alchemy.enhance_af_blood</action>
                 <next>2</next>
             </phrase>
-            <phrase id="111">
+            <phrase id="108">
                 <precondition>maxfu_trader_alchemy.check_af_mincer_meat</precondition>
-                <text>trader_alchemy_111</text>
+                <text>trader_alchemy_108</text>
                 <action>maxfu_trader_alchemy.enhance_af_mincer_meat</action>
                 <next>2</next>
             </phrase>
-            <phrase id="120">
+            <phrase id="109">
+                <precondition>maxfu_trader_alchemy.check_af_soul</precondition>
+                <text>trader_alchemy_109</text>
+                <action>maxfu_trader_alchemy.enhance_af_soul</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="110">
+                <precondition>maxfu_trader_alchemy.check_af_electra_sparkler</precondition>
+                <text>trader_alchemy_110</text>
+                <action>maxfu_trader_alchemy.enhance_af_electra_sparkler</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="111">
+                <precondition>maxfu_trader_alchemy.check_af_electra_flash</precondition>
+                <text>trader_alchemy_111</text>
+                <action>maxfu_trader_alchemy.enhance_af_electra_flash</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="112">
+                <precondition>maxfu_trader_alchemy.check_af_electra_moonlight</precondition>
+                <text>trader_alchemy_112</text>
+                <action>maxfu_trader_alchemy.enhance_af_electra_moonlight</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="113">
+                <precondition>maxfu_trader_alchemy.check_af_rusty_thorn</precondition>
+                <text>trader_alchemy_113</text>
+                <action>maxfu_trader_alchemy.enhance_af_rusty_thorn</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="114">
                 <precondition>maxfu_trader_alchemy.check_af_rusty_kristall</precondition>
-                <text>trader_alchemy_120</text>
+                <text>trader_alchemy_114</text>
                 <action>maxfu_trader_alchemy.enhance_af_rusty_kristall</action>
                 <next>2</next>
             </phrase>
+            <phrase id="115">
+                <precondition>maxfu_trader_alchemy.check_af_rusty_sea_urchin</precondition>
+                <text>trader_alchemy_115</text>
+                <action>maxfu_trader_alchemy.enhance_af_rusty_sea_urchin</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="116">
+                <precondition>maxfu_trader_alchemy.check_af_ameba_slime</precondition>
+                <text>trader_alchemy_116</text>
+                <action>maxfu_trader_alchemy.enhance_af_ameba_slime</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="117">
+                <precondition>maxfu_trader_alchemy.check_af_ameba_slug</precondition>
+                <text>trader_alchemy_117</text>
+                <action>maxfu_trader_alchemy.enhance_af_ameba_slug</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="118">
+                <precondition>maxfu_trader_alchemy.check_af_ameba_mica</precondition>
+                <text>trader_alchemy_118</text>
+                <action>maxfu_trader_alchemy.enhance_af_ameba_mica</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="119">
+                <precondition>maxfu_trader_alchemy.check_af_drops</precondition>
+                <text>trader_alchemy_119</text>
+                <action>maxfu_trader_alchemy.enhance_af_drops</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="120">
+                <precondition>maxfu_trader_alchemy.check_af_fireball</precondition>
+                <text>trader_alchemy_120</text>
+                <action>maxfu_trader_alchemy.enhance_af_fireball</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="121">
+                <precondition>maxfu_trader_alchemy.check_af_cristall</precondition>
+                <text>trader_alchemy_121</text>
+                <action>maxfu_trader_alchemy.enhance_af_cristall</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="122">
+                <precondition>maxfu_trader_alchemy.check_af_dummy_glassbeads</precondition>
+                <text>trader_alchemy_122</text>
+                <action>maxfu_trader_alchemy.enhance_af_dummy_glassbeads</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="123">
+                <precondition>maxfu_trader_alchemy.check_af_dummy_pellicle</precondition>
+                <text>trader_alchemy_123</text>
+                <action>maxfu_trader_alchemy.enhance_af_dummy_pellicle</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="124">
+                <precondition>maxfu_trader_alchemy.check_af_dummy_battery</precondition>
+                <text>trader_alchemy_124</text>
+                <action>maxfu_trader_alchemy.enhance_af_dummy_battery</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="125">
+                <precondition>maxfu_trader_alchemy.check_af_dummy_dummy</precondition>
+                <text>trader_alchemy_125</text>
+                <action>maxfu_trader_alchemy.enhance_af_dummy_dummy</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="126">
+                <precondition>maxfu_trader_alchemy.check_af_dummy_spring</precondition>
+                <text>trader_alchemy_126</text>
+                <action>maxfu_trader_alchemy.enhance_af_dummy_spring</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="127">
+                <precondition>maxfu_trader_alchemy.check_af_fuzz_kolobok</precondition>
+                <text>trader_alchemy_127</text>
+                <action>maxfu_trader_alchemy.enhance_af_fuzz_kolobok</action>
+                <next>2</next>
+            </phrase>
             <phrase id="128">
-                <precondition>maxfu_trader_alchemy.check_ammo_9_18_fmj</precondition>
+                <precondition>maxfu_trader_alchemy.check_ammo_9x18_fmj</precondition>
                 <text>trader_alchemy_128</text>
-                <action>maxfu_trader_alchemy.enhance_ammo_9_18_fmj</action>
+                <action>maxfu_trader_alchemy.enhance_ammo_9x18_fmj</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="129">
+                <precondition>maxfu_trader_alchemy.check_ammo_9x19_fmj</precondition>
+                <text>trader_alchemy_129</text>
+                <action>maxfu_trader_alchemy.enhance_ammo_9x19_fmj</action>
+                <next>2</next>
+            </phrase>
+            <phrase id="130">
+                <precondition>maxfu_trader_alchemy.check_ammo_9x39_pab9</precondition>
+                <text>trader_alchemy_130</text>
+                <action>maxfu_trader_alchemy.enhance_ammo_9x39_pab9</action>
                 <next>2</next>
             </phrase>
             <phrase id="2">
                 <text>trader_alchemy_2</text>
-                <next>3</next>
+                <next>21</next>
+                <next>22</next>
+            </phrase>
+            <phrase id="21">
+                <text>trader_alchemy_21</text>
+            </phrase>
+            <phrase id="22">
+                <text>trader_alchemy_22</text>
+                <next>1</next>
             </phrase>
             <phrase id="3">
                 <text>trader_alchemy_3</text>
-            </phrase>
-            <phrase id="4">
-                <text>trader_alchemy_4</text>
             </phrase>
         </phrase_list>
     </dialog>
