@@ -3,6 +3,7 @@ af_cost = 1000
 af_luck_percent = 5
 ammo_qty = 5
 ammo_cost = 1000
+recipe_ammo_9x18_heavy = {["ammo_9x18_fmj"]=5, ["af_medusa"]=1, ["cost"]=1000, ["result"]="ammo_9x18_heavy"}
 
 function count_items_table(first_speaker, second_speaker)
 	local item_list = {}
@@ -47,6 +48,8 @@ function remove_items(section_name, qty)
 				alife():release(alife():object(tonumber(item_id)), true)
 				news_manager.relocate_item(db.actor, "out", section_name)
 				item_count = item_count + 1
+			else
+				return
 			end
 		end
 	end
@@ -69,10 +72,72 @@ function check_item_qty(item_section, qty, cost)
 	return false
 end
 
+function check_recipe(recipe)
+	if recipe["result"] == nil then
+		return false
+	end
+
+	local item_list = {}
+	if db.storage[db.actor:id()].pstor ~= nil then
+		item_list = db.storage[db.actor:id()].pstor["maxfu_item_list"]
+	else
+		return false
+	end
+
+	local cost = 0
+	if recipe["cost"] ~= nil then
+		cost = recipe["cost"]
+	end
+
+	if db.actor:money() < cost then
+		return false
+	end
+--	_z.nvDebug(db.actor:money())
+
+	if item_list ~= nil and item_list ~= {} then
+		for item_section, item_qty in pairs(recipe) do
+			if item_section ~= "cost" and item_section ~= "result" then
+				if item_list[item_section] ~= nil then
+					if item_list[item_section] < item_qty then
+						return false
+					end
+					_z.nvDebug(item_section)
+					_z.nvDebug(item_qty)
+					_z.nvDebug(item_list[item_section])
+				else
+					return false
+				end
+			end
+		end
+	else
+		return false
+	end
+
+	return true
+end
+
 function enhance_af(trader, actor, section_name)
 	remove_items(section_name, af_qty)
     dialogs.relocate_item_section(trader, section_name.."_m1", "in")
 	dialogs.relocate_money(actor, af_cost, "out")
+end
+
+function enhance_recipe(trader, actor, recipe)
+	if recipe["result"] == nil then
+		return false
+	end
+
+	for item_section, item_qty in pairs(recipe) do
+		if item_section ~= "cost" and item_section ~= "result" then
+			remove_items(item_section, item_qty)
+		end
+	end
+
+	if recipe["cost"] ~= nil then
+		dialogs.relocate_money(actor, recipe["cost"], "out")
+	end
+
+    dialogs.relocate_item_section(trader, recipe["result"], "in")
 end
 
 
@@ -106,6 +171,9 @@ function check_ammo_9_18_fmj()
 	return check_item_qty(section_name, ammo_qty, ammo_cost)
 end
 
+function check_ammo_9_18_fmj_r()
+	return check_recipe(recipe_ammo_9x18_heavy)
+end
 
 function enhance_af_medusa(trader, actor)
 	local luck = math.random(0,99)
@@ -166,4 +234,8 @@ function enhance_ammo_9_18_fmj(trader, actor)
 	remove_items("ammo_9x18_fmj", ammo_qty)
     dialogs.relocate_item_section(trader, "ammo_9x18_heavy", "in")
 	dialogs.relocate_money(actor, ammo_cost, "out")
+end
+
+function enhance_ammo_9_18_fmj_r(trader, actor)
+	enhance_recipe(trader, actor, recipe_ammo_9x18_heavy)
 end
