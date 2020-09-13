@@ -203,3 +203,36 @@ zoom_rotate_y		= 0.035
 
 
 zoom_hide_crosshair	= true					;to hide crosshair in zoom 
+
+[ammo_7.62x54r]:ammo_base
+GroupControlSection	= spawn_group
+discovery_dependency = 
+$spawn			= "weapons\ammo\ammo_7.62x54r" ; option for Level Editor
+class			= AMMO
+cform                   = skeleton
+visual                  = weapons\ammo\ammo_762x54r_box.ogf
+description				= enc_weapons1_ammo_ammo-7.62x54r
+$prefetch 		= 64
+
+cost			= 100
+
+box_size		= 250
+
+inv_name		= ammo-7.62x54r_s
+inv_name_short	= ammo-7.62x54r_s
+inv_weight		= 5.75
+
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x		= 36
+inv_grid_y		= 4
+
+k_dist			= 1
+k_disp			= 1.5;3
+k_hit			= 1
+k_impulse		= 1
+k_pierce		= 1.25
+impair			= 1
+buck_shot		= 1
+tracer			= on
+wm_size         = 0.05
