@@ -21,6 +21,7 @@
             </phrase>
             <phrase id="1">
                 <text>trader_alchemy_1</text>
+                <next>100</next>
                 <next>101</next>
                 <next>102</next>
                 <next>103</next>
@@ -52,6 +53,11 @@
                 <next>129</next>
                 <next>130</next>
                 <next>3</next>
+            </phrase>
+            <phrase id="100">
+                <text>trader_alchemy_100</text>
+                <action>maxfu_trader_alchemy.test_weapons</action>
+                <next>2</next>
             </phrase>
             <phrase id="101">
                 <precondition>maxfu_trader_alchemy.check_af_medusa</precondition>

@@ -467,3 +467,29 @@ end
 function enhance_ammo_9x39_pab9(trader, actor)
 	enhance_recipe(trader, actor, recipe_ammo_9x39_heavy)
 end
+
+
+
+function test_weapons(trader, actor)
+	dialogs.relocate_item_section(trader, "wpn_pkm", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+	dialogs.relocate_item_section(trader, "ammo_7.62x54_7h1", "in")
+end
