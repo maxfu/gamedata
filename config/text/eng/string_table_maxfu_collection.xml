@@ -157,6 +157,18 @@
 		<text>9x39H</text>
 	</string>
 
+	<string id="enc_weapons1_wpn-pkm">
+		<text>A PKM machine gun is a general-purpose machine gun of 7.62mm diameter made in the former Soviet Union. This machine gun is developed by Mikhail Kalashnikov that the former Soviet Union force designed AK-47 as a successor of a SG-43 heavy machine gun and the DP28 light machine gun in 1960's. It is the machine gun which was able to misappropriate this now because the 7.62mm x 54R bullet which I produced at the time of World War II in design those days remained in comparison with the machine gun with the ammunition which there is no rim of the mainstream in in large quantities although movement becomes slightly complicated. \n Ammunition:\n 7.62mm x 54R Box</text>
+	</string>
+	<string id="wpn-pkm_name">
+		<text>PKM Machine gun</text>
+	</string>
+	<string id="enc_weapons1_ammo_ammo-7.62x54r">
+		<text>It is rim ammunition with so that "R" shows it by 7.62mm x 54R bullet for PKM machine guns (the bottom of the cartridge sticks out than the cartridge).</text>
+	</string>
+	<string id="ammo-7.62x54r_s">
+		<text>7.62mm x 54R</text>
+	</string>
 
 	<string id="enc_zone_artifact_m1">
 		<text>Enhanced Artifact with is side effects removed while maintained good effects.</text>
