@@ -469,6 +469,16 @@ function enhance_ammo_9x39_pab9(trader, actor)
 end
 
 
+recipe_ammo_556x45_heavy = {["ammo_9x39_ap"]=5, ["af_vyvert"]=1, ["cost"]=1000, ["result"]="ammo_5.56x45_heavy"}
+
+function check_ammo_556x45_heavy()
+	return check_recipe(recipe_ammo_556x45_heavy)
+end
+
+function enhance_ammo_556x45_heavy(trader, actor)
+	enhance_recipe(trader, actor, recipe_ammo_556x45_heavy)
+end
+
 
 function test_weapons(trader, actor)
 	dialogs.relocate_item_section(trader, "wpn_pkm", "in")
