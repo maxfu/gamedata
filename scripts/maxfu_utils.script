@@ -10,7 +10,7 @@ function maxfu_auto_save()
 		if load_variable("maxfu_autosave", nil) == nil then
 			save_variable("maxfu_autosave", current_time + maxfu_auto_save_interval * 1000 * time_factor)
 		elseif load_variable("maxfu_autosave", nil) <= current_time then
-			get_console():execute("save maxfu_backup_" .. level.name())
+			get_console():execute("save")
 			save_variable("maxfu_autosave", current_time + maxfu_auto_save_interval * 1000 * time_factor)
 		end
 	end
