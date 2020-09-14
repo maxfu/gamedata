@@ -481,7 +481,12 @@ end
 
 
 function test_weapons(trader, actor)
-	dialogs.relocate_item_section(trader, "wpn_pkm", "in")
-	dialogs.relocate_item_section(trader, "ammo_7.62x54r", "in")
-	dialogs.relocate_item_section(trader, "ammo_7.62x54r", "in")
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
 end

@@ -1,7 +1,7 @@
 [ammo_heavy_base]
-k_dist    = 2.5
-k_disp    = 0.5
-k_hit     = 2.5
+k_dist    = 0.7
+k_disp    = 1.5
+k_hit     = 1.5
 k_impulse = 2.5
 k_pierce  = 2.5
 impair    = 1
@@ -17,8 +17,6 @@ inv_name_short  = ammo-9x19-heavy_s;
 inv_grid_x      = 11
 inv_grid_y      = 27
 cost            = 3800
-box_size        = 50
-visual          = weapons\ammo\ammo_9x19_pbp.ogf
 
 [ammo_9x18_heavy]:ammo_9x18_pbp,ammo_heavy_base
 $spawn          = "weapons\ammo\ammo_9x18_heavy"
@@ -28,7 +26,15 @@ inv_name_short  = ammo-9x18-heavy_s;
 inv_grid_x      = 11
 inv_grid_y      = 28
 cost            = 3800
-box_size        = 50
+
+[ammo_11.43x23_heavy]:ammo_11.43x23_hydro,ammo_heavy_base
+$spawn          = "weapons\ammo\ammo_11.43x23_heavy"
+description     = enc_weapons1_ammo_ammo-11.43x23-heavy;
+inv_name        = ammo-11.43x23-heavy;
+inv_name_short  = ammo-11.43x23-heavy_s;
+inv_grid_x			= 27
+inv_grid_y			= 14
+cost            = 2500
 
 [ammo_9x39_heavy]:ammo_9x39_ap,ammo_heavy_base
 $spawn          = "weapons\ammo\ammo_9x39_heavy"
@@ -38,7 +44,15 @@ inv_name_short  = ammo-9x39-heavy_s;
 inv_grid_x			= 12
 inv_grid_y			= 23
 cost            = 2500
-box_size        = 30
+
+[ammo_5.45x39_heavy]:ammo_5.45x39_ap,ammo_heavy_base
+$spawn          = "weapons\ammo\ammo_5.45x39_heavy" ; option for Level Editor
+description     = enc_weapons1_ammo_ammo-5.45x39-heavy;
+inv_name        = ammo-5.45x39-heavy;
+inv_name_short  = ammo-5.45x39-heavy_s;
+inv_grid_x      = 38
+inv_grid_y      = 4
+cost            = 3800
 
 [ammo_5.56x45_heavy]:ammo_5.56x45_ap,ammo_heavy_base
 $spawn          = "weapons\ammo\ammo_5.56x45_heavy" ; option for Level Editor
@@ -48,9 +62,16 @@ inv_name_short  = ammo-5.56x45-heavy_s;
 inv_grid_x      = 14
 inv_grid_y      = 23
 cost            = 3800
-box_size        = 40
 
+[ammo_12x76_buck]:ammo_12x76_dart, ammo_heavy_base
+$spawn			= "weapons\ammo\ammo_12x76_buck" ; option for Level Editor
+description				= enc_weapons1_ammo_ammo-12x76-buck
+inv_name		= ammo-12x76-buck
+inv_name_short	= ammo-12x76-buck_s
+inv_grid_x			= 28
+inv_grid_y			= 4
 
+buck_shot		= 35
 
 [wpn_mp5_m3]:wpn_mp5
 $spawn          = "weapons\uniq\wpn_mp5_m3"
@@ -62,7 +83,7 @@ inv_grid_y      = 33
 ammo_current    = 40
 ammo_elapsed    = 40
 ammo_mag_size   = 40
-ammo_class      = ammo_9x19_fmj, ammo_9x19_pbp, ammo_9x18_fmj, ammo_9x18_pmm, ammo_9x19_heavy, ammo_9x18_heavy
+ammo_class      = ammo_9x19_fmj, ammo_9x19_pbp, ammo_9x18_fmj, ammo_9x18_pbp, ammo_9x18_pmm, ammo_9x19_heavy, ammo_9x18_heavy
 
 [wpn_bm16_m1]:wpn_bm16
 $spawn          = "weapons\uniq\wpn_bm16_m1"
