@@ -198,8 +198,8 @@
 			[spawn] \n
 			wpn_usp  \n
 			ammo_11.43x23_hydro = 1 \n
-			wpn_sig550 = 1 \n
-			ammo_5.56x45_ap = 1 \n
+			wpn_pkm = 1 \n
+			ammo_7.62x54r = 1 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"			
