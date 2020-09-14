@@ -227,7 +227,6 @@
                 <action>maxfu_trader_alchemy.enhance_af_fuzz_kolobok</action>
                 <next>5</next>
             </phrase>
-
             <phrase id="2">
                 <text>trader_alchemy_2</text>
                 <next>200</next>
@@ -277,6 +276,10 @@
                 <next>401</next>
                 <next>402</next>
                 <next>403</next>
+                <next>404</next>
+                <next>405</next>
+                <next>406</next>
+                <next>407</next>
                 <next>6</next>
             </phrase>
             <phrase id="400">
@@ -302,7 +305,30 @@
                 <action>maxfu_trader_alchemy.enhance_ammo_9x39_pab9</action>
                 <next>5</next>
             </phrase>
-
+            <phrase id="404">
+                <precondition>maxfu_trader_alchemy.check_ammo_556x45_heavy</precondition>
+                <text>trader_alchemy_404</text>
+                <action>maxfu_trader_alchemy.enhance_ammo_556x45_heavy</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="405">
+                <precondition>maxfu_trader_alchemy.check_ammo_1143x23_heavy</precondition>
+                <text>trader_alchemy_405</text>
+                <action>maxfu_trader_alchemy.enhance_ammo_1143x23_heavy</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="406">
+                <precondition>maxfu_trader_alchemy.check_ammo_545x39_heavy</precondition>
+                <text>trader_alchemy_406</text>
+                <action>maxfu_trader_alchemy.enhance_ammo_545x39_heavy</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="407">
+                <precondition>maxfu_trader_alchemy.check_ammo_12x76_buck</precondition>
+                <text>trader_alchemy_407</text>
+                <action>maxfu_trader_alchemy.enhance_ammo_12x76_buck</action>
+                <next>5</next>
+            </phrase>
             <phrase id="5">
                 <text>trader_alchemy_5</text>
                 <next>51</next>
@@ -339,8 +365,6 @@
                 <text>trader_alchemy_534</text>
                 <next>4</next>
             </phrase>
-
-
             <phrase id="6">
                 <text>trader_alchemy_6</text>
             </phrase>

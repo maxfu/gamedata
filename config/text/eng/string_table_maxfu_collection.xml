@@ -128,6 +128,18 @@
 	<string id="trader_alchemy_403">
 		<text>Enhance 9x39 Ammo.</text>
 	</string>
+	<string id="trader_alchemy_404">
+		<text>Enhance 5.56x45 Ammo.</text>
+	</string>
+	<string id="trader_alchemy_405">
+		<text>Enhance 11.43x23 Ammo.</text>
+	</string>
+	<string id="trader_alchemy_406">
+		<text>Enhance 5.45x39 Ammo.</text>
+	</string>
+	<string id="trader_alchemy_407">
+		<text>Enhance 12x70 Ammo.</text>
+	</string>
 	<string id="trader_alchemy_5">
 		<text>Here it is!</text>
 	</string>
