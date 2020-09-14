@@ -1,8 +1,15 @@
 maxfu_item_list = {}
 
 function create_items_table(trader, actor)
-	local item_object = nil
 	local item_section = nil
+
+	for item_section, item_qty in pairs(maxfu_item_list) do
+		maxfu_item_list[item_section] = 0
+	end
+
+	local item_object = nil
+
+	item_section = nil
 
 	for index = 0, db.actor:object_count() - 1 do
 		item_object = db.actor:object(index)
@@ -21,8 +28,8 @@ function create_items_table(trader, actor)
 end
 
 function destory_items_table(trader, actor)
-	if db.storage[db.actor:id()].pstor["maxfu_item_list"] then
-		db.storage[db.actor:id()].pstor["maxfu_item_list"] = nil
+	for item_section, item_qty in pairs(maxfu_item_list) do
+		maxfu_item_list[item_section] = 0
 	end
 end
 
@@ -480,7 +487,62 @@ function enhance_ammo_556x45_heavy(trader, actor)
 end
 
 
+recipe_outfit_killer_m2 = {["killer_outfit"]=1, ["af_vyvert"]=2, ["cost"]=2000, ["result"]="outfit_killer_m2"}
+
+function check_outfit_killer_m2()
+	return check_recipe(recipe_outfit_killer_m2)
+end
+
+function enhance_outfit_killer_m2(trader, actor)
+	enhance_recipe(trader, actor, recipe_outfit_killer_m2)
+end
+
+
+recipe_outfit_monolit_m1 = {["monolit_outfit"]=1, ["af_vyvert"]=2, ["cost"]=2000, ["result"]="outfit_monolit_m1"}
+
+function check_outfit_monolit_m1()
+	return check_recipe(recipe_outfit_monolit_m1)
+end
+
+function enhance_outfit_monolit_m1(trader, actor)
+	enhance_recipe(trader, actor, recipe_outfit_monolit_m1)
+end
+
+
+recipe_outfit_dolg_m2 = {["dolg_outfit"]=1, ["af_vyvert"]=2, ["cost"]=2000, ["result"]="outfit_dolg_m2"}
+
+function check_outfit_dolg_m2()
+	return check_recipe(recipe_outfit_dolg_m2)
+end
+
+function enhance_outfit_dolg_m2(trader, actor)
+	enhance_recipe(trader, actor, recipe_outfit_dolg_m2)
+end
+
+
+function test_ammos(trader, actor)
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+end
+
 function test_weapons(trader, actor)
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
+end
+
+function test_outfits(trader, actor)
 	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
 	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
 	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")

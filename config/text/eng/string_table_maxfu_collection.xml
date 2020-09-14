@@ -6,9 +6,18 @@
 		<text>Well you can say yes. I do have someone at the back who know this shit. But you need to have the recipe and ingredients. And of course money. These people need to eat and drink you know. The cost is 1000 each time. You can get what you want. If you are lucky you can even get better result.</text>
 	</string>
 	<string id="trader_alchemy_011">
-		<text>Sounds great! Let's do it!</text>
+		<text>Let's start with atrifacts!</text>
 	</string>
 	<string id="trader_alchemy_012">
+		<text>Let's start with outfits!</text>
+	</string>
+	<string id="trader_alchemy_013">
+		<text>Let's start with weapons!</text>
+	</string>
+	<string id="trader_alchemy_014">
+		<text>Let's start with ammos!</text>
+	</string>
+	<string id="trader_alchemy_015">
 		<text>Just changed my mind. Maybe later.</text>
 	</string>
 	<string id="trader_alchemy_1">
@@ -95,25 +104,54 @@
 	<string id="trader_alchemy_127">
 		<text>Enhance Kolobok Artifact.</text>
 	</string>
-	<string id="trader_alchemy_128">
-		<text>Enhance 9x18 Ammo.</text>
-	</string>
-	<string id="trader_alchemy_129">
-		<text>Enhance 9x19 Ammo.</text>
-	</string>
-	<string id="trader_alchemy_130">
-		<text>Enhance 9x39 Ammo.</text>
-	</string>
 	<string id="trader_alchemy_2">
-		<text>Here it is!</text>
+		<text>Sure. Got any good looking cloth?</text>
 	</string>
-	<string id="trader_alchemy_21">
-		<text>Ahh! What a masterpiece! Send him my regards.</text>
+	<string id="trader_alchemy_201">
+		<text>Enhance Killer Outfit.</text>
 	</string>
-	<string id="trader_alchemy_22">
-		<text>Indeed a masterpiece! May be we can do more.</text>
+	<string id="trader_alchemy_202">
+		<text>Enhance Monolit Outfit.</text>
 	</string>
 	<string id="trader_alchemy_3">
+		<text>No problem. Let's see what have you got.</text>
+	</string>
+	<string id="trader_alchemy_4">
+		<text>No problem. Let's see what have you got.</text>
+	</string>
+	<string id="trader_alchemy_401">
+		<text>Enhance 9x18 Ammo.</text>
+	</string>
+	<string id="trader_alchemy_402">
+		<text>Enhance 9x19 Ammo.</text>
+	</string>
+	<string id="trader_alchemy_403">
+		<text>Enhance 9x39 Ammo.</text>
+	</string>
+	<string id="trader_alchemy_5">
+		<text>Here it is!</text>
+	</string>
+	<string id="trader_alchemy_51">
+		<text>Ahh! What a masterpiece! Send him my regards.</text>
+	</string>
+	<string id="trader_alchemy_52">
+		<text>Indeed a masterpiece! May be we can do more.</text>
+	</string>
+
+	<string id="trader_alchemy_531">
+		<text>More atrifacts!</text>
+	</string>
+	<string id="trader_alchemy_532">
+		<text>More outfits!</text>
+	</string>
+	<string id="trader_alchemy_533">
+		<text>More weapons!</text>
+	</string>
+	<string id="trader_alchemy_534">
+		<text>More ammos!</text>
+	</string>
+
+	<string id="trader_alchemy_6">
 		<text>I seem to be broke. Maybe next time.</text>
 	</string>
 
