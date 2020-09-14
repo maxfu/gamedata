@@ -25,6 +25,8 @@
 		<actor_dialog>tm_trader_reward</actor_dialog>
 		<actor_dialog>escape_trader_done_blockpost_box</actor_dialog>
 		<actor_dialog>escape_trader_faction_change_dialog</actor_dialog>
+		<actor_dialog>escape_trader_repair</actor_dialog>
+		<actor_dialog>trader_alchemy</actor_dialog>
 	</specific_character>
 <!---------------------------------------esc_wolf----------------------------------------------------->
 	<specific_character id="esc_wolf" team_default = "1">
