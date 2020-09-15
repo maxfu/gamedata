@@ -219,6 +219,9 @@
 	<string id="wpn-pkm_name">
 		<text>PKM Machine gun</text>
 	</string>
+	<string id="wpn-pkm_name_s">
+		<text>PKM LMG</text>
+	</string>
 	<string id="enc_weapons1_ammo_ammo-7.62x54r">
 		<text>It is rim ammunition with so that "R" shows it by 7.62mm x 54R bullet for PKM machine guns (the bottom of the cartridge sticks out than the cartridge).</text>
 	</string>
