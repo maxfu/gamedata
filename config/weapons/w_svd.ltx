@@ -29,7 +29,7 @@ ammo_elapsed			= 0
 ammo_mag_size			= 10
 ammo_class				= ammo_7.62x54_7h1, ammo_7.62x54_7h14, ammo_7.62x54_ap 
 
-sprint_allowed			= false
+sprint_allowed			= true
 ;-----------------------------------------------------------------------------------
 ;базовая дисперсия
 fire_dispersion_base		= 0.03	;угол (?градусах) базово?дисперси?оруж? (оруж? зажатого ?тисках)
@@ -152,7 +152,7 @@ snd_reload		= weapons\svd_reload
 shell_point			= -0.140000,-0.030000,0.080000
 shell_dir		 		= 0.0, 1.0, 0.0
 
-fire_point			= 0.200000,-0.070000,0.090000
+fire_point			= 0.225,-0.0775,-0.04; 0.200000,-0.070000,0.090000
 fire_bone               = wpn_body
 orientation             = -1.15, 0.05, 0; 0, 0, 0
 position                = 0.002, -0.04, 0.14; 0, 0, 0
@@ -165,6 +165,7 @@ anim_reload		= reload
 anim_draw		= draw
 anim_holster	= holster
 anim_shoot		= shoot
+anim_idle_sprint	= idle_sprint
 
 ;смещен? HUD для режима приближения
 zoom_offset				= -0.065, 0.04, 0; -0.020000,-0.030000,0.030000
