@@ -150,7 +150,6 @@ function enhance_item_sample(trader, actor)
 end
 
 
-
 recipe_af_medusa	= {["af_medusa"]=5,		["cost"]=3000,	["result"]="af_medusa_m1",	["lucky"]="af_medusa_m2",	["luck"]=5}
 recipe_af_medusa_m1	= {["af_medusa_m1"]=3,	["cost"]=10000,	["result"]="af_medusa_m2"}
 
@@ -175,91 +174,195 @@ function enhance_af_medusa(trader, actor)
 end
 
 
-recipe_af_cristall_flower = {["af_cristall_flower"]=5, ["cost"]=3000, ["result"]="af_cristall_flower_m1", ["lucky"]="af_cristall_flower_m2", ["luck"]=5}
+recipe_af_cristall_flower		= {["af_cristall_flower"]=5,	["cost"]=3000,	["result"]="af_cristall_flower_m1",	["lucky"]="af_cristall_flower_m2",	["luck"]=5}
+recipe_af_cristall_flower_m1	= {["af_cristall_flower_m1"]=3,	["cost"]=10000,	["result"]="af_cristall_flower_m2"}
 
 function check_af_cristall_flower()
-	return check_recipe(recipe_af_cristall_flower)
+	if check_recipe(recipe_af_cristall_flower) then
+		return true
+	elseif check_recipe(recipe_af_cristall_flower_m1) then
+		return true
+	end
+	return false
 end
 
 function enhance_af_cristall_flower(trader, actor)
-	enhance_recipe(trader, actor, recipe_af_cristall_flower)
+	if check_recipe(recipe_af_cristall_flower) then
+		enhance_recipe(trader, actor, recipe_af_cristall_flower)
+		return true
+	elseif check_recipe(recipe_af_cristall_flower_m1) then
+		enhance_recipe(trader, actor, recipe_af_cristall_flower_m1)
+		return true
+	end
+	return false
 end
 
 
-recipe_af_night_star = {["af_night_star"]=5, ["cost"]=3000, ["result"]="af_night_star_m1", ["lucky"]="af_night_star_m2", ["luck"]=5}
+recipe_af_night_star	= {["af_night_star"]=5,		["cost"]=3000,	["result"]="af_night_star_m1",	["lucky"]="af_night_star_m2",	["luck"]=5}
+recipe_af_night_star_m2	= {["af_night_star_m1"]=3,	["cost"]=10000,	["result"]="af_night_star_m2"}
 
 function check_af_night_star()
-	return check_recipe(recipe_af_night_star)
+	if check_recipe(recipe_af_night_star) then
+		return true
+	elseif check_recipe(recipe_af_night_star_m2) then
+		return true
+	end
+	return false
 end
 
 function enhance_af_night_star(trader, actor)
-	enhance_recipe(trader, actor, recipe_af_night_star)
+	if check_recipe(recipe_af_night_star) then
+		enhance_recipe(trader, actor, recipe_af_night_star)
+		return true
+	elseif check_recipe(recipe_af_night_star_m2) then
+		enhance_recipe(trader, actor, recipe_af_night_star_m2)
+		return true
+	end
+	return false
 end
 
 
-recipe_af_vyvert = {["af_vyvert"]=5, ["cost"]=3000, ["result"]="af_vyvert_m1", ["lucky"]="af_vyvert_m2", ["luck"]=5}
+recipe_af_vyvert	= {["af_vyvert"]=5,		["cost"]=3000,	["result"]="af_vyvert_m1",	["lucky"]="af_vyvert_m2",	["luck"]=5}
+recipe_af_vyvert_m1	= {["af_vyvert_m1"]=3,	["cost"]=10000,	["result"]="af_vyvert_m2"}
 
 function check_af_vyvert()
-	return check_recipe(recipe_af_vyvert)
+	if check_recipe(recipe_af_vyvert) then
+		return true
+	elseif check_recipe(recipe_af_vyvert_m1) then
+		return true
+	end
+	return false
 end
 
 function enhance_af_vyvert(trader, actor)
-	enhance_recipe(trader, actor, recipe_af_vyvert)
+	if check_recipe(recipe_af_vyvert) then
+		enhance_recipe(trader, actor, recipe_af_vyvert)
+		return true
+	elseif check_recipe(recipe_af_vyvert_m1) then
+		enhance_recipe(trader, actor, recipe_af_vyvert_m1)
+		return true
+	end
+	return false
 end
 
 
-recipe_af_gravi = {["af_gravi"]=5, ["cost"]=3000, ["result"]="af_gravi_m1", ["lucky"]="af_gravi_m2", ["luck"]=5}
+recipe_af_gravi		= {["af_gravi"]=5,		["cost"]=3000,	["result"]="af_gravi_m1",	["lucky"]="af_gravi_m2",	["luck"]=5}
+recipe_af_gravi_m1	= {["af_gravi_m1"]=3,	["cost"]=10000,	["result"]="af_gravi_m2"}
 
 function check_af_gravi()
-	return check_recipe(recipe_af_gravi)
+	if check_recipe(recipe_af_gravi) then
+		return true
+	elseif check_recipe(recipe_af_gravi_m1) then
+		return true
+	end
+	return false
 end
 
 function enhance_af_gravi(trader, actor)
-	enhance_recipe(trader, actor, recipe_af_gravi)
+	if check_recipe(recipe_af_gravi) then
+		enhance_recipe(trader, actor, recipe_af_gravi)
+		return true
+	elseif check_recipe(recipe_af_gravi_m1) then
+		enhance_recipe(trader, actor, recipe_af_gravi_m1)
+		return true
+	end
+	return false
 end
 
 
-recipe_af_gold_fish = {["af_gold_fish"]=5, ["cost"]=3000, ["result"]="af_gold_fish_m1", ["lucky"]="af_gold_fish_m2", ["luck"]=5}
+recipe_af_gold_fish		= {["af_gold_fish"]=5,		["cost"]=3000,	["result"]="af_gold_fish_m1",	["lucky"]="af_gold_fish_m2",	["luck"]=5}
+recipe_af_gold_fish_m1	= {["af_gold_fish_m1"]=3,	["cost"]=10000,	["result"]="af_gold_fish_m2"}
 
 function check_af_gold_fish()
-	return check_recipe(recipe_af_gold_fish)
+	if check_recipe(recipe_af_gold_fish) then
+		return true
+	elseif check_recipe(recipe_af_gold_fish_m1) then
+		return true
+	end
+	return false
 end
 
 function enhance_af_gold_fish(trader, actor)
-	enhance_recipe(trader, actor, recipe_af_gold_fish)
+	if check_recipe(recipe_af_gold_fish) then
+		enhance_recipe(trader, actor, recipe_af_gold_fish)
+		return true
+	elseif check_recipe(recipe_af_gold_fish_m1) then
+		enhance_recipe(trader, actor, recipe_af_gold_fish_m1)
+		return true
+	end
+	return false
 end
 
 
-recipe_af_blood = {["af_blood"]=5, ["cost"]=3000, ["result"]="af_blood_m1", ["lucky"]="af_blood_m2", ["luck"]=5}
+recipe_af_blood		= {["af_blood"]=5,		["cost"]=3000,	["result"]="af_blood_m1",	["lucky"]="af_blood_m2",	["luck"]=5}
+recipe_af_blood_m1	= {["af_blood_m1"]=3,	["cost"]=10000,	["result"]="af_blood_m2"}
 
 function check_af_blood()
-	return check_recipe(recipe_af_blood)
+	if check_recipe(recipe_af_blood) then
+		return true
+	elseif check_recipe(recipe_af_blood_m1) then
+		return true
+	end
+	return false
 end
 
 function enhance_af_blood(trader, actor)
-	enhance_recipe(trader, actor, recipe_af_blood)
+	if check_recipe(recipe_af_blood) then
+		enhance_recipe(trader, actor, recipe_af_blood)
+		return true
+	elseif check_recipe(recipe_af_blood_m1) then
+		enhance_recipe(trader, actor, recipe_af_blood_m1)
+		return true
+	end
+	return false
 end
 
 
-recipe_af_mincer_meat = {["af_mincer_meat"]=5, ["cost"]=3000, ["result"]="af_mincer_meat_m1", ["lucky"]="af_mincer_meat_m2", ["luck"]=5}
+recipe_af_mincer_meat		= {["af_mincer_meat"]=5,	["cost"]=3000,	["result"]="af_mincer_meat_m1",	["lucky"]="af_mincer_meat_m2",	["luck"]=5}
+recipe_af_mincer_meat_m1	= {["af_mincer_meat_m1"]=3,	["cost"]=10000,	["result"]="af_mincer_meat_m2"}
 
 function check_af_mincer_meat()
-	return check_recipe(recipe_af_mincer_meat)
+	if check_recipe(recipe_af_mincer_meat) then
+		return true
+	elseif check_recipe(recipe_af_mincer_meat_m1) then
+		return true
+	end
+	return false
 end
 
 function enhance_af_mincer_meat(trader, actor)
-	enhance_recipe(trader, actor, recipe_af_mincer_meat)
+	if check_recipe(recipe_af_mincer_meat) then
+		enhance_recipe(trader, actor, recipe_af_mincer_meat)
+		return true
+	elseif check_recipe(recipe_af_mincer_meat_m1) then
+		enhance_recipe(trader, actor, recipe_af_mincer_meat_m1)
+		return true
+	end
+	return false
 end
 
 
-recipe_af_soul = {["af_soul"]=5, ["cost"]=3000, ["result"]="af_soul_m1", ["lucky"]="af_soul_m2", ["luck"]=5}
+recipe_af_soul		= {["af_soul"]=5,		["cost"]=3000,	["result"]="af_soul_m1", ["lucky"]="af_soul_m2", ["luck"]=5}
+recipe_af_soul_m1	= {["af_soul_m1"]=3,	["cost"]=10000,	["result"]="af_soul_m2"}
 
 function check_af_soul()
-	return check_recipe(recipe_af_soul)
+	if check_recipe(recipe_af_soul) then
+		return true
+	elseif check_recipe(recipe_af_soul_m1) then
+		return true
+	end
+	return false
 end
 
 function enhance_af_soul(trader, actor)
-	enhance_recipe(trader, actor, recipe_af_soul)
+	if check_recipe(recipe_af_soul) then
+		enhance_recipe(trader, actor, recipe_af_soul)
+		return true
+	elseif check_recipe(recipe_af_soul_m1) then
+		enhance_recipe(trader, actor, recipe_af_soul_m1)
+		return true
+	end
+	return false
 end
 
 
