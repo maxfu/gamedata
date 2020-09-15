@@ -4,6 +4,15 @@ inv_name			= novice_outfit_name_m2
 inv_name_short		= novice_outfit_name_m2
 description			= novice_outfit_description_m2
 
+health_restore_speed			= 0.0006
+satiety_restore_speed			= 0.001
+bleeding_restore_speed			= -0.006
+power_restore_speed				= 0.003
+
+bones_koeff_protection			= plasch_antigas_damage
+fire_wound_protection  			= 0.28
+
+
 additional_inventory_weight		= 25
 additional_inventory_weight2	= 30
 power_restore_speed = 0.004
@@ -114,6 +123,43 @@ fire_wound_protection  			= 0.40
 
 
 [sect_scientific_outfit_m1_immunities]
+burn_immunity				= 0.005			;коэффициенты иммунитета самого костюма
+strike_immunity				= 0.01
+shock_immunity				= 0.005
+wound_immunity				= 0.015
+radiation_immunity			= 0.00
+telepatic_immunity			= 0.00
+chemical_burn_immunity		= 0.005
+explosion_immunity			= 0.03
+fire_wound_immunity			= 0.01
+
+
+
+[outfit_dolg_scientific_m1]:dolg_scientific_outfit
+$spawn 			= "outfit\dolg_scientific_outfit"
+inv_name			= dolg_scientific_outfit_name
+inv_name_short		= dolg_scientific_outfit_name
+description			= dolg_scientific_outfit_description
+inv_grid_x			= 16
+inv_grid_y			= 33
+
+cost				= 50000
+
+immunities_sect			= sect_outfit_dolg_scientific_m1_immunities
+
+; MEDIUM RESISTANCE
+burn_protection 				= 0.9
+strike_protection 				= 0.5
+shock_protection 				= 0.9
+wound_protection				= 0.5
+radiation_protection 			= 0.9
+telepatic_protection 			= 0.0
+chemical_burn_protection 		= 0.9
+explosion_protection 			= 0.6
+fire_wound_protection  			= 0.40
+
+
+[sect_outfit_dolg_scientific_m1_immunities]
 burn_immunity				= 0.005			;коэффициенты иммунитета самого костюма
 strike_immunity				= 0.01
 shock_immunity				= 0.005
