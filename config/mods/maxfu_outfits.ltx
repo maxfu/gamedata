@@ -56,6 +56,20 @@ additional_inventory_weight2	= 60
 power_restore_speed = 0.008
 
 
+[outfit_ecolog_m1]:ecolog_outfit
+$spawn 			= "outfit\uniq\outfit_ecolog_m1"
+inv_name			= ecolog_outfit_name_m1
+inv_name_short		= ecolog_outfit_name_m1
+description			= ecolog_outfit_description_m1
+inv_grid_x			= 18
+inv_grid_y			= 33
+cost				= 30000
+
+additional_inventory_weight		= 50
+additional_inventory_weight2	= 60
+power_restore_speed = 0.008
+
+
 [outfit_monolit_m1]:monolit_outfit
 $spawn							= "outfit\uniq\outfit_monolit_m1"
 inv_name						= monolit_outfit_name_m2
@@ -79,10 +93,33 @@ description			= scientific_outfit_description_m2
 inv_grid_x			= 18
 inv_grid_y			= 27
 
-nightvision_sect	= effector_nightvision_old
-
-cost				= 34000
+cost				= 50000
 
 additional_inventory_weight		= 100
 additional_inventory_weight2	= 120
 power_restore_speed = 0.016
+
+immunities_sect			= sect_scientific_outfit_m1_immunities
+
+; MEDIUM RESISTANCE
+burn_protection 				= 0.9
+strike_protection 				= 0.5
+shock_protection 				= 0.9
+wound_protection				= 0.5
+radiation_protection 			= 0.9
+telepatic_protection 			= 0.0
+chemical_burn_protection 		= 0.9
+explosion_protection 			= 0.5
+fire_wound_protection  			= 0.40
+
+
+[sect_scientific_outfit_m1_immunities]
+burn_immunity				= 0.005			;коэффициенты иммунитета самого костюма
+strike_immunity				= 0.01
+shock_immunity				= 0.005
+wound_immunity				= 0.015
+radiation_immunity			= 0.00
+telepatic_immunity			= 0.00
+chemical_burn_immunity		= 0.005
+explosion_immunity			= 0.03
+fire_wound_immunity			= 0.01
