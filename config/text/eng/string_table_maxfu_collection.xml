@@ -168,7 +168,6 @@
 	<string id="trader_alchemy_534">
 		<text>More ammos!</text>
 	</string>
-
 	<string id="trader_alchemy_6">
 		<text>I seem to be broke. Maybe next time.</text>
 	</string>
@@ -193,6 +192,16 @@
 		<text>9x19H</text>
 	</string>
 
+	<string id="enc_weapons1_ammo_ammo-11.43x23-heavy">
+		<text>11.43x23mm Heavy Ammo for Pistol and SMG. Certain artifact added to gunpowder and bullet greating better power and. However, the accuracy is decreased because of the artifacts.</text>
+	</string>
+	<string id="ammo-11.43x23-heavy">
+		<text>11.43x23mm Heavy</text>
+	</string>
+	<string id="ammo-9x19-heavy_s">
+		<text>11.43x23H</text>
+	</string>
+
 	<string id="enc_weapons1_ammo_ammo-5.56x45-heavy">
 		<text>5.56x45mm Heavy Ammo for Rifles. Certain artifact added to gunpowder and bullet greating better power and. However, the accuracy is decreased because of the artifacts.</text>
 	</string>
@@ -211,6 +220,26 @@
 	</string>
 	<string id="ammo-9x39-heavy_s">
 		<text>9x39H</text>
+	</string>
+
+	<string id="enc_weapons1_ammo_ammo-12x76-buck">
+		<text>12x76mm Heavy Ammo for Shotguns. Certain artifact added to gunpowder and bullet greating better power and. However, the accuracy is decreased because of the artifacts.</text>
+	</string>
+	<string id="ammo-12x76-buck">
+		<text>12x76mm Buck</text>
+	</string>
+	<string id="ammo-12x76-buck">
+		<text>12x76B</text>
+	</string>
+
+	<string id="enc_weapons1_ammo_ammo-5.45x39-heavy">
+		<text>5.45x39mm Heavy Ammo for Rifles. Certain artifact added to gunpowder and bullet greating better power and. However, the accuracy is decreased because of the artifacts.</text>
+	</string>
+	<string id="ammo-5.45x39-heavy">
+		<text>5.45x39mm Heavy</text>
+	</string>
+	<string id="ammo-5.45x39-heavy_s">
+		<text>5.45x39H</text>
 	</string>
 
 	<string id="enc_weapons1_wpn-pkm">
