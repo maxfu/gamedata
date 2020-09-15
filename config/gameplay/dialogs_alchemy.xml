@@ -276,11 +276,32 @@
             <phrase id="3">
                 <text>trader_alchemy_3</text>
                 <next>300</next>
+                <next>301</next>
+                <next>302</next>
+                <next>303</next>
                 <next>6</next>
             </phrase>
             <phrase id="300">
                 <text>trader_alchemy_300</text>
                 <action>maxfu_trader_alchemy.test_weapons</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="301">
+                <precondition>maxfu_trader_alchemy.check_wpn_lr300_m1</precondition>
+                <text>trader_alchemy_301</text>
+                <action>maxfu_trader_alchemy.enhance_wpn_lr300_m1</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="302">
+                <precondition>maxfu_trader_alchemy.check_wpn_groza_m2</precondition>
+                <text>trader_alchemy_302</text>
+                <action>maxfu_trader_alchemy.enhance_wpn_groza_m2</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="303">
+                <precondition>maxfu_trader_alchemy.check_wpn_kriss_m1</precondition>
+                <text>trader_alchemy_303</text>
+                <action>maxfu_trader_alchemy.enhance_wpn_kriss_m1</action>
                 <next>5</next>
             </phrase>
 

@@ -716,6 +716,42 @@ function enhance_outfit_scientific_m1(trader, actor)
 end
 
 
+
+
+recipe_wpn_lr300_m1 = {["wpn_lr300"]=1, ["wpn_addon_scope_susat"]=1, ["wpn_addon_silencer"]=1, ["cost"]=10000, ["location"]="l05_bar", ["result"]="wpn_lr300_m1"}
+
+function check_wpn_lr300_m1()
+	return check_recipe(recipe_wpn_lr300_m1)
+end
+
+function enhance_wpn_lr300_m1(trader, actor)
+	enhance_recipe(trader, actor, recipe_wpn_lr300_m1)
+end
+
+
+recipe_wpn_groza_m2 = {["wpn_groza"]=1, ["cost"]=10000, ["location"]="l08_yantar", ["result"]="wpn_groza_m2"}
+
+function check_wpn_groza_m2()
+	return check_recipe(recipe_wpn_groza_m2)
+end
+
+function enhance_wpn_groza_m2(trader, actor)
+	enhance_recipe(trader, actor, recipe_wpn_groza_m2)
+end
+
+
+recipe_wpn_kriss_m1 = {["wpn_kriss_super_v"]=1, ["cost"]=10000, ["location"]="l08_yantar", ["result"]="wpn_kriss_m1"}
+
+function check_wpn_kriss_m1()
+	return check_recipe(recipe_wpn_kriss_m1)
+end
+
+function enhance_wpn_kriss_m1(trader, actor)
+	enhance_recipe(trader, actor, recipe_wpn_kriss_m1)
+end
+
+
+
 function test_ammos(trader, actor)
 	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
 	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
