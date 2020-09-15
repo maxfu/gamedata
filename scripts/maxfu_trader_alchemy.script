@@ -923,6 +923,17 @@ function enhance_outfit_scientific_m1(trader, actor)
 end
 
 
+recipe_outfit_dolg_scientific_m1 = {["dolg_scientific_outfit"]=1, ["protection_outfit"]=1, ["cost"]=20000, ["location"]="l05_bar", ["result"]="outfit_dolg_scientific_m1"}
+
+function check_outfit_dolg_scientific_m1()
+	return check_recipe(recipe_outfit_dolg_scientific_m1)
+end
+
+function enhance_outfit_dolg_scientific_m1(trader, actor)
+	enhance_recipe(trader, actor, recipe_outfit_dolg_scientific_m1)
+end
+
+
 
 
 recipe_wpn_lr300_m1 = {["wpn_lr300"]=1, ["wpn_addon_scope_susat"]=1, ["wpn_addon_silencer"]=1, ["cost"]=10000, ["location"]="l05_bar", ["result"]="wpn_lr300_m1"}
