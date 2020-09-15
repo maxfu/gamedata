@@ -30,6 +30,8 @@
 		<actor_dialog>yantar_ecolog_faction_change_dialog</actor_dialog>
 		<actor_dialog>tm_ecolog_dialog</actor_dialog>
 		<actor_dialog>tm_ecolog_reward</actor_dialog>
+		<actor_dialog>yantar_trader_repair</actor_dialog>
+		<actor_dialog>trader_alchemy</actor_dialog>
 
 	</specific_character>
 
@@ -52,7 +54,7 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_walther \n
+			wpn_kriss_m1 \n
 			ammo_9x19_fmj \n
 			kruglov_flash \n			
 		</supplies>
@@ -83,7 +85,7 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_walther \n
+			wpn_kriss_m1 \n
 			ammo_9x19_fmj \n
 			kruglov_flash \n			
 		</supplies>
@@ -112,7 +114,7 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_walther \n
+			wpn_kriss_m1 \n
 			ammo_9x19_fmj \n
 		</supplies>
 		
