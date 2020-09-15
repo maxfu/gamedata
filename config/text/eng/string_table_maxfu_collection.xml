@@ -119,6 +119,9 @@
 	<string id="trader_alchemy_3">
 		<text>No problem. Let's see what have you got.</text>
 	</string>
+	<string id="trader_alchemy_303">
+		<text>Enhance Kriss Vector.</text>
+	</string>
 	<string id="trader_alchemy_4">
 		<text>No problem. Let's see what have you got.</text>
 	</string>
@@ -262,6 +265,15 @@
 		<text>AWM.\n\n%c[255,238,155,23] Ammunition:\n 7.62x51mm NATO FMJ\n 7.62x51mm NATO AP</text>
 	</string>
 
+	<string id="kriss_super_v">
+		<text>Kriss Vector</text>
+	</string>
+	<string id="kriss_super_v_s">
+		<text>Vector</text>
+	</string>
+	<string id="enc_weapons1_kriss_super_v">
+		<text>The Kriss Vector series is a family of .45 ACP submachine guns developed by Transformational Defense Industries. They utilize asymmetrical recoil and in-line design to reduce recoil and muzzle climb. This operating system is called the Kriss Super V. "Kriss" refers to a Southeast Asian fighting dagger.\n\n%c[255,238,155,23] Ammunition:\n .45 ACP SS109\n .45 Hyd</text>
+	</string>
 
 	<string id="enc_zone_artifact_m1">
 		<text>Enhanced Artifact with is side effects removed while maintained good effects.</text>
