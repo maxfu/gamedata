@@ -255,6 +255,13 @@
 		<text>357 Magnum HP rounds. Box of 50.</text>
 	</string>
 
+	<string id="wpn-awm">
+		<text>AWM</text>
+	</string>
+	<string id="enc_weapons1_wpn-awm">
+		<text>AWM.\n\n%c[255,238,155,23] Ammunition:\n 7.62x51mm NATO FMJ\n 7.62x51mm NATO AP</text>
+	</string>
+
 
 	<string id="enc_zone_artifact_m1">
 		<text>Enhanced Artifact with is side effects removed while maintained good effects.</text>
