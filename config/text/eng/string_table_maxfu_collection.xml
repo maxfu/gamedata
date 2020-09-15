@@ -235,8 +235,12 @@
 	<string id="enc_weapons1_wpn-m1891_30_scope">
 		<text>Sergei IVANOVITCHI MOSHIN Russian Empire and Belgium's Emile NAGAN formula designed by the bolt action rifle. Russia's Imperial Army in 1891 adopted types adopted types of weapons used. Russo-Japanese War, World War I, Russian Revolution and the Russian empire from the Soviet era to come and go with the M1891. 1930 to modernize the production of M1891/30 been released, the Second World War as a major weapon of mass-produced and used.M1891/30 scope with the high accuracy of fire to take advantage of the great forces and used as a sniper rifle, from the Second World War until the 1960s SVD until a successor is used on the front lines continued.\n Ammunition:\n standard 7.62x54 mm 7N1,\n armor-piercing 7.62x54 mm BP,\n sniper 7.62x54 mm 7N14.</text>
 	</string>
+
 	<string id="wpn-gp100">
 		<text>Ruger 357 Magnum</text>
+	</string>
+	<string id="wpn-gp100_s">
+		<text>Ruger 357</text>
 	</string>
 	<string id="enc_weapons1_wpn-gp100">
 		<text>The Ruger 357 Magnum revolver with chrome-molybdenum plating reliable enough to withstand the intensity of the 357 Magnum HP round. \n Ammunition: \n 357 Magnum HP</text>
@@ -245,7 +249,7 @@
 		<text>357 Magnum Hollow Point ’e–т</text>
 	</string>
 	<string id="ammo-357_hp_mag_s">
-		<text>357 Mag Hollow Point</text>
+		<text>357HP Mag</text>
 	</string>
 	<string id="enc_weapons1_ammo_357_hp_mag">
 		<text>357 Magnum HP rounds. Box of 50.</text>
