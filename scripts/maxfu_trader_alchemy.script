@@ -901,7 +901,7 @@ function enhance_outfit_dolg_m2(trader, actor)
 end
 
 
-recipe_outfit_ecolog_m1 = {["ecolog_outfit"]=1, ["af_electra_sparkler"]=1, ["cost"]=6000, ["location"]="l08_yantar", ["result"]="outfit_ecolog_m1"}
+recipe_outfit_ecolog_m1 = {["ecolog_outfit"]=1, ["af_electra_sparkler"]=1, ["cost"]=15000, ["location"]="l08_yantar", ["result"]="outfit_ecolog_m1"}
 
 function check_outfit_ecolog_m1()
 	return check_recipe(recipe_outfit_ecolog_m1)
@@ -912,7 +912,7 @@ function enhance_outfit_ecolog_m1(trader, actor)
 end
 
 
-recipe_outfit_scientific_m1 = {["scientific_outfit"]=1, ["outfit_ecolog_m1"]=1, ["cost"]=10000, ["location"]="l08_yantar", ["result"]="outfit_scientific_m1"}
+recipe_outfit_scientific_m1 = {["scientific_outfit"]=1, ["ecolog_outfit"]=1, ["cost"]=20000, ["location"]="l08_yantar", ["result"]="outfit_scientific_m1"}
 
 function check_outfit_scientific_m1()
 	return check_recipe(recipe_outfit_scientific_m1)
