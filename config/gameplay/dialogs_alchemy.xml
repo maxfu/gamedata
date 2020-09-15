@@ -233,6 +233,8 @@
                 <next>201</next>
                 <next>202</next>
                 <next>203</next>
+                <next>204</next>
+                <next>205</next>
                 <next>6</next>
             </phrase>
             <phrase id="200">
@@ -256,6 +258,18 @@
                 <precondition>maxfu_trader_alchemy.check_outfit_dolg_m2</precondition>
                 <text>trader_alchemy_203</text>
                 <action>maxfu_trader_alchemy.enhance_outfit_dolg_m2</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="204">
+                <precondition>maxfu_trader_alchemy.check_outfit_ecolog_m1</precondition>
+                <text>trader_alchemy_204</text>
+                <action>maxfu_trader_alchemy.enhance_outfit_ecolog_m1</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="205">
+                <precondition>maxfu_trader_alchemy.check_outfit_scientific_m1</precondition>
+                <text>trader_alchemy_205</text>
+                <action>maxfu_trader_alchemy.enhance_outfit_scientific_m1</action>
                 <next>5</next>
             </phrase>
 
@@ -288,21 +302,21 @@
                 <next>5</next>
             </phrase>
             <phrase id="401">
-                <precondition>maxfu_trader_alchemy.check_ammo_9x18_fmj</precondition>
+                <precondition>maxfu_trader_alchemy.check_ammo_9x18_heavy</precondition>
                 <text>trader_alchemy_401</text>
-                <action>maxfu_trader_alchemy.enhance_ammo_9x18_fmj</action>
+                <action>maxfu_trader_alchemy.enhance_ammo_9x18_heavy</action>
                 <next>5</next>
             </phrase>
             <phrase id="402">
-                <precondition>maxfu_trader_alchemy.check_ammo_9x19_fmj</precondition>
+                <precondition>maxfu_trader_alchemy.check_ammo_9x19_heavy</precondition>
                 <text>trader_alchemy_402</text>
-                <action>maxfu_trader_alchemy.enhance_ammo_9x19_fmj</action>
+                <action>maxfu_trader_alchemy.enhance_ammo_9x19_heavy</action>
                 <next>5</next>
             </phrase>
             <phrase id="403">
-                <precondition>maxfu_trader_alchemy.check_ammo_9x39_pab9</precondition>
+                <precondition>maxfu_trader_alchemy.check_ammo_9x39_heavy</precondition>
                 <text>trader_alchemy_403</text>
-                <action>maxfu_trader_alchemy.enhance_ammo_9x39_pab9</action>
+                <action>maxfu_trader_alchemy.enhance_ammo_9x39_heavy</action>
                 <next>5</next>
             </phrase>
             <phrase id="404">
