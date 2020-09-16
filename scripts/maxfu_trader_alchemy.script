@@ -784,8 +784,8 @@ end
 recipe_ammo_9x19_fmj	= {["ammo_9x19_fmj"]=5,	["cost"]=3000,	["result"]="ammo_9x19_heavy"}
 recipe_ammo_9x19_pbp	= {["ammo_9x19_pbp"]=5,	["cost"]=3000,	["result"]="ammo_9x19_heavy"}
 
-recipe_ammo_9x19_fmj_bulk	= {["ammo_9x19_fmj"]=5,	["cost"]=5400,	["result"]="ammo_9x19_heavy",	["bulk"]=2}
-recipe_ammo_9x19_pbp_bulk	= {["ammo_9x19_pbp"]=5,	["cost"]=5400,	["result"]="ammo_9x19_heavy",	["bulk"]=2}
+recipe_ammo_9x19_fmj_bulk	= {["ammo_9x19_fmj"]=9,	["cost"]=5400,	["result"]="ammo_9x19_heavy",	["bulk"]=2}
+recipe_ammo_9x19_pbp_bulk	= {["ammo_9x19_pbp"]=9,	["cost"]=5400,	["result"]="ammo_9x19_heavy",	["bulk"]=2}
 
 recipe_ammo_9x19_bulk1	= {["ammo_9x19_fmj"]=4,	["ammo_9x19_pbp"]=5,	["cost"]=6600,	["result"]="ammo_9x19_heavy",	["bulk"]=2}
 recipe_ammo_9x19_bulk2	= {["ammo_9x19_fmj"]=3,	["ammo_9x19_pbp"]=6,	["cost"]=6600,	["result"]="ammo_9x19_heavy",	["bulk"]=2}
