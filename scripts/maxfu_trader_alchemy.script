@@ -1355,6 +1355,10 @@ function enhance_wpn_kriss_m1(trader, actor)
 end
 
 
+function test_artifacts(trader, actor)
+	dialogs.relocate_item_section(trader, "af_night_star", "in")
+end
+
 function test_ammos(trader, actor)
 end
 
