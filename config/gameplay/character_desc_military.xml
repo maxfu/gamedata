@@ -315,6 +315,7 @@
 
 		<start_dialog>mil_trader_dialog</start_dialog>
 		<actor_dialog>mil_trader_repair</actor_dialog>
+		<actor_dialog>trader_alchemy</actor_dialog>
 #include "gameplay\character_dialogs.xml"
 	</specific_character>
 <!---------------------------SVOBODA MASTER MAX----------------------->
