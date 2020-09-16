@@ -1167,69 +1167,147 @@ end
 
 
 
-recipe_outfit_killer_m2 = {["killer_outfit"]=1, ["af_electra_sparkler"]=2, ["cost"]=6000, ["result"]="outfit_killer_m2"}
+recipe_outfit_killer_m2		= {["killer_outfit"]=1,	["af_electra_sparkler"]=2,	["cost"]=6000,	["result"]="outfit_killer_m2"}
+recipe_outfit_killer_m2_naf	= {["killer_outfit"]=1,	["cost"]=16000,				["result"]="outfit_killer_m2"}
 
 function check_outfit_killer_m2()
-	return check_recipe(recipe_outfit_killer_m2)
+	if check_recipe(recipe_outfit_killer_m2) then
+		return true
+	elseif check_recipe(recipe_outfit_killer_m2_naf) then
+		return true
+	end
+	return false
 end
 
 function enhance_outfit_killer_m2(trader, actor)
-	enhance_recipe(trader, actor, recipe_outfit_killer_m2)
+	if check_recipe(recipe_outfit_killer_m2) then
+		enhance_recipe(trader, actor, recipe_outfit_killer_m2)
+		return true
+	elseif check_recipe(recipe_outfit_killer_m2_naf) then
+		enhance_recipe(trader, actor, recipe_outfit_killer_m2_naf)
+		return true
+	end
+	return false
 end
 
 
-recipe_outfit_monolit_m1 = {["monolit_outfit"]=1, ["af_electra_sparkler"]=2, ["cost"]=6000, ["result"]="outfit_monolit_m1"}
+recipe_outfit_monolit_m1		= {["monolit_outfit"]=1,	["af_electra_sparkler"]=2,	["cost"]=6000,	["result"]="outfit_monolit_m1"}
+recipe_outfit_monolit_m1_naf	= {["monolit_outfit"]=1,	["cost"]=16000,				["result"]="outfit_monolit_m1"}
 
 function check_outfit_monolit_m1()
-	return check_recipe(recipe_outfit_monolit_m1)
+	if check_recipe(recipe_outfit_monolit_m1) then
+		return true
+	elseif check_recipe(recipe_outfit_monolit_m1_naf) then
+		return true
+	end
+	return false
 end
 
 function enhance_outfit_monolit_m1(trader, actor)
-	enhance_recipe(trader, actor, recipe_outfit_monolit_m1)
+	if check_recipe(recipe_outfit_monolit_m1) then
+		enhance_recipe(trader, actor, recipe_outfit_monolit_m1)
+		return true
+	elseif check_recipe(recipe_outfit_monolit_m1_naf) then
+		enhance_recipe(trader, actor, recipe_outfit_monolit_m1_naf)
+		return true
+	end
+	return false
 end
 
 
-recipe_outfit_dolg_m2 = {["dolg_outfit"]=1, ["af_electra_sparkler"]=2, ["cost"]=6000, ["location"]="l05_bar", ["result"]="outfit_dolg_m2"}
+recipe_outfit_dolg_m2		= {["dolg_outfit"]=1,	["af_electra_sparkler"]=2,	["cost"]=6000,			["location"]="l05_bar",	["result"]="outfit_dolg_m2"}
+recipe_outfit_dolg_m2_naf	= {["dolg_outfit"]=1,	["cost"]=16000,				["location"]="l05_bar",	["result"]="outfit_dolg_m2"}
 
 function check_outfit_dolg_m2()
-	return check_recipe(recipe_outfit_dolg_m2)
+	if check_recipe(recipe_outfit_dolg_m2) then
+		return true
+	elseif check_recipe(recipe_outfit_dolg_m2_naf) then
+		return true
+	end
+	return false
 end
 
 function enhance_outfit_dolg_m2(trader, actor)
-	enhance_recipe(trader, actor, recipe_outfit_dolg_m2)
+	if check_recipe(recipe_outfit_dolg_m2) then
+		enhance_recipe(trader, actor, recipe_outfit_dolg_m2)
+		return true
+	elseif check_recipe(recipe_outfit_dolg_m2_naf) then
+		enhance_recipe(trader, actor, recipe_outfit_dolg_m2_naf)
+		return true
+	end
+	return false
 end
 
 
-recipe_outfit_ecolog_m1 = {["ecolog_outfit"]=1, ["af_electra_sparkler"]=1, ["cost"]=15000, ["location"]="l08_yantar", ["result"]="outfit_ecolog_m1"}
-
-function check_outfit_ecolog_m1()
-	return check_recipe(recipe_outfit_ecolog_m1)
-end
-
-function enhance_outfit_ecolog_m1(trader, actor)
-	enhance_recipe(trader, actor, recipe_outfit_ecolog_m1)
-end
-
-
-recipe_outfit_scientific_m1 = {["scientific_outfit"]=1, ["ecolog_outfit"]=1, ["cost"]=20000, ["location"]="l08_yantar", ["result"]="outfit_scientific_m1"}
-
-function check_outfit_scientific_m1()
-	return check_recipe(recipe_outfit_scientific_m1)
-end
-
-function enhance_outfit_scientific_m1(trader, actor)
-	enhance_recipe(trader, actor, recipe_outfit_scientific_m1)
-end
-
-
-recipe_outfit_dolg_scientific_m1 = {["dolg_scientific_outfit"]=1, ["protection_outfit"]=1, ["cost"]=20000, ["location"]="l05_bar", ["result"]="outfit_dolg_scientific_m1"}
+recipe_outfit_dolg_scientific_m1		= {["dolg_scientific_outfit"]=1,	["protection_outfit"]=1,	["cost"]=20000,			["location"]="l05_bar",	["result"]="outfit_dolg_scientific_m1"}
+recipe_outfit_dolg_scientific_m1_nof	= {["dolg_scientific_outfit"]=1,	["cost"]=40000,				["location"]="l05_bar",	["result"]="outfit_dolg_scientific_m1"}
 
 function check_outfit_dolg_scientific_m1()
-	return check_recipe(recipe_outfit_dolg_scientific_m1)
+	if check_recipe(recipe_outfit_dolg_scientific_m1) then
+		return true
+	elseif check_recipe(recipe_outfit_dolg_scientific_m1_nof) then
+		return true
+	end
+	return false
 end
 
 function enhance_outfit_dolg_scientific_m1(trader, actor)
-	enhance_recipe(trader, actor, recipe_outfit_dolg_scientific_m1)
+	if check_recipe(recipe_outfit_dolg_scientific_m1) then
+		enhance_recipe(trader, actor, recipe_outfit_dolg_scientific_m1)
+		return true
+	elseif check_recipe(recipe_outfit_dolg_scientific_m1_nof) then
+		enhance_recipe(trader, actor, recipe_outfit_dolg_scientific_m1_nof)
+		return true
+	end
+	return false
+end
+
+
+recipe_outfit_ecolog_m1		= {["ecolog_outfit"]=1,	["af_electra_sparkler"]=1,	["cost"]=15000,				["location"]="l08_yantar",	["result"]="outfit_ecolog_m1"}
+recipe_outfit_ecolog_m1_naf	= {["ecolog_outfit"]=1,	["cost"]=15000,				["location"]="l08_yantar",	["result"]="outfit_ecolog_m1"}
+
+function check_outfit_ecolog_m1()
+	if check_recipe(recipe_outfit_ecolog_m1) then
+		return true
+	elseif check_recipe(recipe_outfit_ecolog_m1_naf) then
+		return true
+	end
+	return false
+end
+
+function enhance_outfit_ecolog_m1(trader, actor)
+	if check_recipe(recipe_outfit_ecolog_m1) then
+		enhance_recipe(trader, actor, recipe_outfit_ecolog_m1)
+		return true
+	elseif check_recipe(recipe_outfit_ecolog_m1_naf) then
+		enhance_recipe(trader, actor, recipe_outfit_ecolog_m1_naf)
+		return true
+	end
+	return false
+end
+
+
+recipe_outfit_scientific_m1		= {["scientific_outfit"]=1,	["ecolog_outfit"]=1,	["cost"]=20000,				["location"]="l08_yantar",	["result"]="outfit_scientific_m1"}
+recipe_outfit_scientific_m1_nof	= {["scientific_outfit"]=1,	["cost"]=40000,			["location"]="l08_yantar",	["result"]="outfit_scientific_m1"}
+
+function check_outfit_scientific_m1()
+	if check_recipe(recipe_outfit_scientific_m1) then
+		return true
+	elseif check_recipe(recipe_outfit_scientific_m1_nof) then
+		return true
+	end
+	return false
+end
+
+function enhance_outfit_scientific_m1(trader, actor)
+	if check_recipe(recipe_outfit_scientific_m1) then
+		enhance_recipe(trader, actor, recipe_outfit_scientific_m1)
+		return true
+	elseif check_recipe(recipe_outfit_scientific_m1_nof) then
+		enhance_recipe(trader, actor, recipe_outfit_scientific_m1_nof)
+		return true
+	end
+	return false
 end
 
 
