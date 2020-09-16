@@ -72,7 +72,7 @@ function check_recipe(recipe)
 
 	if maxfu_item_list ~= nil and maxfu_item_list ~= {} then
 		for item_section, item_qty in pairs(recipe) do
-			if item_section ~= "cost" and item_section ~= "result" and item_section ~= "lucky" and item_section ~= "luck" and item_section ~= "location" then
+			if item_section ~= "cost" and item_section ~= "result" and item_section ~= "lucky" and item_section ~= "luck" and item_section ~= "location" and item_section ~= "bulk" then
 				if maxfu_item_list[item_section] ~= nil then
 					if maxfu_item_list[item_section] < item_qty then
 						return false
@@ -105,7 +105,7 @@ function enhance_recipe(trader, actor, recipe)
 	end
 
 	for item_section, item_qty in pairs(recipe) do
-		if item_section ~= "cost" and item_section ~= "result" and item_section ~= "lucky" and item_section ~= "luck" and item_section ~= "location" then
+		if item_section ~= "cost" and item_section ~= "result" and item_section ~= "lucky" and item_section ~= "luck" and item_section ~= "location" and item_section ~= "bulk" then
 			maxfu_item_list[item_section] = maxfu_item_list[item_section] - item_qty
 			remove_items(item_section, item_qty)
 		end
@@ -115,16 +115,22 @@ function enhance_recipe(trader, actor, recipe)
 		dialogs.relocate_money(actor, recipe["cost"], "out")
 	end
 
-	if recipe["lucky"] ~= nil and recipe["luck"] ~= nil then
-		local luck = math.random(0,99)
-		if luck >= recipe["luck"] then
-			dialogs.relocate_item_section(trader, recipe["result"], "in")
+	local bulk_number = 1
+	if recipe["bulk"] ~= nil then
+		bulk_number = recipe["bulk"]
+	end
+	local luck = math.random(0,99)
+	for index = 1, bulk_number do
+		if recipe["lucky"] ~= nil and recipe["luck"] ~= nil then
+			if luck >= recipe["luck"] then
+				dialogs.relocate_item_section(trader, recipe["result"], "in")
+			else
+				_z.nvDebug("Lucky you")
+				dialogs.relocate_item_section(trader, recipe["lucky"], "in")
+			end
 		else
-			_z.nvDebug("Lucky you")
-			dialogs.relocate_item_section(trader, recipe["lucky"], "in")
+			dialogs.relocate_item_section(trader, recipe["result"], "in")
 		end
-	else
-		dialogs.relocate_item_section(trader, recipe["result"], "in")
 	end
 end
 
@@ -685,19 +691,62 @@ recipe_ammo_9x18_fmj	= {["ammo_9x18_fmj"]=5,	["cost"]=3000,	["result"]="ammo_9x1
 recipe_ammo_9x18_pbp	= {["ammo_9x18_pbp"]=5,	["cost"]=3000,	["result"]="ammo_9x18_heavy"}
 recipe_ammo_9x18_pmm	= {["ammo_9x18_pmm"]=5,	["cost"]=3000,	["result"]="ammo_9x18_heavy"}
 
+recipe_ammo_9x18_fmj_bulk	= {["ammo_9x18_fmj"]=9,	["cost"]=5400,	["result"]="ammo_9x18_heavy",	["bulk"]=2}
+recipe_ammo_9x18_pbp_bulk	= {["ammo_9x18_pbp"]=9,	["cost"]=5400,	["result"]="ammo_9x18_heavy",	["bulk"]=2}
+recipe_ammo_9x18_pmm_bulk	= {["ammo_9x18_pmm"]=9,	["cost"]=5400,	["result"]="ammo_9x18_heavy",	["bulk"]=2}
+
+recipe_ammo_9x18_bulk1	= {["ammo_9x18_fmj"]=3,	["ammo_9x18_pbp"]=3,	["ammo_9x18_pmm"]=3,	["cost"]=6600,	["result"]="ammo_9x18_heavy",	["bulk"]=2}
+
+recipe_ammo_9x18_bulk2	= {["ammo_9x18_fmj"]=3,	["ammo_9x18_pbp"]=6,	["cost"]=6600,	["result"]="ammo_9x18_heavy",	["bulk"]=2}
+recipe_ammo_9x18_bulk3	= {["ammo_9x18_fmj"]=3,	["ammo_9x18_pmm"]=6,	["cost"]=6600,	["result"]="ammo_9x18_heavy",	["bulk"]=2}
+recipe_ammo_9x18_bulk4	= {["ammo_9x18_pbp"]=3,	["ammo_9x18_pmm"]=6,	["cost"]=6600,	["result"]="ammo_9x18_heavy",	["bulk"]=2}
+
+recipe_ammo_9x18_bulk5	= {["ammo_9x18_fmj"]=4,	["ammo_9x18_pbp"]=5,	["cost"]=6600,	["result"]="ammo_9x18_heavy",	["bulk"]=2}
+recipe_ammo_9x18_bulk6	= {["ammo_9x18_fmj"]=4,	["ammo_9x18_pmm"]=5,	["cost"]=6600,	["result"]="ammo_9x18_heavy",	["bulk"]=2}
+recipe_ammo_9x18_bulk7	= {["ammo_9x18_pbp"]=4,	["ammo_9x18_pmm"]=5,	["cost"]=6600,	["result"]="ammo_9x18_heavy",	["bulk"]=2}
+
 function check_ammo_9x18_heavy()
-	if check_recipe(recipe_ammo_9x18_fmj) then
+	if check_recipe(recipe_ammo_9x18_fmj_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_9x18_pbp_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_9x18_pmm_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_9x18_fmj) then
 		return true
 	elseif check_recipe(recipe_ammo_9x18_pbp) then
 		return true
 	elseif check_recipe(recipe_ammo_9x18_pmm) then
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk1) then
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk2) then
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk3) then
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk4) then
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk5) then
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk6) then
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk7) then
 		return true
 	end
 	return false
 end
 
 function enhance_ammo_9x18_heavy(trader, actor)
-	if check_recipe(recipe_ammo_9x18_fmj) then
+	if check_recipe(recipe_ammo_9x18_fmj_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_9x18_fmj_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_9x18_pbp_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_9x18_pbp_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_9x18_pmm_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_9x18_pmm_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_9x18_fmj) then
 		enhance_recipe(trader, actor, recipe_ammo_9x18_fmj)
 		return true
 	elseif check_recipe(recipe_ammo_9x18_pbp) then
@@ -705,6 +754,27 @@ function enhance_ammo_9x18_heavy(trader, actor)
 		return true
 	elseif check_recipe(recipe_ammo_9x18_pmm) then
 		enhance_recipe(trader, actor, recipe_ammo_9x18_pmm)
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk1) then
+		enhance_recipe(trader, actor, recipe_ammo_9x18_bulk1)
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk2) then
+		enhance_recipe(trader, actor, recipe_ammo_9x18_bulk2)
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk3) then
+		enhance_recipe(trader, actor, recipe_ammo_9x18_bulk3)
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk4) then
+		enhance_recipe(trader, actor, recipe_ammo_9x18_bulk4)
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk5) then
+		enhance_recipe(trader, actor, recipe_ammo_9x18_bulk5)
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk6) then
+		enhance_recipe(trader, actor, recipe_ammo_9x18_bulk6)
+		return true
+	elseif check_recipe(recipe_ammo_9x18_bulk7) then
+		enhance_recipe(trader, actor, recipe_ammo_9x18_bulk7)
 		return true
 	end
 	return false
@@ -714,21 +784,47 @@ end
 recipe_ammo_9x19_fmj	= {["ammo_9x19_fmj"]=5,	["cost"]=3000,	["result"]="ammo_9x19_heavy"}
 recipe_ammo_9x19_pbp	= {["ammo_9x19_pbp"]=5,	["cost"]=3000,	["result"]="ammo_9x19_heavy"}
 
+recipe_ammo_9x19_fmj_bulk	= {["ammo_9x19_fmj"]=5,	["cost"]=5400,	["result"]="ammo_9x19_heavy",	["bulk"]=2}
+recipe_ammo_9x19_pbp_bulk	= {["ammo_9x19_pbp"]=5,	["cost"]=5400,	["result"]="ammo_9x19_heavy",	["bulk"]=2}
+
+recipe_ammo_9x19_bulk1	= {["ammo_9x19_fmj"]=4,	["ammo_9x19_pbp"]=5,	["cost"]=6600,	["result"]="ammo_9x19_heavy",	["bulk"]=2}
+recipe_ammo_9x19_bulk2	= {["ammo_9x19_fmj"]=3,	["ammo_9x19_pbp"]=6,	["cost"]=6600,	["result"]="ammo_9x19_heavy",	["bulk"]=2}
+
 function check_ammo_9x19_heavy()
-	if check_recipe(recipe_ammo_9x19_fmj) then
+	if check_recipe(recipe_ammo_9x19_fmj_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_9x19_pbp_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_9x19_fmj) then
 		return true
 	elseif check_recipe(recipe_ammo_9x19_pbp) then
+		return true
+	elseif check_recipe(recipe_ammo_9x19_bulk1) then
+		return true
+	elseif check_recipe(recipe_ammo_9x19_bulk2) then
 		return true
 	end
 	return false
 end
 
 function enhance_ammo_9x19_heavy(trader, actor)
-	if check_recipe(recipe_ammo_9x19_fmj) then
+	if check_recipe(recipe_ammo_9x19_fmj_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_9x19_fmj_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_9x19_pbp_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_9x19_pbp_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_9x19_fmj) then
 		enhance_recipe(trader, actor, recipe_ammo_9x19_fmj)
 		return true
 	elseif check_recipe(recipe_ammo_9x19_pbp) then
 		enhance_recipe(trader, actor, recipe_ammo_9x19_pbp)
+		return true
+	elseif check_recipe(recipe_ammo_9x19_bulk1) then
+		enhance_recipe(trader, actor, recipe_ammo_9x19_bulk1)
+		return true
+	elseif check_recipe(recipe_ammo_9x19_bulk2) then
+		enhance_recipe(trader, actor, recipe_ammo_9x19_bulk2)
 		return true
 	end
 	return false
@@ -738,20 +834,62 @@ end
 recipe_ammo_9x39_sp5	= {["ammo_9x39_sp5"]=5,		["cost"]=3000,	["result"]="ammo_9x39_heavy"}
 recipe_ammo_9x39_ap		= {["ammo_9x39_ap"]=5,		["cost"]=3000,	["result"]="ammo_9x39_heavy"}
 recipe_ammo_9x39_pab9	= {["ammo_9x39_pab9"]=5,	["cost"]=3000,	["result"]="ammo_9x39_heavy"}
+recipe_ammo_9x39_sp5_bulk	= {["ammo_9x39_sp5"]=9,		["cost"]=5400,	["result"]="ammo_9x39_heavy",	["bulk"]=2}
+recipe_ammo_9x39_ap_bulk	= {["ammo_9x39_ap"]=9,		["cost"]=5400,	["result"]="ammo_9x39_heavy",	["bulk"]=2}
+recipe_ammo_9x39_pab9_bulk	= {["ammo_9x39_pab9"]=9,	["cost"]=5400,	["result"]="ammo_9x39_heavy",	["bulk"]=2}
+
+recipe_ammo_9x39_bulk	= {["ammo_9x39_sp5"]=3,		["ammo_9x39_ap"]=3,		["ammo_9x39_pab9"]=3,	["cost"]=6600,	["result"]="ammo_9x39_heavy",	["bulk"]=2}
+
+recipe_ammo_9x39_bulk1	= {["ammo_9x39_sp5"]=4,		["ammo_9x39_ap"]=5,		["cost"]=6600,	["result"]="ammo_9x39_heavy",	["bulk"]=2}
+recipe_ammo_9x39_bulk2	= {["ammo_9x39_sp5"]=4,		["ammo_9x39_pab9"]=5,	["cost"]=6600,	["result"]="ammo_9x39_heavy",	["bulk"]=2}
+recipe_ammo_9x39_bulk3	= {["ammo_9x39_ap"]=4,		["ammo_9x39_pab9"]=5,	["cost"]=6600,	["result"]="ammo_9x39_heavy",	["bulk"]=2}
+
+recipe_ammo_9x39_bulk4	= {["ammo_9x39_sp5"]=3,		["ammo_9x39_ap"]=6,		["cost"]=6600,	["result"]="ammo_9x39_heavy",	["bulk"]=2}
+recipe_ammo_9x39_bulk5	= {["ammo_9x39_sp5"]=3,		["ammo_9x39_pab9"]=6,	["cost"]=6600,	["result"]="ammo_9x39_heavy",	["bulk"]=2}
+recipe_ammo_9x39_bulk6	= {["ammo_9x39_ap"]=3,		["ammo_9x39_pab9"]=6,	["cost"]=6600,	["result"]="ammo_9x39_heavy",	["bulk"]=2}
 
 function check_ammo_9x39_heavy()
-	if check_recipe(recipe_ammo_9x39_sp5) then
+	if check_recipe(recipe_ammo_9x39_sp5_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_9x39_ap_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_9x39_pab9_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_9x39_sp5) then
 		return true
 	elseif check_recipe(recipe_ammo_9x39_ap) then
 		return true
 	elseif check_recipe(recipe_ammo_9x39_pab9) then
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk1) then
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk2) then
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk3) then
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk4) then
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk5) then
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk6) then
 		return true
 	end
 	return false
 end
 
 function enhance_ammo_9x39_heavy(trader, actor)
-	if check_recipe(recipe_ammo_9x39_sp5) then
+	if check_recipe(recipe_ammo_9x39_sp5_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_9x39_sp5_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_9x39_ap_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_9x39_ap_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_9x39_pab9_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_9x39_pab9_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_9x39_sp5) then
 		enhance_recipe(trader, actor, recipe_ammo_9x39_sp5)
 		return true
 	elseif check_recipe(recipe_ammo_9x39_ap) then
@@ -759,6 +897,27 @@ function enhance_ammo_9x39_heavy(trader, actor)
 		return true
 	elseif check_recipe(recipe_ammo_9x39_pab9) then
 		enhance_recipe(trader, actor, recipe_ammo_9x39_pab9)
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_9x39_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk1) then
+		enhance_recipe(trader, actor, recipe_ammo_9x39_bulk1)
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk2) then
+		enhance_recipe(trader, actor, recipe_ammo_9x39_bulk2)
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk3) then
+		enhance_recipe(trader, actor, recipe_ammo_9x39_bulk3)
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk4) then
+		enhance_recipe(trader, actor, recipe_ammo_9x39_bulk4)
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk5) then
+		enhance_recipe(trader, actor, recipe_ammo_9x39_bulk5)
+		return true
+	elseif check_recipe(recipe_ammo_9x39_bulk6) then
+		enhance_recipe(trader, actor, recipe_ammo_9x39_bulk6)
 		return true
 	end
 	return false
@@ -768,69 +927,144 @@ end
 recipe_ammo_556x45_ss190	= {["ammo_5.56x45_ss190"]=5,	["cost"]=3000,	["result"]="ammo_5.56x45_heavy"}
 recipe_ammo_556x45_ap		= {["ammo_5.56x45_ap"]=5,		["cost"]=3000,	["result"]="ammo_5.56x45_heavy"}
 
+recipe_ammo_556x45_ss190_bulk	= {["ammo_5.56x45_ss190"]=9,	["cost"]=5400,	["result"]="ammo_5.56x45_heavy",	["bulk"]=2}
+recipe_ammo_556x45_ap_bulk		= {["ammo_5.56x45_ap"]=9,		["cost"]=5400,	["result"]="ammo_5.56x45_heavy",	["bulk"]=2}
+
+recipe_ammo_556x45_bulk1	= {["ammo_5.56x45_ss190"]=4,	["ammo_5.56x45_ap"]=5,	["cost"]=6600,	["result"]="ammo_5.56x45_heavy",	["bulk"]=2}
+recipe_ammo_556x45_bulk2	= {["ammo_5.56x45_ss190"]=3,	["ammo_5.56x45_ap"]=6,	["cost"]=6600,	["result"]="ammo_5.56x45_heavy",	["bulk"]=2}
+
 function check_ammo_556x45_heavy()
-	if check_recipe(recipe_ammo_556x45_ss190) then
+	if check_recipe(recipe_ammo_556x45_ss190_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_556x45_ap_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_556x45_ss190) then
 		return true
 	elseif check_recipe(recipe_ammo_556x45_ap) then
+		return true
+	elseif check_recipe(recipe_ammo_556x45_bulk1) then
+		return true
+	elseif check_recipe(recipe_ammo_556x45_bulk2) then
 		return true
 	end
 	return false
 end
 
 function enhance_ammo_556x45_heavy(trader, actor)
-	if check_recipe(recipe_ammo_556x45_ss190) then
+	if check_recipe(recipe_ammo_556x45_ss190_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_556x45_ss190_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_556x45_ap) then
+		enhance_recipe(trader, actor, recipe_ammo_556x45_ap)
+		return true
+	elseif check_recipe(recipe_ammo_556x45_ss190) then
 		enhance_recipe(trader, actor, recipe_ammo_556x45_ss190)
 		return true
 	elseif check_recipe(recipe_ammo_556x45_ap) then
 		enhance_recipe(trader, actor, recipe_ammo_556x45_ap)
+		return true
+	elseif check_recipe(recipe_ammo_556x45_bulk1) then
+		enhance_recipe(trader, actor, recipe_ammo_556x45_bulk1)
+		return true
+	elseif check_recipe(recipe_ammo_556x45_bulk2) then
+		enhance_recipe(trader, actor, recipe_ammo_556x45_bulk2)
 		return true
 	end
 	return false
 end
 
 
-recipe_ammo_1143x23_fmj		= {["ammo_11.43x23_fmj"]=5,		["cost"]=3000,	["result"]="ammo_11.43x23_heavy"}
-recipe_ammo_1143x23_hydro	= {["ammo_11.43x23_hydro"]=5,	["cost"]=3000,	["result"]="ammo_11.43x23_heavy"}
+recipe_ammo_1143x23_fmj			= {["ammo_11.43x23_fmj"]=5,		["cost"]=3000,	["result"]="ammo_11.43x23_heavy"}
+recipe_ammo_1143x23_hydro		= {["ammo_11.43x23_hydro"]=5,	["cost"]=3000,	["result"]="ammo_11.43x23_heavy"}
+recipe_ammo_1143x23_fmj_bulk	= {["ammo_11.43x23_fmj"]=9,		["cost"]=5400,	["result"]="ammo_11.43x23_heavy",	["bulk"]=2}
+recipe_ammo_1143x23_hydro_bulk	= {["ammo_11.43x23_hydro"]=9,	["cost"]=5400,	["result"]="ammo_11.43x23_heavy",	["bulk"]=2}
+recipe_ammo_1143x23_bulk1		= {["ammo_11.43x23_fmj"]=4,		["ammo_11.43x23_hydro"]=5,	["cost"]=6600,	["result"]="ammo_11.43x23_heavy",	["bulk"]=2}
+recipe_ammo_1143x23_bulk2		= {["ammo_11.43x23_fmj"]=3,		["ammo_11.43x23_hydro"]=6,	["cost"]=6600,	["result"]="ammo_11.43x23_heavy",	["bulk"]=2}
 
 function check_ammo_1143x23_heavy()
-	if check_recipe(recipe_ammo_1143x23_fmj) then
+	if check_recipe(recipe_ammo_1143x23_fmj_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_1143x23_hydro_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_1143x23_fmj) then
 		return true
 	elseif check_recipe(recipe_ammo_1143x23_hydro) then
+		return true
+	elseif check_recipe(recipe_ammo_1143x23_bulk1) then
+		return true
+	elseif check_recipe(recipe_ammo_1143x23_bulk2) then
 		return true
 	end
 	return false
 end
 
 function enhance_ammo_1143x23_heavy(trader, actor)
-	if check_recipe(recipe_ammo_1143x23_fmj) then
+	if check_recipe(recipe_ammo_1143x23_fmj_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_1143x23_fmj_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_1143x23_hydro_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_1143x23_hydro_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_1143x23_fmj) then
 		enhance_recipe(trader, actor, recipe_ammo_1143x23_fmj)
 		return true
 	elseif check_recipe(recipe_ammo_1143x23_hydro) then
 		enhance_recipe(trader, actor, recipe_ammo_1143x23_hydro)
+		return true
+	elseif check_recipe(recipe_ammo_1143x23_bulk1) then
+		enhance_recipe(trader, actor, recipe_ammo_1143x23_bulk1)
+		return true
+	elseif check_recipe(recipe_ammo_1143x23_bulk2) then
+		enhance_recipe(trader, actor, recipe_ammo_1143x23_bulk2)
 		return true
 	end
 	return false
 end
 
 
-recipe_ammo_545x39_fmj	= {["ammo_5.45x39_fmj"]=5,	["cost"]=3000,	["result"]="ammo_5.45x39_heavy"}
-recipe_ammo_545x39_ap	= {["ammo_5.45x39_ap"]=5,	["cost"]=3000,	["result"]="ammo_5.45x39_heavy"}
+recipe_ammo_545x39_fmj		= {["ammo_5.45x39_fmj"]=5,	["cost"]=3000,	["result"]="ammo_5.45x39_heavy"}
+recipe_ammo_545x39_ap		= {["ammo_5.45x39_ap"]=5,	["cost"]=3000,	["result"]="ammo_5.45x39_heavy"}
+recipe_ammo_545x39_fmj_bulk	= {["ammo_5.45x39_fmj"]=9,	["cost"]=5400,	["result"]="ammo_5.45x39_heavy",	["bulk"]=2}
+recipe_ammo_545x39_ap_bulk	= {["ammo_5.45x39_ap"]=9,	["cost"]=5400,	["result"]="ammo_5.45x39_heavy",	["bulk"]=2}
+recipe_ammo_545x39_bulk1	= {["ammo_5.45x39_fmj"]=4,	["ammo_5.45x39_ap"]=5,	["cost"]=6600,	["result"]="ammo_5.45x39_heavy",	["bulk"]=2}
+recipe_ammo_545x39_bulk2	= {["ammo_5.45x39_fmj"]=3,	["ammo_5.45x39_ap"]=6,	["cost"]=6600,	["result"]="ammo_5.45x39_heavy",	["bulk"]=2}
+
 
 function check_ammo_545x39_heavy()
-	if check_recipe(recipe_ammo_545x39_fmj) then
+	if check_recipe(recipe_ammo_545x39_fmj_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_545x39_ap_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_545x39_fmj) then
 		return true
 	elseif check_recipe(recipe_ammo_545x39_ap) then
+		return true
+	elseif check_recipe(recipe_ammo_545x39_bulk1) then
+		return true
+	elseif check_recipe(recipe_ammo_545x39_bulk2) then
 		return true
 	end
 	return false
 end
 
 function enhance_ammo_545x39_heavy(trader, actor)
-	if check_recipe(recipe_ammo_545x39_fmj) then
+	if check_recipe(recipe_ammo_545x39_fmj_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_545x39_fmj_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_545x39_ap_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_545x39_ap_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_545x39_fmj) then
 		enhance_recipe(trader, actor, recipe_ammo_545x39_fmj)
 		return true
 	elseif check_recipe(recipe_ammo_545x39_ap) then
 		enhance_recipe(trader, actor, recipe_ammo_545x39_ap)
+		return true
+	elseif check_recipe(recipe_ammo_545x39_bulk1) then
+		enhance_recipe(trader, actor, recipe_ammo_545x39_bulk1)
+		return true
+	elseif check_recipe(recipe_ammo_545x39_bulk2) then
+		enhance_recipe(trader, actor, recipe_ammo_545x39_bulk2)
 		return true
 	end
 	return false
@@ -841,19 +1075,63 @@ recipe_ammo_12x70_buck		= {["ammo_12x70_buck"]=5,	["cost"]=3000,	["result"]="amm
 recipe_ammo_12x76_dart		= {["ammo_12x76_dart"]=5,	["cost"]=3000,	["result"]="ammo_12x76_buck"}
 recipe_ammo_12x76_zhekan	= {["ammo_12x76_zhekan"]=5,	["cost"]=3000,	["result"]="ammo_12x76_buck"}
 
+recipe_ammo_12x70_buck_bulk		= {["ammo_12x70_buck"]=9,	["cost"]=5400,	["result"]="ammo_12x76_buck",	["bulk"]=2}
+recipe_ammo_12x76_dart_bulk		= {["ammo_12x76_dart"]=9,	["cost"]=5400,	["result"]="ammo_12x76_buck",	["bulk"]=2}
+recipe_ammo_12x76_zhekan_bulk	= {["ammo_12x76_zhekan"]=9,	["cost"]=5400,	["result"]="ammo_12x76_buck",	["bulk"]=2}
+
+recipe_ammo_12x76_bulk		= {["ammo_12x70_buck"]=3,	["ammo_12x76_dart"]=3,	["ammo_12x76_zhekan"]=3,	["cost"]=6600,	["result"]="ammo_12x76_buck",	["bulk"]=2}
+
+recipe_ammo_12x76_bulk1		= {["ammo_12x70_buck"]=4,	["ammo_12x76_dart"]=5,	["cost"]=6600,	["result"]="ammo_12x76_buck",	["bulk"]=2}
+recipe_ammo_12x76_bulk2		= {["ammo_12x76_dart"]=4,	["ammo_12x76_zhekan"]=5,	["cost"]=6600,	["result"]="ammo_12x76_buck",	["bulk"]=2}
+recipe_ammo_12x76_bulk3		= {["ammo_12x70_buck"]=4,	["ammo_12x76_zhekan"]=5,	["cost"]=6600,	["result"]="ammo_12x76_buck",	["bulk"]=2}
+
+recipe_ammo_12x76_bulk4		= {["ammo_12x70_buck"]=3,	["ammo_12x76_dart"]=6,	["cost"]=6600,	["result"]="ammo_12x76_buck",	["bulk"]=2}
+recipe_ammo_12x76_bulk5		= {["ammo_12x76_dart"]=3,	["ammo_12x76_zhekan"]=6,	["cost"]=6600,	["result"]="ammo_12x76_buck",	["bulk"]=2}
+recipe_ammo_12x76_bulk6		= {["ammo_12x70_buck"]=3,	["ammo_12x76_zhekan"]=6,	["cost"]=6600,	["result"]="ammo_12x76_buck",	["bulk"]=2}
+
+
 function check_ammo_12x76_buck()
-	if check_recipe(recipe_ammo_12x70_buck) then
+	if check_recipe(recipe_ammo_12x70_buck_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_12x76_dart_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_12x76_zhekan_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_12x70_buck) then
 		return true
 	elseif check_recipe(recipe_ammo_12x76_dart) then
 		return true
 	elseif check_recipe(recipe_ammo_12x76_zhekan) then
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk) then
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk1) then
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk2) then
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk3) then
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk4) then
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk5) then
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk6) then
 		return true
 	end
 	return false
 end
 
 function enhance_ammo_12x76_buck(trader, actor)
-	if check_recipe(recipe_ammo_12x70_buck) then
+	if check_recipe(recipe_ammo_12x70_buck_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_12x70_buck_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_12x76_dart_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_12x76_dart_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_12x76_zhekan_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_12x76_zhekan_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_12x70_buck) then
 		enhance_recipe(trader, actor, recipe_ammo_12x70_buck)
 		return true
 	elseif check_recipe(recipe_ammo_12x76_dart) then
@@ -861,6 +1139,27 @@ function enhance_ammo_12x76_buck(trader, actor)
 		return true
 	elseif check_recipe(recipe_ammo_12x76_zhekan) then
 		enhance_recipe(trader, actor, recipe_ammo_12x76_zhekan)
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk) then
+		enhance_recipe(trader, actor, recipe_ammo_12x76_bulk)
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk1) then
+		enhance_recipe(trader, actor, recipe_ammo_12x76_bulk1)
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk2) then
+		enhance_recipe(trader, actor, recipe_ammo_12x76_bulk2)
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk3) then
+		enhance_recipe(trader, actor, recipe_ammo_12x76_bulk3)
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk4) then
+		enhance_recipe(trader, actor, recipe_ammo_12x76_bulk4)
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk5) then
+		enhance_recipe(trader, actor, recipe_ammo_12x76_bulk5)
+		return true
+	elseif check_recipe(recipe_ammo_12x76_bulk6) then
+		enhance_recipe(trader, actor, recipe_ammo_12x76_bulk6)
 		return true
 	end
 	return false
