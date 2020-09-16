@@ -367,6 +367,14 @@ function main_menu:OnKeyboard(dik, keyboard_action)  --virtual function
 			if alive_on_level then
 				self:zrp_level_zip_dialog()
 			end
+		elseif dik == DIK_keys.DIK_P then
+			if alive_on_level then
+				console:execute("main_menu off")
+				local pos = db.actor:position()
+				local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_thing")
+				local news_text = "%c[255,120,120,255]" .. "X: " .. pos.x .. "Y: " .. pos.y .. "Z: " .. pos.z
+				db.actor:give_game_news(news_text, task_texture, task_rect, 0, 10000)
+			end
 		elseif _z then
 			return _z.process_key(self, dik, keyboard_action)
 		end
