@@ -1,9 +1,9 @@
 <string_table>
 	<string id="trader_alchemy_0">
-		<text>Hey buddy, I heard there are alchemy guys in the zone. You have, don't you?</text>
+		<text>Hey buddy, I heard there are alchemy guys in the zone. Know'em?</text>
 	</string>
 	<string id="trader_alchemy_01">
-		<text>Well you can say yes. I do have someone at the back who know this shit. But you need to have the recipe and ingredients. And of course money. These people need to eat and drink you know. The cost is 1000 each time. You can get what you want. If you are lucky you can even get better result.</text>
+		<text>Well you can say yes. There are someone who know this shit. But you need to have the recipe and ingredients. And of course money if required by the recipe. These people need to eat and drink you know.</text>
 	</string>
 	<string id="trader_alchemy_011">
 		<text>Let's start with atrifacts!</text>
