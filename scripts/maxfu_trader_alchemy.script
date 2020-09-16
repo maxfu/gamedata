@@ -934,8 +934,6 @@ function enhance_outfit_dolg_scientific_m1(trader, actor)
 end
 
 
-
-
 recipe_wpn_lr300_m1 = {["wpn_lr300"]=1, ["wpn_addon_scope_susat"]=1, ["wpn_addon_silencer"]=1, ["cost"]=10000, ["location"]="l05_bar", ["result"]="wpn_lr300_m1"}
 
 function check_wpn_lr300_m1()
@@ -944,6 +942,17 @@ end
 
 function enhance_wpn_lr300_m1(trader, actor)
 	enhance_recipe(trader, actor, recipe_wpn_lr300_m1)
+end
+
+
+recipe_wpn_vintorez_m1 = {["wpn_vintorez"]=1, ["cost"]=10000, ["location"]="l05_bar", ["result"]="wpn_vintorez_m1"}
+
+function check_wpn_vintorez_m1()
+	return check_recipe(recipe_wpn_vintorez_m1)
+end
+
+function enhance_wpn_vintorez_m1(trader, actor)
+	enhance_recipe(trader, actor, recipe_wpn_vintorez_m1)
 end
 
 
@@ -967,7 +976,6 @@ end
 function enhance_wpn_kriss_m1(trader, actor)
 	enhance_recipe(trader, actor, recipe_wpn_kriss_m1)
 end
-
 
 
 function test_ammos(trader, actor)

@@ -286,6 +286,7 @@
                 <next>301</next>
                 <next>302</next>
                 <next>303</next>
+                <next>304</next>
                 <next>6</next>
             </phrase>
             <phrase id="300">
@@ -309,6 +310,12 @@
                 <precondition>maxfu_trader_alchemy.check_wpn_kriss_m1</precondition>
                 <text>trader_alchemy_303</text>
                 <action>maxfu_trader_alchemy.enhance_wpn_kriss_m1</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="304">
+                <precondition>maxfu_trader_alchemy.check_wpn_vintorez_m1</precondition>
+                <text>trader_alchemy_304</text>
+                <action>maxfu_trader_alchemy.enhance_wpn_vintorez_m1</action>
                 <next>5</next>
             </phrase>
 
