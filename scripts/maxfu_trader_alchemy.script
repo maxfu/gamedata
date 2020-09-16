@@ -1356,43 +1356,11 @@ end
 
 
 function test_ammos(trader, actor)
-	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_11.43x23_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_11.43x23_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_11.43x23_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_11.43x23_heavy", "in")
 end
 
 function test_weapons(trader, actor)
 	dialogs.relocate_item_section(trader, "wpn_kriss_m1", "in")
-	dialogs.relocate_item_section(trader, "ammo_9x19_fmj", "in")
-	dialogs.relocate_item_section(trader, "ammo_9x19_fmj", "in")
-	dialogs.relocate_item_section(trader, "ammo_9x19_fmj", "in")
-	dialogs.relocate_item_section(trader, "ammo_9x19_fmj", "in")
-	dialogs.relocate_item_section(trader, "ammo_9x19_fmj", "in")
-	dialogs.relocate_item_section(trader, "ammo_9x19_fmj", "in")
-	dialogs.relocate_item_section(trader, "ammo_9x19_fmj", "in")
-	dialogs.relocate_item_section(trader, "ammo_9x19_fmj", "in")
 end
 
 function test_outfits(trader, actor)
-	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_5.45x39_heavy", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x76_buck", "in")
 end
