@@ -37,7 +37,8 @@ local level_zip_points = {
 	l05_bar = {
 		["l02_garbage"] = {dik_key=DIK_keys.DIK_G,hotkey="G",dtype="path",path="bar_way_if_reject_to_gar",name="l02_garbage",pimage="intro\\intro_l02_garbage"},
 		["l06_rostok"] = {dik_key=DIK_keys.DIK_W,hotkey="W",dtype="path",path="bar_way_if_reject_to_ros",name="l06_rostok",pimage="intro\\intro_l06_rostok"},
-		["l07_military"] = {dik_key=DIK_keys.DIK_M,hotkey="M",dtype="path",path="bar_way_if_reject_to_mil",name="l07_military",pimage="intro\\intro_l07_military"}
+		["l07_military"] = {dik_key=DIK_keys.DIK_M,hotkey="M",dtype="path",path="bar_way_if_reject_to_mil",name="l07_military",pimage="intro\\intro_l07_military"},
+		["bar_gate"] = {dik_key=DIK_keys.DIK_B,hotkey="B",dtype="position",pos=vector():set(130.06, 0.04, 49.12),dir=vector():set(1,0,0),name="bar_barmen_name",pimage="intro\\intro_l05_bar"}
 	},
 	l06_rostok = {
 		["l05_bar"] = {dik_key=DIK_keys.DIK_B,hotkey="B",dtype="path",path="ros_way_if_reject_to_bar",name="l05_bar",pimage="intro\\intro_l05_bar"},
