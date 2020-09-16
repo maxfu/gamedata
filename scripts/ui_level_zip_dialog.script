@@ -46,11 +46,13 @@ local level_zip_points = {
 	},
 	l07_military = {
 		["l05_bar"] = {dik_key=DIK_keys.DIK_B,hotkey="B",dtype="path",path="mil_way_if_reject_to_ros",name="l05_bar",pimage="intro\\intro_l05_bar"},
-		["l10_radar"] = {dik_key=DIK_keys.DIK_R,hotkey="R",dtype="path",path="mil_way_if_reject_to_rad",name="l10_radar",pimage="intro\\intro_l10_radar"}
+		["l10_radar"] = {dik_key=DIK_keys.DIK_R,hotkey="R",dtype="path",path="mil_way_if_reject_to_rad",name="l10_radar",pimage="intro\\intro_l10_radar"},
+		["main_building"] = {dik_key=DIK_keys.DIK_M,hotkey="M",dtype="position",pos=vector():set(-7.72, -8.88, -23.04),dir=vector():set(1,0,0),name="mil_Svoboda_leader_name",pimage="intro\\intro_l07_military"}
 	},
 	l08_yantar = {
 		["l06_rostok"] = {dik_key=DIK_keys.DIK_W,hotkey="W",dtype="path",path="yan_way_if_reject_to_ros",name="l06_rostok",pimage="intro\\intro_l06_rostok"},
-		["l08u_brainlab"] = {dik_key=DIK_keys.DIK_6,hotkey="6",dtype="path",path="yan_way_if_reject_to_und1",name="l08u_brainlab",pimage="intro\\intro_l08u_brainlab"}
+		["l08u_brainlab"] = {dik_key=DIK_keys.DIK_6,hotkey="6",dtype="path",path="yan_way_if_reject_to_und1",name="l08u_brainlab",pimage="intro\\intro_l08u_brainlab"},
+		["mobile_lab"] = {dik_key=DIK_keys.DIK_S,hotkey="S",dtype="position",pos=vector():set(46.23, -11.88, -272.16),dir=vector():set(1,0,0),name="yan_saharov_name",pimage="intro\\intro_l08_yantar"}
 	},
 	l08u_brainlab = {
 		["l08_yantar1"] = {dik_key=DIK_keys.DIK_Y,hotkey="Y",dtype="path",path="und_way_if_reject_to_yan1",name="l08_yantar",pimage="intro\\intro_l08_yantar"},
