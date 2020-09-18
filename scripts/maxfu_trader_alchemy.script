@@ -465,13 +465,12 @@ function enhance_af_ameba_mica(trader, actor)
 end
 
 
-recipe_af_drops		= {["af_drops"]=5,		["cost"]=3000,	["result"]="af_drops_m1",	["lucky"]="af_drops_m2",	["luck"]=5}
-recipe_af_drops_m1	= {["af_drops_m1"]=3,	["cost"]=10000, ["result"]="af_drops_m2"}
+recipe_af_drops		= {["af_drops"]=5,		["cost"]=3000,	["result"]="af_drops_m1",	["lucky"]="af_drops_m1",	["luck"]=5}
 
 function check_af_drops()
 	if check_recipe(recipe_af_drops) then
 		return true
-	elseif check_recipe(recipe_af_drops_m1) then
+	elseif check_recipe(recipe_af_drops) then
 		return true
 	end
 	return false
@@ -481,21 +480,20 @@ function enhance_af_drops(trader, actor)
 	if check_recipe(recipe_af_drops) then
 		enhance_recipe(trader, actor, recipe_af_drops)
 		return true
-	elseif check_recipe(recipe_af_drops_m1) then
-		enhance_recipe(trader, actor, recipe_af_drops_m1)
+	elseif check_recipe(recipe_af_drops) then
+		enhance_recipe(trader, actor, recipe_af_drops)
 		return true
 	end
 	return false
 end
 
 
-recipe_af_fireball		= {["af_fireball"]=5,		["cost"]=3000,	["result"]="af_fireball_m1",	["lucky"]="af_fireball_m2",	["luck"]=5}
-recipe_af_fireball_m1	= {["af_fireball_m1"]=3,	["cost"]=10000,	["result"]="af_fireball_m2"}
+recipe_af_fireball		= {["af_fireball"]=5,		["cost"]=3000,	["result"]="af_fireball_m1",	["lucky"]="af_fireball_m1",	["luck"]=5}
 
 function check_af_fireball()
 	if check_recipe(recipe_af_fireball) then
 		return true
-	elseif check_recipe(recipe_af_fireball_m1) then
+	elseif check_recipe(recipe_af_fireball) then
 		return true
 	end
 	return false
@@ -505,21 +503,20 @@ function enhance_af_fireball(trader, actor)
 	if check_recipe(recipe_af_fireball) then
 		enhance_recipe(trader, actor, recipe_af_fireball)
 		return true
-	elseif check_recipe(recipe_af_fireball_m1) then
-		enhance_recipe(trader, actor, recipe_af_fireball_m1)
+	elseif check_recipe(recipe_af_fireball) then
+		enhance_recipe(trader, actor, recipe_af_fireball)
 		return true
 	end
 	return false
 end
 
 
-recipe_af_cristall		= {["af_cristall"]=5,		["cost"]=3000,	["result"]="af_cristall_m1",	["lucky"]="af_cristall_m2",	["luck"]=5}
-recipe_af_cristall_m1	= {["af_cristall_m1"]=3,	["cost"]=10000,	["result"]="af_cristall_m2"}
+recipe_af_cristall		= {["af_cristall"]=5,		["cost"]=3000,	["result"]="af_cristall_m1",	["lucky"]="af_cristall_m1",	["luck"]=5}
 
 function check_af_cristall()
 	if check_recipe(recipe_af_cristall) then
 		return true
-	elseif check_recipe(recipe_af_cristall_m1) then
+	elseif check_recipe(recipe_af_cristall) then
 		return true
 	end
 	return false
@@ -529,8 +526,8 @@ function enhance_af_cristall(trader, actor)
 	if check_recipe(recipe_af_cristall) then
 		enhance_recipe(trader, actor, recipe_af_cristall)
 		return true
-	elseif check_recipe(recipe_af_cristall_m1) then
-		enhance_recipe(trader, actor, recipe_af_cristall_m1)
+	elseif check_recipe(recipe_af_cristall) then
+		enhance_recipe(trader, actor, recipe_af_cristall)
 		return true
 	end
 	return false
