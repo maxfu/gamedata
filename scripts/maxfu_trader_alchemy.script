@@ -396,7 +396,7 @@ function enhance_af_electra_moonlight(trader, actor)
 end
 
 
-recipe_af_rusty_thorn = {["af_rusty_thorn"]=5, ["cost"]=3000, ["result"]="af_rusty_thorn_m1", ["lucky"]="af_rusty_thorn_m2", ["luck"]=5}
+recipe_af_rusty_thorn = {["af_rusty_thorn"]=5, ["cost"]=3000, ["result"]="af_rusty_thorn_m1", ["lucky"]="af_rusty_thorn_m1", ["luck"]=5}
 
 function check_af_rusty_thorn()
 	return check_recipe(recipe_af_rusty_thorn)
@@ -407,7 +407,7 @@ function enhance_af_rusty_thorn(trader, actor)
 end
 
 
-recipe_af_rusty_kristall = {["af_rusty_kristall"]=5, ["cost"]=3000, ["result"]="af_rusty_kristall_m1", ["lucky"]="af_rusty_kristall_m2", ["luck"]=5}
+recipe_af_rusty_kristall = {["af_rusty_kristall"]=5, ["cost"]=3000, ["result"]="af_rusty_kristall_m1", ["lucky"]="af_rusty_kristall_m1", ["luck"]=5}
 
 function check_af_rusty_kristall()
 	return check_recipe(recipe_af_rusty_kristall)
@@ -418,7 +418,7 @@ function enhance_af_rusty_kristall(trader, actor)
 end
 
 
-recipe_af_rusty_sea_urchin = {["af_rusty_sea-urchin"]=5, ["cost"]=3000, ["result"]="af_rusty_sea-urchin_m1", ["lucky"]="af_rusty_sea-urchin_m2", ["luck"]=5}
+recipe_af_rusty_sea_urchin = {["af_rusty_sea-urchin"]=5, ["cost"]=3000, ["result"]="af_rusty_sea-urchin_m1", ["lucky"]="af_rusty_sea-urchin_m1", ["luck"]=5}
 
 function check_af_rusty_sea_urchin()
 	return check_recipe(recipe_af_rusty_sea_urchin)
