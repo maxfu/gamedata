@@ -156,13 +156,12 @@ function enhance_item_sample(trader, actor)
 end
 
 
-recipe_af_medusa	= {["af_medusa"]=5,		["cost"]=3000,	["result"]="af_medusa_m1",	["lucky"]="af_medusa_m2",	["luck"]=5}
-recipe_af_medusa_m1	= {["af_medusa_m1"]=3,	["cost"]=10000,	["result"]="af_medusa_m2"}
+recipe_af_medusa	= {["af_medusa"]=5,		["cost"]=3000,	["result"]="af_medusa_m1",	["lucky"]="af_medusa_m1",	["luck"]=5}
 
 function check_af_medusa()
 	if check_recipe(recipe_af_medusa) then
 		return true
-	elseif check_recipe(recipe_af_medusa_m1) then
+	elseif check_recipe(recipe_af_medusa) then
 		return true
 	end
 	return false
@@ -172,21 +171,20 @@ function enhance_af_medusa(trader, actor)
 	if check_recipe(recipe_af_medusa) then
 		enhance_recipe(trader, actor, recipe_af_medusa)
 		return true
-	elseif check_recipe(recipe_af_medusa_m1) then
-		enhance_recipe(trader, actor, recipe_af_medusa_m1)
+	elseif check_recipe(recipe_af_medusa) then
+		enhance_recipe(trader, actor, recipe_af_medusa)
 		return true
 	end
 	return false
 end
 
 
-recipe_af_cristall_flower		= {["af_cristall_flower"]=5,	["cost"]=3000,	["result"]="af_cristall_flower_m1",	["lucky"]="af_cristall_flower_m2",	["luck"]=5}
-recipe_af_cristall_flower_m1	= {["af_cristall_flower_m1"]=3,	["cost"]=10000,	["result"]="af_cristall_flower_m2"}
+recipe_af_cristall_flower		= {["af_cristall_flower"]=5,	["cost"]=3000,	["result"]="af_cristall_flower_m1",	["lucky"]="af_cristall_flower_m1",	["luck"]=5}
 
 function check_af_cristall_flower()
 	if check_recipe(recipe_af_cristall_flower) then
 		return true
-	elseif check_recipe(recipe_af_cristall_flower_m1) then
+	elseif check_recipe(recipe_af_cristall_flower) then
 		return true
 	end
 	return false
@@ -196,21 +194,20 @@ function enhance_af_cristall_flower(trader, actor)
 	if check_recipe(recipe_af_cristall_flower) then
 		enhance_recipe(trader, actor, recipe_af_cristall_flower)
 		return true
-	elseif check_recipe(recipe_af_cristall_flower_m1) then
-		enhance_recipe(trader, actor, recipe_af_cristall_flower_m1)
+	elseif check_recipe(recipe_af_cristall_flower) then
+		enhance_recipe(trader, actor, recipe_af_cristall_flower)
 		return true
 	end
 	return false
 end
 
 
-recipe_af_night_star	= {["af_night_star"]=5,		["cost"]=3000,	["result"]="af_night_star_m1",	["lucky"]="af_night_star_m2",	["luck"]=5}
-recipe_af_night_star_m2	= {["af_night_star_m1"]=3,	["cost"]=10000,	["result"]="af_night_star_m2"}
+recipe_af_night_star	= {["af_night_star"]=5,		["cost"]=3000,	["result"]="af_night_star_m1",	["lucky"]="af_night_star_m1",	["luck"]=5}
 
 function check_af_night_star()
 	if check_recipe(recipe_af_night_star) then
 		return true
-	elseif check_recipe(recipe_af_night_star_m2) then
+	elseif check_recipe(recipe_af_night_star) then
 		return true
 	end
 	return false
@@ -220,8 +217,8 @@ function enhance_af_night_star(trader, actor)
 	if check_recipe(recipe_af_night_star) then
 		enhance_recipe(trader, actor, recipe_af_night_star)
 		return true
-	elseif check_recipe(recipe_af_night_star_m2) then
-		enhance_recipe(trader, actor, recipe_af_night_star_m2)
+	elseif check_recipe(recipe_af_night_star) then
+		enhance_recipe(trader, actor, recipe_af_night_star)
 		return true
 	end
 	return false
