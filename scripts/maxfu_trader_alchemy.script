@@ -429,7 +429,7 @@ function enhance_af_rusty_sea_urchin(trader, actor)
 end
 
 
-recipe_af_ameba_slime = {["af_ameba_slime"]=5, ["cost"]=3000, ["result"]="af_ameba_slime_m1", ["lucky"]="af_ameba_slime_m2", ["luck"]=5}
+recipe_af_ameba_slime = {["af_ameba_slime"]=5, ["cost"]=3000, ["result"]="af_ameba_slime_m1", ["lucky"]="af_ameba_slime_m1", ["luck"]=5}
 
 function check_af_ameba_slime()
 	return check_recipe(recipe_af_ameba_slime)
@@ -440,7 +440,7 @@ function enhance_af_ameba_slime(trader, actor)
 end
 
 
-recipe_af_ameba_slug = {["af_ameba_slug"]=5, ["cost"]=3000, ["result"]="af_ameba_slug_m1", ["lucky"]="af_ameba_slug_m2", ["luck"]=5}
+recipe_af_ameba_slug = {["af_ameba_slug"]=5, ["cost"]=3000, ["result"]="af_ameba_slug_m1", ["lucky"]="af_ameba_slug_m1", ["luck"]=5}
 
 function check_af_ameba_slug()
 	return check_recipe(recipe_af_ameba_slug)
@@ -451,7 +451,7 @@ function enhance_af_ameba_slug(trader, actor)
 end
 
 
-recipe_af_ameba_mica = {["af_ameba_mica"]=5, ["cost"]=3000, ["result"]="af_ameba_mica_m1", ["lucky"]="af_ameba_mica_m2", ["luck"]=5}
+recipe_af_ameba_mica = {["af_ameba_mica"]=5, ["cost"]=3000, ["result"]="af_ameba_mica_m1", ["lucky"]="af_ameba_mica_m1", ["luck"]=5}
 
 function check_af_ameba_mica()
 	return check_recipe(recipe_af_ameba_mica)
