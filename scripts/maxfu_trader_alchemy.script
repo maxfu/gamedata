@@ -363,7 +363,7 @@ function enhance_af_soul(trader, actor)
 end
 
 
-recipe_af_electra_sparkler = {["af_electra_sparkler"]=5, ["cost"]=3000, ["result"]="af_electra_sparkler_m1", ["lucky"]="af_electra_sparkler_m2", ["luck"]=5}
+recipe_af_electra_sparkler = {["af_electra_sparkler"]=5, ["cost"]=3000, ["result"]="af_electra_sparkler_m1", ["lucky"]="af_electra_sparkler_m1", ["luck"]=5}
 
 function check_af_electra_sparkler()
 	return check_recipe(recipe_af_electra_sparkler)
@@ -374,7 +374,7 @@ function enhance_af_electra_sparkler(trader, actor)
 end
 
 
-recipe_af_electra_flash = {["af_electra_flash"]=5, ["cost"]=3000, ["result"]="af_electra_flash_m1", ["lucky"]="af_electra_flash_m2", ["luck"]=5}
+recipe_af_electra_flash = {["af_electra_flash"]=5, ["cost"]=3000, ["result"]="af_electra_flash_m1", ["lucky"]="af_electra_flash_m1", ["luck"]=5}
 
 function check_af_electra_flash()
 	return check_recipe(recipe_af_electra_flash)
@@ -385,7 +385,7 @@ function enhance_af_af_electra_flash(trader, actor)
 end
 
 
-recipe_af_electra_moonlight = {["af_electra_moonlight"]=5, ["cost"]=3000, ["result"]="af_electra_moonlight_m1", ["lucky"]="af_electra_moonlight_m2", ["luck"]=5}
+recipe_af_electra_moonlight = {["af_electra_moonlight"]=5, ["cost"]=3000, ["result"]="af_electra_moonlight_m1", ["lucky"]="af_electra_moonlight_m1", ["luck"]=5}
 
 function check_af_electra_moonlight()
 	return check_recipe(recipe_af_electra_moonlight)
