@@ -357,7 +357,7 @@ function actor_binder:update(delta)
 
 		level_tasks.add_lchanger_location()
 
-self.bCheckStart = false		
+		self.bCheckStart = false		
 	end		
 	
   abc_sleep.uptabc("abc")	

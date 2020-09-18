@@ -333,16 +333,8 @@
 		<text>Enhanced Artifact with is side effects removed while maintained good effects.</text>
 	</string>
 
-	<string id="enc_zone_artifact_m2">
-		<text>Enhanced Artifact with is side effects removed while good effects enhanced.</text>
-	</string>
-
 	<string id="enc_zone_artifact_rare_m1">
 		<text>Enhanced Rare Artifact with is one more good effects added.</text>
-	</string>
-
-	<string id="enc_zone_artifact_rare_m2">
-		<text>Enhanced Rare Artifact with is two more good effects added.</text>
 	</string>
 
 	<string id="af-ameba-mica-m1">
