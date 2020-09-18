@@ -56,21 +56,25 @@ local zc_gray	= "%c[255,160,160,160]"
 -- nv 071026 - code to auto-transfer favorite items from searched bodies
 ----------------------------------
 -- set this true to enable the feature, then add your favorites below
-transfer_faves = false
-tf_notify_sound = false
+transfer_faves = true
+tf_notify_sound = true
 
 -- enable your favorites by removing the "--" from the front of a line
 local favorites = {
--- "ammo_9x19_fmj",
--- "ammo_9x19_pbp",
--- "ammo_5.45x39_fmj",
--- "ammo_5.45x39_ap",
--- "ammo_5.56x45_ss190",
--- "ammo_5.56x45_ap",
--- "ammo_9x39_pab9",
--- "ammo_9x39_sp5",
--- "ammo_9x39_ap",
-"medkit", "medkit_army", "medkit_scientic", "bandage", "antirad"
+"ammo_9x19_fmj",
+"ammo_9x19_pbp",
+"ammo_5.45x39_fmj",
+"ammo_5.45x39_ap",
+"ammo_5.56x45_ss190",
+"ammo_5.56x45_ap",
+"ammo_9x39_pab9",
+"ammo_9x39_sp5",
+"ammo_9x39_ap",
+"medkit",
+"medkit_army",
+"medkit_scientic",
+"bandage",
+"antirad"
 }
 
 local nv_xfer = false
