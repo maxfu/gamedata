@@ -190,11 +190,7 @@
 		<text>Message</text>
 	</string>
 	<string id="svoboda_outfit_description_m1">
-		<text>Metal wire mesh is integrated into the suit for protection from electric and magnetic fields. The set also includes an instrument for night vision.\n
-Burn Elec Imp Rupt\n
- 30  90  50  30 \n
-Rad Chem Expl Bprf\n
- 50  50  25  30</text>
+		<text>Metal wire mesh is integrated into the suit for protection from electric and magnetic fields. The set also includes an instrument for night vision.</text>
 	</string>
 	<string id="Tasks">
 		<text>Tasks</text>
