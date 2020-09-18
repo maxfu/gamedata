@@ -19,8 +19,6 @@ tm_find_artefact_1
 tm_find_artefact_2
 tm_find_artefact_3
 tm_find_artefact_4
-tm_find_artefact_5
-tm_find_artefact_6
 ;----------Kill Staker-------
 tm_kill_stalker_1
 tm_kill_stalker_2
@@ -30,8 +28,6 @@ tm_kill_stalker_5
 tm_kill_stalker_6
 ;---------Find Item-----------
 tm_find_item_1
-tm_find_item_2
-tm_find_item_3
 ;---------defend Camp--------------
 tm_defend_camp_1
 ;---------Monster Part-----------
@@ -54,11 +50,6 @@ barmen_find_artefact_2
 barmen_find_artefact_3
 barmen_find_artefact_4
 barmen_find_artefact_5
-barmen_find_artefact_6
-barmen_find_artefact_7
-barmen_find_artefact_8
-barmen_find_artefact_9
-barmen_find_artefact_10
 ;----------Kill Staker-------
 barmen_kill_stalker_1
 barmen_kill_stalker_2
@@ -69,7 +60,6 @@ barmen_kill_stalker_5
 ;--barmen_find_item_1
 ;--barmen_find_item_2
 ;--barmen_find_item_3
-barmen_find_item_4
 ;---------Monster Part-----------
 barmen_monster_part_1
 barmen_monster_part_2
@@ -147,8 +137,6 @@ zastava_commander_eliminate_lager
 ;tasks for wolf  
 wolf_eliminate_lager_1
 wolf_eliminate_lager_2
-wolf_find_item_1
-wolf_find_item_2
 ;tasks for petrenko 
 petrenko_kill_stalker
 ;tasks for hunter	
@@ -392,35 +380,6 @@ reward_item = medkit_army, medkit_army, medkit_army
 ;time = 86400
 prior = 5
 
-[tm_find_artefact_5]
-type = artefact
-community = actor
-text = tm_find_artefact_5_text
-description = tm_find_artefact_5_descr
-parent = trader
-target = af_medusa
-;reward_money = 1500
-reward_reputation = +5
-reward_rank = 1
-reward_item = af_medusa_m1
-;time = 86400
-;idle_time = 84000
-prior = 3
-
-[tm_find_artefact_6]
-type = artefact
-community = actor
-text = tm_find_artefact_6_text
-description = tm_find_artefact_6_descr
-parent = trader
-target = af_vyvert
-;reward_money = 3000
-reward_reputation = +5
-reward_rank = 1
-reward_item = af_vyvert_m1
-;time = 86400
-prior = 4
-
 [tm_kill_stalker_1]
 type = kill_stalker
 community = actor
@@ -521,36 +480,6 @@ reward_reputation = +15
 reward_rank = 3
 ;time = 86400
 prior = 5
-
-[tm_find_item_2]
-type = find_item
-community = actor
-;condlist = {+agroprom_military_case_done}
-text = tm_find_item_2_text
-description = tm_find_item_2_descr
-parent = trader
-target = wpn_bm16
-;reward_money = 2000
-reward_reputation = +15
-reward_rank = 3
-reward_item = wpn_bm16_m1, ammo_12x70_buck,ammo_12x70_buck,ammo_12x70_buck,ammo_12x76_zhekan,ammo_12x76_dart
-;time = 86400
-prior = 1
-
-[tm_find_item_3]
-type = find_item
-community = actor
-;condlist = {+agroprom_military_case_done}
-text = tm_find_item_3_text
-description = tm_find_item_3_descr
-parent = trader
-target = wpn_mp5
-;reward_money = 2000
-reward_reputation = +15
-reward_rank = 3
-reward_item = wpn_mp5_m3, ammo_9x19_fmj, ammo_9x19_pbp, ammo_9x18_fmj, ammo_9x18_pbp, ammo_9x18_pmm, ammo_9x19_heavy, ammo_9x18_heavy
-;time = 86400
-prior = 2
 
 [tm_defend_camp_1]
 type = defend_lager
@@ -777,82 +706,6 @@ reward_rank = 7
 reward_item = wpn_lr300, wpn_addon_grenade_launcher_m203, wpn_addon_scope_susat, wpn_addon_silencer
 prior = 5
 
-
-[barmen_find_artefact_6]
-type = artefact
-community = actor
-text = barmen_find_artefact_6_text
-description = barmen_find_artefact_6_descr
-parent = barman
-target = af_mincer_meat
-;reward_money = 2500
-reward_reputation = +35
-reward_rank = 5
-reward_item = af_mincer_meat_m1
-;time = 86400
-prior = 6
-
-
-[barmen_find_artefact_7]
-type = artefact
-community = actor
-condlist = {+bar_darklab_document_done}
-text = barmen_find_artefact_7_text
-description = barmen_find_artefact_7_descr
-parent = barman
-target = af_rusty_kristall
-;reward_money = 2500
-reward_reputation = +25
-reward_rank = 6
-reward_item = af_rusty_kristall_m1
-;time = 86400
-prior = 8
-
-
-[barmen_find_artefact_8]
-type = artefact
-community = actor
-;condlist = {+yan_kill_brain_done}
-text = barmen_find_artefact_8_text
-description = barmen_find_artefact_8_descr
-parent = barman
-target = af_night_star
-reward_reputation = +60
-reward_rank = 7
-reward_item = af_night_star_m1
-;time = 86400
-prior = 9
-
-[barmen_find_artefact_9]
-type = artefact
-community = actor
-condlist = {+bar_darklab_document_done}
-text = barmen_find_artefact_9_text
-description = barmen_find_artefact_9_descr
-parent = barman
-target = af_electra_flash
-;reward_money = 5000
-reward_reputation = +20
-reward_rank = 4
-reward_item = af_electra_flash_m1
-;time = 86400
-prior = 7
-
-[barmen_find_artefact_10]
-type = artefact
-community = actor
-condlist = {+yan_kill_brain_done}
-text = barmen_find_artefact_10_text
-description = barmen_find_artefact_10_descr
-parent = barman
-target = af_gold_fish
-reward_reputation = +40
-reward_rank = 7
-reward_item = af_gold_fish_m1
-;time = 86400
-prior = 10
-
-
 [barmen_kill_stalker_1]
 type = kill_stalker
 community = actor
@@ -954,21 +807,6 @@ prior = 4
 ;--reward_money = 8500
 ;--reward_reputation = +40
 ;--reward_rank = 8
-
-[barmen_find_item_4]
-type = find_item
-community = actor
-text = barmen_find_item_4_text
-description = barmen_find_item_4_descr
-parent = barman
-target = stalker_outfit
-;reward_money = 2000
-reward_reputation = +15
-reward_rank = 3
-reward_item = outfit_stalker_m3
-;time = 86400
-prior = 1
-
 
 [barmen_monster_part_1]
 type = monster_part
@@ -2001,19 +1839,6 @@ reward_rank = 8
 reward_item = af_mincer_meat
 ;time = 86400
 
-[zastava_commander_find_item_1]
-type = find_item
-community = actor
-text = zastava_commander_find_item_1_text
-description = zastava_commander_find_item_1_descr
-parent = zastava_commander
-target = af_mincer_meat
-reward_reputation = +15
-reward_rank = 3
-reward_item = af_mincer_meat_m1
-;time = 86400
-prior = 1
-
 ;tasks for wolf  
 [wolf_eliminate_lager_1]
 type = eliminate_lager
@@ -2044,32 +1869,6 @@ target = esc_flesh_2
 reward_reputation = +30
 reward_rank = 4
 reward_item = af_blood
-;time = 86400
-prior = 2
-
-[wolf_find_item_1]
-type = find_item
-community = actor
-text = wolf_find_item_1_text
-description = wolf_find_item_1_descr
-parent = wolf
-target = novice_outfit
-reward_reputation = +15
-reward_rank = 3
-reward_item = outfit_novice_m2
-;time = 86400
-prior = 1
-
-[wolf_find_item_2]
-type = find_item
-community = actor
-text = wolf_find_item_2_text
-description = wolf_find_item_2_descr
-parent = wolf
-target = bandit_outfit
-reward_reputation = +15
-reward_rank = 3
-reward_item = outfit_bandit_m2
 ;time = 86400
 prior = 2
 
