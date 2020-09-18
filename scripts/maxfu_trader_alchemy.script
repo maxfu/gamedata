@@ -531,13 +531,10 @@ function enhance_af_cristall(trader, actor)
 end
 
 
-recipe_af_dummy_glassbeads		= {["af_dummy_glassbeads"]=3,		["cost"]=8000,	["result"]="af_dummy_glassbeads_m1",	["lucky"]="af_dummy_glassbeads_m2",	["luck"]=5}
-recipe_af_dummy_glassbeads_m1	= {["af_dummy_glassbeads_m1"]=1,	["cost"]=30000,	["result"]="af_dummy_glassbeads_m2"}
+recipe_af_dummy_glassbeads		= {["af_dummy_glassbeads"]=3,		["cost"]=8000,	["result"]="af_dummy_glassbeads_m1"}
 
 function check_af_dummy_glassbeads()
 	if check_recipe(recipe_af_dummy_glassbeads) then
-		return true
-	elseif check_recipe(recipe_af_dummy_glassbeads_m1) then
 		return true
 	end
 	return false
@@ -547,21 +544,15 @@ function enhance_af_dummy_glassbeads(trader, actor)
 	if check_recipe(recipe_af_dummy_glassbeads) then
 		enhance_recipe(trader, actor, recipe_af_dummy_glassbeads)
 		return true
-	elseif check_recipe(recipe_af_dummy_glassbeads_m1) then
-		enhance_recipe(trader, actor, recipe_af_dummy_glassbeads_m1)
-		return true
 	end
 	return false
 end
 
 
-recipe_af_dummy_pellicle	= {["af_dummy_pellicle"]=3,		["cost"]=8000,	["result"]="af_dummy_pellicle_m1",	["lucky"]="af_dummy_pellicle_m2",	["luck"]=5}
-recipe_af_dummy_pellicle_m1	= {["af_dummy_pellicle_m1"]=1,	["cost"]=30000,	["result"]="af_dummy_pellicle_m2"}
+recipe_af_dummy_pellicle	= {["af_dummy_pellicle"]=3,		["cost"]=8000,	["result"]="af_dummy_pellicle_m1"}
 
 function check_af_dummy_pellicle()
 	if check_recipe(recipe_af_dummy_pellicle) then
-		return true
-	elseif check_recipe(recipe_af_dummy_pellicle_m1) then
 		return true
 	end
 	return false
@@ -571,21 +562,15 @@ function enhance_af_dummy_pellicle(trader, actor)
 	if check_recipe(recipe_af_dummy_pellicle) then
 		enhance_recipe(trader, actor, recipe_af_dummy_pellicle)
 		return true
-	elseif check_recipe(recipe_af_dummy_pellicle_m1) then
-		enhance_recipe(trader, actor, recipe_af_dummy_pellicle_m1)
-		return true
 	end
 	return false
 end
 
 
-recipe_af_dummy_battery		= {["af_dummy_battery"]=3,		["cost"]=8000,	["result"]="af_dummy_battery_m1",	["lucky"]="af_dummy_battery_m2",	["luck"]=5}
-recipe_af_dummy_battery_m1	= {["af_dummy_battery_m1"]=1,	["cost"]=30000,	["result"]="af_dummy_battery_m"}
+recipe_af_dummy_battery		= {["af_dummy_battery"]=3,		["cost"]=8000,	["result"]="af_dummy_battery_m1"}
 
 function check_af_dummy_battery()
 	if check_recipe(recipe_af_dummy_battery) then
-		return true
-	elseif check_recipe(recipe_af_dummy_battery_m1) then
 		return true
 	end
 	return false
@@ -595,21 +580,15 @@ function enhance_af_dummy_battery(trader, actor)
 	if check_recipe(recipe_af_dummy_battery) then
 		enhance_recipe(trader, actor, recipe_af_dummy_battery)
 		return true
-	elseif check_recipe(recipe_af_dummy_battery_m1) then
-		enhance_recipe(trader, actor, recipe_af_dummy_battery_m1)
-		return true
 	end
 	return false
 end
 
 
-recipe_af_dummy_dummy		= {["af_dummy_dummy"]=3,	["cost"]=8000,	["result"]="af_dummy_dummy_m1",	["lucky"]="af_dummy_dummy_m2",	["luck"]=5}
-recipe_af_dummy_dummy_m1	= {["af_dummy_dummy_m1"]=1,	["cost"]=30000,	["result"]="af_dummy_dummy_m2"}
+recipe_af_dummy_dummy		= {["af_dummy_dummy"]=3,	["cost"]=8000,	["result"]="af_dummy_dummy_m1"}
 
 function check_af_dummy_dummy()
 	if check_recipe(recipe_af_dummy_dummy) then
-		return true
-	elseif check_recipe(recipe_af_dummy_dummy_m1) then
 		return true
 	end
 	return false
@@ -619,21 +598,15 @@ function enhance_af_dummy_dummy(trader, actor)
 	if check_recipe(recipe_af_dummy_dummy) then
 		enhance_recipe(trader, actor, recipe_af_dummy_dummy)
 		return true
-	elseif check_recipe(recipe_af_dummy_dummy_m1) then
-		enhance_recipe(trader, actor, recipe_af_dummy_dummy_m1)
-		return true
 	end
 	return false
 end
 
 
-recipe_af_dummy_spring		= {["af_dummy_spring"]=3,		["cost"]=8000,	["result"]="af_dummy_spring_m1",	["lucky"]="af_dummy_spring_m2",	["luck"]=5}
-recipe_af_dummy_spring_m1	= {["af_dummy_spring_m1"]=1,	["cost"]=30000,	["result"]="af_dummy_spring_m2"}
+recipe_af_dummy_spring		= {["af_dummy_spring"]=3,		["cost"]=8000,	["result"]="af_dummy_spring_m1"}
 
 function check_af_dummy_spring()
 	if check_recipe(recipe_af_dummy_spring) then
-		return true
-	elseif check_recipe(recipe_af_dummy_spring_m1) then
 		return true
 	end
 	return false
@@ -643,21 +616,15 @@ function enhance_af_dummy_spring(trader, actor)
 	if check_recipe(recipe_af_dummy_spring) then
 		enhance_recipe(trader, actor, recipe_af_dummy_spring)
 		return true
-	elseif check_recipe(recipe_af_dummy_spring_m1) then
-		enhance_recipe(trader, actor, recipe_af_dummy_spring_m1)
-		return true
 	end
 	return false
 end
 
 
-recipe_af_fuzz_kolobok		= {["af_fuzz_kolobok"]=3,		["cost"]=8000,	["result"]="af_fuzz_kolobok_m1",	["lucky"]="af_fuzz_kolobok_m2",	["luck"]=5}
-recipe_af_fuzz_kolobok_m1	= {["af_fuzz_kolobok_m1"]=1,	["cost"]=30000,	["result"]="af_fuzz_kolobok_m2"}
+recipe_af_fuzz_kolobok		= {["af_fuzz_kolobok"]=3,		["cost"]=8000,	["result"]="af_fuzz_kolobok_m1"}
 
 function check_af_fuzz_kolobok()
 	if check_recipe(recipe_af_fuzz_kolobok) then
-		return true
-	elseif check_recipe(recipe_af_fuzz_kolobok_m1) then
 		return true
 	end
 	return false
@@ -666,9 +633,6 @@ end
 function enhance_af_fuzz_kolobok(trader, actor)
 	if check_recipe(recipe_af_fuzz_kolobok) then
 		enhance_recipe(trader, actor, recipe_af_fuzz_kolobok)
-		return true
-	elseif check_recipe(recipe_af_fuzz_kolobok_m1) then
-		enhance_recipe(trader, actor, recipe_af_fuzz_kolobok_m1)
 		return true
 	end
 	return false
