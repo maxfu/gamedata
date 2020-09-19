@@ -418,4 +418,10 @@
 	<string id="af-vyvert-m1">
 		<text>Wrenched MK1</text>
 	</string>
+	<string id="enc_weapons1_pipe_bomb_can">
+		<text>A pipe bomb crudely constructed from an old drinks can, filled with buckshot, gunpowder and fuel. As no fuse is attached, the bomb should be detonated with gunfire.</text>
+	</string>
+	<string id="pipe_bomb_can">
+		<text>Pipe Bomb</text>
+	</string>
 </string_table>
