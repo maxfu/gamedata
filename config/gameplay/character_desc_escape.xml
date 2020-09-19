@@ -47,10 +47,10 @@
 		<visual>actors\neytral\stalker_neytral_balon_1</visual>
 		<supplies>
 			[spawn] \n
-			wpn_pm \n
-			ammo_9x18_fmj = 1 \n
-			wpn_ak74u \n
-			ammo_5.45x39_fmj \n
+			wpn_gp100 \n
+			ammo_357_hp_mag = 1 \n
+			wpn_crossbow = 1 \n
+			ammo_arbolt = 1 \n
 			device_torch \n
 			hand_radio \n
 		</supplies>
@@ -58,11 +58,9 @@
 #include "gameplay\character_criticals_4.xml"
 
 		<start_dialog>escape_lager_volk_talk</start_dialog>
-		<start_dialog>dm_hello_dialog</start_dialog>
-		<actor_dialog>dm_cool_info_dialog</actor_dialog>
-		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
 		<actor_dialog>tm_wolf_dialog</actor_dialog>
 		<actor_dialog>tm_wolf_reward</actor_dialog>
+#include "gameplay\character_dialogs.xml"
 	</specific_character>
 <!---------------------------------------esc_fanat----------------------------------------------------->	
 	<specific_character id="esc_fanat" team_default = "1">
@@ -86,16 +84,14 @@
 			[spawn] \n
 			wpn_pm \n
 			ammo_9x18_fmj = 1 \n
-			wpn_ak74u \n
+			wpn_ak74 \n
 			ammo_5.45x39_fmj \n
 		</supplies>
 				
 #include "gameplay\character_criticals_4.xml"
 				
 		<start_dialog>escape_lager_leader_hello</start_dialog>
-		<start_dialog>dm_hello_dialog</start_dialog>
-		<actor_dialog>dm_cool_info_dialog</actor_dialog>
-		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+#include "gameplay\character_dialogs.xml"
 	</specific_character>
 <!---------------------------------------esc_fox----------------------------------------------------->	
 	<specific_character id="esc_fox" team_default = "1">
@@ -116,19 +112,15 @@
 		<visual>actors\neytral\stalker_neytral_balon_4</visual>
 		<supplies>
 			[spawn] \n
-			wpn_pm \n
+			wpn_kriss_m1 \n
 			ammo_9x18_fmj = 1 \n
-			wpn_bm16 \n
-			ammo_12x70_buck \n
 			device_torch \n
 		</supplies>
 				
 #include "gameplay\character_criticals_4.xml"
 				
 		<start_dialog>escape_fox_hello_dialog</start_dialog>
-		<start_dialog>dm_hello_dialog</start_dialog>
-		<actor_dialog>dm_cool_info_dialog</actor_dialog>
-		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+#include "gameplay\character_dialogs.xml"
 	</specific_character>
 <!---------------------------------------esc_tutorial_wounded----------------------------------------------------->	
 	<specific_character id="esc_tutorial_wounded" team_default = "1">
@@ -156,9 +148,7 @@
 #include "gameplay\character_criticals_5.xml"
 
 		<start_dialog>tutorial_wounded_give_medkit</start_dialog>
-		<start_dialog>dm_hello_dialog</start_dialog>
-		<actor_dialog>dm_cool_info_dialog</actor_dialog>
-		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+#include "gameplay\character_dialogs.xml"
 				
 	</specific_character>
 <!---------------------------------------esc_shustryi----------------------------------------------------->	
@@ -188,11 +178,9 @@
 #include "gameplay\character_criticals_5.xml"
 
 		<start_dialog>escape_shustryi_start</start_dialog>
-		<start_dialog>dm_hello_dialog</start_dialog>
-		<actor_dialog>dm_cool_info_dialog</actor_dialog>
-		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
 		<actor_dialog>tm_shustriy_dialog</actor_dialog>
 		<actor_dialog>tm_shustriy_reward</actor_dialog>						
+#include "gameplay\character_dialogs.xml"
 	</specific_character>
 <!---------------------------------------killer_specnaz----------------------------------------------------->		
 	<specific_character id="esc_killer_specnaz" team_default = "1">
@@ -311,7 +299,7 @@
 		<visual>actors\bandit\stalker_bandit_5</visual>
 		<supplies>
 			[spawn] \n
-			wpn_pm \n
+			wpn_pb \n
 			ammo_9x18_pmm = 1 \n
 #include "gameplay\character_items.xml"	\n
 #include "gameplay\character_drugs.xml" \n
@@ -434,7 +422,7 @@
 		<visual>actors\novice\green_stalker_3</visual>
 		<supplies>
 			[spawn] \n
-			wpn_pm \n
+			wpn_pb \n
 			ammo_9x18_fmj = 1 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -526,7 +514,7 @@
 		<visual>actors\novice\green_stalker_5</visual>
 		<supplies>
 			[spawn] \n
-			wpn_pm \n
+			wpn_fort \n
 			ammo_9x18_fmj = 1 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_drugs.xml" \n
@@ -600,9 +588,7 @@
 #include "gameplay\character_criticals_3.xml"
 
 		<start_dialog>escape_factory_assault_start</start_dialog>		
-		<start_dialog>dm_hello_dialog</start_dialog>
-		<actor_dialog>dm_cool_info_dialog</actor_dialog>
-		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+#include "gameplay\character_dialogs.xml"
 	</specific_character>
 	
 <!-------------------------------------soldier_commander----------------------------------------------------->		
@@ -992,7 +978,7 @@
 			[spawn] \n
 			wpn_pm \n
 			ammo_9x18_fmj = 1 \n
-			wpn_ak74u \n
+			wpn_ak74 \n
 			ammo_5.45x39_fmj = 1 \n
 			device_torch \n
 		</supplies>
@@ -1033,9 +1019,7 @@
 #include "gameplay\character_criticals_4.xml"
 
 		<start_dialog>esc_provodnik_start</start_dialog>
-		<start_dialog>dm_hello_dialog</start_dialog>
-		<actor_dialog>dm_cool_info_dialog</actor_dialog>
-		<actor_dialog>dm_help_wounded_medkit_dialog</actor_dialog>
+#include "gameplay\character_dialogs.xml"
 	</specific_character>
 	
 </xml>
