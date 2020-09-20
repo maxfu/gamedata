@@ -54,8 +54,8 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_kriss_m1 \n
-			ammo_9x19_fmj \n
+			wpn_kriss_super_v \n
+			ammo_11.43x23_fmj \n
 			kruglov_flash \n			
 		</supplies>
 		
@@ -85,8 +85,8 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_kriss_m1 \n
-			ammo_9x19_fmj \n
+			wpn_kriss_super_v \n
+			ammo_11.43x23_fmj \n
 			kruglov_flash \n			
 		</supplies>
 		
@@ -114,8 +114,8 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_kriss_m1 \n
-			ammo_9x19_fmj \n
+			wpn_kriss_super_v \n
+			ammo_11.43x23_fmj \n
 		</supplies>
 		
 #include "gameplay\character_criticals_3.xml"
@@ -170,8 +170,8 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_walther \n
-			ammo_9x19_fmj \n
+			wpn_kriss_super_v \n
+			ammo_11.43x23_fmj \n
 		</supplies>
 		
 #include "gameplay\character_criticals_3.xml"	
@@ -196,8 +196,8 @@
 		<crouch_type>1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_kriss_m1 \n
-			ammo_9x19_fmj \n
+			wpn_kriss_super_v \n
+			ammo_11.43x23_fmj \n
 		</supplies>
 				
 #include "gameplay\character_criticals_3.xml"
