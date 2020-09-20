@@ -2,15 +2,21 @@
 #define        COMMON_H
 
 // #define USE_SUPER_SPECULAR
-#include "SkyGRAPHICS_options.cfg"
+
 #include "shared\common.h"
 //////////////////////////////////////////////////////////////////////////////////////////
 // *** options
 
+// #define DBG_TEST_NMAP
+// #define DBG_TEST_NMAP_SPEC
+// #define DBG_TEST_SPEC
+// #define DBG_TEST_LIGHT
+// #define DBG_TEST_LIGHT_SPEC
+
 // #define USE_GAMMA_22
 // #define USE_SJITTER
 // #define USE_SUNFILTER
-//
+// #define USE_FETCH4
 // #define USE_MBLUR                	//- HW-options defined
 // #define USE_HWSMAP                	//- HW-options defined
 
@@ -25,20 +31,12 @@
 // #define USE_TDETAIL                	//- shader defined
 // #define USE_LM_HEMI                	//- shader defined
 // #define USE_DISTORT                	//- shader defined
-	#ifndef USE_F32
-#define USE_SUNMASK                		//- shader defined
-	#endif
-//#define DBG_TMAPPING
+// #define USE_SUNMASK                		//- shader defined
+// #define DBG_TMAPPING
 //////////////////////////////////////////////////////////////////////////////////////////
 #ifndef SMAP_size
-	#ifndef USE_F32
-#define SMAP_size        2048
-	#else
 #define SMAP_size        1024
-	#endif
 #endif
-#define PARALLAX_H 0.02
-#define parallax float2(PARALLAX_H, -PARALLAX_H/2)
 
 #ifdef        USE_R2_STATIC_SUN
 #  define xmaterial half(1.0h/4.h)
@@ -46,6 +44,8 @@
 #  define xmaterial half(L_material.w)
 #endif
 //////////////////////////////////////////////////////////////////////////////////////////
+uniform half4                hemi_cube_pos_faces;
+uniform half4                hemi_cube_neg_faces;
 uniform half4                L_material;                            // 0,0,0,mid
 uniform half4                Ldynamic_color;                      // dynamic light color (rgb1)        - spot/point
 uniform half4                Ldynamic_pos;                       // dynamic light pos+1/range(w) - spot/point
@@ -53,11 +53,8 @@ uniform half4                Ldynamic_dir;                        // dynamic lig
 
 uniform half4                J_direct        [6];
 uniform half4                J_spot                [6];
-	#ifndef USE_F32
+
 half          calc_fogging               (half4 w_pos)      { return dot(w_pos,fog_plane);         }
-	#else
-half          calc_fogging               (half4 w_pos)      { return dot(w_pos,(fog_plane*1.125f));         }
-	#endif
 half2         calc_detail                (half3 w_pos)      {
         float                 dtl        = distance                (w_pos,eye_position)*dt_params.w;
                               dtl        = min              (dtl*dtl, 1);
@@ -128,6 +125,8 @@ struct         v_shadow_direct
         float4      hpos:        POSITION;       // Clip-space position         (for rasterization)
         float       depth:         TEXCOORD0;     // Depth
 };
+
+
 #endif
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -142,29 +141,15 @@ struct         p_bumped        {
         half3       M1                : TEXCOORD2;        // nmap 2 eye - 1
         half3       M2                : TEXCOORD3;        // nmap 2 eye - 2
         half3       M3                : TEXCOORD4;        // nmap 2 eye - 3
-#if defined(USE_PARALLAX) || defined(USE_Sky4CE_PARALLAXOCCLUSION)
-        half3       eye                : TEXCOORD5;        // vector to point in tangent space
-  #ifdef USE_TDETAIL
-        float2      tcdbump     : TEXCOORD6;        // d-bump
+#ifdef USE_TDETAIL
+        float2      tcdbump     	: TEXCOORD5;        // d-bump
     #ifdef USE_LM_HEMI
-        float2      lmh                    : TEXCOORD7;        // lm-hemi
+        float2      lmh             : TEXCOORD6;        // lm-hemi
     #endif
-  #else
-    #ifdef USE_LM_HEMI
-        float2      lmh                   : TEXCOORD6;        // lm-hemi
-    #endif
-  #endif
 #else
-  #ifdef USE_TDETAIL
-        float2      tcdbump          : TEXCOORD5;        // d-bump
     #ifdef USE_LM_HEMI
-        float2      lmh                    : TEXCOORD6;        // lm-hemi
+        float2      lmh             : TEXCOORD5;        // lm-hemi
     #endif
-  #else
-    #ifdef USE_LM_HEMI
-        float2      lmh                   : TEXCOORD5;        // lm-hemi
-    #endif
-  #endif
 #endif
 };
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -188,10 +173,7 @@ struct         p_flat                  {
     #endif
   #endif
 };
-float get_val2(){
-return 0;}
-const float4 ePq = float(1);
-const float get_val() { float rPq; rPq = ePq; half fu = get_val2();  return rPq;}  
+
 //////////////////////////////////////////////////////////////////////////////////////////
 struct                  f_deffer        		{
         half4           position        		: COLOR0;        // px,py,pz, m-id
@@ -209,6 +191,8 @@ uniform sampler2D       s_base;             	//
 uniform sampler2D       s_bump;             	//
 uniform sampler2D       s_bumpX;                //
 uniform sampler2D       s_detail;               //
+uniform sampler2D       s_detailBump;           //
+uniform sampler2D       s_detailBumpX;          //	Error for bump detail
 uniform sampler2D       s_bumpD;                //
 uniform sampler2D       s_hemi;             	//
 
@@ -245,34 +229,42 @@ uniform sampler2D       s_tonemap;              // actually MidleGray / exp(Lw +
 #define def_gloss       half(2.f /255.f)
 #define def_aref        half(200.f/255.f)
 #define def_dbumph      half(0.333f)
-#define def_virtualh    half(.05f)              // 5cm
+#define def_virtualh    half(0.05f)              // 5cm
 #define def_distort     half(0.05f)             // we get -0.5 .. 0.5 range, this is -512 .. 512 for 1024, so scale it
-	#ifndef USE_F32
-#define def_hdr         half(8.h)         		// hight luminance range half(3.h)
-	#else
-#define def_hdr         half(HDR_int)
-	#endif
+#define def_hdr         half(9.h)         		// hight luminance range half(3.h)
 #define def_hdr_clip	half(0.75h)        		//
 
 //////////////////////////////////////////////////////////////////////////////////////////
-#define	LUMINANCE_VECTOR                 half3(0.3f, 0.48f, 0.22f)
+#define	LUMINANCE_VECTOR                 half3(0.3f, 0.38f, 0.22f)
 void        tonemap              (out half4 low, out half4 high, half3 rgb, half scale)
 {
         rgb     =      	rgb*scale       ;
+
+#ifdef USE_COP_WEATHER_CONFIGS
+
+		const float fWhiteIntensity = 1.7;
+
+		const float fWhiteIntensitySQR = fWhiteIntensity*fWhiteIntensity;
 #ifdef	USE_BRANCHING		// ps_3_0
-        low		=       rgb.xyzz		;
+        //low		=       rgb.xyzz		;
+
+		low		=	( (rgb*(1+rgb/fWhiteIntensitySQR)) / (rgb+1) ).xyzz;
+
         high	=		low/def_hdr		;        // 8x dynamic range
 #else
-        low		=       half4           (rgb,           0 )	;
+        low		=       half4           ( ( (rgb*(1+rgb/fWhiteIntensitySQR)) / (rgb+1) ),           0 )	;
         high	=       half4       	(rgb/def_hdr,   0 )	;		// 8x dynamic range
 #endif
 
-//		low		= 	half4	(rgb, 0);
-//		rgb		/=	def_hdr	;
-//		high	= 	half4	(rgb, dot(rgb,0.333f)-def_hdr_clip)		;
+#else
+
+	low		=	rgb.xyzz;
+	high	=	low/def_hdr;	// 8x dynamic range
+
+#endif
 }
 half4		combine_bloom        (half3  low, half4 high)	{
-        return        half4(low + high*high.a, 1.f);
+        return        half4(low + high*high.a, 1.h);
 }
 
 float3	v_hemi        	(float3 n)                        	{        return L_hemi_color*(.5f + .5f*n.y);                   }
@@ -280,138 +272,48 @@ float3	v_hemi_wrap     (float3 n, float w)                	{        return L_hem
 float3	v_sun           (float3 n)                        	{        return L_sun_color*dot(n,-L_sun_dir_w);                }
 float3	v_sun_wrap      (float3 n, float w)                	{        return L_sun_color*(w+(1-w)*dot(n,-L_sun_dir_w));      }
 half3   p_hemi          (float2 tc)                         {
-        half3        	t_lmh         = tex2D             	(s_hemi, tc);
-        return  dot     (t_lmh,1.h/3.h);
-}
-//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$//
-//--- � The below code is copyright of Sky4CE ---//
-//----------- mailto: Sky4CE@inbox.ru -----------//
-//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$//
-
-float2 lod(float3 eye,float2 tc,sampler2D s_base)
-{
-	half height	= tex2D(s_base, tc).w * 0.016 - 0.009;    
-    return tc + height*normalize(eye);
-}
-float2 AdvancedParallax(float3 eye,float2 tc,sampler2D s_base)
-{
-	const int maxSamples = MAX_SAMPLES;
-  	const int minSamples = MIN_SAMPLES;
-	float fParallaxOffset = PARALLAX_OFFSET;
- 	int nNumSteps = lerp( maxSamples, minSamples, normalize(eye).z );
-  	float2 vDelta = -normalize(eye).xy * fParallaxOffset;
-  	#ifdef CORRECT_PERSPECTIVE
-  	vDelta /= normalize(eye).z;
-  	#endif
-   	float fStepSize = 1.0 / nNumSteps;
-   	float2 vTexOffsetPerStep = fStepSize * vDelta;
-   	double2 vTexCurrentOffset = tc;
-   	float fCurrHeight = 0;
-   	float  fCurrentBound = 1.0;
-   	float Q1 = CONTRAST_COEF_Q1;
-   	float Q2 = CONTRAST_COEF_Q2;
-   	float Brightness = BRIGHTNESS_COEF;
-   	for(;fCurrHeight < fCurrentBound;fCurrentBound -= fStepSize)
-   	{
-   		vTexCurrentOffset.xy += vTexOffsetPerStep;
-   		#ifndef USE_TEXTURE_PACK
-    	fCurrHeight = tex2Dlod( s_base, float4(vTexCurrentOffset.xy,0,0) ).a+Brightness;
-    	if (fCurrHeight > Q2) fCurrHeight  = 1.0f;
-    	else if (fCurrHeight < Q1) fCurrHeight = 0.0f;
-    	else fCurrHeight = (fCurrHeight - Q1)/(Q2-Q1);
-    	#else
-    	fCurrHeight = tex2Dlod( s_base, float4(vTexCurrentOffset.xy,0,0) ).a;
-    	#endif
-    }
-    float4 offsetBest = float4(vTexCurrentOffset,0,0);
-    vTexCurrentOffset.xy -= vTexOffsetPerStep;
-    #ifndef USE_TEXTURE_PACK
-   	float fPrevHeight = tex2Dlod( s_base, float4(vTexCurrentOffset.xy,0,0) ).a+Brightness;
-   	if (fPrevHeight > Q2) fPrevHeight = 1.0f;
-  	else if (fPrevHeight < Q1) fPrevHeight = 0.0f;
-  	else fPrevHeight = (fPrevHeight - Q1)/(Q2-Q1);
-  	#else
-  	float fPrevHeight = tex2Dlod( s_base, float4(vTexCurrentOffset.xy,0,0) ).a;
-  	#endif
-    float error = 1.0;
-    float t1 = fCurrentBound ;
-    float t0 = t1 + fStepSize;
-    float delta1 = t1 - fCurrHeight;
-    float delta0 = t0 - fPrevHeight;
-    float4 intersect = float4(vDelta, vDelta + tc);
-    for (int i=0; i<FINAL_INTERSECTION_LOOPS && abs(error) > 0.01; i++)
-    { 
-      float denom = (delta1 - delta0);
-      float t = (t0 * delta1 - t1 * delta0) / denom;
-      offsetBest.xy = -t * intersect.xy + intersect.zw;
-      #ifndef USE_TEXTURE_PACK
-      float NB = tex2Dlod(s_base, offsetBest).a+Brightness;
-      if (NB > Q2) NB = 1.0f;
-  	  else if (NB < Q1) NB = 0.0f;
-  	  else NB = (NB - Q1)/(Q2-Q1);
-  	  #else
-  	  float NB = tex2Dlod(s_base, offsetBest).a;
-  	  #endif
-      error = t - NB;
-      if (error < 0)
-      {
-         delta1 = error;
-         t1 = t;
-      }
-      else
-      {
-         delta0 = error;
-         t0 = t;
-      }
-    }
-    return offsetBest.xy;
+	half4 t_lmh = tex2D(s_hemi, tc);
+	return dot(t_lmh.rgb, 1.h/3.h);
 }
 
-static const half2 poisson_disc12[12] = 
+half   get_hemi( half4 lmh)
 {
-	half2(-0.326212f , -0.405810f),
-	half2(-0.840144f , -0.073580f),
-	half2(-0.695914f ,  0.457137f),
-	half2(-0.203345f ,  0.620716f),
-	half2( 0.962340f , -0.194983f),
-	half2( 0.473434f , -0.480026f),
-	half2( 0.519456f ,  0.767022f),
-	half2( 0.185461f , -0.893124f),
-	half2( 0.507431f ,  0.064425f),
-	half2( 0.896420f ,  0.412458f),
-	half2(-0.321940f , -0.932615f),
-	half2(-0.791559f , -0.597710f)
-};
-
-half	calc_ssao( half3 P, half3 N, half2 tc)
-{
-	half2 	scale 	= half2	(.5f / 1024.h, .5f / 768.h)*150/max(P.z,1.3);
-	half occ = 0;
-	half num_dir = 0;
-	float c = 1;
-	if(P.z<FADE_DIST) c = FADE_COEF + ((1-FADE_COEF)*P.z)/FADE_DIST;
-for (int a=1; a<SSAO_QUALITY; ++a)
-{
-	half2	scale_tmp = scale*a;
-	for (int i=0; i<12; i++)
-	{
-		float2 	tap 	= tc + poisson_disc12[i]*scale_tmp;
-		half3	tap_pos	= tex2D	(s_position,tap);
-		half3 	dir 	= tap_pos-P.xyz;
-		half	dist	= length(dir);
-		dir 	= normalize(dir);
-		half 	infl 	= clamp(dot( dir, N.xyz),0,c);
-		half 	occ_factor = saturate(dist);
-		occ += (infl+0.01)*lerp( 1, occ_factor, infl)/(occ_factor+0.1);
-		num_dir += (infl+0.01)/(occ_factor+0.1);
-	}
+	return dot(lmh.rgb, 1.h/3.h);
 }
-	occ /= num_dir;
 
-	return occ;
-} 
+half   get_sun( half4 lmh)
+{
+	return lmh.a;
+}
+
+//	contrast function
+half Contrast(half Input, half ContrastPower)
+{
+     //piecewise contrast function
+     bool IsAboveHalf = Input > 0.5 ;
+     half ToRaise = saturate(2*(IsAboveHalf ? 1-Input : Input));
+     half Output = 0.5*pow(ToRaise, ContrastPower);
+     Output = IsAboveHalf ? 1-Output : Output;
+     return Output;
+}
 
 #define FXPS technique _render{pass _code{PixelShader=compile ps_3_0 main();}}
 #define FXVS technique _render{pass _code{VertexShader=compile vs_3_0 main();}}
+
+//////////////////////////////////////////[SWM]///////////////////////////////////////////
+uniform float4 m_blender_mode; // x = [0 - default, 1 - night vision, 2 - thermal vision]; y = [0.0f / 1.0f - происходит ли в данный момент рендеринг картинки для прицела]; z = [0.0f / 1.0f - выключен или включён двойной рендер]; w - зарезервировано на будущее.
+
+// Активен-ли двойной рендер?
+inline bool isSecondVPActive()
+{
+	return (m_blender_mode.z == 1.f);
+}
+
+// Рендерится ли в данный момент кадр для прицела?
+inline bool IsSVPFrame()
+{
+	return (m_blender_mode.y == 1.f);
+}
+//////////////////////////////////////////////////////////////////////////////////////////
 
 #endif
