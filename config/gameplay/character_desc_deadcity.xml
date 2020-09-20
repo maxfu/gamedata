@@ -80,7 +80,7 @@
 			[spawn] \n
 			wpn_walther \n
 			ammo_9x19_fmj = 1 \n
-			wpn_lr300 \n
+			wpn_sig550 \n
 			ammo_5.56x45_ap = 1 \n
 #include "gameplay\character_items.xml"
 #include "gameplay\character_food.xml"
@@ -198,7 +198,7 @@
 			[spawn] \n
 			wpn_beretta \n
 			ammo_9x19_pbp = 3 \n
-			wpn_sig550 \n
+			wpn_g36 \n
 			ammo_5.56x45_ss190 = 2 \n
 			ammo_5.56x45_ap = 1 \n
 			device_torch \n
@@ -377,8 +377,8 @@
 			[spawn] \n
 			wpn_hpsa \n
 			ammo_9x19_pbp = 1 \n
-			wpn_ak74 \n
-			ammo_5.45x39_fmj = 2 \n
+			wpn_lr300 \n
+			ammo_5.56x45_ss190 = 2 \n
 			device_torch \n
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
@@ -463,7 +463,7 @@
 			[spawn] \n
 			wpn_beretta \n
 			ammo_9x19_pbp = 1 \n	
-			wpn_l85 \n
+			wpn_lr300 \n
 			ammo_5.56x45_ap = 1 \n
 			device_torch \n
 #include "gameplay\character_food.xml"
