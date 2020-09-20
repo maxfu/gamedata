@@ -1,233 +1,12 @@
 -- 071217 - fix negative relation changes in quests
+-- 080131 - abort() no longer crashes with "nil arg to format"
 
---*********************************************************************************************************
---==============================================================================================
-log1("--LUA version: ["..(jit.version or _VERSION).."]")
---==============================================================================================
-FFI = require('ffi') --??? ??? ??????? ?? ??
---==============================================================================================
-math.randomseed(os.time())
---====================================[LuaFileSystem]===========================================
---lfs.dll ??? ?? ????bin.
---xpcall(function() require("lfs") end, log1)
---=======================================[LuaXML]===============================================
---_luaxml.script ??? ?? ????scripts.
---prefetch("_luaxml")
---===================[string.lower ?string.upper ?????? ??????]====================
---[=[--KRodin: ?-? setlocale ????????????.
-os.setlocale("", "ctype") --?? ??? ??? LuaJIT ????? ????? ????? ???.
-if jit.version_num >= 20000 then --???????????????? ??????
-	FFI.cdef[[
-		int tolower( int code );
-		int toupper( int code );
-	]]
-	string.lower = function(s)
-		return s:gsub('.', function(x)
-			return string.char( FFI.C.tolower( x:byte() ) )
-		end)
-	end
-	string.upper = function(s)
-		return s:gsub('.', function(x)
-			return string.char( FFI.C.toupper( x:byte() ) )
-		end)
-	end
-end
---]=]
-do
-	local lower = string.lower
-	string.lower = function(s)
-		return lower(s:gsub("([??)",function(c) return string.char(c:byte()+32) end):gsub("?, "?))
-	end
-	--
-	local upper = string.upper
-	string.upper = function(s)
-		return upper(s:gsub("([??])",function(c) return string.char(c:byte()-32) end):gsub("?, "?))
-	end
-end
---=================================[????? xrLuaFix]========================================
---C??? ??? "???
-string.trim_w = function(s) return s:gsub("%s-(%S+)%s+", '', 1) end
---???????????
-string.trim_l = function(s) return s:gsub("^%s+", '') end
---???????????
-string.trim_r = function(s) return s:gsub("%s*$", '') end
---???????????????
-string.trim   = function(s) return s:match( "^%s*(.*%S)" ) or "" end
-------------------------------------------------------------------------------------------------
---????? ??? ?????????? ?? ???? ?? ?????? ???? #.
-table.size = function(t)
-	local size = 0
-	for _ in pairs(t) do size = size + 1 end
-	return size
-end
---????? ????????????? ?? ??????? ?????? ?????? ???. ???? ?? ??????? ????
-table.random = function(t)
-	return t[math.random(#t)]
-end
---????? ??? ?????????
-table.keys = function(t)
-	local arr = {}
-	for k, _ in pairs(t) do
-		table.insert(arr, k)
-	end
-	return arr
-end
---????? ??? ?????? ????
-table.values = function(t)
-	local arr = {}
-	for _, v in pairs(t) do
-		table.insert(arr, v)
-	end
-	return arr
-end
---==============================================================================================
--- ??? ? ??? Naxac'a
-local to_ptrn = {
-	[' '] = '%s',
-	['.'] = '%.',
-	['%'] = '%%',
-	['*'] = '%*',
-	['-'] = '%-'
-}
-string.explode = function( div,    -- ??????
-                           str,    -- ???
-                           clear ) -- ???? ? ????? ??????(false/true)
-	local ret = {}
-	for s in str:gmatch("([^"..(to_ptrn[div] or div).."]+)") do
-		ret[#ret+1] = (clear and s:trim() or s)
-	end
-	return ret
-end
---==============================================================================================
--- ??????? ? "???" ???? (????????? ?FS)
-string.clear = function(str) --KRodin: ???? ???? ??? ????.
-	return str:gsub( '[/:<>|%*%?"\\]*', "" )
-end
---==============================================================================================
--- ??????? ??? ? ???
--- http://www.amk-team.ru/forum/topic/13216-sborochnyy-ceh/?do=findComment&comment=959286
-string.width = function(str, width, return_table, indent, paragrapf)
-    indent    = indent    or 0
-    paragrapf = paragrapf or 0
-    width     = (width or 80) - indent
+-- set this true if you want to shut down if abort() called
+quit_on_abort = false
 
-    local i = string.rep(' ', indent)
-    local t = {}
-    local line = string.rep(' ', paragrapf)
-
-    for exp, word in str:gmatch('(%s-(%S+))') do
-        if line == '' and #t ~= 0 then
-            exp = word
-        end
-
-        local l_len = #line
-        local len = l_len + #exp
-        
-        if len > width then
-            t[#t+1], line = line, word
-        else
-            line = line .. exp
-            if l_len == width then
-                t[#t+1], line = line, ''
-            end
-        end
-    end
-
-    t[#t+1] = line
-
-    if return_table then
-        return t
-    else
-        return i .. table.concat(t, '\n' .. i)
-    end
+if (jit == nil) then
+	profiler.setup_hook	()
 end
---==============================================================================================
-function table.copy(tbl) --????? ???????
-	local mt = getmetatable(tbl)
-	local res = {}
-	for k, v in pairs(tbl) do
-		if type(k) == "table" then
-			k = table.copy(k)
-		end
-		if type(v) == "table" then
-			v = table.copy(v)
-		end
-		res[k] = v
-	end
-	setmetatable(res, mt)
-	return res
-end
---=================================[CUIScriptWnd Extension]=====================================
--- ??????? ????AddCallback, ? ???????? ????????????? ????????????.
-function CUIScriptWnd:Connect(name, event, func, ...)
-	local args = {...}
-	return self:AddCallback( name, event, function() func(unpack(args)) end )
-end
---==============================================================================================
-local tostring_all_tbl = {
-    ["table"] 	   = function(table, ind) --????? ???
-                        local res = "{" --???
-                        local end_res = ind and "\n"..ind.."}" or "\n}" --???
-                        local def_ind = "  " --??? ? ??? ???
-                        ind = ind and ind..def_ind or def_ind --?? ??? "??????? ???? ??? ??????? ?2 ??
-                        for k, v in pairs(table) do
-                            res = res.."\n"..ind.."["..tostring_all(k, ind).."] = "..tostring_all(v, ind)..","
-                        end
-                        return res..end_res
-                    end,
-    ["string"]    = function(v) return "'"..v.."'" end, --??? ???????? ????? ???????? ???? ??? "123" ? ???123, "nil" ? nil ??...
-    ["number"]    = function(v) return tostring(v) end,
-    ["boolean"]   = function(v) return tostring(v) end,
-    ["nil"]       = function(v) return tostring(v) end,
-    ["function"]  = function() return "[[FUNCTION]]" end, --Function, Userdata ?Thread ?????????, ??? ????? ???
-    ["userdata"]  = function() return "[[USERDATA]]" end,
-    ["thread"]    = function() return "[[THREAD]]" end,
-}
---?????????? ??? ????. ?????? ??? ?? ??? ???
-function tostring_all(obj, ind) --ind - ????????? ?? ????? "??? ?????".
-	return tostring_all_tbl[type(obj)](obj, ind)
-end
-
---??????? ?????? log1.
---??? ??????? ??? ? ???????????, ????? ??????? ??? ???? string.format.
---????????????? ??? ??! ???? ????????? ??? ??%s (???, ?????????????????).
-function log3(fmt, ...)
-	local args = {...}
-	for i=1, #args do
-		args[i] = tostring_all(args[i])
-	end
-	local res, msg = pcall(string.format, fmt, unpack(args))
-	if not res then --?? ????????
-		msg = "!!log3 failed: "..msg.."\n"..debug.traceback()
-	end
-	log1(msg)
-end
---==============================================================================================
-function abort(fmt, ...)
-	log1("!!****************************[ABORT]*********************************")
-	log1(debug.traceback())
-	log3(fmt, ...)
-	log1("!!********************************************************************")
-	error(tostring(fmt))
-end
-function ASSERT(cond, ...)
-	if not cond then
-		abort(...)
-	end
-end
---==============================================================================================
-function cmd(scmd, ...)
-	ASSERT(scmd, "[cmd] scmd is a nil reference")
-	local args = {...}
-	if #args > 0 then
-		scmd = scmd..' '..table.concat(args, ' ')
-	end
-	get_console():execute(scmd)
-end
---==============================================================================================
-log = function(...) --[[log1(...)]] end
---***************************************************************************************************************
-
 
 schemes = {} -- соответствие схем моду??
 stypes = {} -- типы схем
@@ -1364,6 +1143,18 @@ function id_by_sid( sid )
 	return nil
 end
 
+-- Крешнуть игру (посл?вывода сообщения об ошибке ?ло?
+function abort(fmt, ...)
+	local reason = string.format(fmt, ...)
+	-- assert("ERROR: " .. reason)
+	-- printf("ERROR: " .. reason)
+	-- printf("%s")
+	dbglog("ABORT()_called:__%s", reason)
+	if quit_on_abort then
+		get_console():execute("quit")
+	end
+end
+
 function set_postprocess(name_ini_file)
 	bind_stalker.post_process = postprocess.PostProcess(ini_file(name_ini_file))
 end
@@ -1476,9 +1267,7 @@ function get_texture_info(id_name, id_default)
 end
 
 function start_game_callback()
-	--
-	m_netpk.attach()
-	--
+	printf	("start_game_callback called")
 	task_manager.clear_task_manager()
 	treasure_manager.clear_treasure_manager()
 	xr_sound.clear_all_sound_object()
