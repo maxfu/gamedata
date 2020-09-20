@@ -426,6 +426,15 @@
 	<string id="dolg_kill_stalker_1_text">
 		<text>Subject's nickname: Poker. One of the most cruel bandit leaders, a thug and a rapist... Evidently, his head is not okay: they say he caught a rare disease in the Zone. Now he suffers quite frequent lapses of memory, goes on a rampage, and when he gains consciousness, he can't remember who and where he is. Nevertheless, he's always armed and very aggressive. Presumed location: Dark Valley. Ready for the task?</text>
 	</string>
+	<string id="dolg_kill_stalker_3">
+		<text>Neutralize the Monolith leader.</text>
+	</string>
+	<string id="dolg_kill_stalker_3_descr">
+		<text>Neutralize the Monolith leader at Pripat.</text>
+	</string>
+	<string id="dolg_kill_stalker_3_text">
+		<text>A big reward for a bad guy. Why not.</text>
+	</string>
 	<string id="drunk_dolg_find_item">
 		<text>Find the weapon of the Duty member.</text>
 	</string>
@@ -728,6 +737,15 @@
 	</string>
 	<string id="freedom_kill_stalker_7_text">
 		<text>A cad, bootlicker, hypocrite and yellow-bellied coward... that's Stalker Barin for you. This man's marvelous character helped him get to the top of Duty. He currently supplies their faction with supplies and rations, though he takes part in raids from time to time. We need to get rid of Barin, especially since all the Duty logistics go through him.</text>
+	</string>
+	<string id="freedom_kill_stalker_9">
+		<text>Kill the Duty leader.</text>
+	</string>
+	<string id="freedom_kill_stalker_9_descr">
+		<text>Kill the Duty leader at the bar area.</text>
+	</string>
+	<string id="freedom_kill_stalker_9_text">
+		<text>You know, we are having the war with Duty. So if you can bring down it's leader. You get the best reward. You may say that someone else would take up the position. Well......</text>
 	</string>
 	<string id="freedom_monster_part_1">
 		<text>Bring a boar's leg.</text>
