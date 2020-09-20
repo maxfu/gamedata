@@ -90,7 +90,9 @@
       [spawn] \n
 	  wpn_usp  \n
 	  ammo_11.43x23_hydro = 1 \n
-    </supplies>
+ 	  wpn_rg-6 \n
+	  ammo_vog-25p = 6 \n
+   </supplies>
 
 #include "gameplay\character_criticals_1.xml"
 					
