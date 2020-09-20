@@ -237,8 +237,8 @@
             [spawn] \n
             wpn_usp \n
             ammo_11.43x23_hydro = 1 \n
-            wpn_groza \n
-			ammo_9x39_ap \n
+            wpn_pkm \n
+			ammo_7.62x54r \n
 #include "gameplay\character_drugs.xml"
 #include "gameplay\character_items.xml" \n
         </supplies>
