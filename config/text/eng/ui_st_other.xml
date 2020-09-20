@@ -25,7 +25,7 @@
 		<text>Grass shadow</text>
 	</string>
 	<string id="ui_mm_render_2">
-		<text>Render 2</text>
+		<text>Renderer 2</text>
 	</string>
 	<string id="ui_pda_details">
 		<text># /details</text>
@@ -43,7 +43,7 @@
 		<text>Yes</text>
 	</string>
 	<string id="ui_st_cant_run_r2">
-		<text>You can't run Render 2 on your PC</text>
+		<text>You can't run Renderer 2 on your PC</text>
 	</string>
 	<string id="ui_st_conn_invalid_host">
 		<text>Connection error: Invalid host</text>
@@ -230,6 +230,54 @@
 	</string>
 	<string id="ui_st_invalid_saved_game">
 		<text>Saved game version mismatch or saved game is corrupted</text>
+	</string>
+
+	<string id="st_pda_change_spot_hint">
+		<text>Edit marker text</text>
+	</string>
+	<string id="st_pda_delete_spot">
+		<text>Delete marker</text>
+	</string>
+
+	<string id="st_move">
+		<text>move</text>
+	</string>
+	<string id="st_move_all">
+		<text>move all</text>
+	</string>
+
+	<string id="st_move_to_slot_1">
+		<text>move to slot 1</text>
+	</string>
+	<string id="st_move_to_slot_2">
+		<text>move to slot 2</text>
+	</string>
+	<string id="st_attach_addon_to_wpn_in_slot_1">
+		<text>attach %s to %k in slot 1</text>
+	</string>
+	<string id="st_attach_addon_to_wpn_in_slot_2">
+		<text>attach %s to %k in slot 2</text>
+	</string>
+	
+	<string id="kb_cam_1">
+		<text>First person view</text>
+	</string>
+	<string id="kb_cam_2">
+		<text>Third person view</text>
+	</string>
+	<string id="kb_cam_3">
+		<text>Third person view (freelook)</text>
+	</string>
+
+	<string id="inventory_item_use_or_drag">
+		<text>Pick up item ($$ACTION_USE$$)\nDrag item (SHIFT+$$ACTION_USE$$)</text>
+	</string>
+	<string id="game_object_drag">
+		<text>Drag item (SHIFT+$$ACTION_USE$$)</text>
+	</string>
+
+	<string id="st_press_any_key">
+		<text>Press any key to play</text>
 	</string>
 
 	<!-- ZRP begin -->
