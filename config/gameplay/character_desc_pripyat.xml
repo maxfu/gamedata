@@ -489,8 +489,8 @@
 			[spawn] \n
 			wpn_walther \n
 			ammo_9x19_fmj \n
-            wpn_lr300 \n
-            ammo_5.56x45_ap = 2 \n
+            wpn_pkm \n
+            ammo_7.62x54r = 2 \n
 			device_torch \n
 #include "gameplay\character_items.xml"
 #include "gameplay\character_food.xml"
@@ -523,7 +523,7 @@
 			[spawn] \n
 			wpn_walther \n
 			ammo_9x19_fmj \n
-            wpn_val \n
+            wpn_vintorez \n
             ammo_9x39_ap = 3 \n
 			device_torch \n
 #include "gameplay\character_items.xml"
@@ -624,8 +624,8 @@
 			[spawn] \n
             wpn_walther \n
             ammo_9x19_pbp = 1 \n
-            wpn_val \n
-            ammo_9x39_ap = 2 \n
+            wpn_awm \n
+            ammo_7.62x54_ap = 2 \n
 			device_torch \n
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
