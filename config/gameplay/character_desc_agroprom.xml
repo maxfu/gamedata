@@ -197,8 +197,8 @@
 			[spawn] \n
 			wpn_pm \n
 			ammo_9x18_pmm = 1 \n
-			wpn_mp5 \n
-			ammo_9x19_pbp = 1 \n
+			wpn_ak74 \n
+			ammo_5.45x39_fmj = 1 \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
 #include "gameplay\character_food.xml"
@@ -296,8 +296,8 @@
 			[spawn] \n
 			wpn_pm \n
 			ammo_9x18_pmm = 1 \n
-			wpn_mp5 \n
-			ammo_9x19_fmj \n
+			wpn_ak74 \n
+			ammo_5.45x39_fmj \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
 #include "gameplay\character_food.xml"
@@ -734,8 +734,8 @@
 			[spawn] \n
 			wpn_fort \n
 			ammo_9x18_fmj = 1 \n
-			wpn_bm16 \n
-			ammo_12x70_buck \n
+			wpn_ak74 \n
+			ammo_5.45x39_fmj \n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
 #include "gameplay\character_food.xml"
