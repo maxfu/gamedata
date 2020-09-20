@@ -53,8 +53,8 @@
             wpn_fort \n
 			ammo_9x18_pmm = 1 \n
             ammo_9x18_fmj = 1\n
-			wpn_spas12 \n
-			ammo_12x76_zhekan \n
+			wpn_groza \n
+			ammo_9x39_pab9 \n
 			device_torch \n
 #include "gameplay\character_items.xml"			
 		</supplies>
@@ -85,8 +85,8 @@
             wpn_fort \n
 			ammo_9x18_pmm = 1 \n
             ammo_9x18_fmj = 1\n
-            wpn_spas12 \n
-			ammo_12x76_dart \n
+            wpn_val \n
+			ammo_9x39_ap \n
 			device_torch \n
 #include "gameplay\character_items.xml"			
 		</supplies>
@@ -143,7 +143,7 @@
 			[spawn] \n
 			wpn_pb \n
 			ammo_9x18_pbp = 1 \n
-			wpn_svu \n
+			wpn_svd \n
 			ammo_7.62x54_ap = 1 \n
 			device_torch \n
 #include "gameplay\character_items.xml"			
@@ -171,7 +171,7 @@
 			[spawn] \n
 			wpn_pb \n
 			ammo_9x18_pbp = 1 \n
-			wpn_svu \n
+			wpn_m1891_30_scope \n
 			ammo_7.62x54_ap = 1 \n
 			device_torch \n
 #include "gameplay\character_items.xml"					
@@ -348,9 +348,8 @@
 			[spawn] \n
 			wpn_usp \n
 			ammo_11.43x23_hydro	= 1 \n
-			wpn_groza \n
-			ammo_9x39_sp5 = 2 \n
-			ammo_vog-25p = 2 \n
+			wpn_pkm \n
+			ammo_7.62x54r = 2 \n
 #include "gameplay\character_items.xml"			
 		</supplies>	
 				
