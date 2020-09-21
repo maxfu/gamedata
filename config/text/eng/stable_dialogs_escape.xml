@@ -400,7 +400,7 @@
 		<text>Mission complete. Here's the box from the Army outpost.</text>
 	</string>
 	<string id="escape_trader_done_blockpost_box_2">
-		<text>Good! You were a great help. But, of course a "thank you" won't buy you a piece of bread. Here's three... wait, two thousand pieces of eight and we're square!  By the way, the soldiers will certainly notice something missing, so things are going to heat up. You better get going, and the faster, the better.</text>
+		<text>Good! You were a great help. But, of course a "thank you" won't buy you a piece of bread. Here's three... wait, two thousand pieces of eight and we're square!  By the way, the soldiers will certainly notice something missing, so things are going to heat up. You better get going, and the faster, the better. Here, take these bows for the crossbow. You probabily can not find it anywhere else.</text>
 	</string>
 	<string id="escape_trader_jobs_0">
 		<text>Got any special missions for me?</text>
@@ -424,7 +424,7 @@
 		<text>I'll try.</text>
 	</string>
 	<string id="escape_trader_jobs_51111">
-		<text>I'll get the cash ready - you haven't let me down once. Just one other thing... Keep it low-profile. If the military gets pissed off, we're all in for a lot of trouble.</text>
+		<text>I'll get the cash ready - you haven't let me down once. Just one other thing... Keep it low-profile. If the military gets pissed off, we're all in for a lot of trouble. By the way, I hope this little old factioned arm can help you. Keep it after this mission.</text>
 	</string>
 	<string id="escape_trader_jobs_52">
 		<text>No, I can't take it on yet.</text>

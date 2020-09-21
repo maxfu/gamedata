@@ -770,6 +770,7 @@
         <phrase_list>
             <phrase id="51111">
                 <text>escape_trader_jobs_51111</text>
+                <action>escape_dialog.give_blockpost_case_weapon</action>
             </phrase>
             <phrase id="52">
                 <text>escape_trader_jobs_52</text>
