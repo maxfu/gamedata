@@ -162,9 +162,11 @@ function transfer_medikit_to_fox (player, wounded)
 end
 
 function give_weapon_to_actor (trader, actor)
-    dialogs.relocate_item_section(trader, "wpn_pm", "in")
-    dialogs.relocate_item_section(trader, "ammo_9x18_fmj", "in")
-	dialogs.relocate_item_section(trader, "ammo_9x18_fmj", "in")
+    dialogs.relocate_item_section(trader, "wpn_toz34", "in")
+    dialogs.relocate_item_section(trader, "ammo_12x70_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x70_buck", "in")
+    dialogs.relocate_item_section(trader, "ammo_12x70_buck", "in")
+	dialogs.relocate_item_section(trader, "ammo_12x70_buck", "in")
     dialogs.relocate_item_section(trader, "wpn_knife", "in")     
 end
 
