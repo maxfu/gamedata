@@ -8,14 +8,18 @@
 
 local level_zip_points = {
 	l01_escape = {
-		["l02_garbage"] = {dik_key=DIK_keys.DIK_G,hotkey="G",dtype="path",path="esc_way_if_reject",name="l02_garbage",pimage="intro\\intro_l02_garbage"},
-		["sids_office"] = {dik_key=DIK_keys.DIK_S,hotkey="S",dtype="position",pos=vector():set(-246.73, -24.79, -134.43),dir=vector():set(1,0,0),name="escape_trader_name",pimage="intro\\intro_l01_escape"}
+		["l02_garbage"]	= {dik_key=DIK_keys.DIK_G,hotkey="G",dtype="path",path="esc_way_if_reject",name="l02_garbage",pimage="intro\\intro_l02_garbage"},
+		["sids_office"]	= {dik_key=DIK_keys.DIK_S,hotkey="S",dtype="position",pos=vector():set(-250.49, -19.59, -127.16),dir=vector():set(1,0,0),name="escape_trader_name",pimage="intro\\intro_l01_escape"},
+		["the_farm"] = {dik_key=DIK_keys.DIK_F,hotkey="F",dtype="position",pos=vector():set(29.04, 0.01, 271.04),dir=vector():set(1,0,0),name="Farm",pimage="intro\\intro_l01_escape"},
+		["bus_stop"] = {dik_key=DIK_keys.DIK_B,hotkey="B",dtype="position",pos=vector():set(21.19, 1.14, 24.88),dir=vector():set(1,0,0),name="Bus Stop to Factory and Carpark",pimage="intro\\intro_l01_escape"}
 	},
 	l02_garbage = {
 		["l03_agroprom"] = {dik_key=DIK_keys.DIK_A,hotkey="A",dtype="path",path="gar_way_if_reject_to_agr",name="l03_agroprom",pimage="intro\\intro_l03_agroprom"},
 		["l05_bar"] = {dik_key=DIK_keys.DIK_B,hotkey="B",dtype="path",path="gar_way_if_reject_to_bar",name="l05_bar",pimage="intro\\intro_l05_bar"},
 		["l04_darkvalley"] = {dik_key=DIK_keys.DIK_D,hotkey="D",dtype="path",path="gar_way_if_reject_to_val",name="l04_darkvalley",pimage="intro\\intro_l04_darkvalley"},
-		["l01_escape"] = {dik_key=DIK_keys.DIK_C,hotkey="C",dtype="path",path="gar_way_if_reject_to_esc",name="l01_escape",pimage="intro\\intro_l01_escape"}
+		["l01_escape"] = {dik_key=DIK_keys.DIK_C,hotkey="C",dtype="path",path="gar_way_if_reject_to_esc",name="l01_escape",pimage="intro\\intro_l01_escape"},
+		["gar_car_graveyard"] = {dik_key=DIK_keys.DIK_H,hotkey="H",dtype="position",pos=vector():set(-26.78, -0.35, -214.93),dir=vector():set(1,0,0),name="gar_car_graveyard",pimage="intro\\intro_l02_garbage"},
+		["gar_seriy"] = {dik_key=DIK_keys.DIK_S,hotkey="S",dtype="position",pos=vector():set(-3.63, 0.46, 5.92),dir=vector():set(1,0,0),name="gar_seriy",pimage="intro\\intro_l02_garbage"}
 	},
 	l03_agroprom = {
 		["l02_garbage"] = {dik_key=DIK_keys.DIK_G,hotkey="G",dtype="path",path="arg_way_if_reject_to_gar",name="l02_garbage",pimage="intro\\intro_l02_garbage"},
