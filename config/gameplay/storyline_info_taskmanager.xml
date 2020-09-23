@@ -248,6 +248,9 @@
 <article id="dolg_kill_stalker_1_descr" name="kill_stalker" article_type="task">
         <text>dolg_kill_stalker_1_descr</text>
 </article>
+<article id="dolg_kill_stalker_2_descr" name="kill_stalker" article_type="task">
+        <text>dolg_kill_stalker_2_descr</text>
+</article>
 <article id="dolg_kill_stalker_3_descr" name="kill_stalker" article_type="task">
         <text>dolg_kill_stalker_3_descr</text>
 </article>
