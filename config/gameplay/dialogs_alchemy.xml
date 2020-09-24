@@ -242,6 +242,7 @@
                 <next>204</next>
                 <next>205</next>
                 <next>206</next>
+                <next>207</next>
                 <next>6</next>
             </phrase>
             <phrase id="200">
@@ -283,6 +284,12 @@
                 <precondition>maxfu_trader_alchemy.check_outfit_dolg_scientific_m1</precondition>
                 <text>trader_alchemy_206</text>
                 <action>maxfu_trader_alchemy.enhance_outfit_dolg_scientific_m1</action>
+                <next>5</next>
+            </phrase>
+            <phrase id="207">
+                <precondition>maxfu_trader_alchemy.check_outfit_stalker_m3</precondition>
+                <text>trader_alchemy_207</text>
+                <action>maxfu_trader_alchemy.enhance_outfit_stalker_m3</action>
                 <next>5</next>
             </phrase>
 
