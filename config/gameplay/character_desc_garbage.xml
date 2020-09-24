@@ -670,7 +670,7 @@
 		<visual>actors\dolg\stalker_do_balon_4</visual>
 		<supplies>
 			[spawn] \n
-			wpn_bm16_full \n
+			wpn_toz34 \n
 			ammo_12x76_dart \n
 			device_torch \n
 #include "gameplay\character_drugs.xml" \n
