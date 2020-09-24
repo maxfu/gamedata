@@ -1336,9 +1336,7 @@
   		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_walther \n
-			ammo_9x19_pbp = 1 \n
-			wpn_bm16 \n
+			wpn_bm16_full \n
 			ammo_12x76_zhekan = 1 \n
 			device_torch \n
 		</supplies>

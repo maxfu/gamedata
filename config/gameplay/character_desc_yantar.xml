@@ -277,8 +277,6 @@
 			[spawn] \n
 			wpn_bm16 \n
 			ammo_12x70_buck = 1 \n
-			wpn_walther \n
-			ammo_9x19_fmj \n
 			device_torch \n
 		</supplies>
 
@@ -303,10 +301,8 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_bm16 \n
+			wpn_toz34 \n
 			ammo_12x70_buck = 1 \n
-			wpn_pm \n
-			ammo_9x18_fmj = 1 \n
 			device_torch \n
 		</supplies>
 
@@ -624,11 +620,9 @@
 		<crouch_type>0</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_bm16 \n
+			wpn_bm16_full \n
 			ammo_12x70_buck = 1 \n
 			grenade_f1 = 2 \n
-			wpn_pm \n
-			ammo_9x18_fmj = 1 \n
 			device_torch \n
 		</supplies>
 
@@ -685,8 +679,6 @@
 			[spawn] \n
 			wpn_bm16 \n
 			ammo_12x70_buck = 1 \n
-			wpn_pm \n
-			ammo_9x18_fmj = 1 \n
 			device_torch \n
 		</supplies>
 
