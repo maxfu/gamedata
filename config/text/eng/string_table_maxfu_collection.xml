@@ -427,4 +427,7 @@
 	<string id="pipe_bomb_can">
 		<text>Pipe Bomb</text>
 	</string>
+	<string id="enc_equipment_medi_adrenaline1">
+		<text>A medic shot which restore your power. Do not over dose.</text>
+	</string>
 </string_table>
