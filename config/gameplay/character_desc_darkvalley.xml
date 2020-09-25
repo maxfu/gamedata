@@ -1252,10 +1252,8 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_pb \n
+			wpn_scorpion \n
 			ammo_9x18_fmj = 1 \n
-			wpn_mp5 \n
-			ammo_9x19_fmj = 1 \n
 			device_torch \n
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"

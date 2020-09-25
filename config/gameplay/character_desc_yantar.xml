@@ -414,10 +414,8 @@
 		<supplies>
 			[spawn] \n
 			bandage \n
-			wpn_mp5 \n
-			ammo_9x19_fmj = 1 \n
+			wpn_scorpion \n
 			grenade_f1 = 1 \n
-			wpn_pm \n
 			ammo_9x18_fmj = 1 \n
 			device_torch \n
 		</supplies>
