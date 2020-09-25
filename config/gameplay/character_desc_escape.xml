@@ -112,7 +112,7 @@
 		<visual>actors\neytral\stalker_neytral_balon_4</visual>
 		<supplies>
 			[spawn] \n
-			wpn_kriss_m1 \n
+			wpn_scorpion \n
 			ammo_9x18_fmj = 1 \n
 			device_torch \n
 		</supplies>
