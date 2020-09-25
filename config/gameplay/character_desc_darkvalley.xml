@@ -886,7 +886,6 @@
 			ammo_9x18_fmj \n
             wpn_abakan \n
             ammo_5.45x39_ap = 1 \n
-            ammo_5.45x39_fmj = 2 \n
 			device_torch \n
 #include "gameplay\character_food.xml"
 #include "gameplay\character_drugs.xml"
