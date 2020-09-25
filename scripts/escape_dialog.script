@@ -162,11 +162,11 @@ function transfer_medikit_to_fox (player, wounded)
 end
 
 function give_weapon_to_actor (trader, actor)
-    dialogs.relocate_item_section(trader, "wpn_toz34", "in")
-    dialogs.relocate_item_section(trader, "ammo_12x70_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x70_buck", "in")
-    dialogs.relocate_item_section(trader, "ammo_12x70_buck", "in")
-	dialogs.relocate_item_section(trader, "ammo_12x70_buck", "in")
+    dialogs.relocate_item_section(trader, "wpn_pm", "in")
+    dialogs.relocate_item_section(trader, "ammo_9x18_fmj", "in")
+    dialogs.relocate_item_section(trader, "ammo_9x18_fmj", "in")
+    dialogs.relocate_item_section(trader, "bandage", "in")
+    dialogs.relocate_item_section(trader, "bandage", "in")
     dialogs.relocate_item_section(trader, "wpn_knife", "in")     
 end
 
@@ -266,10 +266,14 @@ function transfer_wolf_reward(first_speaker, second_speaker)
 end
 
 function wolf_additional_reward(first_speaker, second_speaker)
+    if has_alife_info("tutorial_wounded_help") then
+		dialogs.relocate_money(first_speaker, 1000, "in")
+		dialogs.relocate_item_section(first_speaker, "af_niphty_shield", "in")
+	end
     dialogs.relocate_item_section(first_speaker, "medkit", "in")
-    dialogs.relocate_item_section(first_speaker, "bandage", "in")
     dialogs.relocate_item_section(first_speaker, "wpn_fort", "in")
     dialogs.relocate_item_section(first_speaker, "grenade_f1", "in") 
+    dialogs.relocate_item_section(first_speaker, "ammo_9x18_fmj", "in")        
     dialogs.relocate_item_section(first_speaker, "ammo_9x18_fmj", "in")        
 end
 
