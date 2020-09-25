@@ -138,3 +138,31 @@ eat_radiation		= 0
 wounds_heal_perc	= 0
 eat_portions_num	= 1
 eat_max_power		= 5
+
+[af_niphty_shield]:af_dummy_glassbeads
+description = enc_zone_artifact_af-niphty_shield
+inv_name = af-niphty_shield
+inv_name_short = af-niphty_shield
+visual	= physics\anomaly\artefact_electra2.ogf
+particles			= anomaly2\artefact\artefact_puxx
+inv_grid_x			= 12
+inv_grid_y			= 9
+
+cost = 12000	;50
+jump_height			= 0.0
+
+hit_absorbation_sect = af_niphty_shield_absorbation
+
+;enable/disable this to hide/show the artifact in the grid on searches and trades
+; quest_item			= true
+
+[af_niphty_shield_absorbation]
+burn_immunity = 1.0
+strike_immunity = 0.72	; 28%
+shock_immunity = 0.75	; 50%	;use 0.40 x 2 for armor repair in electro anomalies
+wound_immunity = 0.94	; 6%
+radiation_immunity = 1.0	; 30%
+telepatic_immunity = 0.90	; 10%
+chemical_burn_immunity = 1.0	; 30%
+explosion_immunity = 0.925	; 7.5%
+fire_wound_immunity  = 0.95	; 5%
