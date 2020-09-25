@@ -332,6 +332,7 @@
 			wpn_bm16 \n
 			ammo_12x70_buck \n
 #include "gameplay\character_items.xml" \n
+#include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
 		</supplies>
 					
@@ -363,6 +364,7 @@
 			ammo_9x18_fmj = 1 \n
 			device_torch \n
 #include "gameplay\character_items.xml" \n
+#include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
 		</supplies>
 		
@@ -393,6 +395,7 @@
 			wpn_bm16 \n
 			ammo_12x70_buck \n
 #include "gameplay\character_items.xml" \n
+#include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
 		</supplies>
 		
@@ -423,6 +426,7 @@
 			wpn_pb \n
 			ammo_9x18_fmj = 1 \n
 #include "gameplay\character_items.xml" \n
+#include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
 		</supplies>
 		
@@ -452,8 +456,11 @@
 			[spawn] \n
 			wpn_gp100 \n
 			ammo_357_hp_mag \n
+			wpn_mp5 \n
+			ammo_9x19_fmj = 1 \n
 			device_torch \n
 #include "gameplay\character_items.xml" \n
+#include "gameplay\character_drugs.xml" \n
 #include "gameplay\character_food.xml"
 		</supplies>
 		
