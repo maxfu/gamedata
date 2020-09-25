@@ -1154,6 +1154,4 @@ function test_weapons(trader, actor)
 end
 
 function test_outfits(trader, actor)
-	dialogs.relocate_item_section(trader, "af_electra_sparkler", "in")
-	dialogs.relocate_money(actor, 6000, "in")
 end
