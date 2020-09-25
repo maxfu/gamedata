@@ -714,6 +714,38 @@
 
 	</specific_character>	
 
+	<specific_character id="stalker_master_default6" team_default = "1">
+		<name>Неизвестный мастер</name>
+		<icon x="20" y="8"></icon>
+		<map_icon x="1" y="0"></map_icon>
+		<bio>Один из ветеранов Зоны. Этот сталкер знает Зону как своих пять пальцев.
+		Обычно хорошо экипирован и очень опасен. Детальная информация отсутствует.</bio>
+
+		<class>Stalker_master</class>
+		<community>stalker</community>
+		
+		<rank>125</rank>
+		<reputation>0</reputation>
+
+		<visual>actors\neytral\stalker_neytral_exoskeleton</visual>
+		<supplies>
+			[spawn] \n
+			wpn_kriss_super_v \n
+			ammo_11.43x23_hydro = 1 \n
+			wpn_tavor \n
+			ammo_5.45x39_ap = 1 \n
+			device_torch \n
+#include "gameplay\character_items.xml"
+		</supplies>
+			
+		<start_dialog>hello_dialog</start_dialog>
+		<actor_dialog>esc_stalker_talk_level</actor_dialog>
+		<actor_dialog>gar_stalker_about_level</actor_dialog>
+		<actor_dialog>agr_stalker_talk_level</actor_dialog>
+		<actor_dialog>agr_stalker_talk_about_ratcatcher</actor_dialog>
+
+	</specific_character>	
+
 <!--	
 	<specific_character id="stalker_demon">
 		<name>Олег "Демон" Гусаров</name>
