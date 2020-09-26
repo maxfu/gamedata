@@ -12,7 +12,7 @@ zrp_debug_enabled = true
 mainmenu_anims = true
 
 -- set this true/false to enable/disable IG2007's dunin_ammo_fix
-ammo_aggregation = true
+ammo_aggregation = false
 
 -- set this true/false to enable/disable Stalkers Are Not Blind anomaly evasion
 sanb_enabled = true
@@ -56,8 +56,8 @@ local zc_gray	= "%c[255,160,160,160]"
 -- nv 071026 - code to auto-transfer favorite items from searched bodies
 ----------------------------------
 -- set this true to enable the feature, then add your favorites below
-transfer_faves = true
-tf_notify_sound = true
+transfer_faves = false
+tf_notify_sound = false
 
 -- enable your favorites by removing the "--" from the front of a line
 local favorites = {
@@ -167,11 +167,11 @@ end
 ----------------------------------
 function on_item_take(obj, bind_object)
 	-- process item acquisition here
-	if ammo_aggregation and obj:clsid() == clsid.wpn_ammo then
-		if dunin_ammo.on_take(obj) then
-			bind_stalker.nv_need_update = true
-		end
-	end
+--	if ammo_aggregation and obj:clsid() == clsid.wpn_ammo then
+--		if dunin_ammo.on_take(obj) then
+--			bind_stalker.nv_need_update = true
+--		end
+--	end
 end
 ----------------------------------
 function on_item_drop(obj, bind_object)
@@ -184,9 +184,9 @@ function do_update(bind_object)
 	-- execute workaround for possible secret stash loss
 	treasure_manager.get_treasure_manager():loss_workaround()
 	-- aggregate ammo if not trading
-	if ammo_aggregation and not bind_object:is_talking() then
-		dunin_ammo.on_update()
-	end
+--	if ammo_aggregation and not bind_object:is_talking() then
+--		dunin_ammo.on_update()
+--	end
 	if _dev then
 		_dev.do_update()
 	end

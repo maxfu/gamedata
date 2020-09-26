@@ -186,18 +186,14 @@ function actor_binder:article_callback(npc, group, name)
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_item_take (obj)
-    if obj:clsid() ~= clsid.wpn_ammo then
     level_tasks.proceed(self.object)
-	end
 	if xrs_ai then xrs_ai.actor_item_take(obj) end
     --game_stats.update_take_item (obj, self.object)
 	_z.on_item_take(obj, self.object)
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_item_drop (obj)
-    if obj:clsid() ~= clsid.wpn_ammo then
     level_tasks.proceed(self.object)
-	end
     --game_stats.update_drop_item (obj, self.object)
 	_z.on_item_drop(obj, self.object)
 	abc_sleep.uptabc(obj)    
@@ -368,8 +364,8 @@ function actor_binder:update(delta)
 	auto_injection.check_auto_injection_suit()
 	auto_injection.check_antirad_supplies()
 	auto_injection.check_radiation()
-	if maxfu_utils then maxfu_utils.maxfu_auto_save() end
 	-- mod: function calls for automatic antirad injection - end
+	if maxfu_utils then maxfu_utils.maxfu_auto_save() end
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)

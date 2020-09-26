@@ -263,13 +263,13 @@ end
 --' Escape dynamite for Wolf
 function transfer_wolf_reward(first_speaker, second_speaker)
 	dialogs.relocate_item_section(first_speaker, "af_medusa", "in")
-end
-
-function wolf_additional_reward(first_speaker, second_speaker)
     if has_alife_info("tutorial_wounded_help") then
 		dialogs.relocate_money(first_speaker, 1000, "in")
 		dialogs.relocate_item_section(first_speaker, "af_niphty_shield", "in")
 	end
+end
+
+function wolf_additional_reward(first_speaker, second_speaker)
     dialogs.relocate_item_section(first_speaker, "medkit", "in")
     dialogs.relocate_item_section(first_speaker, "wpn_fort", "in")
     dialogs.relocate_item_section(first_speaker, "grenade_f1", "in") 
